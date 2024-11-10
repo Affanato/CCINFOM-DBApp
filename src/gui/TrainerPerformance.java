@@ -97,10 +97,8 @@ public class TrainerPerformance extends JFrame {
 					updateMouseClicked(e);
 				}
 			});
-			updateTrainerFrame.pack();
-			updateTrainerFrame.setSize(1200, 700);
-			updateTrainerFrame.setLocationRelativeTo(null);
-			updateTrainerFrame.setVisible(true);
+			updateTrainerFrameContentPane.add(updateRatingButton);
+
 
 			//======== scrollPane1 ========
 			{
@@ -141,7 +139,9 @@ public class TrainerPerformance extends JFrame {
 				updateTrainerFrameContentPane.setPreferredSize(preferredSize);
 			}
 			updateTrainerFrame.pack();
-			updateTrainerFrame.setLocationRelativeTo(updateTrainerFrame.getOwner());
+			updateTrainerFrame.setSize(1200, 700);
+			updateTrainerFrame.setLocationRelativeTo(null);
+			updateTrainerFrame.setVisible(true);
 		}
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
 	}
@@ -159,4 +159,8 @@ public class TrainerPerformance extends JFrame {
 	private JScrollPane scrollPane1;
 	private JTable memberTrainerTable;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+
+	public static void main(String[] args) {
+		TrainerAvailability tp = new TrainerAvailability();
+	}
 }
