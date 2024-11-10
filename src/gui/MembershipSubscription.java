@@ -40,6 +40,7 @@ public class MembershipSubscription extends JFrame {
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
 		// Generated using JFormDesigner Evaluation license - Marxandrea Cabato
+		membershipFrame = new JFrame();
 		membershipBack = new JButton();
 		titleBar3 = new JFormattedTextField();
 		scrollPane1 = new JScrollPane();
@@ -58,7 +59,7 @@ public class MembershipSubscription extends JFrame {
 		editorPane1 = new JEditorPane();
 
 		//======== this ========
-		Container contentPane = getContentPane();
+		Container contentPane = membershipFrame.getContentPane();
 		contentPane.setLayout(null);
 
 		//---- membershipBack ----
@@ -217,13 +218,16 @@ public class MembershipSubscription extends JFrame {
 			contentPane.setMinimumSize(preferredSize);
 			contentPane.setPreferredSize(preferredSize);
 		}
-		pack();
-		setLocationRelativeTo(getOwner());
+		membershipFrame.pack();
+		membershipFrame.setSize(1200, 700);
+		membershipFrame.setLocationRelativeTo(null);
+		membershipFrame.setVisible(true);
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
 	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
 	// Generated using JFormDesigner Evaluation license - Marxandrea Cabato
+	private JFrame membershipFrame;
 	private JButton membershipBack;
 	private JFormattedTextField titleBar3;
 	private JScrollPane scrollPane1;

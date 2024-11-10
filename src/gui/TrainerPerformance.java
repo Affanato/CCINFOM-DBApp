@@ -161,6 +161,6 @@ public class TrainerPerformance extends JFrame {
 	// JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
 	public static void main(String[] args) {
-		TrainerAvailability tp = new TrainerAvailability();
+		TrainerPerformance tp = new TrainerPerformance();
 	}
 }
