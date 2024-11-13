@@ -8,10 +8,10 @@ import java.sql.SQLException;
  */
 public class DBManager {
 
-    // TODO: Replace the url, user, and password with that of yours.
+    // TODO: Replace the url, user, and password.
     private static final String DB_URL = "";
-    private static final String DB_USER = "";
-    private static final String DB_PASSWORD = "";
+    private static final String DB_USER = "db_admin";
+    private static final String DB_PASSWORD = "AkoSiGymAppDBAdmin";
 
     private static Connection databaseConnection;
 

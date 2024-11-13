@@ -4,7 +4,7 @@
 public class ExceptionHandler {
 
     public static void handleException(Exception e) {
-        System.out.println("Error: " + e.getMessage());
+        System.out.printf("Error: %s", e.getMessage());
         e.printStackTrace(); // TODO (optional): Replace with more robust logging.
     }
 }
