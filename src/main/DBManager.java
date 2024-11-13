@@ -8,8 +8,7 @@ import java.sql.SQLException;
  */
 public class DBManager {
 
-    // TODO: Replace the url, user, and password.
-    private static final String DB_URL = "";
+    private static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/dbgym";
     private static final String DB_USER = "db_admin";
     private static final String DB_PASSWORD = "AkoSiGymAppDBAdmin";
 
@@ -20,7 +19,7 @@ public class DBManager {
      */
     public static Connection getDatabaseConnection() throws SQLException {
         if (databaseConnection == null || databaseConnection.isClosed()) {
-            // Establish the databaseConnection if it has not yet been made or has been closed.
+            // Establish the database connection if it has not yet been made or has been closed.
             databaseConnection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             System.out.println("Connection established.");
         }

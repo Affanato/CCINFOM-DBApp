@@ -1,3 +1,5 @@
-public static void main() {
-    new DBAppController(new DBAppModel());
+public class DBAppMain {
+    public static void main(String[] args) {
+        new DBAppController(new DBAppModel());
+    }
 }
