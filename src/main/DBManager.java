@@ -1,6 +1,7 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * Establishes and manages a databaseConnection to the database.
@@ -12,29 +13,72 @@ public class DBManager {
     private static final String DB_USER = "db_admin";
     private static final String DB_PASSWORD = "AkoSiGymAppDBAdmin";
 
-    private static Connection databaseConnection;
+    private static Connection connection;
 
     /**
-     * Gets the object representing the databaseConnection to the database.
+     * Gets the object representing the connection to the database.
      */
-    public static Connection getDatabaseConnection() throws SQLException {
-        if (databaseConnection == null || databaseConnection.isClosed()) {
-            // Establish the database connection if it has not yet been made or has been closed.
-            databaseConnection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-            System.out.println("Connection established.");
+    public static Connection getConnection() {
+        boolean connectionExists = false;
+
+        try {
+            connectionExists = connection != null && !connection.isClosed();
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
         }
-        return databaseConnection;
+
+        if (connectionExists) {
+            return connection;
+        }
+
+        // Establish the database connection if it has not yet been made or has been closed.
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            System.out.println("Connection established.");
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+        }
+
+        return connection;
     }
 
     /**
-     * Closes the databaseConnection to the database.
+     * Gets a new Statement instance of the database.
+     * @return a new Statement instance of the database
      */
-    public static void closeDatabaseConnection() {
+    public static Statement getNewStatement() {
         try {
-            if (databaseConnection != null && !databaseConnection.isClosed()) {
-                databaseConnection.close();
+            return connection.createStatement();
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+        }
+    }
+
+    /**
+     * Closes the connection to the database.
+     */
+    public static void closeConnection() {
+        try {
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
                 System.out.println("Connection closed.");
             }
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+        }
+    }
+
+    /**
+     * Closes a provided Statement instance.
+     * @param statement - the Statement instance to be closed
+     */
+    public static void closeStatement(Statement statement) {
+        if (statement == null) {
+            return;
+        }
+
+        try {
+            statement.close();
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
         }

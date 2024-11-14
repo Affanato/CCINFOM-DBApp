@@ -3,7 +3,6 @@ import java.sql.SQLException;
 
 public class DBAppModel {
 
-    private Connection databaseConnection;
     private final MembersDAO membersDAO;
     private final MembershipsDAO membershipsDAO;
     private final ProductsDAO productsDAO;
@@ -11,20 +10,11 @@ public class DBAppModel {
     private final TransactionsDAO transactionsDAO;
 
     public DBAppModel() {
-        try {
-            this.databaseConnection = DBManager.getDatabaseConnection();
-        } catch(SQLException e) {
-            ExceptionHandler.handleException(e);
-        }
         membersDAO = new MembersDAO();
         membershipsDAO = new MembershipsDAO();
         productsDAO = new ProductsDAO();
         trainersDAO = new TrainersDAO();
         transactionsDAO = new TransactionsDAO();
-    }
-
-    public Connection getDatabaseConnection() {
-        return databaseConnection;
     }
 
     public MembersDAO getMembersDAO() {
@@ -48,6 +38,14 @@ public class DBAppModel {
     }
 
     public void closeDatabaseConnection() {
-        DBManager.closeDatabaseConnection();
+        DBManager.closeConnection();
+    }
+
+    public void closeStatements() {
+        membersDAO.closeStatement();
+        membershipsDAO.closeStatement();
+        productsDAO.closeStatement();
+        trainersDAO.closeStatement();
+        transactionsDAO.closeStatement();
     }
 }
