@@ -83,18 +83,18 @@ CREATE TABLE IF NOT EXISTS `dbgym`.`memberships` (
   CONSTRAINT `fk_memberships_members1`
     FOREIGN KEY (`member_id`)
     REFERENCES `dbgym`.`members` (`member_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE SET NULL
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_memberships_membership_types1`
     FOREIGN KEY (`membership_type_id`)
     REFERENCES `dbgym`.`membership_types` (`membership_type_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE SET NULL
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_memberships_trainers1`
     FOREIGN KEY (`trainer_id`)
     REFERENCES `dbgym`.`trainers` (`trainer_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -127,13 +127,13 @@ CREATE TABLE IF NOT EXISTS `dbgym`.`transactions` (
   CONSTRAINT `fk_transactions_members1`
     FOREIGN KEY (`member_id`)
     REFERENCES `dbgym`.`members` (`member_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE SET NULL
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_transactions_products1`
     FOREIGN KEY (`product_id`)
     REFERENCES `dbgym`.`products` (`product_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -159,13 +159,13 @@ CREATE TABLE IF NOT EXISTS `dbgym`.`membership_type_amenities` (
   CONSTRAINT `fk_membership_type_amenities_membership_types1`
     FOREIGN KEY (`membership_type_id`)
     REFERENCES `dbgym`.`membership_types` (`membership_type_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE SET NULL
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_membership_type_amenities_amenities1`
     FOREIGN KEY (`amenity_id`)
     REFERENCES `dbgym`.`amenities` (`amenity_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
