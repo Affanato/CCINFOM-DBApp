@@ -9,11 +9,12 @@ import java.sql.Statement;
  */
 public class DBManager {
 
+    // Yep, these are actual (test) credentials in my local environment. Please replace with your own.
     private static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/dbgym";
     private static final String DB_USER = "db_admin";
     private static final String DB_PASSWORD = "AkoSiGymAppDBAdmin";
 
-    private static Connection connection;
+    private static Connection connection = null;
 
     /**
      * Gets the object representing the connection to the database.
@@ -52,6 +53,7 @@ public class DBManager {
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
         }
+        return null;
     }
 
     /**
