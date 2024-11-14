@@ -1,7 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  * Establishes and manages a databaseConnection to the database.
@@ -52,8 +49,21 @@ public class DBManager {
             return connection.createStatement();
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
+            return null;
         }
-        return null;
+    }
+
+    /**
+     * Gets a new PreparedStatement instance given a SQL query.
+     * @return a new PreparedStatement instance of a SQL query
+     */
+    public static PreparedStatement getNewPreparedStatement(String query) {
+        try {
+            return connection.prepareStatement(query);
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
     }
 
     /**

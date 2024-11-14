@@ -1,20 +1,25 @@
-import java.sql.Connection;
-import java.sql.SQLException;
-
 public class DBAppModel {
 
+    private final AmenitiesDAO amenitiesDAO;
     private final MembersDAO membersDAO;
     private final MembershipsDAO membershipsDAO;
+    private final MembershipTypesDAO membershipTypesDAO;
     private final ProductsDAO productsDAO;
     private final TrainersDAO trainersDAO;
     private final TransactionsDAO transactionsDAO;
 
     public DBAppModel() {
+        amenitiesDAO = new AmenitiesDAO();
         membersDAO = new MembersDAO();
         membershipsDAO = new MembershipsDAO();
+        membershipTypesDAO = new MembershipTypesDAO();
         productsDAO = new ProductsDAO();
         trainersDAO = new TrainersDAO();
         transactionsDAO = new TransactionsDAO();
+    }
+
+    public AmenitiesDAO getAmenitiesDAO() {
+        return amenitiesDAO;
     }
 
     public MembersDAO getMembersDAO() {
@@ -23,6 +28,10 @@ public class DBAppModel {
 
     public MembershipsDAO getMembershipsDAO() {
         return membershipsDAO;
+    }
+
+    public MembershipTypesDAO getMembershipTypesDAO() {
+        return membershipTypesDAO;
     }
 
     public ProductsDAO getProductsDAO() {
