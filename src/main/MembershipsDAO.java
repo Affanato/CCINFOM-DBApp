@@ -11,9 +11,7 @@ public class MembershipsDAO {
 
     // TODO: CJ will code the associated methods here.
     private void createTable() {
-        String query = "`member_id` INT UNSIGNED NOT NULL AUTO_INCREMENT" +
-                       "" +
-                       "" +
+        
     }
 
     public void insertMembership() {
