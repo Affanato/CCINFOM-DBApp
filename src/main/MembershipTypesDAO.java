@@ -1,26 +1,18 @@
 import java.sql.Connection;
 import java.sql.Statement;
 
-public class MembershipsDAO {
+public class MembershipTypesDAO {
 
+    private Connection connection;
     private Statement statement;
 
-    public MembershipsDAO() {
+    public MembershipTypesDAO() {
+        this.connection = DBManager.getConnection();
         this.statement = DBManager.getNewStatement();
     }
 
     // TODO: CJ will code the associated methods here.
-    private void createTable() {
 
-    }
-
-    public void insertMembership() {
-
-    }
-
-    public void removeMembership() {
-
-    }
 
     public void closeStatement() {
         DBManager.closeStatement(statement);
