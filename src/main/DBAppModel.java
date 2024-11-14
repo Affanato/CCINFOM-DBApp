@@ -18,6 +18,24 @@ public class DBAppModel {
         transactionsDAO = new TransactionsDAO();
     }
 
+    public void initializeDatabase() {
+        DBManager.initializeDatabase();
+    }
+
+    public void closeDatabaseConnection() {
+        DBManager.closeConnection();
+    }
+
+    public void closeStatements() {
+        amenitiesDAO.closeStatement();
+        membersDAO.closeStatement();
+        membershipsDAO.closeStatement();
+        membershipTypesDAO.closeStatement();
+        productsDAO.closeStatement();
+        trainersDAO.closeStatement();
+        transactionsDAO.closeStatement();
+    }
+
     public AmenitiesDAO getAmenitiesDAO() {
         return amenitiesDAO;
     }
@@ -44,17 +62,5 @@ public class DBAppModel {
 
     public TransactionsDAO getTransactionsDAO() {
         return transactionsDAO;
-    }
-
-    public void closeDatabaseConnection() {
-        DBManager.closeConnection();
-    }
-
-    public void closeStatements() {
-        membersDAO.closeStatement();
-        membershipsDAO.closeStatement();
-        productsDAO.closeStatement();
-        trainersDAO.closeStatement();
-        transactionsDAO.closeStatement();
     }
 }
