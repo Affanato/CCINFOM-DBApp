@@ -2,7 +2,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-// TODO: Kay CJ 'to! - CJ
+// TODO: Verify if the methods are implemented correctly.
 public class MembershipsDAO {
 
     private final Statement statement;
@@ -75,28 +75,34 @@ public class MembershipsDAO {
     }
 
     // MASS UPDATE QUERIES //
-    public void updateOldMemberFKs(int oldID, int newID) {
-        
+    public void updateMemberID(int oldID, int newID) {
+        DBManager.updateTableForeignKey("memberships", "member_id", oldID, newID);
+        System.out.println("Memberships records with given member_id updated successfully.");
     }
 
-    public void updateOldMembershipTypeFKs(int oldID, int newID) {
-
+    public void updateMembershipTypeID(int oldID, int newID) {
+        DBManager.updateTableForeignKey("memberships", "membership_type_id", oldID, newID);
+        System.out.println("Memberships records with given membership_type_id updated successfully.");
     }
 
-    public void updateOldTrainerFKs(int oldID, int newID) {
-
+    public void updateTrainerID(int oldID, int newID) {
+        DBManager.updateTableForeignKey("memberships", "trainer_id", oldID, newID);
+        System.out.println("Memberships records with given trainer_id updated successfully.");
     }
 
-    public void deleteByMemberFK(int targetID) {
-
+    public void deleteByMemberID(int targetID) {
+        DBManager.deleteTableRecordsByForeignKey("memberships", "member_id", targetID);
+        System.out.println("Memberships records with given member_id deleted successfully.");
     }
 
-    public void deleteByMembershipFK(int targetID) {
-
+    public void deleteByMembershipTypeID(int targetID) {
+        DBManager.deleteTableRecordsByForeignKey("memberships", "membership_type_id", targetID);
+        System.out.println("Memberships records with given membership_type_id deleted successfully.");
     }
 
-    public void deleteByTrainerFK(int targetID) {
-
+    public void deleteByTrainerID(int targetID) {
+        DBManager.deleteTableRecordsByForeignKey("memberships", "trainer_id", targetID);
+        System.out.println("Memberships records with given trainer_id updated successfully.");
     }
 
     // UTILITY METHODS

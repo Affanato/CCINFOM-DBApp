@@ -113,4 +113,50 @@ public class DBManager {
             ExceptionHandler.handleException(e);
         }
     }
+
+    /**
+     * Updates the foreign key of a table's records with a particular foreign key value.
+     * @param table - name of the table
+     * @param foreignKey - name of the foreign key
+     * @param oldID - the old ID
+     * @param newID - the new ID
+     */
+    public static void updateTableForeignKey(String table, String foreignKey, int oldID, int newID) {
+        String sql = "UPDATE ? " +
+                     "SET ? = ? " +
+                     "WHERE ? = ? ";
+
+        try (PreparedStatement ps = getNewPreparedStatement(sql)) {
+            assert ps != null;
+            ps.setString(1, table);
+            ps.setString(2, foreignKey);
+            ps.setInt(3, newID);
+            ps.setString(4, foreignKey);
+            ps.setInt(5, oldID);
+            ps.executeUpdate();
+        } catch(SQLException e) {
+            ExceptionHandler.handleException(e);
+        }
+    }
+
+    /**
+     * Deletes all records of a table with a particular foreign key value.
+     * @param table - name of the table
+     * @param foreignKey - name of the foreign key
+     * @param targetID - the foreign key ID of the records being deleted
+     */
+    public static void deleteTableRecordsByForeignKey(String table, String foreignKey, int targetID) {
+        String sql = "DELETE FROM ? " +
+                     "WHERE ? = ? ";
+
+        try (PreparedStatement ps = getNewPreparedStatement(sql)) {
+            assert ps != null;
+            ps.setString(1, table);
+            ps.setString(2, foreignKey);
+            ps.setInt(3, targetID);
+            ps.executeUpdate();
+        } catch(SQLException e) {
+            ExceptionHandler.handleException(e);
+        }
+    }
 }

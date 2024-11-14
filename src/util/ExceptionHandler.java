@@ -3,9 +3,7 @@
  */
 public class ExceptionHandler {
 
-    private ExceptionHandler() {
-
-    }
+    private ExceptionHandler() {}
 
     public static void handleException(Exception e) {
         System.out.printf("Error: %s", e.getMessage());
