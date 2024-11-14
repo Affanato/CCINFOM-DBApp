@@ -1,8 +1,10 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.*;
 
 /**
  * Establishes and manages a databaseConnection to the database.
- * Employs the Singleton design pattern.
  */
 public class DBManager {
 
@@ -10,8 +12,11 @@ public class DBManager {
     private static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/dbgym";
     private static final String DB_USER = "db_admin";
     private static final String DB_PASSWORD = "AkoSiGymAppDBAdmin";
+    private static final String SQL_FILEPATH = "dbgym_script.sql";
 
     private static Connection connection = null;
+
+    private DBManager() {}
 
     /**
      * Gets the object representing the connection to the database.
@@ -57,12 +62,24 @@ public class DBManager {
      * Gets a new PreparedStatement instance given a SQL query.
      * @return a new PreparedStatement instance of a SQL query
      */
-    public static PreparedStatement getNewPreparedStatement(String query) {
+    public static PreparedStatement getNewPreparedStatement(String sql) {
         try {
-            return connection.prepareStatement(query);
+            return connection.prepareStatement(sql);
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
             return null;
+        }
+    }
+
+    /**
+     * Initializes the database in case it has not yet been initialized.
+     */
+    public static void initializeDatabase() {
+        try (Statement statement = getNewStatement()) {
+            String sql = Files.readString(Paths.get(SQL_FILEPATH));
+            statement.executeUpdate(sql);
+        } catch (IOException | SQLException e) {
+            ExceptionHandler.handleException(e);
         }
     }
 
