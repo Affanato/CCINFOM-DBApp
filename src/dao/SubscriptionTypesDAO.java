@@ -1,11 +1,11 @@
 import java.sql.Statement;
 
 // TODO: Kay CJ 'to! - CJ
-public class TransactionsDAO {
+public class SubscriptionTypesDAO {
 
     private final Statement statement;
 
-    public TransactionsDAO() {
+    public SubscriptionTypesDAO() {
         this.statement = DBManager.getNewStatement();
     }
 

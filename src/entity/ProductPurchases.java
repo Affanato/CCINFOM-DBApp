@@ -1,6 +1,6 @@
 import java.time.LocalDate;
 
-public record Transaction(
+public record ProductPurchases(
         int transactionID,
         int memberID,
         int productID,

@@ -3,11 +3,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 // TODO: Verify if the methods are implemented correctly.
-public class MembershipsDAO {
+public class SubscriptionsDAO {
 
     private final Statement statement;
 
-    public MembershipsDAO() {
+    public SubscriptionsDAO() {
         this.statement = DBManager.getNewStatement();
     }
 

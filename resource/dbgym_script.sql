@@ -22,9 +22,9 @@ CREATE TABLE IF NOT EXISTS `dbgym`.`members` (
   `last_name` VARCHAR(45) NOT NULL,
   `first_name` VARCHAR(45) NOT NULL,
   `birthdate` DATE NOT NULL,
-  `sex` ENUM('M', 'F', '-') NOT NULL,
+  `sex` ENUM('M', 'F', 'N', 'U') NOT NULL,
   `phone_number` CHAR(11) NOT NULL,
-  `street` VARCHAR(45) NOT NULL,
+  `street` VARCHAR(128) NOT NULL,
   `barangay` VARCHAR(45) NOT NULL,
   `city` VARCHAR(45) NOT NULL,
   `province` VARCHAR(45) NULL,
@@ -38,7 +38,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `dbgym`.`subscription_types` (
   `subscription_type_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `subscription_type_name` VARCHAR(45) NOT NULL,
-  `price` DECIMAL(10,2) UNSIGNED NOT NULL,
+  `subscription_type_price` DECIMAL(10,2) UNSIGNED NOT NULL,
   PRIMARY KEY (`subscription_type_id`),
   UNIQUE INDEX `membership_type_UNIQUE` (`subscription_type_name` ASC) VISIBLE)
 ENGINE = InnoDB;
@@ -77,14 +77,14 @@ CREATE TABLE IF NOT EXISTS `dbgym`.`trainers` (
   `last_name` VARCHAR(45) NOT NULL,
   `first_name` VARCHAR(45) NOT NULL,
   `birthdate` DATE NOT NULL,
-  `sex` ENUM('M', 'F', '-') NOT NULL,
+  `sex` ENUM('M', 'F', 'N', 'U') NOT NULL,
   `phone_number` CHAR(11) NOT NULL,
-  `street` VARCHAR(45) NOT NULL,
+  `street` VARCHAR(128) NOT NULL,
   `barangay` VARCHAR(45) NOT NULL,
   `city` VARCHAR(45) NOT NULL,
   `province` VARCHAR(45) NULL,
   `program_specialty` VARCHAR(128) NOT NULL,
-  `status` ENUM('Active', 'Inactive') NOT NULL,
+  `trainer_status` ENUM('Active', 'Inactive') NOT NULL,
   PRIMARY KEY (`trainer_id`),
   UNIQUE INDEX `phone_number_UNIQUE` (`phone_number` ASC) VISIBLE)
 ENGINE = InnoDB;
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `dbgym`.`product_purchases` (
   `member_id` INT UNSIGNED NOT NULL,
   `product_id` INT UNSIGNED NOT NULL,
   `quantity_sold` INT UNSIGNED NOT NULL,
-  `transaction_date` DATE NOT NULL,
+  `purchase_datetime` DATETIME NOT NULL,
   PRIMARY KEY (`product_purchase_id`),
   INDEX `fk_product_purchases_products1_idx` (`product_id` ASC) VISIBLE,
   INDEX `fk_product_purchases_members1_idx` (`member_id` ASC) VISIBLE,
@@ -136,9 +136,9 @@ CREATE TABLE IF NOT EXISTS `dbgym`.`amenities` (
   `amenity_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `amenity_name` VARCHAR(45) NOT NULL,
   `walk_in_price` DECIMAL(10,2) UNSIGNED NOT NULL,
-  `time_open` DATETIME NOT NULL,
-  `time_close` DATETIME NOT NULL,
-  `status` ENUM('Active', 'Inactive') NOT NULL,
+  `opening_time` TIME NOT NULL,
+  `closing_time` TIME NOT NULL,
+  `amenity_status` ENUM('Active', 'Inactive') NOT NULL,
   PRIMARY KEY (`amenity_id`),
   UNIQUE INDEX `amenity_name_UNIQUE` (`amenity_name` ASC) VISIBLE)
 ENGINE = InnoDB;
@@ -169,7 +169,7 @@ ENGINE = InnoDB;
 -- Table `dbgym`.`amenity_logs`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `dbgym`.`amenity_logs` (
-  `amenity_log_id` INT NOT NULL,
+  `amenity_log_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `member_id` INT UNSIGNED NOT NULL,
   `amenity_id` INT UNSIGNED NOT NULL,
   `usage_start_datetime` DATETIME NOT NULL,

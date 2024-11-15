@@ -2,20 +2,18 @@ public class DBAppModel {
 
     private final AmenitiesDAO amenitiesDAO;
     private final MembersDAO membersDAO;
-    private final MembershipsDAO membershipsDAO;
-    private final MembershipTypesDAO membershipTypesDAO;
+    private final SubscriptionsDAO subscriptionsDAO;
+    private final SubscriptionTypesDAO subscriptionTypesDAO;
     private final ProductsDAO productsDAO;
     private final TrainersDAO trainersDAO;
-    private final TransactionsDAO transactionsDAO;
 
     public DBAppModel() {
         amenitiesDAO = new AmenitiesDAO();
         membersDAO = new MembersDAO();
-        membershipsDAO = new MembershipsDAO();
-        membershipTypesDAO = new MembershipTypesDAO();
+        subscriptionsDAO = new SubscriptionsDAO();
+        subscriptionTypesDAO = new SubscriptionTypesDAO();
         productsDAO = new ProductsDAO();
         trainersDAO = new TrainersDAO();
-        transactionsDAO = new TransactionsDAO();
     }
 
     public void initializeDatabase() {
@@ -29,11 +27,10 @@ public class DBAppModel {
     public void closeStatements() {
         amenitiesDAO.closeStatement();
         membersDAO.closeStatement();
-        membershipsDAO.closeStatement();
-        membershipTypesDAO.closeStatement();
+        subscriptionsDAO.closeStatement();
+        subscriptionTypesDAO.closeStatement();
         productsDAO.closeStatement();
         trainersDAO.closeStatement();
-        transactionsDAO.closeStatement();
     }
 
     public AmenitiesDAO getAmenitiesDAO() {
@@ -44,12 +41,12 @@ public class DBAppModel {
         return membersDAO;
     }
 
-    public MembershipsDAO getMembershipsDAO() {
-        return membershipsDAO;
+    public SubscriptionsDAO getMembershipsDAO() {
+        return subscriptionsDAO;
     }
 
-    public MembershipTypesDAO getMembershipTypesDAO() {
-        return membershipTypesDAO;
+    public SubscriptionTypesDAO getMembershipTypesDAO() {
+        return subscriptionTypesDAO;
     }
 
     public ProductsDAO getProductsDAO() {
@@ -58,9 +55,5 @@ public class DBAppModel {
 
     public TrainersDAO getTrainersDAO() {
         return trainersDAO;
-    }
-
-    public TransactionsDAO getTransactionsDAO() {
-        return transactionsDAO;
     }
 }
