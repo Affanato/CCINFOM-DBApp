@@ -5,10 +5,10 @@ public class TrainersDAO {
     private Statement statement;
 
     public TrainersDAO() {
-        this.statement = DBManager.getNewStatement();
+        this.statement = DBUtils.getNewStatement();
     }
 
     public void closeStatement() {
-        DBManager.closeStatement(statement);
+        DBUtils.closeStatement(statement);
     }
 }

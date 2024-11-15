@@ -2,13 +2,15 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+// TODO: DONE FOR NOW!!!
 // TODO: Verify if the methods are implemented correctly.
+// TODO: Run through again to check if it can be improved.
 public class SubscriptionsDAO {
 
     private final Statement statement;
 
     public SubscriptionsDAO() {
-        this.statement = DBManager.getNewStatement();
+        this.statement = DBUtils.getNewStatement();
     }
 
     // SINGLE UPDATE QUERIES //
@@ -16,7 +18,7 @@ public class SubscriptionsDAO {
         String sql = "INSERT INTO subscriptions (member_id, subscription_type_id, subscription_start_date, subscription_end_date) " +
                      "VALUES (?, ?, ?, ?) ";
 
-        try (PreparedStatement ps = DBManager.getNewPreparedStatement(sql)) {
+        try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
             ps.setInt(1, memberID);
             ps.setInt(2, subscriptionTypeID);
@@ -33,7 +35,7 @@ public class SubscriptionsDAO {
         String sql = "DELETE FROM subscriptions " +
                      "WHERE subscription_id = ? ";
 
-        try (PreparedStatement ps = DBManager.getNewPreparedStatement(sql)) {
+        try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
             ps.setInt(1, subscriptionID);
             ps.executeUpdate();
@@ -47,7 +49,7 @@ public class SubscriptionsDAO {
 
         // Validate the subscription's eligibility for termination.
         if (!canTerminateSubscription(subscriptionID)) {
-            System.out.println("Subscription must be ongoing for termination.");
+            System.out.println("Subscription must be ongoing to be eligible for termination.");
             return false;
         }
 
@@ -55,7 +57,7 @@ public class SubscriptionsDAO {
                      "SET subscription_end_date = DATE(NOW()) " +
                      "WHERE subscription_id = ? ";
 
-        try (PreparedStatement ps = DBManager.getNewPreparedStatement(sql)) {
+        try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
             ps.setInt(1, subscriptionID);
             ps.executeUpdate();
@@ -85,7 +87,7 @@ public class SubscriptionsDAO {
     public ArrayList<Subscription> selectActiveSubscriptions() {
         String sql = "SELECT * " +
                      "FROM subscriptions " +
-                     "WHERE DATE(NOW()) <= subscription_start_date ";
+                     "WHERE CURRENT_DATE BETWEEN subscription_start_date AND subscription_end_date ";
 
         try (ResultSet rs = statement.executeQuery(sql)) {
             ArrayList<Subscription> activeSubscriptionList = mapResultSetToSubscriptionList(rs);
@@ -99,32 +101,32 @@ public class SubscriptionsDAO {
 
     // MASS UPDATE QUERIES //
     public void updateMemberID(int oldID, int newID) {
-        DBManager.updateTableForeignKey("subscriptions", "member_id", oldID, newID);
+        DBUtils.updateTableForeignKey("subscriptions", "member_id", oldID, newID);
         System.out.println("Subscription records with given member_id updated successfully.");
     }
 
     public void updateSubscriptionTypeID(int oldID, int newID) {
-        DBManager.updateTableForeignKey("subscriptions", "subscription_type_id", oldID, newID);
+        DBUtils.updateTableForeignKey("subscriptions", "subscription_type_id", oldID, newID);
         System.out.println("Subscription records with given subscription_type_id updated successfully.");
     }
 
     public void updateTrainerID(int oldID, int newID) {
-        DBManager.updateTableForeignKey("subscriptions", "trainer_id", oldID, newID);
+        DBUtils.updateTableForeignKey("subscriptions", "trainer_id", oldID, newID);
         System.out.println("Subscription records with given trainer_id updated successfully.");
     }
 
     public void deleteByMemberID(int memberID) {
-        DBManager.deleteTableRecordsByForeignKey("subscriptions", "member_id", memberID);
+        DBUtils.deleteTableRecordsByForeignKey("subscriptions", "member_id", memberID);
         System.out.println("Subscription records with given member_id deleted successfully.");
     }
 
     public void deleteBySubscriptionTypeID(int subscriptionTypeID) {
-        DBManager.deleteTableRecordsByForeignKey("subscriptions", "subscription_type_id", subscriptionTypeID);
+        DBUtils.deleteTableRecordsByForeignKey("subscriptions", "subscription_type_id", subscriptionTypeID);
         System.out.println("Subscription records with given subscription_type_id deleted successfully.");
     }
 
     public void deleteByTrainerID(int trainerID) {
-        DBManager.deleteTableRecordsByForeignKey("subscriptions", "trainer_id", trainerID);
+        DBUtils.deleteTableRecordsByForeignKey("subscriptions", "trainer_id", trainerID);
         System.out.println("Subscription records with given trainer_id deleted successfully.");
     }
 
@@ -134,16 +136,16 @@ public class SubscriptionsDAO {
                      "FROM subscriptions " +
                      "WHERE subscription_id = ? ";
 
-        try (PreparedStatement ps = DBManager.getNewPreparedStatement(sql)) {
+        try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
             ps.setInt(1, targetID);
-        } catch (SQLException e) {
-            ExceptionHandler.handleException(e);
-            return null;
-        }
 
-        try (ResultSet rs = statement.executeQuery(sql)) {
-            return mapResultSetToSubscription(rs);
+            try (ResultSet rs = ps.executeQuery()) {
+                return mapResultSetToSubscription(rs);
+            } catch (SQLException e) {
+                ExceptionHandler.handleException(e);
+                return null;
+            }
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
             return null;
@@ -179,11 +181,14 @@ public class SubscriptionsDAO {
 
     private boolean canTerminateSubscription(int subscriptionID) {
         Subscription s = getSubscription(subscriptionID);
+        if (s == null) {
+            return false;
+        }
         return LocalDate.now().isAfter(s.subscriptionStartDate()) &&
                LocalDate.now().isBefore(s.subscriptionEndDate());
     }
 
     public void closeStatement() {
-        DBManager.closeStatement(statement);
+        DBUtils.closeStatement(statement);
     }
 }

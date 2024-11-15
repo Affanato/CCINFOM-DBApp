@@ -8,14 +8,14 @@ public class AmenitiesDAO {
     private Statement statement;
 
     public AmenitiesDAO() {
-        this.statement = DBManager.getNewStatement();
+        this.statement = DBUtils.getNewStatement();
     }
 
     public void insertAmenity(String amenityName) {
         String sql = "INSERT INTO amenities (amenity_name) " +
                      "VALUES (?) ";
 
-        try (PreparedStatement ps = DBManager.getNewPreparedStatement(sql)) {
+        try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
             ps.setString(1, amenityName);
             ps.executeUpdate();
@@ -29,7 +29,7 @@ public class AmenitiesDAO {
         String sql = "DELETE FROM amenities " +
                      "WHERE amenity_id = ? ";
 
-        try (PreparedStatement ps = DBManager.getNewPreparedStatement(sql)) {
+        try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
             ps.setInt(1, amenity_id);
             ps.executeUpdate();
@@ -52,6 +52,6 @@ public class AmenitiesDAO {
     }
 
     public void closeStatement() {
-        DBManager.closeStatement(statement);
+        DBUtils.closeStatement(statement);
     }
 }

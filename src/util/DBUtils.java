@@ -6,7 +6,7 @@ import java.sql.*;
 /**
  * Establishes and manages a databaseConnection to the database.
  */
-public class DBManager {
+public class DBUtils {
 
     // TODO: Yep, these are actual credentials to my testing connection.
     //       Please replace with your own in a separate branch. - CJ
@@ -17,7 +17,7 @@ public class DBManager {
 
     private static Connection connection = null;
 
-    private DBManager() {}
+    private DBUtils() {}
 
     /**
      * Gets the object representing the connection to the database.
@@ -78,6 +78,7 @@ public class DBManager {
     public static void initializeDatabase() {
         try (Statement statement = getNewStatement()) {
             String sql = Files.readString(Paths.get(SQL_FILEPATH));
+            assert statement != null;
             statement.executeUpdate(sql);
         } catch (IOException | SQLException e) {
             ExceptionHandler.handleException(e);
@@ -153,5 +154,32 @@ public class DBManager {
         } catch(SQLException e) {
             ExceptionHandler.handleException(e);
         }
+    }
+
+    /**
+     * Checks whether a primary key value exists in a given table.
+     */
+    public static boolean primaryKeyExistsInATable(String table, String primaryKeyName, int targetID) {
+        String sql = "SELECT COUNT(*) " +
+                     "FROM " + table + " " +
+                     "WHERE " + primaryKeyName + " = ? ";
+
+        try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
+            assert ps != null;
+            ps.setInt(1, targetID);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            } catch (SQLException e) {
+                ExceptionHandler.handleException(e);
+                return false;
+            }
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+        }
+
+        return false;
     }
 }

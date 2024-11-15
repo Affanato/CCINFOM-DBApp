@@ -6,7 +6,7 @@ public class SubscriptionTypesDAO {
     private final Statement statement;
 
     public SubscriptionTypesDAO() {
-        this.statement = DBManager.getNewStatement();
+        this.statement = DBUtils.getNewStatement();
     }
 
     // TODO: Provide methods that updates the foreign keys of all Memberships records with an old foreign key.
@@ -14,6 +14,6 @@ public class SubscriptionTypesDAO {
     // TODO: Provide methods that deletes all Memberships records with a given foreign key.
 
     public void closeStatement() {
-        DBManager.closeStatement(statement);
+        DBUtils.closeStatement(statement);
     }
 }
