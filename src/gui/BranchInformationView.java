@@ -70,7 +70,7 @@ public class BranchInformationView extends JFrame {
 			label1.setText("image here!");
 			label1.setBackground(Color.blue);
 			label1.setHorizontalAlignment(SwingConstants.CENTER);
-			label1.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\availability.jpg"));
+			label1.setIcon(new ImageIcon("resource\\availability.jpg"));
 			branchInfoFrameContentPane.add(label1);
 			label1.setBounds(70, 130, 305, 370);
 
@@ -78,7 +78,7 @@ public class BranchInformationView extends JFrame {
 			label2.setText("image here!");
 			label2.setBackground(Color.blue);
 			label2.setHorizontalAlignment(SwingConstants.CENTER);
-			label2.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\recordsales.jpg"));
+			label2.setIcon(new ImageIcon("resource\\recordsales.jpg"));
 			branchInfoFrameContentPane.add(label2);
 			label2.setBounds(455, 130, 305, 370);
 
@@ -190,7 +190,7 @@ public class BranchInformationView extends JFrame {
 			trainersFrameContentPane.setLayout(null);
 
 			//---- trainersBackButton ----
-			trainersBackButton.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+			trainersBackButton.setIcon(new ImageIcon("backButton.jpg"));
 			trainersBackButton.setBackground(new Color(0xc80f2e));
 			trainersFrameContentPane.add(trainersBackButton);
 			trainersBackButton.setBounds(5, 5, 95, 45);
@@ -238,7 +238,7 @@ public class BranchInformationView extends JFrame {
 			membershipsFrameContentPane.setLayout(null);
 
 			//---- membershipBackButton ----
-			membershipBackButton.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+			membershipBackButton.setIcon(new ImageIcon("resource/backButton.jpg"));
 			membershipBackButton.setBackground(new Color(0xc80f2e));
 			membershipsFrameContentPane.add(membershipBackButton);
 			membershipBackButton.setBounds(5, 5, 95, 45);
@@ -404,5 +404,9 @@ public class BranchInformationView extends JFrame {
 			cm.getColumn(3).setMinWidth(200);
 			cm.getColumn(4).setMinWidth(150);
 		}
+	}
+
+	public void main(String[] args){
+
 	}
 }
