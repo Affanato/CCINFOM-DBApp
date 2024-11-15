@@ -3,11 +3,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 // TODO: Verify if the methods are implemented correctly.
-public class MembershipsDAO {
+public class SubscriptionsDAO {
 
     private final Statement statement;
 
-    public MembershipsDAO() {
+    public SubscriptionsDAO() {
         this.statement = DBManager.getNewStatement();
     }
 
@@ -45,29 +45,29 @@ public class MembershipsDAO {
     }
 
     // SELECT QUERIES //
-    public ArrayList<Membership> selectAllMemberships() {
+    public ArrayList<Subscription> selectAllMemberships() {
         String sql = "SELECT * " +
                      "FROM memberships ";
 
         try (ResultSet rs = statement.executeQuery(sql)) {
-            ArrayList<Membership> membershipList = mapResultSetToMembershipList(rs);
+            ArrayList<Subscription> subscriptionList = mapResultSetToMembershipList(rs);
             System.out.println("All membership records retrieved successfully.");
-            return membershipList;
+            return subscriptionList;
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
             return null;
         }
     }
 
-    public ArrayList<Membership> selectActiveMemberships() {
+    public ArrayList<Subscription> selectActiveMemberships() {
         String sql = "SELECT * " +
                      "FROM memberships " +
                      "WHERE DATE(NOW()) <= membership_start_date ";
 
         try (ResultSet rs = statement.executeQuery(sql)) {
-            ArrayList<Membership> activeMembershipList = mapResultSetToMembershipList(rs);
+            ArrayList<Subscription> activeSubscriptionList = mapResultSetToMembershipList(rs);
             System.out.println("All active membership records retrieved successfully.");
-            return activeMembershipList;
+            return activeSubscriptionList;
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
             return null;
@@ -106,8 +106,8 @@ public class MembershipsDAO {
     }
 
     // UTILITY METHODS
-    private ArrayList<Membership> mapResultSetToMembershipList(ResultSet rs) {
-        ArrayList<Membership> membershipList = new ArrayList<>();
+    private ArrayList<Subscription> mapResultSetToMembershipList(ResultSet rs) {
+        ArrayList<Subscription> subscriptionList = new ArrayList<>();
         try {
             while (rs.next()) {
                 int membershipID = rs.getInt("membership_id");
@@ -116,9 +116,9 @@ public class MembershipsDAO {
                 int trainerID = rs.getInt("trainer_id");
                 LocalDate membershipStartDate = rs.getDate("membership_start_date").toLocalDate();
                 LocalDate membershipEndDate = rs.getDate("membership_end_date").toLocalDate();
-                membershipList.add(new Membership(membershipID, memberID, membershipTypeID, trainerID, membershipStartDate, membershipEndDate));
+                subscriptionList.add(new Subscription(membershipID, memberID, membershipTypeID, trainerID, membershipStartDate, membershipEndDate));
             }
-            return membershipList;
+            return subscriptionList;
         } catch(SQLException e) {
             ExceptionHandler.handleException(e);
             return null;

@@ -1,11 +1,11 @@
 import java.time.LocalDate;
 
-public record Member (
+public record Member(
         int memberID,
         String lastName,
         String firstName,
         LocalDate birthdate,
-        char sex,
+        Sex sex,
         String phoneNumber,
         String street,
         String barangay,
