@@ -122,17 +122,14 @@ public class DBManager {
      * @param newID - the new ID
      */
     public static void updateTableForeignKey(String table, String foreignKey, int oldID, int newID) {
-        String sql = "UPDATE ? " +
-                     "SET ? = ? " +
-                     "WHERE ? = ? ";
+        String sql = "UPDATE " + table + " " +
+                     "SET " + foreignKey + " = ? " +
+                     "WHERE " + foreignKey + " = ? ";
 
         try (PreparedStatement ps = getNewPreparedStatement(sql)) {
             assert ps != null;
-            ps.setString(1, table);
-            ps.setString(2, foreignKey);
-            ps.setInt(3, newID);
-            ps.setString(4, foreignKey);
-            ps.setInt(5, oldID);
+            ps.setInt(1, newID);
+            ps.setInt(2, oldID);
             ps.executeUpdate();
         } catch(SQLException e) {
             ExceptionHandler.handleException(e);
@@ -146,14 +143,12 @@ public class DBManager {
      * @param targetID - the foreign key ID of the records being deleted
      */
     public static void deleteTableRecordsByForeignKey(String table, String foreignKey, int targetID) {
-        String sql = "DELETE FROM ? " +
-                     "WHERE ? = ? ";
+        String sql = "DELETE FROM " + table +
+                     "WHERE " + foreignKey + " = ? ";
 
         try (PreparedStatement ps = getNewPreparedStatement(sql)) {
             assert ps != null;
-            ps.setString(1, table);
-            ps.setString(2, foreignKey);
-            ps.setInt(3, targetID);
+            ps.setInt(1, targetID);
             ps.executeUpdate();
         } catch(SQLException e) {
             ExceptionHandler.handleException(e);

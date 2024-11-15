@@ -5,16 +5,14 @@ public record Trainer(
         String lastName,
         String firstName,
         LocalDate birthdate,
-        char sex,
+        Sex sex,
         String phoneNumber,
         String street,
         String barangay,
         String city,
         String province,
         String programSpecialty,
-        String availabilitySchedule,
-        LocalDate workStartDate,
-        LocalDate workEndDate
+        Status trainerStatus
 ) {
     // TODO: Validate attributes (if needed).
 }
