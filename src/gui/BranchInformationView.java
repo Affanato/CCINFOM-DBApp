@@ -405,8 +405,4 @@ public class BranchInformationView extends JFrame {
 			cm.getColumn(4).setMinWidth(150);
 		}
 	}
-
-	public void main(String[] args){
-
-	}
 }
