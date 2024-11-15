@@ -1,11 +1,11 @@
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 public record AmenityLog(
         int amenityLogID,
         int memberID,
         int amenityID,
-        ZonedDateTime usageStartDatetime,
-        ZonedDateTime usageEndDatetime
+        LocalDateTime usageStartDateTime,
+        LocalDateTime usageEndDateTime
 ) {
     // TODO: Validate attributes (if needed).
 }
