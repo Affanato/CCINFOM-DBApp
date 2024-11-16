@@ -11,6 +11,20 @@ public record Member(
         String barangay,
         String city,
         String province
-) {
-    // TODO: Validate attributes (if needed).
+) implements ConvertibleToObjectArray {
+    @Override
+    public Object[] toObjectArray() {
+        return new Object[] {
+                memberID,
+                lastName,
+                firstName,
+                birthdate,
+                sex,
+                phoneNumber,
+                street,
+                barangay,
+                city,
+                province
+        };
+    }
 }

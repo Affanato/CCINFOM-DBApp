@@ -6,6 +6,15 @@ public record ProductPurchase(
         int productID,
         int quantitySold,
         LocalDateTime purchaseDateTime
-) {
-    // TODO: Validate attributes (if needed).
+) implements ConvertibleToObjectArray {
+    @Override
+    public Object[] toObjectArray() {
+        return new Object[] {
+                productPurchaseID,
+                memberID,
+                productID,
+                quantitySold,
+                purchaseDateTime
+        };
+    }
 }

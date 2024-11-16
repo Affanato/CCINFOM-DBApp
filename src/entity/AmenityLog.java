@@ -6,6 +6,15 @@ public record AmenityLog(
         int amenityID,
         LocalDateTime usageStartDateTime,
         LocalDateTime usageEndDateTime
-) {
-    // TODO: Validate attributes (if needed).
+) implements ConvertibleToObjectArray {
+    @Override
+    public Object[] toObjectArray() {
+        return new Object[] {
+                amenityLogID,
+                memberID,
+                amenityID,
+                usageStartDateTime,
+                usageEndDateTime
+        };
+    }
 }

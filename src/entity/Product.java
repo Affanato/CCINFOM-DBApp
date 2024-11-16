@@ -5,6 +5,16 @@ public record Product(
         String productDescription,
         double productPrice,
         int availableQuantity
-) {
-    // TODO: Validate attributes (if needed).
+) implements ConvertibleToObjectArray {
+    @Override
+    public Object[] toObjectArray() {
+        return new Object[] {
+                productID,
+                productBrand,
+                productName,
+                productDescription,
+                productPrice,
+                availableQuantity
+        };
+    }
 }

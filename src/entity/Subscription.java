@@ -6,6 +6,15 @@ public record Subscription(
         int subscriptionTypeID,
         LocalDate subscriptionStartDate,
         LocalDate subscriptionEndDate
-) {
-    // TODO: Validate attributes (if needed).
+) implements ConvertibleToObjectArray {
+    @Override
+    public Object[] toObjectArray() {
+        return new Object[] {
+                subscriptionID,
+                memberID,
+                subscriptionTypeID,
+                subscriptionStartDate,
+                subscriptionEndDate
+        };
+    }
 }
