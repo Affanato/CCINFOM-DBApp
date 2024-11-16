@@ -2,6 +2,13 @@ public record SubscriptionType(
         int subscriptionTypeID,
         String subscriptionTypeName,
         double subscriptionTypePrice
-) {
-    // TODO: Validate attributes (if needed).
+) implements ConvertibleToObjectArray {
+    @Override
+    public Object[] toObjectArray() {
+        return new Object[] {
+                subscriptionTypeID,
+                subscriptionTypeName,
+                subscriptionTypePrice
+        };
+    }
 }

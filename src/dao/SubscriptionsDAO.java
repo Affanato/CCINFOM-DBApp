@@ -1,27 +1,30 @@
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
 
+// TODO: DONE FOR NOW!!!
 // TODO: Verify if the methods are implemented correctly.
 public class SubscriptionsDAO {
 
     private final Statement statement;
 
     public SubscriptionsDAO() {
-        this.statement = DBManager.getNewStatement();
+        this.statement = DBUtils.getNewStatement();
     }
 
     // SINGLE UPDATE QUERIES //
-    public void insertSubscription(int memberID, int subscriptionTypeID, LocalDate subscriptionStartDate, LocalDate subscriptionEndDate) {
+    public void insertSubscription(Subscription s) {
         String sql = "INSERT INTO subscriptions (member_id, subscription_type_id, subscription_start_date, subscription_end_date) " +
                      "VALUES (?, ?, ?, ?) ";
 
-        try (PreparedStatement ps = DBManager.getNewPreparedStatement(sql)) {
+        try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
-            ps.setInt(1, memberID);
-            ps.setInt(2, subscriptionTypeID);
-            ps.setDate(3, Date.valueOf(subscriptionStartDate));
-            ps.setDate(4, Date.valueOf(subscriptionEndDate));
+            ps.setInt(1, s.memberID());
+            ps.setInt(2, s.subscriptionTypeID());
+            ps.setDate(3, Date.valueOf(s.subscriptionStartDate()));
+            ps.setDate(4, Date.valueOf(s.subscriptionEndDate()));
+
             ps.executeUpdate();
             System.out.println("Subscription record inserted successfully.");
         } catch (SQLException e) {
@@ -30,24 +33,40 @@ public class SubscriptionsDAO {
     }
 
     public void deleteSubscription(int subscriptionID) {
-        String sql = "DELETE FROM subscriptions " +
+        DBUtils.deleteTableRecordsByKey("subscriptions", "subscription_id", subscriptionID);
+    }
+
+    public void updateSubscription(int subscriptionID, Subscription s) {
+        if (!DBUtils.primaryKeyExistsInATable("subscriptions", "subscription_id", subscriptionID)) {
+            return;
+        }
+
+        String sql = "UPDATE subscriptions " +
+                     "SET member_id = ?, " +
+                     "    subscription_type_id = ?, " +
+                     "    subscription_start_date = ?, " +
+                     "    subscription_end_date = ?, " +
                      "WHERE subscription_id = ? ";
 
-        try (PreparedStatement ps = DBManager.getNewPreparedStatement(sql)) {
+        try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
-            ps.setInt(1, subscriptionID);
+            ps.setInt(1, s.memberID());
+            ps.setInt(2, s.subscriptionTypeID());
+            ps.setDate(3, Date.valueOf(s.subscriptionStartDate()));
+            ps.setDate(4, Date.valueOf(s.subscriptionEndDate()));
+            ps.setInt(5, s.subscriptionID());
+
             ps.executeUpdate();
-            System.out.println("Subscription record deleted successfully.");
+            System.out.println("Subscription record updated successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
         }
     }
 
     public boolean terminateSubscription(int subscriptionID) {
-
         // Validate the subscription's eligibility for termination.
         if (!canTerminateSubscription(subscriptionID)) {
-            System.out.println("Subscription must be ongoing for termination.");
+            System.out.println("Subscription must be ongoing to be eligible for termination.");
             return false;
         }
 
@@ -55,7 +74,7 @@ public class SubscriptionsDAO {
                      "SET subscription_end_date = DATE(NOW()) " +
                      "WHERE subscription_id = ? ";
 
-        try (PreparedStatement ps = DBManager.getNewPreparedStatement(sql)) {
+        try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
             ps.setInt(1, subscriptionID);
             ps.executeUpdate();
@@ -67,89 +86,47 @@ public class SubscriptionsDAO {
         }
     }
 
-    // SELECT QUERIES //
-    public ArrayList<Subscription> selectAllSubscriptions() {
-        String sql = "SELECT * " +
-                     "FROM subscriptions ";
-
-        try (ResultSet rs = statement.executeQuery(sql)) {
-            ArrayList<Subscription> subscriptionList = mapResultSetToSubscriptionList(rs);
-            System.out.println("All subscription records retrieved successfully.");
-            return subscriptionList;
-        } catch (SQLException e) {
-            ExceptionHandler.handleException(e);
-            return null;
-        }
-    }
-
-    public ArrayList<Subscription> selectActiveSubscriptions() {
-        String sql = "SELECT * " +
-                     "FROM subscriptions " +
-                     "WHERE DATE(NOW()) <= subscription_start_date ";
-
-        try (ResultSet rs = statement.executeQuery(sql)) {
-            ArrayList<Subscription> activeSubscriptionList = mapResultSetToSubscriptionList(rs);
-            System.out.println("All active subscription records retrieved successfully.");
-            return activeSubscriptionList;
-        } catch (SQLException e) {
-            ExceptionHandler.handleException(e);
-            return null;
-        }
-    }
-
     // MASS UPDATE QUERIES //
     public void updateMemberID(int oldID, int newID) {
-        DBManager.updateTableForeignKey("subscriptions", "member_id", oldID, newID);
-        System.out.println("Subscription records with given member_id updated successfully.");
+        DBUtils.updateTableForeignKey("subscriptions", "member_id", oldID, newID);
     }
 
     public void updateSubscriptionTypeID(int oldID, int newID) {
-        DBManager.updateTableForeignKey("subscriptions", "subscription_type_id", oldID, newID);
-        System.out.println("Subscription records with given subscription_type_id updated successfully.");
-    }
-
-    public void updateTrainerID(int oldID, int newID) {
-        DBManager.updateTableForeignKey("subscriptions", "trainer_id", oldID, newID);
-        System.out.println("Subscription records with given trainer_id updated successfully.");
+        DBUtils.updateTableForeignKey("subscriptions", "subscription_type_id", oldID, newID);
     }
 
     public void deleteByMemberID(int memberID) {
-        DBManager.deleteTableRecordsByForeignKey("subscriptions", "member_id", memberID);
+        DBUtils.deleteTableRecordsByKey("subscriptions", "member_id", memberID);
         System.out.println("Subscription records with given member_id deleted successfully.");
     }
 
     public void deleteBySubscriptionTypeID(int subscriptionTypeID) {
-        DBManager.deleteTableRecordsByForeignKey("subscriptions", "subscription_type_id", subscriptionTypeID);
+        DBUtils.deleteTableRecordsByKey("subscriptions", "subscription_type_id", subscriptionTypeID);
         System.out.println("Subscription records with given subscription_type_id deleted successfully.");
     }
 
-    public void deleteByTrainerID(int trainerID) {
-        DBManager.deleteTableRecordsByForeignKey("subscriptions", "trainer_id", trainerID);
-        System.out.println("Subscription records with given trainer_id deleted successfully.");
+    // SELECT QUERIES //
+    public Subscription selectSubscription(int subscriptionID) {
+        String condition = "WHERE subscription_id = " + subscriptionID;
+        ResultSet rs = DBUtils.selectAllRecordsFromTable("subscriptions", condition);
+        assert rs != null;
+        return mapResultSetToSubscription(rs);
     }
 
-    // UTILITY METHODS
-    public Subscription getSubscription(int targetID) {
-        String sql = "SELECT * " +
-                     "FROM subscriptions " +
-                     "WHERE subscription_id = ? ";
-
-        try (PreparedStatement ps = DBManager.getNewPreparedStatement(sql)) {
-            assert ps != null;
-            ps.setInt(1, targetID);
-        } catch (SQLException e) {
-            ExceptionHandler.handleException(e);
-            return null;
-        }
-
-        try (ResultSet rs = statement.executeQuery(sql)) {
-            return mapResultSetToSubscription(rs);
-        } catch (SQLException e) {
-            ExceptionHandler.handleException(e);
-            return null;
-        }
+    public ArrayList<Subscription> selectAllSubscriptions() {
+        ResultSet rs = DBUtils.selectAllRecordsFromTable("subscriptions");
+        assert rs != null;
+        return mapResultSetToSubscriptionList(rs);
     }
 
+    public ArrayList<Subscription> selectActiveSubscriptions() {
+        String condition = "WHERE CURRENT_DATE BETWEEN subscription_start_date AND subscription_end_date ";
+        ResultSet rs = DBUtils.selectAllRecordsFromTable("subscriptions", condition);
+        assert rs != null;
+        return mapResultSetToSubscriptionList(rs);
+    }
+
+    // UTILITY METHODS //
     private Subscription mapResultSetToSubscription(ResultSet rs) {
         try {
             int subscriptionID = rs.getInt("subscription_id");
@@ -165,7 +142,7 @@ public class SubscriptionsDAO {
     }
 
     private ArrayList<Subscription> mapResultSetToSubscriptionList(ResultSet rs) {
-        ArrayList<Subscription> subscriptionList = new ArrayList<>();
+        ArrayList<Subscription> subscriptionList = new ArrayList<Subscription>();
         try {
             while (rs.next()) {
                 subscriptionList.add(mapResultSetToSubscription(rs));
@@ -177,13 +154,16 @@ public class SubscriptionsDAO {
         }
     }
 
-    private boolean canTerminateSubscription(int subscriptionID) {
-        Subscription s = getSubscription(subscriptionID);
+    public boolean canTerminateSubscription(int subscriptionID) {
+        Subscription s = selectSubscription(subscriptionID);
+        if (s == null) {
+            return false;
+        }
         return LocalDate.now().isAfter(s.subscriptionStartDate()) &&
                LocalDate.now().isBefore(s.subscriptionEndDate());
     }
 
     public void closeStatement() {
-        DBManager.closeStatement(statement);
+        DBUtils.closeStatement(statement);
     }
 }

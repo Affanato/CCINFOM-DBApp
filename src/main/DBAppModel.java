@@ -17,11 +17,11 @@ public class DBAppModel {
     }
 
     public void initializeDatabase() {
-        DBManager.initializeDatabase();
+        DBUtils.initializeDatabase();
     }
 
     public void closeDatabaseConnection() {
-        DBManager.closeConnection();
+        DBUtils.closeConnection();
     }
 
     public void closeStatements() {

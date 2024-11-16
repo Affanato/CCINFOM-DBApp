@@ -1,4 +1,5 @@
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 public record Amenity (
         int amenityID,
@@ -6,7 +7,17 @@ public record Amenity (
         double walkInPrice,
         LocalTime openingTime,
         LocalTime closingTime,
-        Status amenity_status
-) {
-    // TODO: Validate attributes (if needed).
+        Status amenityStatus
+) implements ConvertibleToObjectArray {
+    @Override
+    public Object[] toObjectArray() {
+        return new Object[] {
+                amenityID,
+                amenityName,
+                walkInPrice,
+                openingTime,
+                closingTime,
+                amenityStatus
+        };
+    }
 }

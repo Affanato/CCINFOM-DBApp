@@ -1,7 +1,22 @@
 public enum Status {
 
-    ACTIVE,
-    INACTIVE;
+    ACTIVE("Active"),
+    INACTIVE("Inactive");
+
+    private final String description;
+
+    Status(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
+    public String toString() {
+        return description;
+    }
 
     /**
      * Gets a Status enum from a string, if valid.
@@ -14,10 +29,5 @@ public enum Status {
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Invalid status: " + name);
         }
-    }
-
-    @Override
-    public String toString() {
-        return name().charAt(0) + name().substring(1).toLowerCase();
     }
 }

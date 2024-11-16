@@ -13,6 +13,22 @@ public record Trainer(
         String province,
         String programSpecialty,
         Status trainerStatus
-) {
-    // TODO: Validate attributes (if needed).
+) implements ConvertibleToObjectArray {
+    @Override
+    public Object[] toObjectArray() {
+        return new Object[] {
+                trainerID,
+                lastName,
+                firstName,
+                birthdate,
+                sex,
+                phoneNumber,
+                street,
+                barangay,
+                city,
+                province,
+                programSpecialty,
+                trainerStatus
+        };
+    }
 }

@@ -1,6 +1,12 @@
 public record SubscriptionTypeAmenity(
         int subscriptionTypeID,
         int amenityID
-) {
-    // TODO: Validate attributes (if needed).
+) implements ConvertibleToObjectArray {
+    @Override
+    public Object[] toObjectArray() {
+        return new Object[] {
+                subscriptionTypeID,
+                amenityID
+        };
+    }
 }
