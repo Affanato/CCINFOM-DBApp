@@ -2,6 +2,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Establishes and manages a databaseConnection to the database.
@@ -19,6 +21,7 @@ public class DBUtils {
 
     private DBUtils() {}
 
+    // GETTER METHODS
     /**
      * Gets the object representing the connection to the database.
      */
@@ -72,6 +75,7 @@ public class DBUtils {
         }
     }
 
+    // CONNECTION METHODS
     /**
      * Initializes the database in case it has not yet been initialized.
      */
@@ -115,6 +119,7 @@ public class DBUtils {
         }
     }
 
+    // SQL METHODS
     /**
      * Updates the foreign key of a table's records with a particular foreign key value.
      * @param table - name of the table
@@ -131,26 +136,30 @@ public class DBUtils {
             assert ps != null;
             ps.setInt(1, newID);
             ps.setInt(2, oldID);
+
             ps.executeUpdate();
+            System.out.printf("'%s' records with given '%s' updated successfully.", table, foreignKey);
         } catch(SQLException e) {
             ExceptionHandler.handleException(e);
         }
     }
 
     /**
-     * Deletes all records of a table with a particular foreign key value.
+     * Deletes all records of a table with a particular key and key value.
      * @param table - name of the table
-     * @param foreignKey - name of the foreign key
-     * @param targetID - the foreign key ID of the records being deleted
+     * @param key - name of the foreign key
+     * @param targetID - key value of the records being deleted
      */
-    public static void deleteTableRecordsByForeignKey(String table, String foreignKey, int targetID) {
-        String sql = "DELETE FROM " + table +
-                     "WHERE " + foreignKey + " = ? ";
+    public static void deleteTableRecordsByKey(String table, String key, int targetID) {
+        String sql = "DELETE FROM " + table + " " +
+                     "WHERE " + key + " = ? ";
 
         try (PreparedStatement ps = getNewPreparedStatement(sql)) {
             assert ps != null;
             ps.setInt(1, targetID);
+
             ps.executeUpdate();
+            System.out.printf("'%s' records with given '%s' deleted successfully.", table, key);
         } catch(SQLException e) {
             ExceptionHandler.handleException(e);
         }
@@ -170,7 +179,13 @@ public class DBUtils {
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    return rs.getInt(1) > 0;
+                    boolean primaryKeyExists = rs.getInt(1) > 0;
+                    if (primaryKeyExists) {
+                        System.out.printf("Key %s with value %d exists in table %s.", primaryKeyExists, targetID, table);
+                    } else {
+                        System.out.printf("Key %s with value %d does not exist in table %s.", primaryKeyExists, targetID, table);
+                    }
+                    return primaryKeyExists;
                 }
             } catch (SQLException e) {
                 ExceptionHandler.handleException(e);
@@ -181,5 +196,68 @@ public class DBUtils {
         }
 
         return false;
+    }
+
+    public static ResultSet selectAllRecordsFromTable(String table) {
+        String sql = "SELECT * " +
+                     "FROM " + table + " ";
+
+        try (ResultSet rs = Objects.requireNonNull(getNewStatement()).executeQuery(sql)) {
+            System.out.printf("All '%s' records retrieved successfully.", table);
+            return rs;
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
+    }
+
+    public static ResultSet selectAllRecordsFromTable(String table, String condition) {
+        String sql = "SELECT * " +
+                     "FROM " + table + " " +
+                     condition + " ";
+
+        try (ResultSet rs = Objects.requireNonNull(getNewStatement()).executeQuery(sql)) {
+            System.out.printf("All '%s' records retrieved with condition successfully.", table);
+            return rs;
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
+    }
+
+    public static ResultSet selectAllRecordsFromInnerJoinedTables(String table1, String table2, String table1Field, String table2Field) {
+        String sql = "SELECT * " +
+                     "FROM " + table1 + " JOIN " + table2 + " " +
+                     "ON " + table1Field + " = " + table2Field + " ";
+
+        try (ResultSet rs = Objects.requireNonNull(getNewStatement()).executeQuery(sql)) {
+            return rs;
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
+    }
+
+    public static ResultSet selectAllRecordsFromInnerJoinedTables(String table1, String table2, String table1Field, String table2Field, String condition) {
+        String sql = "SELECT * " +
+                     "FROM " + table1 + " JOIN " + table2 + " " +
+                     "ON " + table1Field + " = " + table2Field + " " +
+                     "WHERE " + condition + " ";
+
+        try (ResultSet rs = Objects.requireNonNull(getNewStatement()).executeQuery(sql)) {
+            return rs;
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
+    }
+
+    // CONVERTER METHODS //
+    public static Object[][] to2DObjectArray(ArrayList<? extends ConvertibleToObjectArray> list) {
+        Object[][] result = new Object[list.size()][];
+        for (int i = 0; i < list.size(); i++) {
+            result[i] = list.get(i).toObjectArray();
+        }
+        return result;
     }
 }
