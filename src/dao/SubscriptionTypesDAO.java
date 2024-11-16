@@ -66,7 +66,7 @@ public class SubscriptionTypesDAO {
     }
 
     // UTILITY METHODS //
-    private SubscriptionType mapResultSetToSubscriptionType(ResultSet rs) {
+    public static SubscriptionType mapResultSetToSubscriptionType(ResultSet rs) {
         try {
             int subscriptionTypeID = rs.getInt("subscription_type_id");
             String subscriptionTypeName = rs.getString("subscription_type_name");
@@ -79,7 +79,7 @@ public class SubscriptionTypesDAO {
         }
     }
 
-    private ArrayList<SubscriptionType> mapResultSetToSubscriptionTypeList(ResultSet rs) {
+    public static ArrayList<SubscriptionType> mapResultSetToSubscriptionTypeList(ResultSet rs) {
         ArrayList<SubscriptionType> subscriptionTypeList = new ArrayList<SubscriptionType>();
         try {
             while (rs.next()) {

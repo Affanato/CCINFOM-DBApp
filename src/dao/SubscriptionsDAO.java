@@ -126,8 +126,26 @@ public class SubscriptionsDAO {
         return mapResultSetToSubscriptionList(rs);
     }
 
+    // TODO: Implement these!
+    // REPORTS
+    public Object[][] getTotalSubsPerMemTypePerMonthPerYear() {
+
+    }
+
+    public Object[][] getRevenuePerMemTypePerMonthPerYear() {
+
+    }
+
+    public Object[][] getTotalSubsPerMemType() {
+
+    }
+
+    public Object[][] getRevenuePerMemType() {
+
+    }
+
     // UTILITY METHODS //
-    private Subscription mapResultSetToSubscription(ResultSet rs) {
+    public static Subscription mapResultSetToSubscription(ResultSet rs) {
         try {
             int subscriptionID = rs.getInt("subscription_id");
             int memberID = rs.getInt("member_id");
@@ -141,7 +159,7 @@ public class SubscriptionsDAO {
         }
     }
 
-    private ArrayList<Subscription> mapResultSetToSubscriptionList(ResultSet rs) {
+    public static ArrayList<Subscription> mapResultSetToSubscriptionList(ResultSet rs) {
         ArrayList<Subscription> subscriptionList = new ArrayList<Subscription>();
         try {
             while (rs.next()) {

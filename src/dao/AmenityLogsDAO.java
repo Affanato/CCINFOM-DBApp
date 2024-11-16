@@ -2,6 +2,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+// TODO: IN PROGRESS!!!
+// Verify if the methods are implemented correctly.
 public class AmenityLogsDAO {
 
     private final Statement statement;
@@ -11,15 +13,15 @@ public class AmenityLogsDAO {
     }
 
     // SINGLE UPDATE QUERIES //
-    public void insertAmenity(Amenity a) {
+    public void insertAmenityLog(AmenityLog a) {
 
     }
 
-    public void deleteAmenity(int amenityID) {
+    public void deleteAmenityLog(int amenityLogID) {
 
     }
 
-    public void updateAmenity(int amenityID, Amenity a) {
+    public void updateAmenityLog(int amenityLogID, AmenityLog a) {
 
     }
 
@@ -33,16 +35,14 @@ public class AmenityLogsDAO {
     public void deleteByAmenityID(int amenityID) {}
 
     // SELECT QUERIES //
-    public Amenity selectAmenity(int amenityID) {}
+    public Amenity selectAmenityLog(int amenityLogID) {}
 
-    public ArrayList<Amenity> selectAllAmenities() {}
-
-    public ArrayList<Amenity> selectAllActiveAmenities() {}
+    public ArrayList<AmenityLog> selectAllAmenityLogs() {}
 
     // UTILITY METHODS //
-    private Amenity mapResultSetToAmenity(ResultSet rs) {}
+    public static AmenityLog mapResultSetToAmenityLog(ResultSet rs) {}
 
-    private ArrayList<Amenity> mapResultSetToAmenityList(ResultSet rs) {}
+    public static ArrayList<AmenityLog> mapResultSetToAmenityLogList(ResultSet rs) {}
 
     public void closeStatement() {
         DBUtils.closeStatement(statement);

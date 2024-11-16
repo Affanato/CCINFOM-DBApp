@@ -1,6 +1,7 @@
 import java.sql.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Map;
 
 // TODO: DONE FOR NOW!!!
 // TODO: Verify if the methods are implemented correctly.
@@ -81,6 +82,12 @@ public class AmenitiesDAO {
         assert rs != null;
         return mapResultSetToAmenityList(rs);
     }
+
+    // TODO: Implement these!
+    // REPORTS //
+    public Map<Amenity, Integer> selectAmenitiesByDecreasingUsage() {}
+
+    public Map<Amenity, Double> selectAmenitiesByDecreasingRevenue() {}
 
     // UTILITY METHODS //
     public static Amenity mapResultSetToAmenity(ResultSet rs) {

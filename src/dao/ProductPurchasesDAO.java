@@ -8,6 +8,8 @@ public class ProductPurchasesDAO {
         this.statement = DBUtils.getNewStatement();
     }
 
+    // TODO: Code related methods. Refer to SubscriptionsDAO.
+
     public void closeStatement() {
         DBUtils.closeStatement(statement);
     }
