@@ -52,7 +52,7 @@ public class TrainerView {
 		barangay = new JTextPane();
 		province = new JTextPane();
 		sextext = new JFormattedTextField();
-		sex = new JTextPane();
+		sex = new JComboBox<>();
 		startdatetext = new JFormattedTextField();
 		startdate = new JTextPane();
 		editorPane1 = new JEditorPane();
@@ -62,7 +62,7 @@ public class TrainerView {
 		deleteBack = new JButton();
 		deleteTrainer = new JButton();
 		traineridtext = new JFormattedTextField();
-		trainerID = new JComboBox();
+		trainerID = new JComboBox<>();
 		editorPane2 = new JEditorPane();
 		titleBar3 = new JFormattedTextField();
 		background3 = new JLabel();
@@ -77,8 +77,8 @@ public class TrainerView {
 		updateStatus = new JButton();
 		updatetrainerstatustext = new JFormattedTextField();
 		updatestatustext = new JFormattedTextField();
-		updateStatusTrainerID = new JComboBox();
-		updateTrainerStatus = new JComboBox();
+		updateStatusTrainerID = new JComboBox<>();
+		updateTrainerStatus = new JComboBox<>();
 		editorPane3 = new JEditorPane();
 		titleBar5 = new JFormattedTextField();
 		background5 = new JLabel();
@@ -119,7 +119,7 @@ public class TrainerView {
 			trainerFrameContentPane.setLayout(null);
 
 			//---- trainerBackButton ----
-			trainerBackButton.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			trainerBackButton.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			trainerBackButton.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			trainerBackButton.setBackground(new Color(0xc80f2e));
 			trainerFrameContentPane.add(trainerBackButton);
@@ -205,7 +205,7 @@ public class TrainerView {
 			addTrainerFrameContentPane.setLayout(null);
 
 			//---- addBack ----
-			addBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			addBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			addBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			addBack.setBackground(new Color(0xc80f2e));
 			addTrainerFrameContentPane.add(addBack);
@@ -349,8 +349,13 @@ public class TrainerView {
 
 			//---- sex ----
 			sex.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			sex.setModel(new DefaultComboBoxModel<>(new String[] {
+				"F",
+				"M",
+				"-"
+			}));
 			addTrainerFrameContentPane.add(sex);
-			sex.setBounds(960, 150, 55, 35);
+			sex.setBounds(955, 150, 110, 35);
 
 			//---- startdatetext ----
 			startdatetext.setText("Start Date");
@@ -407,7 +412,7 @@ public class TrainerView {
 			deleteTrainerFrameContentPane.setLayout(null);
 
 			//---- deleteBack ----
-			deleteBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			deleteBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			deleteBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			deleteBack.setBackground(new Color(0xc80f2e));
 			deleteTrainerFrameContentPane.add(deleteBack);
@@ -478,7 +483,7 @@ public class TrainerView {
 			readTrainerFrameContentPane.setLayout(null);
 
 			//---- readBack ----
-			readBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			readBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			readBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			readBack.setBackground(new Color(0xc80f2e));
 			readTrainerFrameContentPane.add(readBack);
@@ -509,6 +514,7 @@ public class TrainerView {
 					cm.getColumn(6).setMinWidth(120);
 					cm.getColumn(6).setMaxWidth(160);
 				}
+				trainerTable.setEnabled(false);
 				tablePane.setViewportView(trainerTable);
 			}
 			readTrainerFrameContentPane.add(tablePane);
@@ -524,7 +530,7 @@ public class TrainerView {
 			titleBar4.setBounds(0, 0, 1200, 55);
 
 			//---- background4 ----
-			background4.setIcon(new ImageIcon("resource\\trainersbg.jpg"));
+			background4.setIcon(new ImageIcon("resource\\memberBG.jpg"));
 			readTrainerFrameContentPane.add(background4);
 			background4.setBounds(0, 55, 1200, 615);
 
@@ -552,7 +558,7 @@ public class TrainerView {
 			updateStatusFrameContentPane.setLayout(null);
 
 			//---- updateStatusBack ----
-			updateStatusBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			updateStatusBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			updateStatusBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			updateStatusBack.setBackground(new Color(0xc80f2e));
 			updateStatusFrameContentPane.add(updateStatusBack);
@@ -589,6 +595,10 @@ public class TrainerView {
 
 			//---- updateTrainerStatus ----
 			updateTrainerStatus.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			updateTrainerStatus.setModel(new DefaultComboBoxModel<>(new String[] {
+				"Active",
+				"Inactive"
+			}));
 			updateStatusFrameContentPane.add(updateTrainerStatus);
 			updateTrainerStatus.setBounds(525, 310, 295, 35);
 
@@ -636,7 +646,7 @@ public class TrainerView {
 			updateTrainerFrameContentPane.setLayout(null);
 
 			//---- updateBack ----
-			updateBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			updateBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			updateBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			updateBack.setBackground(new Color(0xc80f2e));
 			updateTrainerFrameContentPane.add(updateBack);
@@ -784,7 +794,7 @@ public class TrainerView {
 			updateSex.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			updateSex.setEditable(false);
 			updateTrainerFrameContentPane.add(updateSex);
-			updateSex.setBounds(960, 150, 55, 35);
+			updateSex.setBounds(955, 150, 110, 35);
 
 			//---- updatestartdatetext ----
 			updatestartdatetext.setText("Start Date");
@@ -873,7 +883,7 @@ public class TrainerView {
 	private JTextPane barangay;
 	private JTextPane province;
 	private JFormattedTextField sextext;
-	private JTextPane sex;
+	private JComboBox<String> sex;
 	private JFormattedTextField startdatetext;
 	private JTextPane startdate;
 	private JEditorPane editorPane1;
@@ -883,7 +893,7 @@ public class TrainerView {
 	private JButton deleteBack;
 	private JButton deleteTrainer;
 	private JFormattedTextField traineridtext;
-	private JComboBox trainerID;
+	private JComboBox<String> trainerID;
 	private JEditorPane editorPane2;
 	private JFormattedTextField titleBar3;
 	private JLabel background3;
@@ -898,8 +908,8 @@ public class TrainerView {
 	private JButton updateStatus;
 	private JFormattedTextField updatetrainerstatustext;
 	private JFormattedTextField updatestatustext;
-	private JComboBox updateStatusTrainerID;
-	private JComboBox updateTrainerStatus;
+	private JComboBox<String> updateStatusTrainerID;
+	private JComboBox<String> updateTrainerStatus;
 	private JEditorPane editorPane3;
 	private JFormattedTextField titleBar5;
 	private JLabel background5;
@@ -936,6 +946,14 @@ public class TrainerView {
 	// JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
 
+	// jcombobox getters
+	public JComboBox<String> getTrainerIDJComboBox() {
+		return this.trainerID;
+	}
+	public JComboBox<String> getUpdateStatusTrainerIDJComboBox() {
+		return this.updateStatusTrainerID;
+	}
+
 	// getters
 	public JFrame getTrainerFrame() {
 		return this.trainerFrame;
@@ -961,7 +979,7 @@ public class TrainerView {
 		return this.lastName.getText();
 	}
 	public String getSex() {
-		return this.sex.getText();
+		return (String) this.sex.getSelectedItem();
 	}
 	public String getFirstName() {
 		return this.firstName.getText();
@@ -1134,10 +1152,5 @@ public class TrainerView {
 			cm.getColumn(4).setMinWidth(150);
 			cm.getColumn(4).setMaxWidth(150);
 		}
-	}
-
-
-	public static void main(String[] args) {
-		new TrainerController();
 	}
 }

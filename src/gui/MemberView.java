@@ -33,8 +33,8 @@ public class MemberView {
 		barangaytext = new JFormattedTextField();
 		citytext = new JFormattedTextField();
 		provincetext = new JFormattedTextField();
+		sex = new JComboBox<>();
 		lastName = new JTextPane();
-		sex = new JTextPane();
 		firstName = new JTextPane();
 		birthDate = new JTextPane();
 		phoneNumber = new JTextPane();
@@ -50,7 +50,7 @@ public class MemberView {
 		deleteMemberFrame = new JFrame();
 		deleteMember = new JButton();
 		memberidtext = new JFormattedTextField();
-		memberid = new JComboBox();
+		memberid = new JComboBox<>();
 		editorPane2 = new JEditorPane();
 		deleteBack = new JButton();
 		titleBar3 = new JFormattedTextField();
@@ -88,7 +88,7 @@ public class MemberView {
 		updateMemberIDFrame = new JFrame();
 		proceedUpdate = new JButton();
 		updateMemberIDtext = new JFormattedTextField();
-		updateMemberID = new JTextPane();
+		updateMemberID = new JComboBox<>();
 		editorPane4 = new JEditorPane();
 		updateMemberIDBack = new JButton();
 		titleBar6 = new JFormattedTextField();
@@ -100,7 +100,7 @@ public class MemberView {
 			memberFrameContentPane.setLayout(null);
 
 			//---- memberBackButton ----
-			memberBackButton.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			memberBackButton.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			memberBackButton.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			memberBackButton.setBackground(new Color(0xc80f2e));
 			memberFrameContentPane.add(memberBackButton);
@@ -190,104 +190,110 @@ public class MemberView {
 			sextext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			sextext.setEditable(false);
 			addMemberFrameContentPane.add(sextext);
-			sextext.setBounds(920, 200, 60, 35);
+			sextext.setBounds(905, 200, 60, 35);
 
 			//---- firstnametext ----
 			firstnametext.setText("First Name");
 			firstnametext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			firstnametext.setEditable(false);
 			addMemberFrameContentPane.add(firstnametext);
-			firstnametext.setBounds(530, 200, 125, 35);
+			firstnametext.setBounds(520, 200, 125, 35);
 
 			//---- birthdatetext ----
 			birthdatetext.setText("Birth Date");
 			birthdatetext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			birthdatetext.setEditable(false);
 			addMemberFrameContentPane.add(birthdatetext);
-			birthdatetext.setBounds(140, 260, 115, 35);
+			birthdatetext.setBounds(255, 275, 115, 35);
 
 			//---- phonenumtext ----
 			phonenumtext.setText("Phone Number");
 			phonenumtext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			phonenumtext.setBackground(new Color(0xf2f2f2));
 			addMemberFrameContentPane.add(phonenumtext);
-			phonenumtext.setBounds(530, 260, 125, 35);
+			phonenumtext.setBounds(635, 275, 125, 35);
 
 			//---- streettext ----
 			streettext.setText("Street");
 			streettext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			streettext.setEditable(false);
 			addMemberFrameContentPane.add(streettext);
-			streettext.setBounds(300, 330, 75, 35);
+			streettext.setBounds(255, 335, 115, 35);
 
 			//---- barangaytext ----
 			barangaytext.setText("Barangay");
 			barangaytext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			barangaytext.setEditable(false);
 			addMemberFrameContentPane.add(barangaytext);
-			barangaytext.setBounds(660, 330, 90, 35);
+			barangaytext.setBounds(635, 335, 125, 35);
 
 			//---- citytext ----
 			citytext.setText("City");
 			citytext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			citytext.setEditable(false);
 			addMemberFrameContentPane.add(citytext);
-			citytext.setBounds(300, 400, 75, 35);
+			citytext.setBounds(255, 395, 115, 35);
 
 			//---- provincetext ----
 			provincetext.setText("Province");
 			provincetext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			provincetext.setEditable(false);
 			addMemberFrameContentPane.add(provincetext);
-			provincetext.setBounds(660, 400, 90, 35);
+			provincetext.setBounds(635, 395, 125, 35);
+
+			//---- sex ----
+			sex.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			sex.setModel(new DefaultComboBoxModel<>(new String[] {
+				"F",
+				"M",
+				"-"
+			}));
+			sex.setSelectedIndex(0);
+			addMemberFrameContentPane.add(sex);
+			sex.setBounds(985, 200, 75, 35);
 
 			//---- lastName ----
 			lastName.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			addMemberFrameContentPane.add(lastName);
 			lastName.setBounds(275, 200, 170, 35);
 
-			//---- sex ----
-			sex.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-			addMemberFrameContentPane.add(sex);
-			sex.setBounds(1005, 200, 55, 35);
-
 			//---- firstName ----
 			firstName.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			addMemberFrameContentPane.add(firstName);
-			firstName.setBounds(685, 200, 170, 35);
+			firstName.setBounds(665, 200, 170, 35);
 
 			//---- birthDate ----
 			birthDate.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			addMemberFrameContentPane.add(birthDate);
-			birthDate.setBounds(275, 260, 170, 35);
+			birthDate.setBounds(390, 275, 170, 35);
 
 			//---- phoneNumber ----
 			phoneNumber.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			addMemberFrameContentPane.add(phoneNumber);
-			phoneNumber.setBounds(685, 260, 165, 35);
+			phoneNumber.setBounds(780, 275, 170, 35);
 
 			//---- street ----
 			street.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			addMemberFrameContentPane.add(street);
-			street.setBounds(400, 330, 170, 35);
+			street.setBounds(390, 335, 170, 35);
 
 			//---- barangay ----
 			barangay.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			addMemberFrameContentPane.add(barangay);
-			barangay.setBounds(785, 330, 170, 35);
+			barangay.setBounds(780, 335, 170, 35);
 
 			//---- city ----
 			city.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			addMemberFrameContentPane.add(city);
-			city.setBounds(400, 400, 170, 35);
+			city.setBounds(390, 395, 170, 35);
 
 			//---- province ----
 			province.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			addMemberFrameContentPane.add(province);
-			province.setBounds(785, 400, 170, 35);
+			province.setBounds(780, 395, 170, 35);
 
 			//---- addBack ----
-			addBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			addBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			addBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			addBack.setBackground(new Color(0xc80f2e));
 			addMemberFrameContentPane.add(addBack);
@@ -373,7 +379,7 @@ public class MemberView {
 			editorPane2.setBounds(370, 235, 485, 240);
 
 			//---- deleteBack ----
-			deleteBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			deleteBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			deleteBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			deleteBack.setBackground(new Color(0xc80f2e));
 			deleteMemberFrameContentPane.add(deleteBack);
@@ -418,7 +424,7 @@ public class MemberView {
 			readMemberFrameContentPane.setLayout(null);
 
 			//---- readBack ----
-			readBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			readBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			readBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			readBack.setBackground(new Color(0xc80f2e));
 			readMemberFrameContentPane.add(readBack);
@@ -501,56 +507,56 @@ public class MemberView {
 			sextext2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			sextext2.setEditable(false);
 			updateMemberFrameContentPane.add(sextext2);
-			sextext2.setBounds(920, 200, 60, 35);
+			sextext2.setBounds(915, 200, 60, 35);
 
 			//---- firstnametext2 ----
 			firstnametext2.setText("First Name");
 			firstnametext2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			firstnametext2.setEditable(false);
 			updateMemberFrameContentPane.add(firstnametext2);
-			firstnametext2.setBounds(530, 200, 125, 35);
+			firstnametext2.setBounds(520, 200, 125, 35);
 
 			//---- birthdatetext2 ----
 			birthdatetext2.setText("Birth Date");
 			birthdatetext2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			birthdatetext2.setEditable(false);
 			updateMemberFrameContentPane.add(birthdatetext2);
-			birthdatetext2.setBounds(140, 260, 115, 35);
+			birthdatetext2.setBounds(250, 270, 115, 35);
 
 			//---- phonenumtext2 ----
 			phonenumtext2.setText("Phone Number");
 			phonenumtext2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			phonenumtext2.setBackground(new Color(0xf2f2f2));
 			updateMemberFrameContentPane.add(phonenumtext2);
-			phonenumtext2.setBounds(530, 260, 125, 35);
+			phonenumtext2.setBounds(630, 270, 125, 35);
 
 			//---- streettext2 ----
 			streettext2.setText("Street");
 			streettext2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			streettext2.setEditable(false);
 			updateMemberFrameContentPane.add(streettext2);
-			streettext2.setBounds(300, 330, 75, 35);
+			streettext2.setBounds(250, 335, 115, 35);
 
 			//---- barangaytext2 ----
 			barangaytext2.setText("Barangay");
 			barangaytext2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			barangaytext2.setEditable(false);
 			updateMemberFrameContentPane.add(barangaytext2);
-			barangaytext2.setBounds(660, 330, 90, 35);
+			barangaytext2.setBounds(630, 335, 120, 35);
 
 			//---- citytext2 ----
 			citytext2.setText("City");
 			citytext2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			citytext2.setEditable(false);
 			updateMemberFrameContentPane.add(citytext2);
-			citytext2.setBounds(300, 400, 75, 35);
+			citytext2.setBounds(250, 400, 115, 35);
 
 			//---- provincetext2 ----
 			provincetext2.setText("Province");
 			provincetext2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			provincetext2.setEditable(false);
 			updateMemberFrameContentPane.add(provincetext2);
-			provincetext2.setBounds(660, 400, 90, 35);
+			provincetext2.setBounds(630, 400, 120, 35);
 
 			//---- updateLastName ----
 			updateLastName.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
@@ -561,47 +567,47 @@ public class MemberView {
 			updateSex.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			updateSex.setEditable(false);
 			updateMemberFrameContentPane.add(updateSex);
-			updateSex.setBounds(1005, 200, 55, 35);
+			updateSex.setBounds(1000, 200, 55, 35);
 
 			//---- updateFirstName ----
 			updateFirstName.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			updateFirstName.setEditable(false);
 			updateMemberFrameContentPane.add(updateFirstName);
-			updateFirstName.setBounds(685, 200, 170, 35);
+			updateFirstName.setBounds(670, 200, 170, 35);
 
 			//---- updateBirthDate ----
 			updateBirthDate.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			updateBirthDate.setEditable(false);
 			updateMemberFrameContentPane.add(updateBirthDate);
-			updateBirthDate.setBounds(275, 260, 170, 35);
+			updateBirthDate.setBounds(385, 270, 170, 35);
 
 			//---- updatePhoneNumber ----
 			updatePhoneNumber.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			updateMemberFrameContentPane.add(updatePhoneNumber);
-			updatePhoneNumber.setBounds(685, 260, 165, 35);
+			updatePhoneNumber.setBounds(780, 270, 170, 35);
 
 			//---- updateStreet ----
 			updateStreet.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			updateMemberFrameContentPane.add(updateStreet);
-			updateStreet.setBounds(400, 330, 170, 35);
+			updateStreet.setBounds(385, 335, 170, 35);
 
 			//---- updateBarangay ----
 			updateBarangay.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			updateMemberFrameContentPane.add(updateBarangay);
-			updateBarangay.setBounds(785, 330, 170, 35);
+			updateBarangay.setBounds(780, 335, 170, 35);
 
 			//---- updateCity ----
 			updateCity.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			updateMemberFrameContentPane.add(updateCity);
-			updateCity.setBounds(400, 400, 170, 35);
+			updateCity.setBounds(385, 400, 170, 35);
 
 			//---- updateProvince ----
 			updateProvince.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			updateMemberFrameContentPane.add(updateProvince);
-			updateProvince.setBounds(785, 400, 170, 35);
+			updateProvince.setBounds(780, 400, 170, 35);
 
 			//---- updateBack ----
-			updateBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			updateBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			updateBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			updateBack.setBackground(new Color(0xc80f2e));
 			updateMemberFrameContentPane.add(updateBack);
@@ -665,28 +671,29 @@ public class MemberView {
 			proceedUpdate.setForeground(Color.white);
 			proceedUpdate.setBackground(new Color(0x3ca3cb));
 			updateMemberIDFrameContentPane.add(proceedUpdate);
-			proceedUpdate.setBounds(475, 380, 250, 55);
+			proceedUpdate.setBounds(475, 390, 250, 55);
 
 			//---- updateMemberIDtext ----
 			updateMemberIDtext.setText("Member ID");
 			updateMemberIDtext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			updateMemberIDtext.setEditable(false);
+			updateMemberIDtext.setHorizontalAlignment(SwingConstants.CENTER);
 			updateMemberIDFrameContentPane.add(updateMemberIDtext);
-			updateMemberIDtext.setBounds(475, 280, 105, 35);
+			updateMemberIDtext.setBounds(355, 235, 485, 35);
 
 			//---- updateMemberID ----
 			updateMemberID.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			updateMemberIDFrameContentPane.add(updateMemberID);
-			updateMemberID.setBounds(610, 280, 115, 35);
+			updateMemberID.setBounds(410, 315, 390, 40);
 
 			//---- editorPane4 ----
 			editorPane4.setBackground(new Color(0xb5b9b8));
 			editorPane4.setEditable(false);
 			updateMemberIDFrameContentPane.add(editorPane4);
-			editorPane4.setBounds(425, 235, 345, 240);
+			editorPane4.setBounds(355, 235, 485, 240);
 
 			//---- updateMemberIDBack ----
-			updateMemberIDBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			updateMemberIDBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			updateMemberIDBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			updateMemberIDBack.setBackground(new Color(0xc80f2e));
 			updateMemberIDFrameContentPane.add(updateMemberIDBack);
@@ -747,8 +754,8 @@ public class MemberView {
 	private JFormattedTextField barangaytext;
 	private JFormattedTextField citytext;
 	private JFormattedTextField provincetext;
+	private JComboBox<String> sex;
 	private JTextPane lastName;
-	private JTextPane sex;
 	private JTextPane firstName;
 	private JTextPane birthDate;
 	private JTextPane phoneNumber;
@@ -764,7 +771,7 @@ public class MemberView {
 	private JFrame deleteMemberFrame;
 	private JButton deleteMember;
 	private JFormattedTextField memberidtext;
-	private JComboBox memberid;
+	private JComboBox<String> memberid;
 	private JEditorPane editorPane2;
 	private JButton deleteBack;
 	private JFormattedTextField titleBar3;
@@ -802,12 +809,21 @@ public class MemberView {
 	private JFrame updateMemberIDFrame;
 	private JButton proceedUpdate;
 	private JFormattedTextField updateMemberIDtext;
-	private JTextPane updateMemberID;
+	private JComboBox<String> updateMemberID;
 	private JEditorPane editorPane4;
 	private JButton updateMemberIDBack;
 	private JFormattedTextField titleBar6;
 	private JLabel background6;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+
+
+	// jcombobox getters
+	public JComboBox<String> getUpdateMemberIDJComboBox() {
+		return this.updateMemberID;
+	}
+	public JComboBox<String> getMemberIDJComboBox() {
+		return this.memberid;
+	}
 
 	// getters
 	public JFrame getMemberFrame() {
@@ -835,7 +851,7 @@ public class MemberView {
 	}
 
 	public String getSex() {
-		return this.sex.getText();
+		return (String) this.sex.getSelectedItem();
 	}
 	
 	public String getFirstName() {
@@ -895,8 +911,8 @@ public class MemberView {
 		return this.updateProvince.getText();
 	}
 
-	public String getUpdateMemberID() {
-		return this.updateMemberID.getText();
+	public int getUpdateMemberID() {
+		return this.updateMemberID.getSelectedIndex() + 1;
 	}
 
 	// set fixed fields
@@ -996,10 +1012,5 @@ public class MemberView {
 			cm.getColumn(3).setMaxWidth(220);
 			cm.getColumn(4).setMaxWidth(80);
 		}
-	}
-
-
-	public static void main(String[] args) {
-		new MemberController();
 	}
 }

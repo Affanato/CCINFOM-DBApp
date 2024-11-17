@@ -27,12 +27,8 @@ public class TrainingSessionView {
 		goToRead = new JButton();
 		label1 = new JLabel();
 		schedulSessionFrame = new JFrame();
-		subscriptionID = new JComboBox();
-		trainerID = new JComboBox();
-		membershiptext = new JFormattedTextField();
-		trainertext = new JFormattedTextField();
-		trainertext2 = new JFormattedTextField();
-		trainertext3 = new JFormattedTextField();
+		subscriptionID = new JComboBox<>();
+		trainerID = new JComboBox<>();
 		startdatetime = new JTextPane();
 		enddatetime = new JTextPane();
 		scheduleSession = new JButton();
@@ -42,7 +38,7 @@ public class TrainingSessionView {
 		label2 = new JLabel();
 		cancelSessionFrame = new JFrame();
 		trainingSessionText = new JFormattedTextField();
-		trainingSessionID = new JComboBox();
+		trainingSessionID = new JComboBox<>();
 		cancelSession = new JButton();
 		editorPane2 = new JEditorPane();
 		cancelBack = new JButton();
@@ -61,7 +57,7 @@ public class TrainingSessionView {
 			trainingSessionFrameContentPane.setLayout(null);
 
 			//---- trainingSessionBackButton ----
-			trainingSessionBackButton.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			trainingSessionBackButton.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			trainingSessionBackButton.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			trainingSessionBackButton.setBackground(new Color(0xc80f2e));
 			trainingSessionFrameContentPane.add(trainingSessionBackButton);
@@ -134,54 +130,22 @@ public class TrainingSessionView {
 			//---- subscriptionID ----
 			subscriptionID.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			schedulSessionFrameContentPane.add(subscriptionID);
-			subscriptionID.setBounds(520, 205, 380, 40);
+			subscriptionID.setBounds(405, 205, 390, 40);
 
 			//---- trainerID ----
 			trainerID.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			schedulSessionFrameContentPane.add(trainerID);
-			trainerID.setBounds(520, 265, 380, 40);
-
-			//---- membershiptext ----
-			membershiptext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
-			membershiptext.setText("Membership");
-			membershiptext.setHorizontalAlignment(SwingConstants.LEFT);
-			membershiptext.setEditable(false);
-			schedulSessionFrameContentPane.add(membershiptext);
-			membershiptext.setBounds(330, 205, 170, 40);
-
-			//---- trainertext ----
-			trainertext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
-			trainertext.setText("Trainer");
-			trainertext.setHorizontalAlignment(SwingConstants.LEFT);
-			trainertext.setEditable(false);
-			schedulSessionFrameContentPane.add(trainertext);
-			trainertext.setBounds(330, 265, 170, 40);
-
-			//---- trainertext2 ----
-			trainertext2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
-			trainertext2.setText("Start Date and Time");
-			trainertext2.setHorizontalAlignment(SwingConstants.LEFT);
-			trainertext2.setEditable(false);
-			schedulSessionFrameContentPane.add(trainertext2);
-			trainertext2.setBounds(330, 330, 210, 35);
-
-			//---- trainertext3 ----
-			trainertext3.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
-			trainertext3.setText("End Date and Time");
-			trainertext3.setHorizontalAlignment(SwingConstants.LEFT);
-			trainertext3.setEditable(false);
-			schedulSessionFrameContentPane.add(trainertext3);
-			trainertext3.setBounds(330, 390, 210, 35);
+			trainerID.setBounds(405, 265, 390, 40);
 
 			//---- startdatetime ----
 			startdatetime.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			schedulSessionFrameContentPane.add(startdatetime);
-			startdatetime.setBounds(610, 330, 285, 35);
+			startdatetime.setBounds(405, 325, 175, 35);
 
 			//---- enddatetime ----
 			enddatetime.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			schedulSessionFrameContentPane.add(enddatetime);
-			enddatetime.setBounds(610, 390, 285, 35);
+			enddatetime.setBounds(620, 325, 175, 35);
 
 			//---- scheduleSession ----
 			scheduleSession.setText("SCHEDULE SESSION");
@@ -189,15 +153,15 @@ public class TrainingSessionView {
 			scheduleSession.setForeground(Color.white);
 			scheduleSession.setBackground(new Color(0x3ca3cb));
 			schedulSessionFrameContentPane.add(scheduleSession);
-			scheduleSession.setBounds(500, 460, 250, 55);
+			scheduleSession.setBounds(470, 385, 250, 55);
 
 			//---- editorPane1 ----
 			editorPane1.setBackground(new Color(0xb5b9b8));
 			schedulSessionFrameContentPane.add(editorPane1);
-			editorPane1.setBounds(315, 175, 620, 370);
+			editorPane1.setBounds(365, 175, 470, 285);
 
 			//---- scheduleBack ----
-			scheduleBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			scheduleBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			scheduleBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			scheduleBack.setBackground(new Color(0xc80f2e));
 			schedulSessionFrameContentPane.add(scheduleBack);
@@ -268,7 +232,7 @@ public class TrainingSessionView {
 			editorPane2.setBounds(350, 210, 470, 220);
 
 			//---- cancelBack ----
-			cancelBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			cancelBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			cancelBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			cancelBack.setBackground(new Color(0xc80f2e));
 			cancelSessionFrameContentPane.add(cancelBack);
@@ -322,25 +286,27 @@ public class TrainingSessionView {
 						{null, null, null, null, null},
 					},
 					new String[] {
-						"Training Session ID", "Member Name", "Trainer Name", "Start Date and Time", "End Date and Time"
+						"Training Session ID", "Membership ID", "Trainer ID", "Start Date and Time", "End Date and Time"
 					}
 				));
 				{
 					TableColumnModel cm = trainingSessionTable.getColumnModel();
 					cm.getColumn(0).setMinWidth(150);
 					cm.getColumn(0).setMaxWidth(150);
-					cm.getColumn(1).setMinWidth(250);
-					cm.getColumn(1).setMaxWidth(350);
-					cm.getColumn(2).setMinWidth(250);
-					cm.getColumn(2).setMaxWidth(350);
+					cm.getColumn(1).setMinWidth(150);
+					cm.getColumn(1).setMaxWidth(150);
+					cm.getColumn(2).setMinWidth(150);
+					cm.getColumn(2).setMaxWidth(150);
 				}
+				trainingSessionTable.setFont(new Font("Tw Cen MT", Font.PLAIN, 18));
+				trainingSessionTable.setEnabled(false);
 				scrollPane1.setViewportView(trainingSessionTable);
 			}
 			readSessionFrameContentPane.add(scrollPane1);
 			scrollPane1.setBounds(105, 115, 1000, 470);
 
 			//---- readBack ----
-			readBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			readBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			readBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			readBack.setBackground(new Color(0xc80f2e));
 			readSessionFrameContentPane.add(readBack);
@@ -391,12 +357,8 @@ public class TrainingSessionView {
 	private JButton goToRead;
 	private JLabel label1;
 	private JFrame schedulSessionFrame;
-	private JComboBox subscriptionID;
-	private JComboBox trainerID;
-	private JFormattedTextField membershiptext;
-	private JFormattedTextField trainertext;
-	private JFormattedTextField trainertext2;
-	private JFormattedTextField trainertext3;
+	private JComboBox<String> subscriptionID;
+	private JComboBox<String> trainerID;
 	private JTextPane startdatetime;
 	private JTextPane enddatetime;
 	private JButton scheduleSession;
@@ -406,7 +368,7 @@ public class TrainingSessionView {
 	private JLabel label2;
 	private JFrame cancelSessionFrame;
 	private JFormattedTextField trainingSessionText;
-	private JComboBox trainingSessionID;
+	private JComboBox<String> trainingSessionID;
 	private JButton cancelSession;
 	private JEditorPane editorPane2;
 	private JButton cancelBack;
@@ -419,6 +381,18 @@ public class TrainingSessionView {
 	private JFormattedTextField titleBar4;
 	private JLabel label4;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+
+
+	// jcombobox getters
+	public JComboBox<String> getSubscriptionIDComboBox() {
+		return this.subscriptionID;
+	}
+	public JComboBox<String> getTrainerIDComboBox() {
+		return this.trainerID;
+	}
+	public JComboBox<String> getTrainingSessionIDComboBox() {
+		return this.trainingSessionID;
+	}
 
 	// getters
 	public JFrame getTrainingSessionFrame() {
@@ -485,9 +459,4 @@ public class TrainingSessionView {
 	public void cancelSessionButton(ActionListener actionListener) {
 		this.cancelSession.addActionListener(actionListener);
 	}
-
-	public static void main(String[] args) {
-		new TrainingSessionController();
-	}
-
 }
