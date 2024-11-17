@@ -72,4 +72,8 @@ public class StartPageView extends JFrame {
     private JLabel label2;
     private JLabel label1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+
+    public static void main(String[] args) {
+        new StartPageView().setVisible(true);
+    }
 }
