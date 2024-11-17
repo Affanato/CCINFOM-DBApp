@@ -35,14 +35,14 @@ public class AmenityLogsDAO {
     public void deleteByAmenityID(int amenityID) {}
 
     // SELECT QUERIES //
-    public Amenity selectAmenityLog(int amenityLogID) {}
+    //public Amenity selectAmenityLog(int amenityLogID) {}
 
-    public ArrayList<AmenityLog> selectAllAmenityLogs() {}
+    //public ArrayList<AmenityLog> selectAllAmenityLogs() {}
 
     // UTILITY METHODS //
-    public static AmenityLog mapResultSetToAmenityLog(ResultSet rs) {}
+    //public static AmenityLog mapResultSetToAmenityLog(ResultSet rs) {}
 
-    public static ArrayList<AmenityLog> mapResultSetToAmenityLogList(ResultSet rs) {}
+    //public static ArrayList<AmenityLog> mapResultSetToAmenityLogList(ResultSet rs) {}
 
     public void closeStatement() {
         DBUtils.closeStatement(statement);

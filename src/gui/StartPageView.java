@@ -24,6 +24,9 @@ public class StartPageView extends JFrame {
         //======== this ========
         Container contentPane = getContentPane();
         contentPane.setLayout(null);
+        this.setVisible(true);
+        this.getContentPane().setBackground(new Color(0xffffff));
+        this.setResizable(false);
 
         //---- button1 ----
         button1.setText("START");
@@ -74,6 +77,6 @@ public class StartPageView extends JFrame {
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     public static void main(String[] args) {
-        new StartPageView().setVisible(true);
+        new StartPageView();
     }
 }

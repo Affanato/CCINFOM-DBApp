@@ -9,7 +9,6 @@ public class TrainingSessionController {
         this.tsView.trainingSessionBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DummyController();
                 tsView.getTrainingSessionFrame().dispose();
             }
         });

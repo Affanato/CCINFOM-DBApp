@@ -128,21 +128,13 @@ public class SubscriptionsDAO {
 
     // TODO: Implement these!
     // REPORTS
-    public Object[][] getTotalSubsPerMemTypePerMonthPerYear() {
+    //public Object[][] getTotalSubsPerMemTypePerMonthPerYear() {}
 
-    }
+    //public Object[][] getRevenuePerMemTypePerMonthPerYear() {}
 
-    public Object[][] getRevenuePerMemTypePerMonthPerYear() {
+    //public Object[][] getTotalSubsPerMemType() {}
 
-    }
-
-    public Object[][] getTotalSubsPerMemType() {
-
-    }
-
-    public Object[][] getRevenuePerMemType() {
-
-    }
+    //public Object[][] getRevenuePerMemType() {}
 
     // UTILITY METHODS //
     public static Subscription mapResultSetToSubscription(ResultSet rs) {

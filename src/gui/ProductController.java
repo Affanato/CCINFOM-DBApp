@@ -9,7 +9,6 @@ public class ProductController {
         this.pView.productBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DummyController();
                 pView.getProductFrame().dispose();
             }
         });

@@ -9,7 +9,6 @@ public class SubscriptionController {
         this.mView.memberBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DummyController();
                 mView.getSubscriptionFrame().dispose();
             }
         });

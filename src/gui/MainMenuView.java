@@ -33,27 +33,32 @@ public class MainMenuView extends JFrame {
         button11 = new JButton();
         button12 = new JButton();
         label8 = new JLabel();
+        label9 = new JLabel();
 
         //======== this ========
         Container contentPane = getContentPane();
         contentPane.setLayout(null);
+        this.setVisible(true);
+        this.getContentPane().setBackground(new Color(0xffffff));
+        this.setResizable(false);
 
         //---- label1 ----
         label1.setText("       Bunyi Gym");
         label1.setBackground(new Color(0xc80f2e));
         label1.setFont(label1.getFont().deriveFont(label1.getFont().getSize() + 15f));
         label1.setForeground(Color.white);
+        label1.setOpaque(true);
         contentPane.add(label1);
         label1.setBounds(0, 0, 1200, 95);
 
         //---- label2 ----
-        label2.setIcon(new ImageIcon("C:\\Users\\USER\\OneDrive\\Documents\\Code and Acads\\CCINFOM\\DB Application\\resource\\ProfilePic.png"));
+        label2.setIcon(new ImageIcon("resource/ProfilePic.png"));
         contentPane.add(label2);
         label2.setBounds(40, 135, 120, 120);
 
         //---- label3 ----
         label3.setText("Branch Manager");
-        label3.setFont(label3.getFont().deriveFont(label3.getFont().getSize() + 36f));
+        label3.setFont(label3.getFont().deriveFont(label3.getFont().getSize() + 30f));
         contentPane.add(label3);
         label3.setBounds(180, 125, 370, 70);
 
@@ -63,7 +68,7 @@ public class MainMenuView extends JFrame {
         button1.setForeground(Color.white);
         button1.setBackground(new Color(0x3ca3cb));
         contentPane.add(button1);
-        button1.setBounds(595, 100, 260, 77);
+        button1.setBounds(595, 115, 260, 77);
 
         //---- button2 ----
         button2.setText("Membership Report");
@@ -71,7 +76,7 @@ public class MainMenuView extends JFrame {
         button2.setForeground(Color.white);
         button2.setBackground(new Color(0x3ca3cb));
         contentPane.add(button2);
-        button2.setBounds(595, 215, 260, 77);
+        button2.setBounds(595, 230, 260, 77);
 
         //---- button3 ----
         button3.setText("Trainer Report ");
@@ -79,7 +84,7 @@ public class MainMenuView extends JFrame {
         button3.setBackground(new Color(0x3ca3cb));
         button3.setFont(button3.getFont().deriveFont(button3.getFont().getSize() + 9f));
         contentPane.add(button3);
-        button3.setBounds(895, 215, 260, 77);
+        button3.setBounds(895, 230, 260, 77);
 
         //---- button4 ----
         button4.setText("Amenities Use ");
@@ -87,7 +92,7 @@ public class MainMenuView extends JFrame {
         button4.setFont(button4.getFont().deriveFont(button4.getFont().getSize() + 12f));
         button4.setForeground(Color.white);
         contentPane.add(button4);
-        button4.setBounds(895, 100, 260, 77);
+        button4.setBounds(895, 115, 260, 77);
 
         //---- button5 ----
         button5.setText("Products");
@@ -147,9 +152,15 @@ public class MainMenuView extends JFrame {
 
         //---- label8 ----
         label8.setText("text");
-        label8.setIcon(new ImageIcon("C:\\Users\\USER\\OneDrive\\Documents\\Code and Acads\\CCINFOM\\DB Application\\resource\\MainMenuBG.png"));
+        label8.setIcon(new ImageIcon("resource/MainMenuBG.png"));
         contentPane.add(label8);
         label8.setBounds(0, 325, 1200, label8.getPreferredSize().height);
+
+        //---- label9 ----
+        label9.setBackground(Color.white);
+        label9.setOpaque(true);
+        contentPane.add(label9);
+        label9.setBounds(0, 95, 1200, 230);
 
         {
             // compute preferred size
@@ -188,9 +199,10 @@ public class MainMenuView extends JFrame {
     private JButton button11;
     private JButton button12;
     private JLabel label8;
+    private JLabel label9;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     public static void main(String[] args) {
-        new MainMenuView().setVisible(true);
+        new MainMenuView();
     }
 }

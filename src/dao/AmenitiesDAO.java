@@ -85,9 +85,9 @@ public class AmenitiesDAO {
 
     // TODO: Implement these!
     // REPORTS //
-    public Map<Amenity, Integer> selectAmenitiesByDecreasingUsage() {}
+    //public Map<Amenity, Integer> selectAmenitiesByDecreasingUsage() {}
 
-    public Map<Amenity, Double> selectAmenitiesByDecreasingRevenue() {}
+    //public Map<Amenity, Double> selectAmenitiesByDecreasingRevenue() {}
 
     // UTILITY METHODS //
     public static Amenity mapResultSetToAmenity(ResultSet rs) {
