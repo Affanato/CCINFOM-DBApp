@@ -29,15 +29,18 @@ public class StartPageView extends JFrame {
         button1.setText("START");
         button1.setFont(button1.getFont().deriveFont(button1.getFont().getSize() + 18f));
         contentPane.add(button1);
-        button1.setBounds(285, 350, 215, 90);
+        button1.setBounds(450, 500, 300, 90);
 
         //---- label2 ----
         label2.setText("Bunyi Gym");
+        label2.setHorizontalAlignment(SwingConstants.CENTER);
+        label2.setVerticalAlignment(SwingConstants.CENTER);
         label2.setBackground(new Color(0xc80f2e));
         label2.setForeground(Color.white);
         label2.setFont(label2.getFont().deriveFont(label2.getFont().getSize() + 60f));
+        label2.setOpaque(true);
         contentPane.add(label2);
-        label2.setBounds(220, 100, 350, 85);
+        label2.setBounds(350, 100, 500, 125);
 
         //---- label1 ----
         label1.setIcon(new ImageIcon("resource/GymBackground.png"));
@@ -69,8 +72,4 @@ public class StartPageView extends JFrame {
     private JLabel label2;
     private JLabel label1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
-
-    public static void main(String[] args){
-        new StartPageView().setVisible(true);
-    }
 }
