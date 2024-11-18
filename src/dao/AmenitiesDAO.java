@@ -63,7 +63,7 @@ public class AmenitiesDAO {
     }
 
     // SELECT QUERIES //
-    public Amenity selectAmenity(int amenityID) {
+    public static Amenity selectAmenity(int amenityID) {
         String condition = "WHERE amenity_id = " + amenityID;
         ResultSet rs = DBUtils.selectAllRecordsFromTable("amenities", condition);
         assert rs != null;
@@ -83,13 +83,35 @@ public class AmenitiesDAO {
         return mapResultSetToAmenityList(rs);
     }
 
-    // TODO: Implement these!
-    // REPORTS //
-    public Map<Amenity, Integer> selectAmenitiesByDecreasingUsage() {}
+    // TRANSACTIONS //
+    public void changeAmenityStatus(int amenityID, Status status) {
+        Amenity oldA = selectAmenity(amenityID);
+        Amenity newA = new Amenity(
+                oldA.amenityID(),
+                oldA.amenityName(),
+                oldA.walkInPrice(),
+                oldA.openingTime(),
+                oldA.closingTime(),
+                status
+        );
+        updateAmenity(amenityID, newA);
+    }
 
-    public Map<Amenity, Double> selectAmenitiesByDecreasingRevenue() {}
+    // REPORTS //
+    public Map<Amenity, Integer> selectAmenitiesByDecreasingUsage() {
+
+    }
+
+    public Map<Amenity, Double> selectAmenitiesByDecreasingRevenue() {
+
+    }
 
     // UTILITY METHODS //
+    public static boolean isActiveAmenity(int amenityID) {
+        Amenity a = selectAmenity(amenityID);
+        return a != null && a.amenityStatus() == Status.ACTIVE;
+    }
+
     public static Amenity mapResultSetToAmenity(ResultSet rs) {
         try {
             int amenityID = rs.getInt("amenity_id");

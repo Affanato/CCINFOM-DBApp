@@ -10,6 +10,13 @@ public class MembersDAO {
 
     // TODO: Code related methods. Refer to SubscriptionsDAO.
 
+
+    // UTIL METHODS
+    // TODO: URGENT! Create a method that returns a member's current subscription_id (if they have one).
+    public static int getCurrentSubscriptionID(int memberID) {
+
+    }
+
     public void closeStatement() {
         DBUtils.closeStatement(statement);
     }

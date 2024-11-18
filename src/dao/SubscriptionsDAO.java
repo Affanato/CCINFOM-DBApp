@@ -128,19 +128,19 @@ public class SubscriptionsDAO {
 
     // TODO: Implement these!
     // REPORTS
-    public Object[][] getTotalSubsPerMemTypePerMonthPerYear() {
+    public Object[][] getTotalSubsPerSubTypePerMonthPerYear() {
 
     }
 
-    public Object[][] getRevenuePerMemTypePerMonthPerYear() {
+    public Object[][] getTotalRevenuePerSubTypePerMonthPerYear() {
 
     }
 
-    public Object[][] getTotalSubsPerMemType() {
+    public Object[][] getTotalSubsPerSubType() {
 
     }
 
-    public Object[][] getRevenuePerMemType() {
+    public Object[][] getTotalRevenuePerSubType() {
 
     }
 
@@ -152,6 +152,7 @@ public class SubscriptionsDAO {
             int subscriptionTypeID = rs.getInt("subscription_type_id");
             LocalDate subscriptionStartDate = rs.getDate("subscription_start_date").toLocalDate();
             LocalDate subscriptionEndDate = rs.getDate("subscription_end_date").toLocalDate();
+
             return new Subscription(subscriptionID, memberID, subscriptionTypeID, subscriptionStartDate, subscriptionEndDate);
         } catch(SQLException e) {
             ExceptionHandler.handleException(e);

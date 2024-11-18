@@ -1,5 +1,4 @@
 import java.time.LocalTime;
-import java.util.ArrayList;
 
 public record Amenity (
         int amenityID,
