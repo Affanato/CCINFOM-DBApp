@@ -4,7 +4,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 // TODO: IN PROGRESS!!!
-// Verify if the methods are implemented correctly.
+// TODO: Verify if the methods are implemented correctly.
 public class AmenityLogsDAO {
 
     private final Statement statement;
