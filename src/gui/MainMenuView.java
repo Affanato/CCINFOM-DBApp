@@ -63,7 +63,7 @@ public class MainMenuView extends JFrame {
         label3.setBounds(180, 125, 370, 70);
 
         //---- button1 ----
-        button1.setText("Sale Report");
+        button1.setText("Sales Report");
         button1.setFont(button1.getFont().deriveFont(button1.getFont().getSize() + 9f));
         button1.setForeground(Color.white);
         button1.setBackground(new Color(0x3ca3cb));
@@ -95,56 +95,56 @@ public class MainMenuView extends JFrame {
         button4.setBounds(895, 115, 260, 77);
 
         //---- button5 ----
-        button5.setText("Products");
+        button5.setText("Product");
         button5.setBackground(new Color(0xc80f2e));
         button5.setForeground(Color.white);
         contentPane.add(button5);
         button5.setBounds(915, 540, 200, 90);
 
         //---- button6 ----
-        button6.setText("Memberships");
+        button6.setText("Membership");
         button6.setBackground(new Color(0xc80f2e));
         button6.setForeground(Color.white);
         contentPane.add(button6);
         button6.setBounds(350, 540, 215, 90);
 
         //---- button7 ----
-        button7.setText("Trainers");
+        button7.setText("Trainer");
         button7.setBackground(new Color(0xc80f2e));
         button7.setForeground(Color.white);
         contentPane.add(button7);
         button7.setBounds(640, 380, 210, 90);
 
         //---- button8 ----
-        button8.setText("Members");
+        button8.setText("Member");
         button8.setBackground(new Color(0xc80f2e));
         button8.setForeground(Color.white);
         contentPane.add(button8);
         button8.setBounds(80, 540, 210, 90);
 
         //---- button9 ----
-        button9.setText("Amenities ");
+        button9.setText("Amenity ");
         button9.setBackground(new Color(0xc80f2e));
         button9.setForeground(Color.white);
         contentPane.add(button9);
         button9.setBounds(80, 380, 210, 90);
 
         //---- button10 ----
-        button10.setText("Training Sessions");
+        button10.setText("Training Session");
         button10.setBackground(new Color(0xc80f2e));
         button10.setForeground(Color.white);
         contentPane.add(button10);
         button10.setBounds(910, 380, 205, 85);
 
         //---- button11 ----
-        button11.setText("Amenities Use");
+        button11.setText("Amenity Use");
         button11.setBackground(new Color(0xc80f2e));
         button11.setForeground(Color.white);
         contentPane.add(button11);
         button11.setBounds(350, 380, 210, 90);
 
         //---- button12 ----
-        button12.setText("Membership Types  ");
+        button12.setText("Membership Type");
         button12.setBackground(new Color(0xc80f2e));
         button12.setForeground(Color.white);
         contentPane.add(button12);
