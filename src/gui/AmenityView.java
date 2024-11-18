@@ -842,7 +842,7 @@ public class AmenityView  {
         this.updateAmenity2.addActionListener(actionListener);
     }
 
-
-
-
+    public void main(String[] args){
+        new AmenityController();
+    }
 }
