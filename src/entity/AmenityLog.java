@@ -5,7 +5,8 @@ public record AmenityLog(
         int memberID,
         int amenityID,
         LocalDateTime usageStartDateTime,
-        LocalDateTime usageEndDateTime
+        int usageDurationHours,
+        double usageTotalPrice
 ) implements ConvertibleToObjectArray {
     @Override
     public Object[] toObjectArray() {
@@ -14,7 +15,8 @@ public record AmenityLog(
                 memberID,
                 amenityID,
                 usageStartDateTime,
-                usageEndDateTime
+                usageDurationHours,
+                usageTotalPrice
         };
     }
 }
