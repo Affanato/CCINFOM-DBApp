@@ -76,7 +76,7 @@ public class SubscriptionTypeAmenitiesDAO {
         return mapResultSetToSubscriptionTypeAmenityList(rs);
     }
 
-    public ArrayList<Amenity> selectAllAmenitiesOfASubscriptionType(int subscriptionTypeID) {
+    public static ArrayList<Amenity> selectAllAmenitiesOfASubscriptionType(int subscriptionTypeID) {
         String condition = "WHERE subscription_type_id = " + subscriptionTypeID;
         ResultSet rs = DBUtils.selectAllRecordsFromInnerJoinedTables(
                 "subscription_type_amenities", "amenities", "amenity_id", "amenity_id", condition);
@@ -110,7 +110,7 @@ public class SubscriptionTypeAmenitiesDAO {
         }
     }
 
-    public boolean subscriptionTypeHasAmenity(int subscriptionTypeID, int amenityID) {
+    public static boolean subscriptionTypeHasAmenity(int subscriptionTypeID, int amenityID) {
         ArrayList<Amenity> aList = selectAllAmenitiesOfASubscriptionType(subscriptionTypeID);
         for (Amenity a : aList) {
             if (a.amenityID() == amenityID) {

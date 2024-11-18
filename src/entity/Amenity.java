@@ -1,10 +1,9 @@
 import java.time.LocalTime;
-import java.util.ArrayList;
 
 public record Amenity (
         int amenityID,
         String amenityName,
-        double walkInPrice,
+        double walkInPricePerHour,
         LocalTime openingTime,
         LocalTime closingTime,
         Status amenityStatus
@@ -14,7 +13,7 @@ public record Amenity (
         return new Object[] {
                 amenityID,
                 amenityName,
-                walkInPrice,
+                walkInPricePerHour,
                 openingTime,
                 closingTime,
                 amenityStatus
