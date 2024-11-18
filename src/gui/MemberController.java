@@ -10,6 +10,7 @@ public class MemberController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mView.getMemberFrame().dispose();
+                MainMenuController mainMenuController = new MainMenuController();
             }
         });
 

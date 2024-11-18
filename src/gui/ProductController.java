@@ -10,6 +10,7 @@ public class ProductController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pView.getProductFrame().dispose();
+                MainMenuController mainMenuController = new MainMenuController();
             }
         });
 

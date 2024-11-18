@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 /*
  * Created by JFormDesigner on Sun Nov 17 12:21:47 PST 2024
@@ -102,7 +103,7 @@ public class MainMenuView extends JFrame {
         button5.setBounds(915, 540, 200, 90);
 
         //---- button6 ----
-        button6.setText("Membership");
+        button6.setText("Subscription");
         button6.setBackground(new Color(0xc80f2e));
         button6.setForeground(Color.white);
         contentPane.add(button6);
@@ -144,7 +145,7 @@ public class MainMenuView extends JFrame {
         button11.setBounds(350, 380, 210, 90);
 
         //---- button12 ----
-        button12.setText("Membership Type");
+        button12.setText("Subscription Type");
         button12.setBackground(new Color(0xc80f2e));
         button12.setForeground(Color.white);
         contentPane.add(button12);
@@ -202,7 +203,57 @@ public class MainMenuView extends JFrame {
     private JLabel label9;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
-    public static void main(String[] args) {
-        new MainMenuView();
+    // Getters
+    public JFrame getMainMenueFrame() {
+        return this;
+    }
+
+    // Button Action Listeners
+    public void salesReportButton(ActionListener actionListener){
+        button1.addActionListener(actionListener);
+    }
+
+    public void membershipReportButton(ActionListener actionListener){
+        button2.addActionListener(actionListener);
+    }
+
+    public void trainerReportButton(ActionListener actionListener){
+        button3.addActionListener(actionListener);
+    }
+
+    public void amenitiesUseButton(ActionListener actionListener){
+        button4.addActionListener(actionListener);
+    }
+
+    public void amenityButton(ActionListener actionListener){
+        button9.addActionListener(actionListener);
+    }
+
+    public void amenityUseButton(ActionListener actionListener){
+        button11.addActionListener(actionListener);
+    }
+
+    public void trainerButton(ActionListener actionListener){
+        button7.addActionListener(actionListener);
+    }
+
+    public void trainingSessionButton(ActionListener actionListener){
+        button10.addActionListener(actionListener);
+    }
+
+    public void memberButton(ActionListener actionListener){
+        button8.addActionListener(actionListener);
+    }
+
+    public void subscriptionButton(ActionListener actionListener){
+        button6.addActionListener(actionListener);
+    }
+
+    public void subscriptionTypeButton(ActionListener actionListener){
+        button12.addActionListener(actionListener);
+    }
+
+    public void product(ActionListener actionListener){
+        button5.addActionListener(actionListener);
     }
 }

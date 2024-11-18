@@ -10,6 +10,7 @@ public class TrainingSessionController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 tsView.getTrainingSessionFrame().dispose();
+                MainMenuController mainMenuController = new MainMenuController();
             }
         });
 

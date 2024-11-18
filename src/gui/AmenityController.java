@@ -8,7 +8,7 @@ public class AmenityController {
         this.aView.amenityBackButtonB(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Add main menu here
+                MainMenuController mainMenuController = new MainMenuController();
                 aView.getAmenityFrame().dispose();
             }
         });
@@ -113,9 +113,5 @@ public class AmenityController {
                 //
             }
         });
-    }
-
-    public void main(String[] args){
-
     }
 }

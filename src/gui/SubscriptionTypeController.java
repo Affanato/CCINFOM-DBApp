@@ -10,6 +10,7 @@ public class SubscriptionTypeController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mtView.getSubscriptionTypeFrame().dispose();
+                MainMenuController mainMenuController = new MainMenuController();
             }
         });
 

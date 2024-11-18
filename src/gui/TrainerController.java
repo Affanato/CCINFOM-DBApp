@@ -10,6 +10,7 @@ public class TrainerController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 tView.getTrainerFrame().dispose();
+                MainMenuController mainMenuController = new MainMenuController();
             }
         });
 

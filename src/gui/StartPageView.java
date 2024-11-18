@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 /*
  * Created by JFormDesigner on Sat Nov 16 05:33:48 PST 2024
@@ -76,7 +77,11 @@ public class StartPageView extends JFrame {
     private JLabel label1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
-    public static void main(String[] args) {
-        new StartPageView();
+    public JFrame getFrame(){
+        return this;
+    }
+
+    public void startButton(ActionListener actionListener){
+        button1.addActionListener(actionListener);
     }
 }
