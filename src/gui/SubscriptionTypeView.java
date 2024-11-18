@@ -41,7 +41,7 @@ public class SubscriptionTypeView {
 		deleteBack = new JButton();
 		titleBar4 = new JFormattedTextField();
 		membershipTypeIDText = new JFormattedTextField();
-		subscriptionTypeID = new JComboBox();
+		subscriptionTypeID = new JComboBox<>();
 		deleteSubscriptionType = new JButton();
 		editorPane2 = new JEditorPane();
 		background4 = new JLabel();
@@ -49,7 +49,7 @@ public class SubscriptionTypeView {
 		updateBack1 = new JButton();
 		titleBar5 = new JFormattedTextField();
 		membershipTypeIDText2 = new JFormattedTextField();
-		updateSubscriptionName = new JComboBox();
+		updateSubscriptionName = new JComboBox<>();
 		proceedUpdate = new JButton();
 		editorPane3 = new JEditorPane();
 		background5 = new JLabel();
@@ -71,7 +71,7 @@ public class SubscriptionTypeView {
 		addAmenityBack = new JButton();
 		titleBar7 = new JFormattedTextField();
 		membershipTypeIDText3 = new JFormattedTextField();
-		addAmenityID = new JComboBox();
+		addAmenityID = new JComboBox<>();
 		addAmenity = new JButton();
 		editorPane5 = new JEditorPane();
 		background7 = new JLabel();
@@ -79,7 +79,7 @@ public class SubscriptionTypeView {
 		removeAmenityBack = new JButton();
 		titleBar8 = new JFormattedTextField();
 		membershipTypeIDText4 = new JFormattedTextField();
-		removeAmenityID = new JComboBox();
+		removeAmenityID = new JComboBox<>();
 		removeAmenity = new JButton();
 		editorPane7 = new JEditorPane();
 		background8 = new JLabel();
@@ -104,7 +104,7 @@ public class SubscriptionTypeView {
 			subscriptionTypeFrameContentPane.setLayout(null);
 
 			//---- subscriptionTypeBackButton ----
-			subscriptionTypeBackButton.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			subscriptionTypeBackButton.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			subscriptionTypeBackButton.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			subscriptionTypeBackButton.setBackground(new Color(0xc80f2e));
 			subscriptionTypeFrameContentPane.add(subscriptionTypeBackButton);
@@ -183,7 +183,7 @@ public class SubscriptionTypeView {
 			addSubscriptionTypeFrameContentPane.setLayout(null);
 
 			//---- addBack ----
-			addBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			addBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			addBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			addBack.setBackground(new Color(0xc80f2e));
 			addSubscriptionTypeFrameContentPane.add(addBack);
@@ -267,7 +267,7 @@ public class SubscriptionTypeView {
 			deleteSubscriptionTypeFrameContentPane.setLayout(null);
 
 			//---- deleteBack ----
-			deleteBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			deleteBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			deleteBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			deleteBack.setBackground(new Color(0xc80f2e));
 			deleteSubscriptionTypeFrameContentPane.add(deleteBack);
@@ -339,7 +339,7 @@ public class SubscriptionTypeView {
 			updateSubscriptionTypeFrame1ContentPane.setLayout(null);
 
 			//---- updateBack1 ----
-			updateBack1.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			updateBack1.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			updateBack1.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			updateBack1.setBackground(new Color(0xc80f2e));
 			updateSubscriptionTypeFrame1ContentPane.add(updateBack1);
@@ -411,7 +411,7 @@ public class SubscriptionTypeView {
 			updateSubscriptionTypeFrame2ContentPane.setLayout(null);
 
 			//---- updateBack2 ----
-			updateBack2.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			updateBack2.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			updateBack2.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			updateBack2.setBackground(new Color(0xc80f2e));
 			updateSubscriptionTypeFrame2ContentPane.add(updateBack2);
@@ -524,7 +524,7 @@ public class SubscriptionTypeView {
 			addAmenityFrameContentPane.setLayout(null);
 
 			//---- addAmenityBack ----
-			addAmenityBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			addAmenityBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			addAmenityBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			addAmenityBack.setBackground(new Color(0xc80f2e));
 			addAmenityFrameContentPane.add(addAmenityBack);
@@ -596,7 +596,7 @@ public class SubscriptionTypeView {
 			removeAmenityFrameContentPane.setLayout(null);
 
 			//---- removeAmenityBack ----
-			removeAmenityBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			removeAmenityBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			removeAmenityBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			removeAmenityBack.setBackground(new Color(0xc80f2e));
 			removeAmenityFrameContentPane.add(removeAmenityBack);
@@ -681,13 +681,14 @@ public class SubscriptionTypeView {
 					}
 				));
 				amenityTable.setFont(new Font("Tw Cen MT", Font.PLAIN, 18));
+				amenityTable.setEnabled(false);
 				scrollPane1.setViewportView(amenityTable);
 			}
 			readAmenityFrameContentPane.add(scrollPane1);
 			scrollPane1.setBounds(385, 265, 430, 250);
 
 			//---- readAmenityBack ----
-			readAmenityBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			readAmenityBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			readAmenityBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			readAmenityBack.setBackground(new Color(0xc80f2e));
 			readAmenityFrameContentPane.add(readAmenityBack);
@@ -759,13 +760,14 @@ public class SubscriptionTypeView {
 					}
 				));
 				subscriptionTypeTable.setFont(new Font("Tw Cen MT", Font.PLAIN, 18));
+				subscriptionTypeTable.setEnabled(false);
 				scrollPane2.setViewportView(subscriptionTypeTable);
 			}
 			readSubscriptionTypeFrameContentPane.add(scrollPane2);
 			scrollPane2.setBounds(105, 140, 990, 445);
 
 			//---- readBack ----
-			readBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			readBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			readBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			readBack.setBackground(new Color(0xc80f2e));
 			readSubscriptionTypeFrameContentPane.add(readBack);
@@ -830,7 +832,7 @@ public class SubscriptionTypeView {
 	private JButton deleteBack;
 	private JFormattedTextField titleBar4;
 	private JFormattedTextField membershipTypeIDText;
-	private JComboBox subscriptionTypeID;
+	private JComboBox<String> subscriptionTypeID;
 	private JButton deleteSubscriptionType;
 	private JEditorPane editorPane2;
 	private JLabel background4;
@@ -838,7 +840,7 @@ public class SubscriptionTypeView {
 	private JButton updateBack1;
 	private JFormattedTextField titleBar5;
 	private JFormattedTextField membershipTypeIDText2;
-	private JComboBox updateSubscriptionName;
+	private JComboBox<String> updateSubscriptionName;
 	private JButton proceedUpdate;
 	private JEditorPane editorPane3;
 	private JLabel background5;
@@ -860,7 +862,7 @@ public class SubscriptionTypeView {
 	private JButton addAmenityBack;
 	private JFormattedTextField titleBar7;
 	private JFormattedTextField membershipTypeIDText3;
-	private JComboBox addAmenityID;
+	private JComboBox<String> addAmenityID;
 	private JButton addAmenity;
 	private JEditorPane editorPane5;
 	private JLabel background7;
@@ -868,7 +870,7 @@ public class SubscriptionTypeView {
 	private JButton removeAmenityBack;
 	private JFormattedTextField titleBar8;
 	private JFormattedTextField membershipTypeIDText4;
-	private JComboBox removeAmenityID;
+	private JComboBox<String> removeAmenityID;
 	private JButton removeAmenity;
 	private JEditorPane editorPane7;
 	private JLabel background8;
@@ -887,6 +889,20 @@ public class SubscriptionTypeView {
 	private JFormattedTextField titleBar11;
 	private JLabel background11;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+
+	// jcombobox getters
+	public JComboBox<String> getSubscriptionTypeIDJComboBox() {
+		return this.subscriptionTypeID;
+	}
+	public JComboBox<String> getUpdateSubscriptionNameJComboBox() {
+		return this.updateSubscriptionName;
+	}
+	public JComboBox<String> getAddAmenityIDJComboBox() {
+		return this.addAmenityID;
+	}
+	public JComboBox<String> getRemoveAmenityIDJComboBox() {
+		return this.removeAmenityID;
+	}
 
 	// getters
 	public JFrame getSubscriptionTypeFrame() {
@@ -1030,13 +1046,6 @@ public class SubscriptionTypeView {
 	}
 	public void readBackButton(ActionListener actionListener) {
 		this.readBack.addActionListener(actionListener);
-	}
-
-
-
-
-	public static void main(String[] args) {
-		new SubscriptionTypeController();
 	}
 }
 

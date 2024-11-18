@@ -49,7 +49,7 @@ public class ProductView {
 		deleteBack = new JButton();
 		deleteProduct = new JButton();
 		productidtext = new JFormattedTextField();
-		productID = new JComboBox();
+		deleteProductID = new JComboBox<>();
 		editorPane2 = new JEditorPane();
 		titleBar3 = new JFormattedTextField();
 		background3 = new JLabel();
@@ -75,7 +75,7 @@ public class ProductView {
 		restockproducttext = new JFormattedTextField();
 		restockquantitytext = new JFormattedTextField();
 		restockquantity = new JTextPane();
-		restockproductid = new JComboBox();
+		restockproductid = new JComboBox<>();
 		editorPane4 = new JEditorPane();
 		titleBar5 = new JFormattedTextField();
 		background5 = new JLabel();
@@ -84,11 +84,11 @@ public class ProductView {
 		titleBar6 = new JFormattedTextField();
 		sellProduct = new JButton();
 		sellquantity = new JTextPane();
-		sellproductid = new JComboBox();
+		sellproductid = new JComboBox<>();
 		sellproducttext = new JFormattedTextField();
 		sellquantitytext = new JFormattedTextField();
 		memberidtext = new JFormattedTextField();
-		memberid = new JComboBox();
+		memberid = new JComboBox<>();
 		editorPane5 = new JEditorPane();
 		background6 = new JLabel();
 		readProductFrame = new JFrame();
@@ -97,6 +97,14 @@ public class ProductView {
 		productTable = new JTable();
 		titleBar7 = new JFormattedTextField();
 		background7 = new JLabel();
+		updateProduct1 = new JFrame();
+		updateBack1 = new JButton();
+		proceed = new JButton();
+		productidtext2 = new JFormattedTextField();
+		updateProductID1 = new JComboBox<>();
+		editorPane6 = new JEditorPane();
+		titleBar8 = new JFormattedTextField();
+		background8 = new JLabel();
 
 		//======== productFrame ========
 		{
@@ -199,7 +207,7 @@ public class ProductView {
 			addProductFrameContentPane.setLayout(null);
 
 			//---- addBack ----
-			addBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			addBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			addBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			addBack.setBackground(new Color(0xc80f2e));
 			addProductFrameContentPane.add(addBack);
@@ -318,7 +326,7 @@ public class ProductView {
 			deleteProductFrameContentPane.setLayout(null);
 
 			//---- deleteBack ----
-			deleteBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			deleteBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			deleteBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			deleteBack.setBackground(new Color(0xc80f2e));
 			deleteProductFrameContentPane.add(deleteBack);
@@ -340,10 +348,10 @@ public class ProductView {
 			deleteProductFrameContentPane.add(productidtext);
 			productidtext.setBounds(365, 235, 470, 35);
 
-			//---- productID ----
-			productID.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-			deleteProductFrameContentPane.add(productID);
-			productID.setBounds(410, 315, 390, 35);
+			//---- deleteProductID ----
+			deleteProductID.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			deleteProductFrameContentPane.add(deleteProductID);
+			deleteProductID.setBounds(410, 315, 390, 35);
 
 			//---- editorPane2 ----
 			editorPane2.setBackground(new Color(0xb5b9b8));
@@ -390,7 +398,7 @@ public class ProductView {
 			updateProductFrameContentPane.setLayout(null);
 
 			//---- updateBack ----
-			updateBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			updateBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			updateBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			updateBack.setBackground(new Color(0xc80f2e));
 			updateProductFrameContentPane.add(updateBack);
@@ -512,7 +520,7 @@ public class ProductView {
 			restockProductFrameContentPane.setLayout(null);
 
 			//---- restockBack ----
-			restockBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			restockBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			restockBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			restockBack.setBackground(new Color(0xc80f2e));
 			restockProductFrameContentPane.add(restockBack);
@@ -597,7 +605,7 @@ public class ProductView {
 			sellProductFrameContentPane.setLayout(null);
 
 			//---- sellBack ----
-			sellBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			sellBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			sellBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			sellBack.setBackground(new Color(0xc80f2e));
 			sellProductFrameContentPane.add(sellBack);
@@ -695,7 +703,7 @@ public class ProductView {
 			readProductFrameContentPane.setLayout(null);
 
 			//---- readBack ----
-			readBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			readBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			readBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			readBack.setBackground(new Color(0xc80f2e));
 			readProductFrameContentPane.add(readBack);
@@ -727,6 +735,7 @@ public class ProductView {
 					cm.getColumn(5).setMaxWidth(150);
 				}
 				productTable.setFont(new Font("Tw Cen MT", Font.PLAIN, 18));
+				productTable.setEnabled(false);
 				scrollPane1.setViewportView(productTable);
 			}
 			readProductFrameContentPane.add(scrollPane1);
@@ -764,6 +773,78 @@ public class ProductView {
 			readProductFrame.pack();
 			readProductFrame.setLocationRelativeTo(readProductFrame.getOwner());
 		}
+
+		//======== updateProduct1 ========
+		{
+			Container updateProduct1ContentPane = updateProduct1.getContentPane();
+			updateProduct1ContentPane.setLayout(null);
+
+			//---- updateBack1 ----
+			updateBack1.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
+			updateBack1.setIcon(new ImageIcon("resource\\backButton.jpg"));
+			updateBack1.setBackground(new Color(0xc80f2e));
+			updateProduct1ContentPane.add(updateBack1);
+			updateBack1.setBounds(5, 5, 95, 45);
+
+			//---- proceed ----
+			proceed.setText("PROCEED");
+			proceed.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+			proceed.setForeground(Color.white);
+			proceed.setBackground(new Color(0x3ca3cb));
+			updateProduct1ContentPane.add(proceed);
+			proceed.setBounds(475, 380, 250, 55);
+
+			//---- productidtext2 ----
+			productidtext2.setText("Select Product");
+			productidtext2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+			productidtext2.setEditable(false);
+			productidtext2.setHorizontalAlignment(SwingConstants.CENTER);
+			updateProduct1ContentPane.add(productidtext2);
+			productidtext2.setBounds(365, 235, 470, 35);
+
+			//---- updateProductID1 ----
+			updateProductID1.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			updateProduct1ContentPane.add(updateProductID1);
+			updateProductID1.setBounds(410, 315, 390, 35);
+
+			//---- editorPane6 ----
+			editorPane6.setBackground(new Color(0xb5b9b8));
+			editorPane6.setEditable(false);
+			updateProduct1ContentPane.add(editorPane6);
+			editorPane6.setBounds(365, 235, 470, 240);
+
+			//---- titleBar8 ----
+			titleBar8.setText("Product: Update Product");
+			titleBar8.setBackground(new Color(0xc80f2e));
+			titleBar8.setHorizontalAlignment(SwingConstants.CENTER);
+			titleBar8.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
+			titleBar8.setForeground(Color.white);
+			titleBar8.setEditable(false);
+			updateProduct1ContentPane.add(titleBar8);
+			titleBar8.setBounds(0, 0, 1200, 55);
+
+			//---- background8 ----
+			background8.setIcon(new ImageIcon("resource\\products.jpg"));
+			updateProduct1ContentPane.add(background8);
+			background8.setBounds(0, 55, 1200, 615);
+
+			{
+				// compute preferred size
+				Dimension preferredSize = new Dimension();
+				for(int i = 0; i < updateProduct1ContentPane.getComponentCount(); i++) {
+					Rectangle bounds = updateProduct1ContentPane.getComponent(i).getBounds();
+					preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+					preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+				}
+				Insets insets = updateProduct1ContentPane.getInsets();
+				preferredSize.width += insets.right;
+				preferredSize.height += insets.bottom;
+				updateProduct1ContentPane.setMinimumSize(preferredSize);
+				updateProduct1ContentPane.setPreferredSize(preferredSize);
+			}
+			updateProduct1.pack();
+			updateProduct1.setLocationRelativeTo(updateProduct1.getOwner());
+		}
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
 	}
 
@@ -799,7 +880,7 @@ public class ProductView {
 	private JButton deleteBack;
 	private JButton deleteProduct;
 	private JFormattedTextField productidtext;
-	private JComboBox productID;
+	private JComboBox<String> deleteProductID;
 	private JEditorPane editorPane2;
 	private JFormattedTextField titleBar3;
 	private JLabel background3;
@@ -825,7 +906,7 @@ public class ProductView {
 	private JFormattedTextField restockproducttext;
 	private JFormattedTextField restockquantitytext;
 	private JTextPane restockquantity;
-	private JComboBox restockproductid;
+	private JComboBox<String> restockproductid;
 	private JEditorPane editorPane4;
 	private JFormattedTextField titleBar5;
 	private JLabel background5;
@@ -834,11 +915,11 @@ public class ProductView {
 	private JFormattedTextField titleBar6;
 	private JButton sellProduct;
 	private JTextPane sellquantity;
-	private JComboBox sellproductid;
+	private JComboBox<String> sellproductid;
 	private JFormattedTextField sellproducttext;
 	private JFormattedTextField sellquantitytext;
 	private JFormattedTextField memberidtext;
-	private JComboBox memberid;
+	private JComboBox<String> memberid;
 	private JEditorPane editorPane5;
 	private JLabel background6;
 	private JFrame readProductFrame;
@@ -847,7 +928,29 @@ public class ProductView {
 	private JTable productTable;
 	private JFormattedTextField titleBar7;
 	private JLabel background7;
+	private JFrame updateProduct1;
+	private JButton updateBack1;
+	private JButton proceed;
+	private JFormattedTextField productidtext2;
+	private JComboBox<String> updateProductID1;
+	private JEditorPane editorPane6;
+	private JFormattedTextField titleBar8;
+	private JLabel background8;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+
+	// jcombobox getters
+	public JComboBox<String> getSellProductIDJComboBox() {
+		return this.sellproductid;
+	}
+	public JComboBox<String> getMemberIDJComboBox() {
+		return this.memberid;
+	}
+	public JComboBox<String> getRestockProductIDJComboBox() {
+		return this.restockproductid;
+	}
+	public JComboBox<String> getProductIDJComboBox() {
+		return this.deleteProductID;
+	}
 
 	// getters
 	public JFrame getProductFrame() {
@@ -871,6 +974,9 @@ public class ProductView {
 	public JFrame getReadProductFrame() {
 		return this.readProductFrame;
 	}
+	public JFrame getUpdateProductFrame1() {
+		return this.updateProduct1;
+	}
 
 	// add
 	public String getProductName() {
@@ -890,11 +996,14 @@ public class ProductView {
 	}
 
 	// delete
-	public int getProductID() {
-		return this.productID.getSelectedIndex() + 1;
+	public int getDeleteProductID() {
+		return this.deleteProductID.getSelectedIndex() + 1;
 	}
 
 	// update
+	public int getUpdateProductID() {
+		return this.updateProductID1.getSelectedIndex() + 1;
+	}
 	public String getUpdateProductPrice() {
 		return this.updateProductPrice.getText();
 	}
@@ -996,7 +1105,10 @@ public class ProductView {
 		this.readBack.addActionListener(actionListener);
 	}
 
-	public static void main(String[] args) {
-		new ProductController();
+	public void updateBackButton1(ActionListener actionListener) {
+		this.updateBack1.addActionListener(actionListener);
+	}
+	public void proceedButton(ActionListener actionListener) {
+		this.proceed.addActionListener(actionListener);
 	}
 }

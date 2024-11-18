@@ -40,7 +40,7 @@ public class ProductController {
         this.pView.goToUpdateButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                pView.getUpdateProductFrame().setVisible(true);
+                pView.getUpdateProductFrame1().setVisible(true);
                 pView.getProductFrame().dispose();
             }
         });
@@ -88,7 +88,7 @@ public class ProductController {
         this.pView.updateBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                pView.getProductFrame().setVisible(true);
+                pView.getUpdateProductFrame1().setVisible(true);
                 pView.getUpdateProductFrame().dispose();
             }
         });
@@ -141,6 +141,22 @@ public class ProductController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //
+            }
+        });
+
+        this.pView.proceedButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pView.getUpdateProductFrame().setVisible(true);
+                pView.getUpdateProductFrame1().dispose();
+            }
+        });
+
+        this.pView.updateBackButton1(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pView.getProductFrame().setVisible(true);
+                pView.getUpdateProductFrame1().dispose();
             }
         });
     }
