@@ -13,8 +13,8 @@ public class AmenityLogsDAO {
         this.statement = DBUtils.getNewStatement();
     }
 
-    // SINGLE UPDATE QUERIES //
     // TODO: Current.
+    // SINGLE UPDATE QUERIES //
     public void insertAmenityLog(int memberID, int amenityID, int usageDurationHours) {
         if (!AmenitiesDAO.isActiveAmenity(amenityID)) {
             System.out.println("Chosen amenity is inactive!");
@@ -101,9 +101,11 @@ public class AmenityLogsDAO {
 
     // UTILITY METHODS //
     public double getUsageTotalPrice(int memberID, int amenityID, int usageDurationHours) {
-        int subscriptionID = MembersDAO.getCurrentSubscriptionID(memberID);
-
-
+        int subscriptionTypeID = MembersDAO.getCurrentSubscriptionTypeID(memberID);
+        if (SubscriptionTypeAmenitiesDAO.subscriptionTypeHasAmenity(subscriptionTypeID, amenityID)) {
+            return 0;
+        }
+        return AmenitiesDAO.selectAmenity(amenityID).walkInPricePerHour() * usageDurationHours;
     }
 
     public static AmenityLog mapResultSetToAmenityLog(ResultSet rs) {

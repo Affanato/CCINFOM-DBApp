@@ -35,7 +35,7 @@ SELECT			st.subscription_type_name AS subscription_type,
 FROM 			subscriptions s
 JOIN 			subscription_types st ON s.subscription_type_id = st.subscription_type_id
 GROUP BY 		subscription_type
-ORDER BY 		total_subscriptions;
+ORDER BY 		total_subscriptions DESC;
 
 -- Total revenue per subscription type
 -- WORKS!
@@ -44,7 +44,7 @@ SELECT			st.subscription_type_name AS subscription_type,
 FROM 			subscriptions s
 JOIN 			subscription_types st ON s.subscription_type_id = st.subscription_type_id
 GROUP BY 		subscription_type
-ORDER BY 		total_revenue;
+ORDER BY 		total_revenue DESC;
 
 /*
 	amenity_logs
@@ -66,7 +66,7 @@ SELECT			a.amenity_name, COUNT(*) AS total_usages
 FROM			amenity_logs al
 JOIN			amenities a ON al.amenity_id = a.amenity_id
 GROUP BY		a.amenity_name
-ORDER BY		total_usages;
+ORDER BY		total_usages DESC;
 
 -- Determine the total revenue per amenity per month per year.
 -- WORKS!
@@ -85,7 +85,7 @@ SELECT			a.amenity_name, SUM(al.usage_total_price) AS total_revenue
 FROM			amenity_logs al
 JOIN			amenities a ON al.amenity_id = a.amenity_id
 GROUP BY		a.amenity_name
-ORDER BY		total_revenue;
+ORDER BY		total_revenue DESC;
 
 /*
 	Miscellaneous
@@ -96,7 +96,7 @@ ORDER BY		total_revenue;
 SELECT			s.subscription_type_id
 FROM			members m
 JOIN			subscriptions s ON m.member_id = s.member_id
-WHERE			m.member_id = '?'
+WHERE			m.member_id = '1'
 AND				CURRENT_DATE BETWEEN s.subscription_start_date AND s.subscription_end_date;
 
 -- Determine the price of an amenity usage given subscription_type_id, amenity_id, and usage_duration_hours.
