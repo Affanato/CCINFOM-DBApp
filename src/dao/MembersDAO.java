@@ -11,7 +11,7 @@ public class MembersDAO {
         this.statement = DBUtils.getNewStatement();
     }
 
-    // TODO: Code related methods. Refer to SubscriptionsDAO.
+    // TODO: Code related methods. Refer to any implemented DAO.
 
 
     // UTIL METHODS

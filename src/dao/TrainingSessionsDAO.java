@@ -8,6 +8,8 @@ public class TrainingSessionsDAO {
         this.statement = DBUtils.getNewStatement();
     }
 
+    // TODO: Code related methods. Refer to any implemented DAO.
+
     public void closeStatement() {
         DBUtils.closeStatement(statement);
     }
