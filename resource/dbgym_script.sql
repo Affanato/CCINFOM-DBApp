@@ -135,7 +135,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `dbgym`.`amenities` (
   `amenity_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `amenity_name` VARCHAR(45) NOT NULL,
-  `walk_in_price` DECIMAL(10,2) UNSIGNED NOT NULL,
+  `walk_in_price_per_hour` DECIMAL(10,2) UNSIGNED NOT NULL,
   `opening_time` TIME NOT NULL,
   `closing_time` TIME NOT NULL,
   `amenity_status` ENUM('Active', 'Inactive') NOT NULL,
@@ -173,7 +173,8 @@ CREATE TABLE IF NOT EXISTS `dbgym`.`amenity_logs` (
   `member_id` INT UNSIGNED NOT NULL,
   `amenity_id` INT UNSIGNED NOT NULL,
   `usage_start_datetime` DATETIME NOT NULL,
-  `usage_end_datetime` DATETIME NOT NULL,
+  `usage_duration_hours` INT NOT NULL,
+  `usage_total_price` DECIMAL(10,2) UNSIGNED NOT NULL,
   PRIMARY KEY (`amenity_log_id`),
   INDEX `fk_amenity_logs_members1_idx` (`member_id` ASC) VISIBLE,
   INDEX `fk_amenity_logs_amenities1_idx` (`amenity_id` ASC) VISIBLE,
