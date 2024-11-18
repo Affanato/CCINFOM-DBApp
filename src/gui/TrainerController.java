@@ -9,7 +9,6 @@ public class TrainerController {
         this.tView.trainerBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DummyController();
                 tView.getTrainerFrame().dispose();
             }
         });

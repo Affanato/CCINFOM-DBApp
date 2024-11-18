@@ -9,7 +9,6 @@ public class SubscriptionTypeController {
         this.mtView.memberBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DummyController();
                 mtView.getSubscriptionTypeFrame().dispose();
             }
         });

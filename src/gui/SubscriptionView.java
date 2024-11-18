@@ -32,9 +32,9 @@ public class SubscriptionView  {
 		titleBar2 = new JFormattedTextField();
 		memberidtext = new JFormattedTextField();
 		typetext = new JFormattedTextField();
-		trainerID = new JComboBox();
-		memberID = new JComboBox();
-		membershiptype = new JComboBox();
+		trainerID = new JComboBox<>();
+		memberID = new JComboBox<>();
+		membershiptype = new JComboBox<>();
 		startdate = new JTextPane();
 		traineridtext = new JFormattedTextField();
 		startdatetext = new JFormattedTextField();
@@ -44,7 +44,7 @@ public class SubscriptionView  {
 		deleteMembershipFrame = new JFrame();
 		deleteBack = new JButton();
 		deleteMembership = new JButton();
-		membershipID = new JComboBox();
+		membershipID = new JComboBox<>();
 		membershipidtext = new JFormattedTextField();
 		editorPane2 = new JEditorPane();
 		titleBar3 = new JFormattedTextField();
@@ -58,7 +58,7 @@ public class SubscriptionView  {
 		terminateMembershipFrame = new JFrame();
 		terminateBack = new JButton();
 		terminateMembership = new JButton();
-		terminateMembershipID = new JComboBox();
+		terminateMembershipID = new JComboBox<>();
 		membershipidtext2 = new JFormattedTextField();
 		editorPane4 = new JEditorPane();
 		titleBar5 = new JFormattedTextField();
@@ -70,7 +70,7 @@ public class SubscriptionView  {
 			membershipFrameContentPane.setLayout(null);
 
 			//---- membershipBackButton ----
-			membershipBackButton.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			membershipBackButton.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			membershipBackButton.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			membershipBackButton.setBackground(new Color(0xc80f2e));
 			membershipFrameContentPane.add(membershipBackButton);
@@ -149,7 +149,7 @@ public class SubscriptionView  {
 			addMembershipFrameContentPane.setLayout(null);
 
 			//---- addBack ----
-			addBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			addBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			addBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			addBack.setBackground(new Color(0xc80f2e));
 			addMembershipFrameContentPane.add(addBack);
@@ -257,7 +257,7 @@ public class SubscriptionView  {
 			deleteMembershipFrameContentPane.setLayout(null);
 
 			//---- deleteBack ----
-			deleteBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			deleteBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			deleteBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			deleteBack.setBackground(new Color(0xc80f2e));
 			deleteMembershipFrameContentPane.add(deleteBack);
@@ -330,7 +330,7 @@ public class SubscriptionView  {
 			readMembershipFrameContentPane.setLayout(null);
 
 			//---- readBack ----
-			readBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			readBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			readBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			readBack.setBackground(new Color(0xc80f2e));
 			readMembershipFrameContentPane.add(readBack);
@@ -359,6 +359,7 @@ public class SubscriptionView  {
 					cm.getColumn(5).setMaxWidth(220);
 				}
 				membershipTable.setFont(new Font("Tw Cen MT", Font.PLAIN, 18));
+				membershipTable.setEnabled(false);
 				tablePane.setViewportView(membershipTable);
 			}
 			readMembershipFrameContentPane.add(tablePane);
@@ -403,7 +404,7 @@ public class SubscriptionView  {
 			terminateMembershipFrameContentPane.setLayout(null);
 
 			//---- terminateBack ----
-			terminateBack.setSelectedIcon(new ImageIcon("resources\\backButton.jpg"));
+			terminateBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
 			terminateBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			terminateBack.setBackground(new Color(0xc80f2e));
 			terminateMembershipFrameContentPane.add(terminateBack);
@@ -487,9 +488,9 @@ public class SubscriptionView  {
 	private JFormattedTextField titleBar2;
 	private JFormattedTextField memberidtext;
 	private JFormattedTextField typetext;
-	private JComboBox trainerID;
-	private JComboBox memberID;
-	private JComboBox membershiptype;
+	private JComboBox<String> trainerID;
+	private JComboBox<String> memberID;
+	private JComboBox<String> membershiptype;
 	private JTextPane startdate;
 	private JFormattedTextField traineridtext;
 	private JFormattedTextField startdatetext;
@@ -499,7 +500,7 @@ public class SubscriptionView  {
 	private JFrame deleteMembershipFrame;
 	private JButton deleteBack;
 	private JButton deleteMembership;
-	private JComboBox membershipID;
+	private JComboBox<String> membershipID;
 	private JFormattedTextField membershipidtext;
 	private JEditorPane editorPane2;
 	private JFormattedTextField titleBar3;
@@ -513,12 +514,30 @@ public class SubscriptionView  {
 	private JFrame terminateMembershipFrame;
 	private JButton terminateBack;
 	private JButton terminateMembership;
-	private JComboBox terminateMembershipID;
+	private JComboBox<String> terminateMembershipID;
 	private JFormattedTextField membershipidtext2;
 	private JEditorPane editorPane4;
 	private JFormattedTextField titleBar5;
 	private JLabel background5;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+
+
+	// jcombobox getters
+	public JComboBox<String> getMemberIDComboBox() {
+		return this.memberID;
+	}
+	public JComboBox<String> getTrainerIDComboBox() {
+		return this.trainerID;
+	}
+	public JComboBox<String> getMembershipTypeComboBox() {
+		return this.membershiptype;
+	}
+	public JComboBox<String> getMembershipIDComboBox() {
+		return this.membershipID;
+	}
+	public JComboBox<String> getTerminateMembershipIDComboBox() {
+		return this.terminateMembershipID;
+	}
 
 	// getters
 	public JFrame getSubscriptionFrame() {
@@ -610,9 +629,5 @@ public class SubscriptionView  {
 			cm.getColumn(4).setMaxWidth(220);
 			cm.getColumn(5).setMaxWidth(220);
 		}
-	}
-	
-	public static void main(String[] args) {
-		new SubscriptionController();
 	}
 }

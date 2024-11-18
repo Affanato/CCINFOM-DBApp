@@ -127,7 +127,6 @@ public class SubscriptionsDAO {
         return mapResultSetToSubscriptionList(rs);
     }
 
-    // TODO: Implement these!
     // REPORTS
     public Object[][] getTotalSubsPerSubTypePerMonthPerYear() {
         String sql = "SELECT			YEAR(s.subscription_start_date) AS year, " +
