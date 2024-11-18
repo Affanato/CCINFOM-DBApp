@@ -134,7 +134,7 @@ public class AmenityView  {
             goToDelete.setBounds(485, 465, 250, 55);
 
             //---- label1 ----
-            label1.setIcon(new ImageIcon("C:\\Users\\USER\\OneDrive\\Documents\\Code and Acads\\CCINFOM\\DB Application\\resource\\AmenitiesViewBG.png"));
+            label1.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
             amenityFrameContentPane.add(label1);
             label1.setBounds(0, 50, 1200, 620);
 
@@ -212,8 +212,8 @@ public class AmenityView  {
             timeClose.setBounds(650, 455, 200, 35);
 
             //---- addAmenityBackButton ----
-            addAmenityBackButton.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
-            addAmenityBackButton.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+            addAmenityBackButton.setSelectedIcon(new ImageIcon("resources/backButton.jpg"));
+            addAmenityBackButton.setIcon(new ImageIcon("resources/backButton.jpg"));
             addAmenityBackButton.setBackground(new Color(0xc80f2e));
             addAmenityFrameContentPane.add(addAmenityBackButton);
             addAmenityBackButton.setBounds(5, 5, 95, 45);
@@ -258,7 +258,7 @@ public class AmenityView  {
             addAmenity.setBounds(500, 580, 250, 55);
 
             //---- backgroundPicture ----
-            backgroundPicture.setIcon(new ImageIcon("C:\\Users\\USER\\OneDrive\\Documents\\Code and Acads\\CCINFOM\\DB Application\\resource\\AmenitiesViewBG.png"));
+            backgroundPicture.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
             addAmenityFrameContentPane.add(backgroundPicture);
             backgroundPicture.setBounds(0, 50, 1200, 620);
 
@@ -313,14 +313,14 @@ public class AmenityView  {
             editorPane2.setBounds(370, 235, 485, 240);
 
             //---- deleteAmenityBack ----
-            deleteAmenityBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
-            deleteAmenityBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+            deleteAmenityBack.setSelectedIcon(new ImageIcon("resources/backButton.jpg"));
+            deleteAmenityBack.setIcon(new ImageIcon("resources/backButton.jpg"));
             deleteAmenityBack.setBackground(new Color(0xc80f2e));
             deleteAmenityFrameContentPane.add(deleteAmenityBack);
             deleteAmenityBack.setBounds(5, 5, 95, 45);
 
             //---- backgroundPicture2 ----
-            backgroundPicture2.setIcon(new ImageIcon("C:\\Users\\USER\\OneDrive\\Documents\\Code and Acads\\CCINFOM\\DB Application\\resource\\AmenitiesViewBG.png"));
+            backgroundPicture2.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
             deleteAmenityFrameContentPane.add(backgroundPicture2);
             backgroundPicture2.setBounds(new Rectangle(new Point(0, 55), backgroundPicture2.getPreferredSize()));
 
@@ -358,8 +358,8 @@ public class AmenityView  {
             readAmenityFrameContentPane.setLayout(null);
 
             //---- amenityReadBack ----
-            amenityReadBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
-            amenityReadBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+            amenityReadBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
+            amenityReadBack.setIcon(new ImageIcon("resource/backButton.jpg"));
             amenityReadBack.setBackground(new Color(0xc80f2e));
             readAmenityFrameContentPane.add(amenityReadBack);
             amenityReadBack.setBounds(5, 5, 95, 45);
@@ -404,7 +404,7 @@ public class AmenityView  {
             amenityReadAmenity.setBounds(0, 0, 1200, 55);
 
             //---- backgroundPicture3 ----
-            backgroundPicture3.setIcon(new ImageIcon("C:\\Users\\USER\\OneDrive\\Documents\\Code and Acads\\CCINFOM\\DB Application\\resource\\AmenitiesViewBG.png"));
+            backgroundPicture3.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
             readAmenityFrameContentPane.add(backgroundPicture3);
             backgroundPicture3.setBounds(0, 55, 1200, 620);
 
@@ -459,14 +459,14 @@ public class AmenityView  {
             editorPane3.setBounds(370, 235, 485, 240);
 
             //---- updateAmenityBack ----
-            updateAmenityBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
-            updateAmenityBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+            updateAmenityBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
+            updateAmenityBack.setIcon(new ImageIcon("resource/backButton.jpg"));
             updateAmenityBack.setBackground(new Color(0xc80f2e));
             updateAmenitySelectFrameContentPane.add(updateAmenityBack);
             updateAmenityBack.setBounds(5, 5, 95, 45);
 
             //---- backgroundPicture4 ----
-            backgroundPicture4.setIcon(new ImageIcon("C:\\Users\\USER\\OneDrive\\Documents\\Code and Acads\\CCINFOM\\DB Application\\resource\\AmenitiesViewBG.png"));
+            backgroundPicture4.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
             updateAmenitySelectFrameContentPane.add(backgroundPicture4);
             backgroundPicture4.setBounds(new Rectangle(new Point(0, 55), backgroundPicture4.getPreferredSize()));
 
@@ -552,8 +552,8 @@ public class AmenityView  {
             timeClose2.setBounds(650, 455, 200, 35);
 
             //---- updateAmenityBackButton ----
-            updateAmenityBackButton.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
-            updateAmenityBackButton.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+            updateAmenityBackButton.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
+            updateAmenityBackButton.setIcon(new ImageIcon("resource/backButton.jpg"));
             updateAmenityBackButton.setBackground(new Color(0xc80f2e));
             updateAmenityFrameContentPane.add(updateAmenityBackButton);
             updateAmenityBackButton.setBounds(5, 5, 95, 45);
@@ -598,7 +598,7 @@ public class AmenityView  {
             updateAmenity2.setBounds(500, 580, 250, 55);
 
             //---- backgroundPicture5 ----
-            backgroundPicture5.setIcon(new ImageIcon("C:\\Users\\USER\\OneDrive\\Documents\\Code and Acads\\CCINFOM\\DB Application\\resource\\AmenitiesViewBG.png"));
+            backgroundPicture5.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
             updateAmenityFrameContentPane.add(backgroundPicture5);
             backgroundPicture5.setBounds(0, 50, 1200, 620);
 
@@ -786,59 +786,59 @@ public class AmenityView  {
     }
 
     // Button Action Listeners
-    public void amenityBackButton(ActionListener actionListener){
+    public void amenityBackButtonB(ActionListener actionListener){
         this.amenityBackButton.addActionListener(actionListener);
     }
 
-    public void goToAdd(ActionListener actionListener){
+    public void goToAddB(ActionListener actionListener){
         this.goToAdd.addActionListener(actionListener);
     }
 
-    public void goToRead(ActionListener actionListener){
+    public void goToReadB(ActionListener actionListener){
         this.goToRead.addActionListener(actionListener);
     }
 
-    public void goToUpdate(ActionListener actionListener){
+    public void goToUpdateB(ActionListener actionListener){
         this.goToUpdate.addActionListener(actionListener);
     }
 
-    public void goToDelete(ActionListener actionListener){
+    public void goToDeleteB(ActionListener actionListener){
         this.goToDelete.addActionListener(actionListener);
     }
 
-    public void addAmenityBackButton(ActionListener actionListener){
+    public void addAmenityBackButtonB(ActionListener actionListener){
         this.addAmenityBackButton.addActionListener(actionListener);
     }
 
-    public void addAmenity(ActionListener actionListener){
+    public void addAmenityB(ActionListener actionListener){
         this.amenityAddAmenity.addActionListener(actionListener);
     }
 
-    public void deleteAmenityBack(ActionListener actionListener){
+    public void deleteAmenityBackB(ActionListener actionListener){
         this.deleteAmenityBack.addActionListener(actionListener);
     }
 
-    public void deleteAmenityButton(ActionListener actionListener){
+    public void deleteAmenityButtonB(ActionListener actionListener){
         this.deleteAmenityButton.addActionListener(actionListener);
     }
 
-    public void amenityReadBack(ActionListener actionListener){
+    public void amenityReadBackB(ActionListener actionListener){
         this.amenityReadBack.addActionListener(actionListener);
     }
 
-    public void updateAmenityButton(ActionListener actionListener){
+    public void updateAmenityButtonB(ActionListener actionListener){
         this.updateAmenityButton.addActionListener(actionListener);
     }
 
-    public void updateAmenityBack(ActionListener actionListener){
+    public void updateAmenityBackB(ActionListener actionListener){
         this.updateAmenityBack.addActionListener(actionListener);
     }
 
-    public void updateAmenityBackButton(ActionListener actionListener){
+    public void updateAmenityBackButtonB(ActionListener actionListener){
         this.updateAmenityBackButton.addActionListener(actionListener);
     }
 
-    public void updateAmenity2(ActionListener actionListener){
+    public void updateAmenity2B(ActionListener actionListener){
         this.updateAmenity2.addActionListener(actionListener);
     }
 

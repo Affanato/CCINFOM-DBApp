@@ -5,7 +5,7 @@ public class AmenityController {
     private AmenityView aView = new AmenityView();
 
     public AmenityController() {
-        this.aView.amenityBackButton(new ActionListener() {
+        this.aView.amenityBackButtonB(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //Add main menu here
@@ -13,7 +13,7 @@ public class AmenityController {
             }
         });
 
-        this.aView.goToAdd(new ActionListener(){
+        this.aView.goToAddB(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 aView.getAddAmenityFrame().setVisible(true);
@@ -21,7 +21,7 @@ public class AmenityController {
             }
         });
 
-        this.aView.goToDelete(new ActionListener(){
+        this.aView.goToDeleteB(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 aView.getDeleteAmenityFrame().setVisible(true);
@@ -29,7 +29,7 @@ public class AmenityController {
             }
         });
 
-        this.aView.goToRead(new ActionListener(){
+        this.aView.goToReadB(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 aView.getReadAmenityFrame().setVisible(true);
@@ -37,7 +37,7 @@ public class AmenityController {
             }
         });
 
-        this.aView.goToUpdate(new ActionListener(){
+        this.aView.goToUpdateB(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 aView.getUpdateAmenityFrame().setVisible(true);
@@ -45,7 +45,7 @@ public class AmenityController {
             }
         });
 
-        this.aView.addAmenityBackButton(new ActionListener(){
+        this.aView.addAmenityBackButtonB(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 aView.getAmenityFrame().setVisible(true);
@@ -53,14 +53,14 @@ public class AmenityController {
             }
         });
 
-        this.aView.addAmenity(new ActionListener() {
+        this.aView.addAmenityB(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //
             }
         });
 
-        this.aView.deleteAmenityBack(new ActionListener(){
+        this.aView.deleteAmenityBackB(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 aView.getAmenityFrame().setVisible(true);
@@ -68,14 +68,14 @@ public class AmenityController {
             }
         });
 
-        this.aView.deleteAmenityButton(new ActionListener(){
+        this.aView.deleteAmenityButtonB(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 //
             }
         });
 
-        this.aView.amenityReadBack(new ActionListener(){
+        this.aView.amenityReadBackB(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 aView.getAmenityFrame().setVisible(true);
@@ -83,7 +83,7 @@ public class AmenityController {
             }
         });
 
-        this.aView.updateAmenityBack(new ActionListener(){
+        this.aView.updateAmenityBackB(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 aView.getAmenityFrame().setVisible(true);
@@ -91,7 +91,7 @@ public class AmenityController {
             }
         });
 
-        this.aView.updateAmenityButton(new ActionListener(){
+        this.aView.updateAmenityButtonB(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 aView.getUpdateAmenityFrame().setVisible(true);
@@ -99,7 +99,7 @@ public class AmenityController {
             }
         });
 
-        this.aView.updateAmenityBackButton(new ActionListener(){
+        this.aView.updateAmenityBackButtonB(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 aView.getUpdateAmenitySelectFrame().setVisible(true);
@@ -107,7 +107,7 @@ public class AmenityController {
             }
         });
 
-        this.aView.updateAmenity2(new ActionListener(){
+        this.aView.updateAmenity2B(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 //
