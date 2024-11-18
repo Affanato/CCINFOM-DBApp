@@ -12,6 +12,9 @@ import javax.swing.table.*;
  * @author USER
  */
 public class AmenityView  {
+    public AmenityView() {
+        initComponents();
+    }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
@@ -85,8 +88,8 @@ public class AmenityView  {
             amenityFrameContentPane.setLayout(null);
 
             //---- amenityBackButton ----
-            amenityBackButton.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
-            amenityBackButton.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+            amenityBackButton.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
+            amenityBackButton.setIcon(new ImageIcon("resource/backButton.jpg"));
             amenityBackButton.setBackground(new Color(0xc80f2e));
             amenityFrameContentPane.add(amenityBackButton);
             amenityBackButton.setBounds(5, 5, 95, 45);
@@ -212,8 +215,8 @@ public class AmenityView  {
             timeClose.setBounds(650, 455, 200, 35);
 
             //---- addAmenityBackButton ----
-            addAmenityBackButton.setSelectedIcon(new ImageIcon("resources/backButton.jpg"));
-            addAmenityBackButton.setIcon(new ImageIcon("resources/backButton.jpg"));
+            addAmenityBackButton.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
+            addAmenityBackButton.setIcon(new ImageIcon("resource/backButton.jpg"));
             addAmenityBackButton.setBackground(new Color(0xc80f2e));
             addAmenityFrameContentPane.add(addAmenityBackButton);
             addAmenityBackButton.setBounds(5, 5, 95, 45);
@@ -313,8 +316,8 @@ public class AmenityView  {
             editorPane2.setBounds(370, 235, 485, 240);
 
             //---- deleteAmenityBack ----
-            deleteAmenityBack.setSelectedIcon(new ImageIcon("resources/backButton.jpg"));
-            deleteAmenityBack.setIcon(new ImageIcon("resources/backButton.jpg"));
+            deleteAmenityBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
+            deleteAmenityBack.setIcon(new ImageIcon("resource/backButton.jpg"));
             deleteAmenityBack.setBackground(new Color(0xc80f2e));
             deleteAmenityFrameContentPane.add(deleteAmenityBack);
             deleteAmenityBack.setBounds(5, 5, 95, 45);
@@ -842,7 +845,5 @@ public class AmenityView  {
         this.updateAmenity2.addActionListener(actionListener);
     }
 
-    public void main(String[] args){
-        new AmenityController();
-    }
+
 }

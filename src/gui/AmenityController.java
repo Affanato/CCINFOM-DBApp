@@ -2,7 +2,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AmenityController {
-    private AmenityView aView = new AmenityView();
+    private final AmenityView aView = new AmenityView();
 
     public AmenityController() {
         this.aView.amenityBackButtonB(new ActionListener() {
@@ -40,7 +40,7 @@ public class AmenityController {
         this.aView.goToUpdateB(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                aView.getUpdateAmenityFrame().setVisible(true);
+                aView.getUpdateAmenitySelectFrame().setVisible(true);
                 aView.getAmenityFrame().dispose();
             }
         });
@@ -113,5 +113,9 @@ public class AmenityController {
                 //
             }
         });
+    }
+
+    public void main(String[] args){
+
     }
 }
