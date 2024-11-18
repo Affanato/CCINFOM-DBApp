@@ -3,7 +3,7 @@ import java.time.LocalTime;
 public record Amenity (
         int amenityID,
         String amenityName,
-        double walkInPrice,
+        double walkInPricePerHour,
         LocalTime openingTime,
         LocalTime closingTime,
         Status amenityStatus
@@ -13,7 +13,7 @@ public record Amenity (
         return new Object[] {
                 amenityID,
                 amenityName,
-                walkInPrice,
+                walkInPricePerHour,
                 openingTime,
                 closingTime,
                 amenityStatus
