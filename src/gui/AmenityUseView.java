@@ -34,7 +34,9 @@ public class AmenityUseView extends JFrame {
         useAmenityFrame = new JFrame();
         useAmenity = new JButton();
         selectAmenity = new JFormattedTextField();
+        amenityIDText = new JFormattedTextField();
         selectAmenityBar = new JComboBox();
+        memberIDText = new JFormattedTextField();
         selectMemberBar = new JComboBox();
         startTimeText = new JFormattedTextField();
         startTime = new JTextPane();
@@ -104,7 +106,7 @@ public class AmenityUseView extends JFrame {
             }
             amenityUseFrame.pack();
             amenityUseFrame.setSize(1200, 700);
-            amenityUseFrame.setLocationRelativeTo(null);
+            amenityUseFrame.setLocationRelativeTo(amenityUseFrame.getOwner());
             amenityUseFrame.setVisible(true);
         }
 
@@ -126,11 +128,11 @@ public class AmenityUseView extends JFrame {
                 //---- sessionTable ----
                 sessionTable.setModel(new DefaultTableModel(
                         new Object[][] {
-                                {null, null, null, null, "", null},
+                                {null, null, null, "", "", null},
                                 {null, null, null, null, null, null},
                         },
                         new String[] {
-                                "Amenity Log ID ", "Member ID  ", "Amenity ID ", "Start Time", "Start Use Time", "End Use Time"
+                                "Amenity Log ID ", "Member ID  ", "Amenity ID ", "Start Use Time", "Usage Hours", "Total Price"
                         }
                 ));
                 {
@@ -203,15 +205,29 @@ public class AmenityUseView extends JFrame {
             useAmenityFrameContentPane.add(selectAmenity);
             selectAmenity.setBounds(370, 170, 485, 35);
 
+            //---- amenityIDText ----
+            amenityIDText.setText("Amenity ID");
+            amenityIDText.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+            amenityIDText.setEditable(false);
+            useAmenityFrameContentPane.add(amenityIDText);
+            amenityIDText.setBounds(420, 280, 175, 40);
+
             //---- selectAmenityBar ----
             selectAmenityBar.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
             useAmenityFrameContentPane.add(selectAmenityBar);
-            selectAmenityBar.setBounds(420, 220, 390, 40);
+            selectAmenityBar.setBounds(635, 280, 175, 40);
+
+            //---- memberIDText ----
+            memberIDText.setText("Member ID");
+            memberIDText.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+            memberIDText.setEditable(false);
+            useAmenityFrameContentPane.add(memberIDText);
+            memberIDText.setBounds(420, 220, 175, 40);
 
             //---- selectMemberBar ----
             selectMemberBar.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
             useAmenityFrameContentPane.add(selectMemberBar);
-            selectMemberBar.setBounds(420, 280, 390, 40);
+            selectMemberBar.setBounds(635, 220, 175, 40);
 
             //---- startTimeText ----
             startTimeText.setText("Start Time");
@@ -302,7 +318,9 @@ public class AmenityUseView extends JFrame {
     private JFrame useAmenityFrame;
     private JButton useAmenity;
     private JFormattedTextField selectAmenity;
+    private JFormattedTextField amenityIDText;
     private JComboBox selectAmenityBar;
+    private JFormattedTextField memberIDText;
     private JComboBox selectMemberBar;
     private JFormattedTextField startTimeText;
     private JTextPane startTime;
