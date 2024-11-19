@@ -25,6 +25,13 @@ public class TrainerController {
         this.tView.goToReadButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Object[][] data = {
+                    {"Alice", 123, 89.5, "Hi", 7, "Nice", "HELLOOOOOO", "WHat column is this", "yolo", "happyyyy"},
+                    {"Alice", 123, 89.5, "Hi", 7, "Nice", "HELLOOOOOO", "WHat column is this", "happyyyy", "ok last one"},
+                    {"Alice", 123, 89.5, "Hi", 7, "Nice", "HELLOOOOOO", "WHat column is this", "yolo", "ok last one"},
+                };
+                tView.setTrainerTable(data);
+                
                 tView.getReadTrainerFrame().setVisible(true);
                 tView.getTrainerFrame().dispose();
             }
@@ -41,7 +48,7 @@ public class TrainerController {
         this.tView.goToUpdateButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                tView.getUpdateTrainerFrame().setVisible(true);
+                tView.getUpdateTrainerFrame2().setVisible(true);
                 tView.getTrainerFrame().dispose();
             }
         });
@@ -79,8 +86,15 @@ public class TrainerController {
         this.tView.updateBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                tView.getTrainerFrame().setVisible(true);
+                tView.getUpdateTrainerFrame2().setVisible(true);
                 tView.getUpdateTrainerFrame().dispose();
+            }
+        });
+        this.tView.updateBackButton2(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tView.getTrainerFrame().setVisible(true);
+                tView.getUpdateTrainerFrame2().dispose();
             }
         });
         this.tView.updateStatusBackButton(new ActionListener() {
@@ -112,6 +126,13 @@ public class TrainerController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //
+            }
+        });
+        this.tView.proceedUpdateButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tView.getUpdateTrainerFrame().setVisible(true);
+                tView.getUpdateTrainerFrame2().dispose();
             }
         });
     }

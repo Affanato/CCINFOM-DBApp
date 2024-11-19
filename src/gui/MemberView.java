@@ -369,6 +369,9 @@ public class MemberView {
 
 			//---- memberid ----
 			memberid.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			memberid.setModel(new DefaultComboBoxModel<>(new String[] {
+				"test"
+			}));
 			deleteMemberFrameContentPane.add(memberid);
 			memberid.setBounds(420, 320, 390, 40);
 
@@ -436,20 +439,29 @@ public class MemberView {
 				//---- memberTable ----
 				memberTable.setModel(new DefaultTableModel(
 					new Object[][] {
-						{null, null, null, "", null, null},
-						{null, null, null, null, null, null},
+						{null, null, null, "", null, null, null, null, null, null},
+						{null, null, null, null, null, null, null, null, null, null},
 					},
 					new String[] {
-						"Member ID", "Last Name", "First Name", "Birth Date", "Sex", "Phone Number"
+						"Member ID", "Last Name", "First Name", "Birth Date", "Sex", "Phone Number", "Street", "Barangay", "City", "Province"
 					}
 				));
 				{
 					TableColumnModel cm = memberTable.getColumnModel();
+					cm.getColumn(0).setMinWidth(80);
 					cm.getColumn(0).setMaxWidth(80);
-					cm.getColumn(3).setMinWidth(170);
-					cm.getColumn(3).setMaxWidth(220);
+					cm.getColumn(1).setMinWidth(150);
+					cm.getColumn(2).setMinWidth(150);
+					cm.getColumn(3).setMinWidth(150);
+					cm.getColumn(4).setMinWidth(80);
 					cm.getColumn(4).setMaxWidth(80);
+					cm.getColumn(5).setMinWidth(120);
+					cm.getColumn(6).setMinWidth(150);
+					cm.getColumn(7).setMinWidth(150);
+					cm.getColumn(8).setMinWidth(150);
+					cm.getColumn(9).setMinWidth(150);
 				}
+				memberTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 				memberTable.setFont(new Font("Tw Cen MT", Font.PLAIN, 18));
 				memberTable.setEnabled(false);
 				tablePane.setViewportView(memberTable);
@@ -683,6 +695,9 @@ public class MemberView {
 
 			//---- updateMemberID ----
 			updateMemberID.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			updateMemberID.setModel(new DefaultComboBoxModel<>(new String[] {
+				"test"
+			}));
 			updateMemberIDFrameContentPane.add(updateMemberID);
 			updateMemberID.setBounds(410, 315, 390, 40);
 
@@ -1002,15 +1017,24 @@ public class MemberView {
 
 	// set table model
 	public void setMemberTable(Object[][] data) { 
-		String[] columnNames = {"Member ID", "Last Name", "First Name", "Birth Date", "Sex", "Phone Number"};
+		String[] columnNames = {"Member ID", "Last Name", "First Name", "Birth Date", "Sex", "Phone Number", "Street", "Barangay", "City", "Province"};
 		DefaultTableModel model = new DefaultTableModel(data, columnNames);
 		memberTable.setModel(model);
+
 		{
 			TableColumnModel cm = memberTable.getColumnModel();
+			cm.getColumn(0).setMinWidth(80);
 			cm.getColumn(0).setMaxWidth(80);
-			cm.getColumn(3).setMinWidth(170);
-			cm.getColumn(3).setMaxWidth(220);
+			cm.getColumn(1).setMinWidth(150);
+			cm.getColumn(2).setMinWidth(150);
+			cm.getColumn(3).setMinWidth(150);
+			cm.getColumn(4).setMinWidth(80);
 			cm.getColumn(4).setMaxWidth(80);
+			cm.getColumn(5).setMinWidth(120);
+			cm.getColumn(6).setMinWidth(150);
+			cm.getColumn(7).setMinWidth(150);
+			cm.getColumn(8).setMinWidth(150);
+			cm.getColumn(9).setMinWidth(150);
 		}
 	}
 }

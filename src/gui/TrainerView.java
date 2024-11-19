@@ -112,6 +112,14 @@ public class TrainerView {
 		editorPane4 = new JEditorPane();
 		updateTrainer = new JButton();
 		background6 = new JLabel();
+		updateTrainerFrame2 = new JFrame();
+		updateBack2 = new JButton();
+		proceedUpdate = new JButton();
+		traineridtext2 = new JFormattedTextField();
+		trainerID2 = new JComboBox<>();
+		editorPane5 = new JEditorPane();
+		titleBar7 = new JFormattedTextField();
+		background7 = new JLabel();
 
 		//======== trainerFrame ========
 		{
@@ -131,6 +139,7 @@ public class TrainerView {
 			titleBar.setHorizontalAlignment(SwingConstants.CENTER);
 			titleBar.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
 			titleBar.setForeground(Color.white);
+			titleBar.setEditable(false);
 			trainerFrameContentPane.add(titleBar);
 			titleBar.setBounds(0, 0, 1200, 55);
 
@@ -217,6 +226,7 @@ public class TrainerView {
 			titleBar2.setHorizontalAlignment(SwingConstants.CENTER);
 			titleBar2.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
 			titleBar2.setForeground(Color.white);
+			titleBar2.setEditable(false);
 			addTrainerFrameContentPane.add(titleBar2);
 			titleBar2.setBounds(0, 0, 1200, 55);
 
@@ -436,6 +446,9 @@ public class TrainerView {
 
 			//---- trainerID ----
 			trainerID.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			trainerID.setModel(new DefaultComboBoxModel<>(new String[] {
+				"item"
+			}));
 			deleteTrainerFrameContentPane.add(trainerID);
 			trainerID.setBounds(395, 305, 405, 35);
 
@@ -451,6 +464,7 @@ public class TrainerView {
 			titleBar3.setHorizontalAlignment(SwingConstants.CENTER);
 			titleBar3.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
 			titleBar3.setForeground(Color.white);
+			titleBar3.setEditable(false);
 			deleteTrainerFrameContentPane.add(titleBar3);
 			titleBar3.setBounds(0, 0, 1200, 55);
 
@@ -491,30 +505,39 @@ public class TrainerView {
 
 			//======== tablePane ========
 			{
+				tablePane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+				tablePane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 
 				//---- trainerTable ----
 				trainerTable.setModel(new DefaultTableModel(
 					new Object[][] {
-						{null, null, null, "", null, null, ""},
-						{null, null, null, null, null, null, null},
+						{null, null, null, null, null, null, null, null, null, "", null},
+						{null, null, null, null, null, null, null, null, null, null, null},
 					},
 					new String[] {
-						"Member ID", "Last Name", "First Name", "Specialty", "Availability", "Start Date", "End Date"
+						"Trainer ID", "Last Name", "First Name", "Sex", "Phone Number", "Street", "Barangay", "City", "Province", "Specialty", "Status"
 					}
 				));
 				{
 					TableColumnModel cm = trainerTable.getColumnModel();
+					cm.getColumn(0).setMinWidth(80);
 					cm.getColumn(0).setMaxWidth(80);
-					cm.getColumn(3).setMinWidth(150);
-					cm.getColumn(3).setMaxWidth(220);
-					cm.getColumn(4).setMinWidth(150);
-					cm.getColumn(4).setMaxWidth(150);
-					cm.getColumn(5).setMinWidth(120);
-					cm.getColumn(5).setMaxWidth(160);
-					cm.getColumn(6).setMinWidth(120);
-					cm.getColumn(6).setMaxWidth(160);
+					cm.getColumn(1).setMinWidth(150);
+					cm.getColumn(2).setMinWidth(150);
+					cm.getColumn(3).setMinWidth(80);
+					cm.getColumn(4).setMinWidth(120);
+					cm.getColumn(4).setPreferredWidth(120);
+					cm.getColumn(5).setMinWidth(150);
+					cm.getColumn(6).setMinWidth(150);
+					cm.getColumn(7).setMinWidth(150);
+					cm.getColumn(8).setMinWidth(150);
+					cm.getColumn(9).setMinWidth(150);
+					cm.getColumn(10).setMinWidth(150);
+					cm.getColumn(10).setMaxWidth(150);
 				}
 				trainerTable.setEnabled(false);
+				trainerTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+				trainerTable.setPreferredScrollableViewportSize(new Dimension(1000, 400));
 				tablePane.setViewportView(trainerTable);
 			}
 			readTrainerFrameContentPane.add(tablePane);
@@ -526,11 +549,12 @@ public class TrainerView {
 			titleBar4.setHorizontalAlignment(SwingConstants.CENTER);
 			titleBar4.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
 			titleBar4.setForeground(Color.white);
+			titleBar4.setEditable(false);
 			readTrainerFrameContentPane.add(titleBar4);
 			titleBar4.setBounds(0, 0, 1200, 55);
 
 			//---- background4 ----
-			background4.setIcon(new ImageIcon("resource\\memberBG.jpg"));
+			background4.setIcon(new ImageIcon("resource\\trainersbg.jpg"));
 			readTrainerFrameContentPane.add(background4);
 			background4.setBounds(0, 55, 1200, 615);
 
@@ -590,14 +614,16 @@ public class TrainerView {
 
 			//---- updateStatusTrainerID ----
 			updateStatusTrainerID.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			updateStatusTrainerID.setModel(new DefaultComboBoxModel<>(new String[] {
+				"item"
+			}));
 			updateStatusFrameContentPane.add(updateStatusTrainerID);
 			updateStatusTrainerID.setBounds(525, 250, 295, 35);
 
 			//---- updateTrainerStatus ----
 			updateTrainerStatus.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			updateTrainerStatus.setModel(new DefaultComboBoxModel<>(new String[] {
-				"Active",
-				"Inactive"
+				"item"
 			}));
 			updateStatusFrameContentPane.add(updateTrainerStatus);
 			updateTrainerStatus.setBounds(525, 310, 295, 35);
@@ -614,6 +640,7 @@ public class TrainerView {
 			titleBar5.setHorizontalAlignment(SwingConstants.CENTER);
 			titleBar5.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
 			titleBar5.setForeground(Color.white);
+			titleBar5.setEditable(false);
 			updateStatusFrameContentPane.add(titleBar5);
 			titleBar5.setBounds(0, 0, 1200, 55);
 
@@ -845,6 +872,81 @@ public class TrainerView {
 			updateTrainerFrame.pack();
 			updateTrainerFrame.setLocationRelativeTo(updateTrainerFrame.getOwner());
 		}
+
+		//======== updateTrainerFrame2 ========
+		{
+			Container updateTrainerFrame2ContentPane = updateTrainerFrame2.getContentPane();
+			updateTrainerFrame2ContentPane.setLayout(null);
+
+			//---- updateBack2 ----
+			updateBack2.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
+			updateBack2.setIcon(new ImageIcon("resource\\backButton.jpg"));
+			updateBack2.setBackground(new Color(0xc80f2e));
+			updateTrainerFrame2ContentPane.add(updateBack2);
+			updateBack2.setBounds(5, 5, 95, 45);
+
+			//---- proceedUpdate ----
+			proceedUpdate.setText("PROCEED");
+			proceedUpdate.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+			proceedUpdate.setForeground(Color.white);
+			proceedUpdate.setBackground(new Color(0x3ca3cb));
+			updateTrainerFrame2ContentPane.add(proceedUpdate);
+			proceedUpdate.setBounds(470, 365, 250, 55);
+
+			//---- traineridtext2 ----
+			traineridtext2.setText("Select Trainer");
+			traineridtext2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+			traineridtext2.setEditable(false);
+			traineridtext2.setHorizontalAlignment(SwingConstants.CENTER);
+			updateTrainerFrame2ContentPane.add(traineridtext2);
+			traineridtext2.setBounds(350, 220, 495, 35);
+
+			//---- trainerID2 ----
+			trainerID2.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			trainerID2.setModel(new DefaultComboBoxModel<>(new String[] {
+				"item"
+			}));
+			updateTrainerFrame2ContentPane.add(trainerID2);
+			trainerID2.setBounds(395, 305, 405, 35);
+
+			//---- editorPane5 ----
+			editorPane5.setBackground(new Color(0xb5b9b8));
+			editorPane5.setEditable(false);
+			updateTrainerFrame2ContentPane.add(editorPane5);
+			editorPane5.setBounds(350, 220, 495, 240);
+
+			//---- titleBar7 ----
+			titleBar7.setText("Trainer: Update Trainer");
+			titleBar7.setBackground(new Color(0xc80f2e));
+			titleBar7.setHorizontalAlignment(SwingConstants.CENTER);
+			titleBar7.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
+			titleBar7.setForeground(Color.white);
+			titleBar7.setEditable(false);
+			updateTrainerFrame2ContentPane.add(titleBar7);
+			titleBar7.setBounds(0, 0, 1200, 55);
+
+			//---- background7 ----
+			background7.setIcon(new ImageIcon("resource\\trainersbg.jpg"));
+			updateTrainerFrame2ContentPane.add(background7);
+			background7.setBounds(0, 55, 1200, 615);
+
+			{
+				// compute preferred size
+				Dimension preferredSize = new Dimension();
+				for(int i = 0; i < updateTrainerFrame2ContentPane.getComponentCount(); i++) {
+					Rectangle bounds = updateTrainerFrame2ContentPane.getComponent(i).getBounds();
+					preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+					preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+				}
+				Insets insets = updateTrainerFrame2ContentPane.getInsets();
+				preferredSize.width += insets.right;
+				preferredSize.height += insets.bottom;
+				updateTrainerFrame2ContentPane.setMinimumSize(preferredSize);
+				updateTrainerFrame2ContentPane.setPreferredSize(preferredSize);
+			}
+			updateTrainerFrame2.pack();
+			updateTrainerFrame2.setLocationRelativeTo(updateTrainerFrame2.getOwner());
+		}
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
 	}
 
@@ -943,6 +1045,14 @@ public class TrainerView {
 	private JEditorPane editorPane4;
 	private JButton updateTrainer;
 	private JLabel background6;
+	private JFrame updateTrainerFrame2;
+	private JButton updateBack2;
+	private JButton proceedUpdate;
+	private JFormattedTextField traineridtext2;
+	private JComboBox<String> trainerID2;
+	private JEditorPane editorPane5;
+	private JFormattedTextField titleBar7;
+	private JLabel background7;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
 
@@ -969,6 +1079,9 @@ public class TrainerView {
 	}
 	public JFrame getUpdateTrainerFrame() {
 		return this.updateTrainerFrame;
+	}
+	public JFrame getUpdateTrainerFrame2() {
+		return this.updateTrainerFrame2;
 	}
 	public JFrame getUpdateStatusTrainerFrame() {
 		return this.updateStatusFrame;
@@ -1037,6 +1150,9 @@ public class TrainerView {
 	public String getUpdateSpeciality() {
 		return this.updateSpeciality.getText();
 	}
+	public int getTrainerID2() {
+		return this.trainerID.getSelectedIndex() + 1;
+	}
 
 	public void setUpdateFirstName(String name) {
 		updateFirstname.setText(name);
@@ -1077,7 +1193,7 @@ public class TrainerView {
 
 	// delete
 	public int getTrainerID() {
-		return this.trainerID.getSelectedIndex();
+		return this.trainerID.getSelectedIndex() + 1;
 	}
 
 	// update status
@@ -1125,6 +1241,9 @@ public class TrainerView {
 	public void updateStatusBackButton(ActionListener actionListener) {
 		this.updateStatusBack.addActionListener(actionListener);
 	}
+	public void updateBackButton2(ActionListener actionListener) {
+		this.updateBack2.addActionListener(actionListener);
+	}
 
 	public void addTrainerButton(ActionListener actionListener) {
 		this.addTrainer.addActionListener(actionListener);
@@ -1138,19 +1257,32 @@ public class TrainerView {
 	public void updateStatusButton(ActionListener actionListener) {
 		this.updateStatus.addActionListener(actionListener);
 	}
+	public void proceedUpdateButton(ActionListener actionListener) {
+		this.proceedUpdate.addActionListener(actionListener);
+	}
 
 	// set table model
-	public void setMemberTable(Object[][] data) { 
-		String[] columnNames = {"Member ID", "Last Name", "First Name", "Specialty", "Availability", "Start Date", "End Date"};
+	public void setTrainerTable(Object[][] data) { 
+		String[] columnNames = {"Trainer ID", "Last Name", "First Name", "Sex", "Phone Number", "Street", "Barangay", "City", "Province", "Specialty", "Status"};
 		DefaultTableModel model = new DefaultTableModel(data, columnNames);
 		trainerTable.setModel(model);
 		{
 			TableColumnModel cm = trainerTable.getColumnModel();
 			cm.getColumn(0).setMaxWidth(80);
-			cm.getColumn(3).setMinWidth(150);
-			cm.getColumn(3).setMaxWidth(220);
-			cm.getColumn(4).setMinWidth(150);
-			cm.getColumn(4).setMaxWidth(150);
+			cm.getColumn(0).setMinWidth(80);
+			cm.getColumn(1).setMinWidth(150);
+			cm.getColumn(2).setMinWidth(150);
+			cm.getColumn(3).setMinWidth(80);
+			cm.getColumn(4).setMinWidth(120);
+			cm.getColumn(4).setPreferredWidth(120);
+			cm.getColumn(5).setMinWidth(150);
+			cm.getColumn(6).setMinWidth(150);
+			cm.getColumn(7).setMinWidth(150);
+			cm.getColumn(8).setMinWidth(150);
+			cm.getColumn(9).setMinWidth(150);
+			cm.getColumn(10).setMinWidth(150);
+			cm.getColumn(10).setMaxWidth(150);
 		}
 	}
+
 }

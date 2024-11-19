@@ -46,10 +46,10 @@ public class ProductController {
             }
         });
 
-        this.pView.goToSellButton(new ActionListener() {
+        this.pView.goToProductPurchasesButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                pView.getSellProductFrame().setVisible(true);
+                pView.getProductPurchasesFrame().setVisible(true);
                 pView.getProductFrame().dispose();
             }
         });
@@ -89,7 +89,7 @@ public class ProductController {
         this.pView.updateBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                pView.getUpdateProductFrame1().setVisible(true);
+                pView.getProductPurchasesFrame().setVisible(true);
                 pView.getUpdateProductFrame().dispose();
             }
         });
@@ -97,7 +97,7 @@ public class ProductController {
         this.pView.sellBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                pView.getProductFrame().setVisible(true);
+                pView.getProductPurchasesFrame().setVisible(true);
                 pView.getSellProductFrame().dispose();
             }
         });
@@ -158,6 +158,88 @@ public class ProductController {
             public void actionPerformed(ActionEvent e) {
                 pView.getProductFrame().setVisible(true);
                 pView.getUpdateProductFrame1().dispose();
+            }
+        });
+
+
+
+        // product purchases
+        this.pView.productPurchaseBackButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pView.getProductFrame().setVisible(true);
+                pView.getProductPurchasesFrame().dispose();
+            }
+        });
+        this.pView.goToAddButton2(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pView.getAddProductPurchaseFrame().setVisible(true);
+                pView.getProductPurchasesFrame().dispose();
+            }
+        });
+        this.pView.goToReadButton2(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pView.getReadProductPurchasesFrame().setVisible(true);
+                pView.getProductPurchasesFrame().dispose();
+            }
+        });
+        this.pView.goToDeleteButton2(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pView.getDeleteProductPurchaseFrame().setVisible(true);
+                pView.getProductPurchasesFrame().dispose();
+            }
+        });
+        this.pView.goToUpdateButton2(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pView.getUpdateProductPurchaseFrame().setVisible(true);
+                pView.getProductPurchasesFrame().dispose();
+            }
+        });
+
+        this.pView.addPurchaseBackButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pView.getProductPurchasesFrame().setVisible(true);
+                pView.getAddProductPurchaseFrame().dispose();
+            }
+        });
+        this.pView.deletePurchaseBackButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pView.getProductPurchasesFrame().setVisible(true);
+                pView.getDeleteProductPurchaseFrame().dispose();
+            }
+        });
+        this.pView.proceedUpdatePurchaseProductButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pView.getUpdateProductPurchaseFrame1().setVisible(true);
+                pView.getUpdateProductPurchaseFrame().dispose();
+            }
+        });
+        this.pView.updatePurchaseBackButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pView.getProductPurchasesFrame().setVisible(true);
+                pView.getUpdateProductPurchaseFrame().dispose();
+            }
+        });
+        this.pView.updatePurchaseBackButton1(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pView.getUpdateProductPurchaseFrame().setVisible(true);
+                pView.getUpdateProductPurchaseFrame1().dispose();
+            }
+        });
+        this.pView.readPurchaseBackButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pView.getProductPurchasesFrame().setVisible(true);
+                pView.getReadProductPurchasesFrame().dispose();
             }
         });
     }
