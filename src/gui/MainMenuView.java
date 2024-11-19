@@ -65,14 +65,14 @@ public class MainMenuView extends JFrame {
 
         //---- button1 ----
         button1.setText("Sales Report");
-        button1.setFont(button1.getFont().deriveFont(button1.getFont().getSize() + 9f));
+        button1.setFont(button1.getFont().deriveFont(button1.getFont().getSize() + 10f));
         button1.setForeground(Color.white);
         button1.setBackground(new Color(0x3ca3cb));
         contentPane.add(button1);
         button1.setBounds(595, 115, 260, 77);
 
         //---- button2 ----
-        button2.setText("Membership Report");
+        button2.setText("Subscriptions Report");
         button2.setFont(button2.getFont().deriveFont(button2.getFont().getSize() + 9f));
         button2.setForeground(Color.white);
         button2.setBackground(new Color(0x3ca3cb));
@@ -80,7 +80,7 @@ public class MainMenuView extends JFrame {
         button2.setBounds(595, 230, 260, 77);
 
         //---- button3 ----
-        button3.setText("Trainer Report ");
+        button3.setText("Trainers Report ");
         button3.setForeground(Color.white);
         button3.setBackground(new Color(0x3ca3cb));
         button3.setFont(button3.getFont().deriveFont(button3.getFont().getSize() + 9f));
@@ -88,7 +88,7 @@ public class MainMenuView extends JFrame {
         button3.setBounds(895, 230, 260, 77);
 
         //---- button4 ----
-        button4.setText("Amenities Use ");
+        button4.setText("Amenities Report ");
         button4.setBackground(new Color(0x3ca3cb));
         button4.setFont(button4.getFont().deriveFont(button4.getFont().getSize() + 12f));
         button4.setForeground(Color.white);

@@ -39,7 +39,7 @@ public class AmenityView  {
         addAmenityBackButton = new JButton();
         amenityAddAmenity = new JFormattedTextField();
         statusText = new JFormattedTextField();
-        status = new JTextPane();
+        status = new JComboBox();
         greyBar = new JFormattedTextField();
         addAmenity = new JButton();
         backgroundPicture = new JLabel();
@@ -77,7 +77,7 @@ public class AmenityView  {
         updateAmenityBackButton = new JButton();
         amenityAddAmenity2 = new JFormattedTextField();
         statusText2 = new JFormattedTextField();
-        status2 = new JTextPane();
+        status2 = new JComboBox();
         greyBar2 = new JFormattedTextField();
         updateAmenity2 = new JButton();
         backgroundPicture5 = new JLabel();
@@ -157,7 +157,7 @@ public class AmenityView  {
             }
             amenityFrame.pack();
             amenityFrame.setSize(1200, 700);
-            amenityFrame.setLocationRelativeTo(null);
+            amenityFrame.setLocationRelativeTo(amenityFrame.getOwner());
             amenityFrame.setVisible(true);
         }
 
@@ -373,21 +373,21 @@ public class AmenityView  {
                 //---- amenityTable ----
                 amenityTable.setModel(new DefaultTableModel(
                         new Object[][] {
-                                {null, null, null, null, "", null},
+                                {null, null, null, "", null, null},
                                 {null, null, null, null, null, null},
                         },
                         new String[] {
-                                "Amenity ID ", "Name  ", "Status", "Walk In Price Per Hour", "Time Open  ", "Time Close "
+                                "Amenity ID ", "Name  ", "Walk In Price Per Hour", "Time Open  ", "Time Close ", "Status"
                         }
                 ));
                 {
                     TableColumnModel cm = amenityTable.getColumnModel();
                     cm.getColumn(0).setMinWidth(80);
-                    cm.getColumn(1).setMinWidth(100);
-                    cm.getColumn(2).setMinWidth(100);
-                    cm.getColumn(3).setMinWidth(200);
-                    cm.getColumn(4).setMinWidth(150);
-                    cm.getColumn(5).setMinWidth(150);
+                    cm.getColumn(1).setMinWidth(200);
+                    cm.getColumn(2).setMinWidth(150);
+                    cm.getColumn(3).setMinWidth(100);
+                    cm.getColumn(4).setMinWidth(100);
+                    cm.getColumn(5).setMinWidth(100);
                 }
                 amenityTable.setFont(new Font("Tw Cen MT", Font.PLAIN, 18));
                 amenityTable.setEnabled(false);
@@ -647,7 +647,7 @@ public class AmenityView  {
     private JButton addAmenityBackButton;
     private JFormattedTextField amenityAddAmenity;
     private JFormattedTextField statusText;
-    private JTextPane status;
+    private JComboBox status;
     private JFormattedTextField greyBar;
     private JButton addAmenity;
     private JLabel backgroundPicture;
@@ -685,7 +685,7 @@ public class AmenityView  {
     private JButton updateAmenityBackButton;
     private JFormattedTextField amenityAddAmenity2;
     private JFormattedTextField statusText2;
-    private JTextPane status2;
+    private JComboBox status2;
     private JFormattedTextField greyBar2;
     private JButton updateAmenity2;
     private JLabel backgroundPicture5;
@@ -721,8 +721,8 @@ public class AmenityView  {
         return this.name.getText();
     }
 
-    public String getStatus(){
-        return this.status.getText();
+    public int getStatus(){
+        return this.status.getSelectedIndex() + 1;
     }
 
     public String getWalkInPrice(){
@@ -751,8 +751,8 @@ public class AmenityView  {
         return this.name2.getText();
     }
 
-    public String getUpdateStatus(){
-        return this.status2.getText();
+    public int getUpdateStatus(){
+        return this.status2.getSelectedIndex() + 1;
     }
 
     public String getUpdateWalkInPrice(){
@@ -770,22 +770,6 @@ public class AmenityView  {
     // Setters
     public void setName(String name){
         this.name.setText(name);
-    }
-
-    public void setStatus(String status){
-        this.status.setText(status);
-    }
-
-    public void setWalkInPrice(String walkInPrice){
-        this.walkInPrice.setText(walkInPrice);
-    }
-
-    public void setTimeOpen(String timeOpen){
-        this.walkInPrice.setText(timeOpen);
-    }
-
-    public void setTimeClose(String timeClose){
-        this.timeClose.setText(timeClose);
     }
 
     // Button Action Listeners
