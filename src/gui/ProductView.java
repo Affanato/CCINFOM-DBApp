@@ -26,7 +26,7 @@ public class ProductView {
 		goToRead = new JButton();
 		goToUpdate = new JButton();
 		goToDelete = new JButton();
-		goToSell = new JButton();
+		goToProductPurchases = new JButton();
 		goToRestock = new JButton();
 		background = new JLabel();
 		addProductFrame = new JFrame();
@@ -105,6 +105,48 @@ public class ProductView {
 		editorPane6 = new JEditorPane();
 		titleBar8 = new JFormattedTextField();
 		background8 = new JLabel();
+		readProductPurchasesFrame = new JFrame();
+		readPurchasesBack = new JButton();
+		titleBar9 = new JFormattedTextField();
+		scrollPane2 = new JScrollPane();
+		table1 = new JTable();
+		background9 = new JLabel();
+		productFrame2 = new JFrame();
+		productPurchaseBackButton = new JButton();
+		titleBar10 = new JFormattedTextField();
+		goToAdd2 = new JButton();
+		goToRead2 = new JButton();
+		goToUpdate2 = new JButton();
+		goToDelete2 = new JButton();
+		background10 = new JLabel();
+		deleteProductPurchaseFrame = new JFrame();
+		deletePurchaseBack = new JButton();
+		deleteProductPurchase = new JButton();
+		productidtext3 = new JFormattedTextField();
+		deleteProductPurchaseID = new JComboBox<>();
+		editorPane7 = new JEditorPane();
+		titleBar11 = new JFormattedTextField();
+		background11 = new JLabel();
+		updateProductPurchaseFrame = new JFrame();
+		updatePurchaseBack = new JButton();
+		proceedUpdatePurchase = new JButton();
+		productidtext4 = new JFormattedTextField();
+		updateProductPurchaseID = new JComboBox<>();
+		editorPane8 = new JEditorPane();
+		titleBar12 = new JFormattedTextField();
+		background12 = new JLabel();
+		updateProductPurchase2 = new JFrame();
+		updatePurchaseBack2 = new JButton();
+		titleBar13 = new JFormattedTextField();
+		updateProductPurchase = new JButton();
+		quantityPurchase = new JTextPane();
+		productPurchaseID = new JComboBox<>();
+		sellproducttext2 = new JFormattedTextField();
+		sellquantitytext2 = new JFormattedTextField();
+		memberidtext2 = new JFormattedTextField();
+		memberPurchaseID = new JComboBox<>();
+		editorPane9 = new JEditorPane();
+		background13 = new JLabel();
 
 		//======== productFrame ========
 		{
@@ -112,8 +154,8 @@ public class ProductView {
 			productFrameContentPane.setLayout(null);
 
 			//---- productBackButton ----
-			productBackButton.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
-			productBackButton.setIcon(new ImageIcon("resource\\backButton.jpg"));
+			productBackButton.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			productBackButton.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
 			productBackButton.setBackground(new Color(0xc80f2e));
 			productFrameContentPane.add(productBackButton);
 			productBackButton.setBounds(5, 5, 95, 45);
@@ -137,7 +179,7 @@ public class ProductView {
 			goToAdd.setBounds(290, 205, 250, 55);
 
 			//---- goToRead ----
-			goToRead.setText("READ PRODUCT");
+			goToRead.setText("READ PRODUCTS");
 			goToRead.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
 			goToRead.setForeground(Color.white);
 			goToRead.setBackground(new Color(0x3ca3cb));
@@ -160,13 +202,13 @@ public class ProductView {
 			productFrameContentPane.add(goToDelete);
 			goToDelete.setBounds(660, 310, 250, 55);
 
-			//---- goToSell ----
-			goToSell.setText("SELL PRODUCT");
-			goToSell.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
-			goToSell.setForeground(Color.white);
-			goToSell.setBackground(new Color(0x3ca3cb));
-			productFrameContentPane.add(goToSell);
-			goToSell.setBounds(290, 410, 250, 55);
+			//---- goToProductPurchases ----
+			goToProductPurchases.setText("PRODUCT PURCHASES");
+			goToProductPurchases.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+			goToProductPurchases.setForeground(Color.white);
+			goToProductPurchases.setBackground(new Color(0x3ca3cb));
+			productFrameContentPane.add(goToProductPurchases);
+			goToProductPurchases.setBounds(290, 410, 250, 55);
 
 			//---- goToRestock ----
 			goToRestock.setText("RESTOCK PRODUCT");
@@ -177,7 +219,7 @@ public class ProductView {
 			goToRestock.setBounds(660, 410, 250, 55);
 
 			//---- background ----
-			background.setIcon(new ImageIcon("resource\\products.jpg"));
+			background.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\products.jpg"));
 			productFrameContentPane.add(background);
 			background.setBounds(0, 55, 1200, 615);
 
@@ -207,8 +249,8 @@ public class ProductView {
 			addProductFrameContentPane.setLayout(null);
 
 			//---- addBack ----
-			addBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
-			addBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
+			addBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+			addBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
 			addBack.setBackground(new Color(0xc80f2e));
 			addProductFrameContentPane.add(addBack);
 			addBack.setBounds(5, 5, 95, 45);
@@ -298,7 +340,7 @@ public class ProductView {
 			editorPane1.setBounds(115, 165, 975, 315);
 
 			//---- background2 ----
-			background2.setIcon(new ImageIcon("resource\\products.jpg"));
+			background2.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\products.jpg"));
 			addProductFrameContentPane.add(background2);
 			background2.setBounds(0, 55, 1200, 615);
 
@@ -326,8 +368,8 @@ public class ProductView {
 			deleteProductFrameContentPane.setLayout(null);
 
 			//---- deleteBack ----
-			deleteBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
-			deleteBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
+			deleteBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+			deleteBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
 			deleteBack.setBackground(new Color(0xc80f2e));
 			deleteProductFrameContentPane.add(deleteBack);
 			deleteBack.setBounds(5, 5, 95, 45);
@@ -350,6 +392,9 @@ public class ProductView {
 
 			//---- deleteProductID ----
 			deleteProductID.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			deleteProductID.setModel(new DefaultComboBoxModel<>(new String[] {
+				"Product"
+			}));
 			deleteProductFrameContentPane.add(deleteProductID);
 			deleteProductID.setBounds(410, 315, 390, 35);
 
@@ -370,7 +415,7 @@ public class ProductView {
 			titleBar3.setBounds(0, 0, 1200, 55);
 
 			//---- background3 ----
-			background3.setIcon(new ImageIcon("resource\\products.jpg"));
+			background3.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\products.jpg"));
 			deleteProductFrameContentPane.add(background3);
 			background3.setBounds(0, 55, 1200, 615);
 
@@ -398,8 +443,8 @@ public class ProductView {
 			updateProductFrameContentPane.setLayout(null);
 
 			//---- updateBack ----
-			updateBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
-			updateBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
+			updateBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+			updateBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
 			updateBack.setBackground(new Color(0xc80f2e));
 			updateProductFrameContentPane.add(updateBack);
 			updateBack.setBounds(5, 5, 95, 45);
@@ -492,7 +537,7 @@ public class ProductView {
 			editorPane3.setBounds(115, 165, 975, 315);
 
 			//---- background4 ----
-			background4.setIcon(new ImageIcon("resource\\products.jpg"));
+			background4.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\products.jpg"));
 			updateProductFrameContentPane.add(background4);
 			background4.setBounds(0, 55, 1200, 615);
 
@@ -520,8 +565,8 @@ public class ProductView {
 			restockProductFrameContentPane.setLayout(null);
 
 			//---- restockBack ----
-			restockBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
-			restockBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
+			restockBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+			restockBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
 			restockBack.setBackground(new Color(0xc80f2e));
 			restockProductFrameContentPane.add(restockBack);
 			restockBack.setBounds(5, 5, 95, 45);
@@ -557,6 +602,9 @@ public class ProductView {
 
 			//---- restockproductid ----
 			restockproductid.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			restockproductid.setModel(new DefaultComboBoxModel<>(new String[] {
+				"Product"
+			}));
 			restockProductFrameContentPane.add(restockproductid);
 			restockproductid.setBounds(475, 260, 405, 35);
 
@@ -577,7 +625,7 @@ public class ProductView {
 			titleBar5.setBounds(0, 0, 1200, 55);
 
 			//---- background5 ----
-			background5.setIcon(new ImageIcon("resource\\products.jpg"));
+			background5.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\products.jpg"));
 			restockProductFrameContentPane.add(background5);
 			background5.setBounds(0, 55, 1200, 615);
 
@@ -605,8 +653,8 @@ public class ProductView {
 			sellProductFrameContentPane.setLayout(null);
 
 			//---- sellBack ----
-			sellBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
-			sellBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
+			sellBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+			sellBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
 			sellBack.setBackground(new Color(0xc80f2e));
 			sellProductFrameContentPane.add(sellBack);
 			sellBack.setBounds(5, 5, 95, 45);
@@ -636,6 +684,9 @@ public class ProductView {
 
 			//---- sellproductid ----
 			sellproductid.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			sellproductid.setModel(new DefaultComboBoxModel<>(new String[] {
+				"Product"
+			}));
 			sellProductFrameContentPane.add(sellproductid);
 			sellproductid.setBounds(480, 280, 405, 35);
 
@@ -665,6 +716,9 @@ public class ProductView {
 
 			//---- memberid ----
 			memberid.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			memberid.setModel(new DefaultComboBoxModel<>(new String[] {
+				"Product"
+			}));
 			sellProductFrameContentPane.add(memberid);
 			memberid.setBounds(480, 220, 405, 35);
 
@@ -675,7 +729,7 @@ public class ProductView {
 			editorPane5.setBounds(305, 195, 610, 290);
 
 			//---- background6 ----
-			background6.setIcon(new ImageIcon("resource\\products.jpg"));
+			background6.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\products.jpg"));
 			sellProductFrameContentPane.add(background6);
 			background6.setBounds(0, 55, 1200, 615);
 
@@ -703,8 +757,8 @@ public class ProductView {
 			readProductFrameContentPane.setLayout(null);
 
 			//---- readBack ----
-			readBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
-			readBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
+			readBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+			readBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
 			readBack.setBackground(new Color(0xc80f2e));
 			readProductFrameContentPane.add(readBack);
 			readBack.setBounds(5, 5, 95, 45);
@@ -719,7 +773,7 @@ public class ProductView {
 						{null, null, null, null, null, null},
 					},
 					new String[] {
-						"Product ID", "Product Name", "Product Description", "Product Brand", "Product Price", "Available Quantity"
+						"Product ID", "Product Brand", "Product Name", "Product Description", "Product Price", "Available Quantity"
 					}
 				));
 				{
@@ -727,8 +781,8 @@ public class ProductView {
 					cm.getColumn(0).setMaxWidth(80);
 					cm.getColumn(1).setMinWidth(200);
 					cm.getColumn(1).setMaxWidth(200);
-					cm.getColumn(3).setMinWidth(200);
-					cm.getColumn(3).setMaxWidth(200);
+					cm.getColumn(2).setMinWidth(200);
+					cm.getColumn(2).setMaxWidth(200);
 					cm.getColumn(4).setMinWidth(120);
 					cm.getColumn(4).setMaxWidth(120);
 					cm.getColumn(5).setMinWidth(150);
@@ -752,7 +806,7 @@ public class ProductView {
 			titleBar7.setBounds(0, 0, 1200, 55);
 
 			//---- background7 ----
-			background7.setIcon(new ImageIcon("resource\\products.jpg"));
+			background7.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\products.jpg"));
 			readProductFrameContentPane.add(background7);
 			background7.setBounds(0, 55, 1200, 615);
 
@@ -780,8 +834,8 @@ public class ProductView {
 			updateProduct1ContentPane.setLayout(null);
 
 			//---- updateBack1 ----
-			updateBack1.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
-			updateBack1.setIcon(new ImageIcon("resource\\backButton.jpg"));
+			updateBack1.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+			updateBack1.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
 			updateBack1.setBackground(new Color(0xc80f2e));
 			updateProduct1ContentPane.add(updateBack1);
 			updateBack1.setBounds(5, 5, 95, 45);
@@ -804,6 +858,9 @@ public class ProductView {
 
 			//---- updateProductID1 ----
 			updateProductID1.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			updateProductID1.setModel(new DefaultComboBoxModel<>(new String[] {
+				"Product"
+			}));
 			updateProduct1ContentPane.add(updateProductID1);
 			updateProductID1.setBounds(410, 315, 390, 35);
 
@@ -824,7 +881,7 @@ public class ProductView {
 			titleBar8.setBounds(0, 0, 1200, 55);
 
 			//---- background8 ----
-			background8.setIcon(new ImageIcon("resource\\products.jpg"));
+			background8.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\products.jpg"));
 			updateProduct1ContentPane.add(background8);
 			background8.setBounds(0, 55, 1200, 615);
 
@@ -845,6 +902,404 @@ public class ProductView {
 			updateProduct1.pack();
 			updateProduct1.setLocationRelativeTo(updateProduct1.getOwner());
 		}
+
+		//======== readProductPurchasesFrame ========
+		{
+			Container readProductPurchasesFrameContentPane = readProductPurchasesFrame.getContentPane();
+			readProductPurchasesFrameContentPane.setLayout(null);
+
+			//---- readPurchasesBack ----
+			readPurchasesBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+			readPurchasesBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			readPurchasesBack.setBackground(new Color(0xc80f2e));
+			readProductPurchasesFrameContentPane.add(readPurchasesBack);
+			readPurchasesBack.setBounds(5, 5, 95, 45);
+
+			//---- titleBar9 ----
+			titleBar9.setText("Product: Read Product Purchases");
+			titleBar9.setBackground(new Color(0xc80f2e));
+			titleBar9.setHorizontalAlignment(SwingConstants.CENTER);
+			titleBar9.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
+			titleBar9.setForeground(Color.white);
+			titleBar9.setEditable(false);
+			readProductPurchasesFrameContentPane.add(titleBar9);
+			titleBar9.setBounds(0, 0, 1200, 55);
+
+			//======== scrollPane2 ========
+			{
+
+				//---- table1 ----
+				table1.setModel(new DefaultTableModel(
+					new Object[][] {
+						{null, null, null, null, null},
+						{null, null, null, null, null},
+					},
+					new String[] {
+						"Product Purchase ID", "Member ID", "Product ID", "Quantity Sold", "Purchase Date and Time"
+					}
+				));
+				{
+					TableColumnModel cm = table1.getColumnModel();
+					cm.getColumn(4).setMinWidth(200);
+				}
+				scrollPane2.setViewportView(table1);
+			}
+			readProductPurchasesFrameContentPane.add(scrollPane2);
+			scrollPane2.setBounds(70, 115, 1060, 490);
+
+			//---- background9 ----
+			background9.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\products.jpg"));
+			readProductPurchasesFrameContentPane.add(background9);
+			background9.setBounds(0, 55, 1200, 615);
+
+			{
+				// compute preferred size
+				Dimension preferredSize = new Dimension();
+				for(int i = 0; i < readProductPurchasesFrameContentPane.getComponentCount(); i++) {
+					Rectangle bounds = readProductPurchasesFrameContentPane.getComponent(i).getBounds();
+					preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+					preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+				}
+				Insets insets = readProductPurchasesFrameContentPane.getInsets();
+				preferredSize.width += insets.right;
+				preferredSize.height += insets.bottom;
+				readProductPurchasesFrameContentPane.setMinimumSize(preferredSize);
+				readProductPurchasesFrameContentPane.setPreferredSize(preferredSize);
+			}
+			readProductPurchasesFrame.pack();
+			readProductPurchasesFrame.setLocationRelativeTo(readProductPurchasesFrame.getOwner());
+		}
+
+		//======== productFrame2 ========
+		{
+			Container productFrame2ContentPane = productFrame2.getContentPane();
+			productFrame2ContentPane.setLayout(null);
+
+			//---- productPurchaseBackButton ----
+			productPurchaseBackButton.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			productPurchaseBackButton.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			productPurchaseBackButton.setBackground(new Color(0xc80f2e));
+			productFrame2ContentPane.add(productPurchaseBackButton);
+			productPurchaseBackButton.setBounds(5, 5, 95, 45);
+
+			//---- titleBar10 ----
+			titleBar10.setText("Product: Product Purchases");
+			titleBar10.setBackground(new Color(0xc80f2e));
+			titleBar10.setHorizontalAlignment(SwingConstants.CENTER);
+			titleBar10.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
+			titleBar10.setForeground(Color.white);
+			titleBar10.setEditable(false);
+			productFrame2ContentPane.add(titleBar10);
+			titleBar10.setBounds(0, 0, 1200, 55);
+
+			//---- goToAdd2 ----
+			goToAdd2.setText("ADD PURCHASE");
+			goToAdd2.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+			goToAdd2.setForeground(Color.white);
+			goToAdd2.setBackground(new Color(0x3ca3cb));
+			productFrame2ContentPane.add(goToAdd2);
+			goToAdd2.setBounds(470, 170, 250, 55);
+
+			//---- goToRead2 ----
+			goToRead2.setText("READ PURCHASES");
+			goToRead2.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+			goToRead2.setForeground(Color.white);
+			goToRead2.setBackground(new Color(0x3ca3cb));
+			productFrame2ContentPane.add(goToRead2);
+			goToRead2.setBounds(470, 270, 250, 55);
+
+			//---- goToUpdate2 ----
+			goToUpdate2.setText("UPDATE PURCHASE");
+			goToUpdate2.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+			goToUpdate2.setForeground(Color.white);
+			goToUpdate2.setBackground(new Color(0x3ca3cb));
+			productFrame2ContentPane.add(goToUpdate2);
+			goToUpdate2.setBounds(470, 365, 250, 55);
+
+			//---- goToDelete2 ----
+			goToDelete2.setText("DELETE PURCHASE");
+			goToDelete2.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+			goToDelete2.setForeground(Color.white);
+			goToDelete2.setBackground(new Color(0x3ca3cb));
+			productFrame2ContentPane.add(goToDelete2);
+			goToDelete2.setBounds(470, 460, 250, 55);
+
+			//---- background10 ----
+			background10.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\products.jpg"));
+			productFrame2ContentPane.add(background10);
+			background10.setBounds(0, 55, 1200, 615);
+
+			{
+				// compute preferred size
+				Dimension preferredSize = new Dimension();
+				for(int i = 0; i < productFrame2ContentPane.getComponentCount(); i++) {
+					Rectangle bounds = productFrame2ContentPane.getComponent(i).getBounds();
+					preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+					preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+				}
+				Insets insets = productFrame2ContentPane.getInsets();
+				preferredSize.width += insets.right;
+				preferredSize.height += insets.bottom;
+				productFrame2ContentPane.setMinimumSize(preferredSize);
+				productFrame2ContentPane.setPreferredSize(preferredSize);
+			}
+			productFrame2.pack();
+			productFrame2.setLocationRelativeTo(productFrame2.getOwner());
+		}
+
+		//======== deleteProductPurchaseFrame ========
+		{
+			Container deleteProductPurchaseFrameContentPane = deleteProductPurchaseFrame.getContentPane();
+			deleteProductPurchaseFrameContentPane.setLayout(null);
+
+			//---- deletePurchaseBack ----
+			deletePurchaseBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+			deletePurchaseBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			deletePurchaseBack.setBackground(new Color(0xc80f2e));
+			deleteProductPurchaseFrameContentPane.add(deletePurchaseBack);
+			deletePurchaseBack.setBounds(5, 5, 95, 45);
+
+			//---- deleteProductPurchase ----
+			deleteProductPurchase.setText("DELETE PRODUCT");
+			deleteProductPurchase.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+			deleteProductPurchase.setForeground(Color.white);
+			deleteProductPurchase.setBackground(new Color(0x3ca3cb));
+			deleteProductPurchaseFrameContentPane.add(deleteProductPurchase);
+			deleteProductPurchase.setBounds(475, 380, 250, 55);
+
+			//---- productidtext3 ----
+			productidtext3.setText("Select Product");
+			productidtext3.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+			productidtext3.setEditable(false);
+			productidtext3.setHorizontalAlignment(SwingConstants.CENTER);
+			deleteProductPurchaseFrameContentPane.add(productidtext3);
+			productidtext3.setBounds(365, 235, 470, 35);
+
+			//---- deleteProductPurchaseID ----
+			deleteProductPurchaseID.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			deleteProductPurchaseID.setModel(new DefaultComboBoxModel<>(new String[] {
+				"Product"
+			}));
+			deleteProductPurchaseFrameContentPane.add(deleteProductPurchaseID);
+			deleteProductPurchaseID.setBounds(410, 315, 390, 35);
+
+			//---- editorPane7 ----
+			editorPane7.setBackground(new Color(0xb5b9b8));
+			editorPane7.setEditable(false);
+			deleteProductPurchaseFrameContentPane.add(editorPane7);
+			editorPane7.setBounds(365, 235, 470, 240);
+
+			//---- titleBar11 ----
+			titleBar11.setText("Product: Delete Product Purchase");
+			titleBar11.setBackground(new Color(0xc80f2e));
+			titleBar11.setHorizontalAlignment(SwingConstants.CENTER);
+			titleBar11.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
+			titleBar11.setForeground(Color.white);
+			titleBar11.setEditable(false);
+			deleteProductPurchaseFrameContentPane.add(titleBar11);
+			titleBar11.setBounds(0, 0, 1200, 55);
+
+			//---- background11 ----
+			background11.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\products.jpg"));
+			deleteProductPurchaseFrameContentPane.add(background11);
+			background11.setBounds(0, 55, 1200, 615);
+
+			{
+				// compute preferred size
+				Dimension preferredSize = new Dimension();
+				for(int i = 0; i < deleteProductPurchaseFrameContentPane.getComponentCount(); i++) {
+					Rectangle bounds = deleteProductPurchaseFrameContentPane.getComponent(i).getBounds();
+					preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+					preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+				}
+				Insets insets = deleteProductPurchaseFrameContentPane.getInsets();
+				preferredSize.width += insets.right;
+				preferredSize.height += insets.bottom;
+				deleteProductPurchaseFrameContentPane.setMinimumSize(preferredSize);
+				deleteProductPurchaseFrameContentPane.setPreferredSize(preferredSize);
+			}
+			deleteProductPurchaseFrame.pack();
+			deleteProductPurchaseFrame.setLocationRelativeTo(deleteProductPurchaseFrame.getOwner());
+		}
+
+		//======== updateProductPurchaseFrame ========
+		{
+			Container updateProductPurchaseFrameContentPane = updateProductPurchaseFrame.getContentPane();
+			updateProductPurchaseFrameContentPane.setLayout(null);
+
+			//---- updatePurchaseBack ----
+			updatePurchaseBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+			updatePurchaseBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			updatePurchaseBack.setBackground(new Color(0xc80f2e));
+			updateProductPurchaseFrameContentPane.add(updatePurchaseBack);
+			updatePurchaseBack.setBounds(5, 5, 95, 45);
+
+			//---- proceedUpdatePurchase ----
+			proceedUpdatePurchase.setText("PROCEED");
+			proceedUpdatePurchase.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+			proceedUpdatePurchase.setForeground(Color.white);
+			proceedUpdatePurchase.setBackground(new Color(0x3ca3cb));
+			updateProductPurchaseFrameContentPane.add(proceedUpdatePurchase);
+			proceedUpdatePurchase.setBounds(475, 380, 250, 55);
+
+			//---- productidtext4 ----
+			productidtext4.setText("Select Product");
+			productidtext4.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+			productidtext4.setEditable(false);
+			productidtext4.setHorizontalAlignment(SwingConstants.CENTER);
+			updateProductPurchaseFrameContentPane.add(productidtext4);
+			productidtext4.setBounds(365, 235, 470, 35);
+
+			//---- updateProductPurchaseID ----
+			updateProductPurchaseID.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			updateProductPurchaseID.setModel(new DefaultComboBoxModel<>(new String[] {
+				"Product"
+			}));
+			updateProductPurchaseFrameContentPane.add(updateProductPurchaseID);
+			updateProductPurchaseID.setBounds(410, 315, 390, 35);
+
+			//---- editorPane8 ----
+			editorPane8.setBackground(new Color(0xb5b9b8));
+			editorPane8.setEditable(false);
+			updateProductPurchaseFrameContentPane.add(editorPane8);
+			editorPane8.setBounds(365, 235, 470, 240);
+
+			//---- titleBar12 ----
+			titleBar12.setText("Product: Update Product");
+			titleBar12.setBackground(new Color(0xc80f2e));
+			titleBar12.setHorizontalAlignment(SwingConstants.CENTER);
+			titleBar12.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
+			titleBar12.setForeground(Color.white);
+			titleBar12.setEditable(false);
+			updateProductPurchaseFrameContentPane.add(titleBar12);
+			titleBar12.setBounds(0, 0, 1200, 55);
+
+			//---- background12 ----
+			background12.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\products.jpg"));
+			updateProductPurchaseFrameContentPane.add(background12);
+			background12.setBounds(0, 55, 1200, 615);
+
+			{
+				// compute preferred size
+				Dimension preferredSize = new Dimension();
+				for(int i = 0; i < updateProductPurchaseFrameContentPane.getComponentCount(); i++) {
+					Rectangle bounds = updateProductPurchaseFrameContentPane.getComponent(i).getBounds();
+					preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+					preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+				}
+				Insets insets = updateProductPurchaseFrameContentPane.getInsets();
+				preferredSize.width += insets.right;
+				preferredSize.height += insets.bottom;
+				updateProductPurchaseFrameContentPane.setMinimumSize(preferredSize);
+				updateProductPurchaseFrameContentPane.setPreferredSize(preferredSize);
+			}
+			updateProductPurchaseFrame.pack();
+			updateProductPurchaseFrame.setLocationRelativeTo(updateProductPurchaseFrame.getOwner());
+		}
+
+		//======== updateProductPurchase2 ========
+		{
+			Container updateProductPurchase2ContentPane = updateProductPurchase2.getContentPane();
+			updateProductPurchase2ContentPane.setLayout(null);
+
+			//---- updatePurchaseBack2 ----
+			updatePurchaseBack2.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+			updatePurchaseBack2.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			updatePurchaseBack2.setBackground(new Color(0xc80f2e));
+			updateProductPurchase2ContentPane.add(updatePurchaseBack2);
+			updatePurchaseBack2.setBounds(5, 5, 95, 45);
+
+			//---- titleBar13 ----
+			titleBar13.setText("Product: Update Product Purchase");
+			titleBar13.setBackground(new Color(0xc80f2e));
+			titleBar13.setHorizontalAlignment(SwingConstants.CENTER);
+			titleBar13.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
+			titleBar13.setForeground(Color.white);
+			titleBar13.setEditable(false);
+			updateProductPurchase2ContentPane.add(titleBar13);
+			titleBar13.setBounds(0, 0, 1200, 55);
+
+			//---- updateProductPurchase ----
+			updateProductPurchase.setText("UPDATE PURCHASE");
+			updateProductPurchase.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+			updateProductPurchase.setForeground(Color.white);
+			updateProductPurchase.setBackground(new Color(0x3ca3cb));
+			updateProductPurchase2ContentPane.add(updateProductPurchase);
+			updateProductPurchase.setBounds(480, 410, 250, 55);
+
+			//---- quantityPurchase ----
+			quantityPurchase.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			updateProductPurchase2ContentPane.add(quantityPurchase);
+			quantityPurchase.setBounds(480, 345, 380, 35);
+
+			//---- productPurchaseID ----
+			productPurchaseID.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			productPurchaseID.setModel(new DefaultComboBoxModel<>(new String[] {
+				"Product"
+			}));
+			updateProductPurchase2ContentPane.add(productPurchaseID);
+			productPurchaseID.setBounds(480, 280, 405, 35);
+
+			//---- sellproducttext2 ----
+			sellproducttext2.setText("Select Product");
+			sellproducttext2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+			sellproducttext2.setEditable(false);
+			sellproducttext2.setHorizontalAlignment(SwingConstants.LEFT);
+			updateProductPurchase2ContentPane.add(sellproducttext2);
+			sellproducttext2.setBounds(330, 280, 130, 35);
+
+			//---- sellquantitytext2 ----
+			sellquantitytext2.setText("Quantity");
+			sellquantitytext2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+			sellquantitytext2.setEditable(false);
+			sellquantitytext2.setHorizontalAlignment(SwingConstants.LEFT);
+			updateProductPurchase2ContentPane.add(sellquantitytext2);
+			sellquantitytext2.setBounds(330, 345, 130, 35);
+
+			//---- memberidtext2 ----
+			memberidtext2.setText("Select Member");
+			memberidtext2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+			memberidtext2.setEditable(false);
+			memberidtext2.setHorizontalAlignment(SwingConstants.LEFT);
+			updateProductPurchase2ContentPane.add(memberidtext2);
+			memberidtext2.setBounds(330, 220, 130, 35);
+
+			//---- memberPurchaseID ----
+			memberPurchaseID.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			memberPurchaseID.setModel(new DefaultComboBoxModel<>(new String[] {
+				"Product"
+			}));
+			updateProductPurchase2ContentPane.add(memberPurchaseID);
+			memberPurchaseID.setBounds(480, 220, 405, 35);
+
+			//---- editorPane9 ----
+			editorPane9.setBackground(new Color(0xb5b9b8));
+			editorPane9.setEditable(false);
+			updateProductPurchase2ContentPane.add(editorPane9);
+			editorPane9.setBounds(305, 195, 610, 290);
+
+			//---- background13 ----
+			background13.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\products.jpg"));
+			updateProductPurchase2ContentPane.add(background13);
+			background13.setBounds(0, 55, 1200, 615);
+
+			{
+				// compute preferred size
+				Dimension preferredSize = new Dimension();
+				for(int i = 0; i < updateProductPurchase2ContentPane.getComponentCount(); i++) {
+					Rectangle bounds = updateProductPurchase2ContentPane.getComponent(i).getBounds();
+					preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+					preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+				}
+				Insets insets = updateProductPurchase2ContentPane.getInsets();
+				preferredSize.width += insets.right;
+				preferredSize.height += insets.bottom;
+				updateProductPurchase2ContentPane.setMinimumSize(preferredSize);
+				updateProductPurchase2ContentPane.setPreferredSize(preferredSize);
+			}
+			updateProductPurchase2.pack();
+			updateProductPurchase2.setLocationRelativeTo(updateProductPurchase2.getOwner());
+		}
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
 	}
 
@@ -857,7 +1312,7 @@ public class ProductView {
 	private JButton goToRead;
 	private JButton goToUpdate;
 	private JButton goToDelete;
-	private JButton goToSell;
+	private JButton goToProductPurchases;
 	private JButton goToRestock;
 	private JLabel background;
 	private JFrame addProductFrame;
@@ -936,6 +1391,48 @@ public class ProductView {
 	private JEditorPane editorPane6;
 	private JFormattedTextField titleBar8;
 	private JLabel background8;
+	private JFrame readProductPurchasesFrame;
+	private JButton readPurchasesBack;
+	private JFormattedTextField titleBar9;
+	private JScrollPane scrollPane2;
+	private JTable table1;
+	private JLabel background9;
+	private JFrame productFrame2;
+	private JButton productPurchaseBackButton;
+	private JFormattedTextField titleBar10;
+	private JButton goToAdd2;
+	private JButton goToRead2;
+	private JButton goToUpdate2;
+	private JButton goToDelete2;
+	private JLabel background10;
+	private JFrame deleteProductPurchaseFrame;
+	private JButton deletePurchaseBack;
+	private JButton deleteProductPurchase;
+	private JFormattedTextField productidtext3;
+	private JComboBox<String> deleteProductPurchaseID;
+	private JEditorPane editorPane7;
+	private JFormattedTextField titleBar11;
+	private JLabel background11;
+	private JFrame updateProductPurchaseFrame;
+	private JButton updatePurchaseBack;
+	private JButton proceedUpdatePurchase;
+	private JFormattedTextField productidtext4;
+	private JComboBox<String> updateProductPurchaseID;
+	private JEditorPane editorPane8;
+	private JFormattedTextField titleBar12;
+	private JLabel background12;
+	private JFrame updateProductPurchase2;
+	private JButton updatePurchaseBack2;
+	private JFormattedTextField titleBar13;
+	private JButton updateProductPurchase;
+	private JTextPane quantityPurchase;
+	private JComboBox<String> productPurchaseID;
+	private JFormattedTextField sellproducttext2;
+	private JFormattedTextField sellquantitytext2;
+	private JFormattedTextField memberidtext2;
+	private JComboBox<String> memberPurchaseID;
+	private JEditorPane editorPane9;
+	private JLabel background13;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
 	// jcombobox getters
@@ -977,6 +1474,25 @@ public class ProductView {
 	public JFrame getUpdateProductFrame1() {
 		return this.updateProduct1;
 	}
+	public JFrame getProductPurchasesFrame() {
+		return this.productFrame2;
+	}
+	public JFrame getAddProductPurchaseFrame() {
+		return this.sellProductFrame;
+	}
+	public JFrame getDeleteProductPurchaseFrame() {
+		return this.deleteProductPurchaseFrame;
+	}
+	public JFrame getUpdateProductPurchaseFrame() {
+		return this.updateProductPurchaseFrame;
+	}
+	public JFrame getUpdateProductPurchaseFrame1() {
+		return this.updateProductPurchase2;
+	}
+	public JFrame getReadProductPurchasesFrame() {
+		return this.readProductPurchasesFrame;
+	}
+	
 
 	// add
 	public String getProductName() {
@@ -1051,7 +1567,6 @@ public class ProductView {
 	public void productBackButton(ActionListener actionListener) {
 		this.productBackButton.addActionListener(actionListener);
 	}
-
 	public void goToAddButton(ActionListener actionListener) {
 		this.goToAdd.addActionListener(actionListener);
 	}
@@ -1067,8 +1582,24 @@ public class ProductView {
 	public void goToRestockButton(ActionListener actionListener) {
 		this.goToRestock.addActionListener(actionListener);
 	}
-	public void goToSellButton(ActionListener actionListener) {
-		this.goToSell.addActionListener(actionListener);
+	public void goToProductPurchasesButton(ActionListener actionListener) {
+		this.goToProductPurchases.addActionListener(actionListener);
+	}
+
+	public void productPurchaseBackButton(ActionListener actionListener) {
+		this.productPurchaseBackButton.addActionListener(actionListener);
+	}
+	public void goToAddButton2(ActionListener actionListener) {
+		this.goToAdd2.addActionListener(actionListener);
+	}
+	public void goToReadButton2(ActionListener actionListener) {
+		this.goToRead2.addActionListener(actionListener);
+	}
+	public void goToDeleteButton2(ActionListener actionListener) {
+		this.goToDelete2.addActionListener(actionListener);
+	}
+	public void goToUpdateButton2(ActionListener actionListener) {
+		this.goToUpdate2.addActionListener(actionListener);
 	}
 
 	public void addBackButton(ActionListener actionListener) {
@@ -1103,6 +1634,34 @@ public class ProductView {
 	}
 	public void readBackButton(ActionListener actionListener) {
 		this.readBack.addActionListener(actionListener);
+	}
+
+	public void addPurchaseBackButton(ActionListener actionListener) {
+		this.sellBack.addActionListener(actionListener);
+	}
+	public void addPurchaseProductButton(ActionListener actionListener) {
+		this.sellProduct.addActionListener(actionListener);
+	}
+	public void deletePurchaseProductButton(ActionListener actionListener) {
+		this.deleteProductPurchase.addActionListener(actionListener);
+	}
+	public void deletePurchaseBackButton(ActionListener actionListener) {
+		this.deletePurchaseBack.addActionListener(actionListener);
+	}
+	public void proceedUpdatePurchaseProductButton(ActionListener actionListener) {
+		this.proceedUpdatePurchase.addActionListener(actionListener);
+	}
+	public void updatePurchaseProductButton(ActionListener actionListener) {
+		this.updateProductPurchase.addActionListener(actionListener);
+	}
+	public void updatePurchaseBackButton(ActionListener actionListener) {
+		this.updatePurchaseBack.addActionListener(actionListener);
+	}
+	public void updatePurchaseBackButton1(ActionListener actionListener) {
+		this.updatePurchaseBack2.addActionListener(actionListener);
+	}
+	public void readPurchaseBackButton(ActionListener actionListener) {
+		this.readPurchasesBack.addActionListener(actionListener);
 	}
 
 	public void updateBackButton1(ActionListener actionListener) {

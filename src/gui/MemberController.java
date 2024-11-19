@@ -26,7 +26,7 @@ public class MemberController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Object[][] data = {
-                    {"Alice", 123, 89.5, "Hi", 7, "Nice"},
+                    {"Alice", "hey nowww hey noooow this is what dreams are made of", 89.5, "Hi", 7, "Nice"},
                     {"Bob", 456, 76.0, "Hi", 7, "Nice"},
                     {"Charlie", 789, 92.3, "Hi", 7, "Nice"},
                     {"Alice", 123, 89.5, "Hi", 7, "Nice"},

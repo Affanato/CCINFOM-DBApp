@@ -452,7 +452,7 @@ public class SubscriptionTypeView {
 			membershipTypeNameText4.setBounds(275, 205, 230, 35);
 
 			//---- goToAddAmenity ----
-			goToAddAmenity.setText("ADD AMMENITY");
+			goToAddAmenity.setText("ADD AMENITY");
 			goToAddAmenity.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
 			goToAddAmenity.setForeground(Color.white);
 			goToAddAmenity.setBackground(new Color(0x3ca3cb));
@@ -1046,6 +1046,19 @@ public class SubscriptionTypeView {
 	}
 	public void readBackButton(ActionListener actionListener) {
 		this.readBack.addActionListener(actionListener);
+	}
+
+	// set table model
+	public void setMemberTable(Object[][] data) { 
+		String[] columnNames = {"Subscription Type ID", "Subscription Type Name", "Subscription Type Price"};
+		DefaultTableModel model = new DefaultTableModel(data, columnNames);
+		subscriptionTypeTable.setModel(model);
+	}
+
+	public void setAmenityTable(Object[][] data) { 
+		String[] columnNames = {"List of Amenities"};
+		DefaultTableModel model = new DefaultTableModel(data, columnNames);
+		amenityTable.setModel(model);
 	}
 }
 

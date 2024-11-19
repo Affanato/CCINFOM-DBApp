@@ -77,7 +77,7 @@ public class SubscriptionView  {
 			membershipBackButton.setBounds(5, 5, 95, 45);
 
 			//---- titleBar ----
-			titleBar.setText("Membership");
+			titleBar.setText("Subscription");
 			titleBar.setBackground(new Color(0xc80f2e));
 			titleBar.setHorizontalAlignment(SwingConstants.CENTER);
 			titleBar.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
@@ -156,7 +156,7 @@ public class SubscriptionView  {
 			addBack.setBounds(5, 5, 95, 45);
 
 			//---- titleBar2 ----
-			titleBar2.setText("Membership: Add Membership");
+			titleBar2.setText("Subscription: Add Subscription");
 			titleBar2.setBackground(new Color(0xc80f2e));
 			titleBar2.setHorizontalAlignment(SwingConstants.CENTER);
 			titleBar2.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
@@ -277,7 +277,7 @@ public class SubscriptionView  {
 			membershipID.setBounds(345, 295, 500, 35);
 
 			//---- membershipidtext ----
-			membershipidtext.setText("Select Membership");
+			membershipidtext.setText("Select Subscription");
 			membershipidtext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			membershipidtext.setEditable(false);
 			membershipidtext.setHorizontalAlignment(SwingConstants.CENTER);
@@ -292,7 +292,7 @@ public class SubscriptionView  {
 			editorPane2.setBounds(300, 215, 595, 255);
 
 			//---- titleBar3 ----
-			titleBar3.setText("Membership: Delete Membership");
+			titleBar3.setText("Subscription: Delete Subscription");
 			titleBar3.setBackground(new Color(0xc80f2e));
 			titleBar3.setHorizontalAlignment(SwingConstants.CENTER);
 			titleBar3.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
@@ -346,17 +346,16 @@ public class SubscriptionView  {
 						{null, null, null, null, null, null},
 					},
 					new String[] {
-						"Membership ID", "Member ID", "Trainer ID", "Membership Type", "Start Date", "End Date"
+						"Subscription ID", "Member ID", "Subscription Type", "Start Date", "End Date"
 					}
 				));
 				{
 					TableColumnModel cm = membershipTable.getColumnModel();
 					cm.getColumn(0).setMaxWidth(100);
-					cm.getColumn(1).setMaxWidth(80);
-					cm.getColumn(2).setMaxWidth(100);
-					cm.getColumn(3).setMaxWidth(300);
+					cm.getColumn(1).setMaxWidth(100);
+					cm.getColumn(2).setMaxWidth(340);
+					cm.getColumn(3).setMaxWidth(220);
 					cm.getColumn(4).setMaxWidth(220);
-					cm.getColumn(5).setMaxWidth(220);
 				}
 				membershipTable.setFont(new Font("Tw Cen MT", Font.PLAIN, 18));
 				membershipTable.setEnabled(false);
@@ -366,7 +365,7 @@ public class SubscriptionView  {
 			tablePane.setBounds(110, 140, 970, 435);
 
 			//---- titleBar4 ----
-			titleBar4.setText("Membership: Read Membership");
+			titleBar4.setText("Subscription: Read Subscription");
 			titleBar4.setBackground(new Color(0xc80f2e));
 			titleBar4.setHorizontalAlignment(SwingConstants.CENTER);
 			titleBar4.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
@@ -439,7 +438,7 @@ public class SubscriptionView  {
 			editorPane4.setBounds(300, 225, 595, 260);
 
 			//---- titleBar5 ----
-			titleBar5.setText("Membership: Terminate Membership");
+			titleBar5.setText("Subscription: Terminate Subscription");
 			titleBar5.setBackground(new Color(0xc80f2e));
 			titleBar5.setHorizontalAlignment(SwingConstants.CENTER);
 			titleBar5.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
@@ -617,17 +616,16 @@ public class SubscriptionView  {
 	
 	// set table model
 	public void setMemberTable(Object[][] data) { 
-		String[] columnNames = {"Subscription ID", "Member ID", "Trainer ID", "Subscription Type", "Start Date", "End Date"};
+		String[] columnNames = {"Subscription ID", "Member ID", "Subscription Type", "Start Date", "End Date"};
 		DefaultTableModel model = new DefaultTableModel(data, columnNames);
 		membershipTable.setModel(model);
 		{
 			TableColumnModel cm = membershipTable.getColumnModel();
 			cm.getColumn(0).setMaxWidth(100);
 			cm.getColumn(1).setMaxWidth(80);
-			cm.getColumn(2).setMaxWidth(100);
-			cm.getColumn(3).setMaxWidth(300);
+			cm.getColumn(2).setMaxWidth(300);
+			cm.getColumn(3).setMaxWidth(220);
 			cm.getColumn(4).setMaxWidth(220);
-			cm.getColumn(5).setMaxWidth(220);
 		}
 	}
 }
