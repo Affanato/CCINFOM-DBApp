@@ -51,8 +51,8 @@ public class AmenityUseView extends JFrame {
             amenityUseFrameContentPane.setLayout(null);
 
             //---- amenityUseBack ----
-            amenityUseBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
-            amenityUseBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+            amenityUseBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
+            amenityUseBack.setIcon(new ImageIcon("resource/backButton.jpg"));
             amenityUseBack.setBackground(new Color(0xc80f2e));
             amenityUseFrameContentPane.add(amenityUseBack);
             amenityUseBack.setBounds(5, 5, 95, 45);
@@ -84,7 +84,7 @@ public class AmenityUseView extends JFrame {
             goToReadSession.setBounds(485, 455, 250, 55);
 
             //---- label1 ----
-            label1.setIcon(new ImageIcon("C:\\Users\\USER\\OneDrive\\Documents\\Code and Acads\\CCINFOM\\DB Application\\resource\\AmenitiesViewBG.png"));
+            label1.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
             amenityUseFrameContentPane.add(label1);
             label1.setBounds(0, 50, 1200, 620);
 
@@ -114,8 +114,8 @@ public class AmenityUseView extends JFrame {
             readSessionFrameContentPane.setLayout(null);
 
             //---- sessionReadBack ----
-            sessionReadBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
-            sessionReadBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+            sessionReadBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
+            sessionReadBack.setIcon(new ImageIcon("resource/backButton.jpg"));
             sessionReadBack.setBackground(new Color(0xc80f2e));
             readSessionFrameContentPane.add(sessionReadBack);
             sessionReadBack.setBounds(5, 5, 95, 45);
@@ -160,7 +160,7 @@ public class AmenityUseView extends JFrame {
             amenityUseReadSession.setBounds(0, 0, 1200, 55);
 
             //---- backgroundPicture3 ----
-            backgroundPicture3.setIcon(new ImageIcon("C:\\Users\\USER\\OneDrive\\Documents\\Code and Acads\\CCINFOM\\DB Application\\resource\\AmenitiesViewBG.png"));
+            backgroundPicture3.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
             readSessionFrameContentPane.add(backgroundPicture3);
             backgroundPicture3.setBounds(0, 55, 1200, 620);
 
@@ -244,14 +244,14 @@ public class AmenityUseView extends JFrame {
             editorPane2.setBounds(370, 205, 485, 365);
 
             //---- useAmenityBack ----
-            useAmenityBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
-            useAmenityBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+            useAmenityBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
+            useAmenityBack.setIcon(new ImageIcon("resource/backButton.jpg"));
             useAmenityBack.setBackground(new Color(0xc80f2e));
             useAmenityFrameContentPane.add(useAmenityBack);
             useAmenityBack.setBounds(5, 5, 95, 45);
 
             //---- backgroundPicture2 ----
-            backgroundPicture2.setIcon(new ImageIcon("C:\\Users\\USER\\OneDrive\\Documents\\Code and Acads\\CCINFOM\\DB Application\\resource\\AmenitiesViewBG.png"));
+            backgroundPicture2.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
             useAmenityFrameContentPane.add(backgroundPicture2);
             backgroundPicture2.setBounds(new Rectangle(new Point(0, 55), backgroundPicture2.getPreferredSize()));
 
