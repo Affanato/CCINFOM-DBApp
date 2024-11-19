@@ -364,7 +364,6 @@ public class AmenityUseView extends JFrame {
     }
 
     // Button Action Listeners
-
     public void amenityUseBackButton(ActionListener actionListener){
         this.amenityUseBack.addActionListener(actionListener);
     }

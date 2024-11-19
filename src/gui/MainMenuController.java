@@ -8,7 +8,7 @@ public class MainMenuController {
         view.salesReportButton(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Controller Sales Report
+                SalesReportController saleReportController = new SalesReportController();
                 view.getMainMenueFrame().dispose();
             }
         });
