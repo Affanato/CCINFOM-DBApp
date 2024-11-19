@@ -103,7 +103,9 @@ public class AmenityUseView extends JFrame {
                 amenityUseFrameContentPane.setPreferredSize(preferredSize);
             }
             amenityUseFrame.pack();
-            amenityUseFrame.setLocationRelativeTo(amenityUseFrame.getOwner());
+            amenityUseFrame.setSize(1200, 700);
+            amenityUseFrame.setLocationRelativeTo(null);
+            amenityUseFrame.setVisible(true);
         }
 
         //======== readSessionFrame ========

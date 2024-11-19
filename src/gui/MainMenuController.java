@@ -32,7 +32,7 @@ public class MainMenuController {
         view.amenitiesUseButton(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Controller Amenities Use
+                // Amenities Use Report
                 view.getMainMenueFrame().dispose();
             }
         });
@@ -48,7 +48,7 @@ public class MainMenuController {
         view.amenityUseButton(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Amenity Use Controller
+                AmenityUseController amenityUseController = new AmenityUseController();
                 view.getMainMenueFrame().dispose();
             }
         });
