@@ -32,7 +32,7 @@ public class MainMenuController {
         view.amenitiesUseButton(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Amenities Use Report
+                AmenitiesReportController amenitiesReportController = new AmenitiesReportController();
                 view.getMainMenueFrame().dispose();
             }
         });
