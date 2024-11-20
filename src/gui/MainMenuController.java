@@ -24,7 +24,7 @@ public class MainMenuController {
         view.trainerReportButton(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Controller Trainer Report
+                TrainersReportController trainersReportController = new TrainersReportController();
                 view.getMainMenueFrame().dispose();
             }
         });
