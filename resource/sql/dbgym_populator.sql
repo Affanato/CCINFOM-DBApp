@@ -1,8 +1,7 @@
 /*
 	Instructions:
 		1. Select the dbgym schema.
-        2. Execute every statement from top to bottom, one statement at a time.
-			- Hover over the statement and click the lightning button with the letter I.
+        2. Click the lightning button without the I next to the save button to execute the entire script.
 		3. Check if the tables have been populated.
 			- I created random entries for every table. - CJ
             
