@@ -16,7 +16,7 @@ public class MainMenuController {
         view.membershipReportButton(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Controller Membership Report
+                SubscriptionsReportController subscriptionReportController = new SubscriptionsReportController();
                 view.getMainMenueFrame().dispose();
             }
         });
