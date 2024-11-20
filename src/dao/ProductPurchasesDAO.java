@@ -87,25 +87,26 @@ public class ProductPurchasesDAO {
         return mapResultSetToProductPurchase(rs);
     }
 
-    public ArrayList<ProductPurchase> selectAllProductPurchases() {
+    public Object[][] selectAllProductPurchases() {
         ResultSet rs = DBUtils.selectAllRecordsFromTable("product_purchases");
         assert rs != null;
-        return mapResultSetToProductPurchaseList(rs);
+        return DBUtils.to2DObjectArray(mapResultSetToProductPurchaseList(rs));
     }
 
-    public ArrayList<ProductPurchase> selectAllProductPurchasesByMemberID(int memberID) {
+    public Object[][] selectAllProductPurchasesByMemberID(int memberID) {
         String condition = "WHERE member_id = " + memberID;
         ResultSet rs = DBUtils.selectAllRecordsFromTable("product_purchases", condition);
         assert rs != null;
-        return mapResultSetToProductPurchaseList(rs);
+        return DBUtils.to2DObjectArray(mapResultSetToProductPurchaseList(rs));
     }
 
-    public ArrayList<ProductPurchase> selectAllProductPurchasesByProductID(int productID) {
+    public Object[][] selectAllProductPurchasesByProductID(int productID) {
         String condition = "WHERE product_id = " + productID;
         ResultSet rs = DBUtils.selectAllRecordsFromTable("product_purchases", condition);
         assert rs != null;
-        return mapResultSetToProductPurchaseList(rs);
+        return DBUtils.to2DObjectArray(mapResultSetToProductPurchaseList(rs));
     }
+
 
 
     // UTILITY FUNCTIONS

@@ -1,5 +1,6 @@
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProductsDAO {
 
@@ -64,7 +65,7 @@ public class ProductsDAO {
         }
     }
 
-    // Transactions
+    // TRANSACTIONS
     public void sellProduct(int productID, int quantitySold) {
         // EDGE/INVALID CASES (invalid product id, insufficient stock)
         if (!DBUtils.primaryKeyExistsInATable("products", "product_id", productID)) {
@@ -113,6 +114,149 @@ public class ProductsDAO {
         updateProduct(productID, updatedProduct);
     }
 
+    // REPORTS
+    public Object[][] selectProductsByYearlyQuantitySold(int year) {
+        String sql = "SELECT p.product_id, p.product_brand, p.product_name, " +
+                "       SUM(pp.quantity_sold) AS totalQuantitySold " +
+                "FROM products p " +
+                "JOIN product_purchases pp ON pp.product_id = p.product_id " +
+                "WHERE YEAR(pp.purchase_datetime) = ? " +
+                "GROUP BY p.product_id " +
+                "ORDER BY totalQuantitySold DESC, p.product_brand, p.product_name;";
+
+        try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
+            ps.setInt(1, year);  // Set the year parameter
+
+            try (ResultSet rs = ps.executeQuery()) {
+                List<Object[]> tempList = new ArrayList<>();
+
+                while (rs.next()) {
+                    int productId = rs.getInt("product_id");
+                    String productBrand = rs.getString("product_brand");
+                    String productName = rs.getString("product_name");
+                    int totalQuantitySold = rs.getInt("totalQuantitySold");
+
+                    Object[] elem = {productId, productBrand, productName, totalQuantitySold};
+                    tempList.add(elem);
+                }
+
+                return tempList.toArray(new Object[0][]);
+            }
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
+    }
+
+    public Object[][] selectProductsByMonthlyQuantitySold(int year, int month) {
+        String sql = "SELECT p.product_id, p.product_brand, p.product_name, " +
+                    "       SUM(pp.quantity_sold) AS totalQuantitySold " +
+                    "FROM products p " +
+                    "JOIN product_purchases pp ON pp.product_id = p.product_id " +
+                    "WHERE YEAR(pp.purchase_datetime) = ? " +
+                    "       AND MONTH(pp.purchase_datetime) = ? " +
+                    "GROUP BY p.product_id " +
+                    "ORDER BY totalQuantitySold DESC, p.product_brand, p.product_name;";
+
+        try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
+            ps.setInt(1, year);  // Set the year parameter
+            ps.setInt(2, month); // Set the month parameter
+
+            try (ResultSet rs = ps.executeQuery()) {
+                List<Object[]> tempList = new ArrayList<>();
+
+                while (rs.next()) {
+                    int productId = rs.getInt("product_id");
+                    String productBrand = rs.getString("product_brand");
+                    String productName = rs.getString("product_name");
+                    int totalQuantitySold = rs.getInt("totalQuantitySold");
+
+                    Object[] elem = {productId, productBrand, productName, totalQuantitySold};
+                    tempList.add(elem);
+                }
+
+                return tempList.toArray(new Object[0][]);
+            }
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
+    }
+
+    public Object[][] selectProductsByYearlyTotalRevenue(int year) {
+        String sql = "SELECT p.product_id, p.product_brand, p.product_name, " +
+                    "       SUM(pp.quantity_sold) AS totalQuantitySold, p.product_price, " +
+                    "       SUM(pp.quantity_sold * p.product_price) AS totalRevenue " +
+                    "FROM products p " +
+                    "JOIN product_purchases pp ON pp.product_id = p.product_id " +
+                    "WHERE YEAR(pp.purchase_datetime) = ? " +
+                    "GROUP BY p.product_id " +
+                    "ORDER BY totalRevenue DESC, p.product_brand, p.product_name;";
+
+        try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
+            ps.setInt(1, year);  // Set the year parameter
+
+            try (ResultSet rs = ps.executeQuery()) {
+                List<Object[]> tempList = new ArrayList<>();
+
+                while (rs.next()) {
+                    int productId = rs.getInt("product_id");
+                    String productBrand = rs.getString("product_brand");
+                    String productName = rs.getString("product_name");
+                    int totalQuantitySold = rs.getInt("totalQuantitySold");
+                    double productPrice = rs.getDouble("product_price");
+                    double totalRevenue = rs.getDouble("totalRevenue");
+
+                    Object[] elem = {productId, productBrand, productName, totalQuantitySold, productPrice, totalRevenue};
+                    tempList.add(elem);
+                }
+
+                return tempList.toArray(new Object[0][]);
+            }
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
+    }
+
+    public Object[][] selectProductsByMonthlyTotalRevenue(int year, int month) {
+        String sql = "SELECT p.product_id, p.product_brand, p.product_name, " +
+                "       SUM(pp.quantity_sold) AS totalQuantitySold, p.product_price, " +
+                "       SUM(pp.quantity_sold * p.product_price) AS totalRevenue " +
+                "FROM products p " +
+                "JOIN product_purchases pp ON pp.product_id = p.product_id " +
+                "WHERE YEAR(pp.purchase_datetime) = ? " +
+                "AND MONTH(pp.purchase_datetime) = ? " +
+                "GROUP BY p.product_id " +
+                "ORDER BY totalRevenue DESC, p.product_brand, p.product_name;";
+
+        try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
+            ps.setInt(1, year);  // Set the year parameter
+            ps.setInt(2, month); // Set the month parameter
+
+            try (ResultSet rs = ps.executeQuery()) {
+                List<Object[]> tempList = new ArrayList<>();
+
+                while (rs.next()) {
+                    int productId = rs.getInt("product_id");
+                    String productBrand = rs.getString("product_brand");
+                    String productName = rs.getString("product_name");
+                    int totalQuantitySold = rs.getInt("totalQuantitySold");
+                    double productPrice = rs.getDouble("product_price");
+                    double totalRevenue = rs.getDouble("totalRevenue");
+
+                    Object[] elem = {productId, productBrand, productName, totalQuantitySold, productPrice, totalRevenue};
+                    tempList.add(elem);
+                }
+
+                return tempList.toArray(new Object[0][]);
+            }
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
+    }
+
     // SELECT QUERIES
     public static Product selectProduct(int productID) {
         String condition = "WHERE product_id = " + productID;
@@ -121,10 +265,10 @@ public class ProductsDAO {
         return mapResultSetToProduct(rs);
     }
 
-    public ArrayList<Product> selectAllProducts() {
+    public Object[][] selectAllProducts() {
         ResultSet rs = DBUtils.selectAllRecordsFromTable("products");
         assert rs != null;
-        return mapResultSetToProductList(rs);
+        return DBUtils.to2DObjectArray(mapResultSetToProductList(rs));
     }
 
     // UTILITY METHODS

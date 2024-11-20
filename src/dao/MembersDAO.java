@@ -85,14 +85,11 @@ public class MembersDAO {
         return mapResultSetToMember(rs);
     }
 
-    public ArrayList<Member> selectAllMembers() {
+    public Object[][] selectAllMembers() {
         ResultSet rs = DBUtils.selectAllRecordsFromTable("members");
         assert rs != null;
-        return mapResultSetToMemberList(rs);
+        return DBUtils.to2DObjectArray(mapResultSetToMemberList(rs));
     }
-
-
-
 
     // UTIL METHODS
     public static Member mapResultSetToMember(ResultSet rs) {

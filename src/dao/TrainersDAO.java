@@ -1,6 +1,8 @@
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class TrainersDAO {
 
@@ -65,14 +67,36 @@ public class TrainersDAO {
         }
     }
 
+    // SELECT QUERIES
+    public static Trainer selectTrainer(int trainerID) {
+        String condition = "WHERE trainer_id = " + trainerID;
+        ResultSet rs = DBUtils.selectAllRecordsFromTable("trainers", condition);
+        assert rs != null;
+        return mapResultSetToTrainer(rs);
+    }
+
+    public Object[][] selectAllTrainers() {
+        ResultSet rs = DBUtils.selectAllRecordsFromTable("trainers");
+        assert rs != null;
+        return DBUtils.to2DObjectArray(mapResultSetToTrainerList(rs));
+    }
+
+    public Object[][] selectAllActiveTrainers() {
+        String condition = "WHERE trainer_status = 'Active'";
+        ResultSet rs = DBUtils.selectAllRecordsFromTable("trainers", condition);
+        assert rs != null;
+        return DBUtils.to2DObjectArray(mapResultSetToTrainerList(rs));
+    }
+
+    // REC MANAGEMENT & TRANSACTIONS
     public void fireTrainer(int trainerID) {
         if (!DBUtils.primaryKeyExistsInATable("trainers", "trainer_id", trainerID)) {
             return;
         }
 
         String sql = "UPDATE trainers " +
-                    "SET trainer_status = ? " +
-                    "WHERE trainer_id = ?";
+                "SET trainer_status = ? " +
+                "WHERE trainer_id = ?";
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
@@ -86,25 +110,75 @@ public class TrainersDAO {
         }
     }
 
-    // SELECT QUERIES
-    public static Trainer selectTrainer(int trainerID) {
-        String condition = "WHERE trainer_id = " + trainerID;
-        ResultSet rs = DBUtils.selectAllRecordsFromTable("trainers", condition);
-        assert rs != null;
-        return mapResultSetToTrainer(rs);
+    // REPORTS
+    public Object[][] selectMonthlyMembersTrained(int year, int month) {
+        String sql = "SELECT t.trainer_id, t.last_name, t.first_name, t.program_specialty, " +
+                    "       COUNT(ts.subscription_id) AS numOfMembersTrained " +
+                    "FROM trainers t " +
+                    "LEFT JOIN training_sessions ts ON (t.trainer_id = ts.trainer_id) " +
+                    "                                  AND (YEAR(ts.session_start_datetime) = ?) " +
+                    "                                  AND (MONTH(ts.session_start_datetime) = ?) " +
+                    "GROUP BY t.trainer_id " +
+                    "ORDER BY numOfMembersTrained DESC, t.program_specialty, t.last_name, t.first_name;";
+
+        try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
+            ps.setInt(1, year);   // Set the year parameter
+            ps.setInt(2, month);   // Set the month parameter
+
+            try (ResultSet rs = ps.executeQuery()) {
+                List<Object[]> tempList = new ArrayList<>();
+
+                while (rs.next()) {
+                    int trainerId = rs.getInt("trainer_id");
+                    String lastName = rs.getString("last_name");
+                    String firstName = rs.getString("first_name");
+                    String programSpecialty = rs.getString("program_specialty");
+                    int numOfMembersTrained = rs.getInt("numOfMembersTrained");
+
+                    Object[] elem = {trainerId, lastName, firstName, programSpecialty, numOfMembersTrained};
+                    tempList.add(elem);
+                }
+
+                return tempList.toArray(new Object[0][]);
+            }
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
     }
 
-    public ArrayList<Trainer> selectAllTrainers() {
-        ResultSet rs = DBUtils.selectAllRecordsFromTable("trainers");
-        assert rs != null;
-        return mapResultSetToTrainerList(rs);
-    }
+    public Object[][] selectYearlyMembersTrained(int year) {
+        String sql = "SELECT t.trainer_id, t.last_name, t.first_name, t.program_specialty, " +
+                "       COUNT(ts.subscription_id) AS numOfMembersTrained " +
+                "FROM trainers t " +
+                "LEFT JOIN training_sessions ts ON (t.trainer_id = ts.trainer_id) " +
+                "                                  AND (YEAR(ts.session_start_datetime) = ?) " +
+                "GROUP BY t.trainer_id " +
+                "ORDER BY numOfMembersTrained DESC, t.program_specialty, t.last_name, t.first_name;";
 
-    public ArrayList<Trainer> selectAllActiveTrainers() {
-        String condition = "WHERE trainer_status = 'Active'";
-        ResultSet rs = DBUtils.selectAllRecordsFromTable("trainers", condition);
-        assert rs != null;
-        return mapResultSetToTrainerList(rs);
+        try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
+            ps.setInt(1, year);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                List<Object[]> tempList = new ArrayList<>();
+
+                while (rs.next()) {
+                    int trainerId = rs.getInt("trainer_id");
+                    String lastName = rs.getString("last_name");
+                    String firstName = rs.getString("first_name");
+                    String programSpecialty = rs.getString("program_specialty");
+                    int numOfMembersTrained = rs.getInt("numOfMembersTrained");
+
+                    Object[] elem = {trainerId, lastName, firstName, programSpecialty, numOfMembersTrained};
+                    tempList.add(elem);
+                }
+
+                return tempList.toArray(new Object[0][]);
+            }
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
     }
 
     // UTILITY METHODS

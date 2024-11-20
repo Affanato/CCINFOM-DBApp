@@ -64,6 +64,23 @@ public class TrainingSessionsDAO {
         }
     }
 
+    // MASS UPDATE QUERIES
+    public void updateMemberID(int oldID, int newID) {
+        DBUtils.updateTableForeignKey("training_sessions", "member_id", oldID, newID);
+    }
+
+    public void updateSubscriptionID(int oldID, int newID) {
+        DBUtils.updateTableForeignKey("training_sessions", "subscription_id", oldID, newID);
+    }
+
+    public void deleteByMemberID(int memberID) {
+        DBUtils.deleteTableRecordsByKey("training_sessions", "member_id", memberID);
+    }
+
+    public void deleteBySubscriptionID(int subscriptionID) {
+        DBUtils.deleteTableRecordsByKey("training_sessions", "subscription_id", subscriptionID);
+    }
+
     // SELECT QUERIES
     public static TrainingSession selectTrainingSession(int trainingSessionID) {
         String condition = "WHERE training_session_id = " + trainingSessionID;
@@ -72,24 +89,24 @@ public class TrainingSessionsDAO {
         return mapResultSetToTrainingSession(rs);
     }
 
-    public ArrayList<TrainingSession> selectAllTrainingSessions() {
+    public Object[][] selectAllTrainingSessions() {
         ResultSet rs = DBUtils.selectAllRecordsFromTable("training_sessions");
         assert rs != null;
-        return mapResultSetToTrainingSessionList(rs);
+        return DBUtils.to2DObjectArray(mapResultSetToTrainingSessionList(rs));
     }
 
-    public ArrayList<TrainingSession> selectAllActiveTrainingSessions() {
+    public Object[][] selectAllActiveTrainingSessions() {
         String condition = "WHERE session_start_date_time <= NOW() AND session_end_date_time >= NOW()";
         ResultSet rs = DBUtils.selectAllRecordsFromTable("training_sessions", condition);
         assert rs != null;
-        return mapResultSetToTrainingSessionList(rs);
+        return DBUtils.to2DObjectArray(mapResultSetToTrainingSessionList(rs));
     }
 
-    public ArrayList<TrainingSession> selectAllUpcomingTrainingSessions() {
+    public Object[][] selectAllUpcomingTrainingSessions() {
         String condition = "WHERE session_end_date_time > NOW()";  // Active sessions are those that have not ended yet
         ResultSet rs = DBUtils.selectAllRecordsFromTable("training_sessions", condition);
         assert rs != null;
-        return mapResultSetToTrainingSessionList(rs);
+        return DBUtils.to2DObjectArray(mapResultSetToTrainingSessionList(rs));
     }
 
     // TRANSACTIONS
