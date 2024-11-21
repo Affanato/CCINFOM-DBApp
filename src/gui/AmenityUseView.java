@@ -1,7 +1,7 @@
 import java.awt.*;
-import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.table.*;
+import java.awt.event.ActionListener;
 /*
  * Created by JFormDesigner on Mon Nov 18 21:57:03 PST 2024
  */
@@ -20,44 +20,77 @@ public class AmenityUseView extends JFrame {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Lucas Antonio V F. Tujan
         amenityUseFrame = new JFrame();
-        amenityUseBack = new JButton();
+        amenityUseBackButton = new JButton();
         titleBar = new JFormattedTextField();
-        goToUseAmenity = new JButton();
+        goToAddSession = new JButton();
         goToReadSession = new JButton();
+        goToUpdateSession = new JButton();
+        goToDeleteSession = new JButton();
         label1 = new JLabel();
-        readSessionFrame = new JFrame();
-        sessionReadBack = new JButton();
-        tablePane = new JScrollPane();
-        sessionTable = new JTable();
-        amenityUseReadSession = new JFormattedTextField();
-        backgroundPicture3 = new JLabel();
-        useAmenityFrame = new JFrame();
-        useAmenity = new JButton();
-        selectAmenity = new JFormattedTextField();
-        amenityIDText = new JFormattedTextField();
-        selectAmenityBar = new JComboBox();
+        addSessionFrame = new JFrame();
+        addSession = new JButton();
+        addSessionTitle = new JFormattedTextField();
         memberIDText = new JFormattedTextField();
         selectMemberBar = new JComboBox();
+        amenityIDText = new JFormattedTextField();
+        selectAmenityBar = new JComboBox();
         startTimeText = new JFormattedTextField();
         startTime = new JTextPane();
         usageHoursText = new JFormattedTextField();
         usageHours = new JTextPane();
         editorPane2 = new JEditorPane();
-        useAmenityBack = new JButton();
+        addSessionBack = new JButton();
         backgroundPicture2 = new JLabel();
         amenityUseUseAmenity = new JFormattedTextField();
+        readSessionFrame = new JFrame();
+        readSessionBack = new JButton();
+        tablePane = new JScrollPane();
+        sessionTable = new JTable();
+        amenityUseReadSession = new JFormattedTextField();
+        backgroundPicture3 = new JLabel();
+        deleteSessionFrame = new JFrame();
+        deleteSession = new JButton();
+        deleteSessionTitle = new JFormattedTextField();
+        selectDelete = new JComboBox();
+        editorPane3 = new JEditorPane();
+        deleteSessionBack = new JButton();
+        backgroundPicture4 = new JLabel();
+        amenityUseUseAmenity2 = new JFormattedTextField();
+        updateSelectSession = new JFrame();
+        updateSessionSelect = new JButton();
+        updateSessionTitle = new JFormattedTextField();
+        selectUpdate = new JComboBox();
+        editorPane4 = new JEditorPane();
+        updateSelectBackk = new JButton();
+        backgroundPicture5 = new JLabel();
+        amenityUseUseAmenity3 = new JFormattedTextField();
+        updateDetailsSessionFrame = new JFrame();
+        updateSession = new JButton();
+        selectAmenity4 = new JFormattedTextField();
+        memberIDText2 = new JFormattedTextField();
+        selectMemberBar2 = new JComboBox();
+        amenityIDText2 = new JFormattedTextField();
+        selectAmenityBar2 = new JComboBox();
+        startTimeText2 = new JFormattedTextField();
+        startTime2 = new JTextPane();
+        usageHoursText2 = new JFormattedTextField();
+        usageHours2 = new JTextPane();
+        editorPane5 = new JEditorPane();
+        updateSessionDetailsBack = new JButton();
+        backgroundPicture6 = new JLabel();
+        amenityUseUseAmenity4 = new JFormattedTextField();
 
         //======== amenityUseFrame ========
         {
             Container amenityUseFrameContentPane = amenityUseFrame.getContentPane();
             amenityUseFrameContentPane.setLayout(null);
 
-            //---- amenityUseBack ----
-            amenityUseBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
-            amenityUseBack.setIcon(new ImageIcon("resource/backButton.jpg"));
-            amenityUseBack.setBackground(new Color(0xc80f2e));
-            amenityUseFrameContentPane.add(amenityUseBack);
-            amenityUseBack.setBounds(5, 5, 95, 45);
+            //---- amenityUseBackButton ----
+            amenityUseBackButton.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
+            amenityUseBackButton.setIcon(new ImageIcon("resource/backButton.jpg"));
+            amenityUseBackButton.setBackground(new Color(0xc80f2e));
+            amenityUseFrameContentPane.add(amenityUseBackButton);
+            amenityUseBackButton.setBounds(5, 5, 95, 45);
 
             //---- titleBar ----
             titleBar.setText("Amenity Use");
@@ -69,13 +102,13 @@ public class AmenityUseView extends JFrame {
             amenityUseFrameContentPane.add(titleBar);
             titleBar.setBounds(0, 0, 1200, 55);
 
-            //---- goToUseAmenity ----
-            goToUseAmenity.setText("USE AMENITY");
-            goToUseAmenity.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
-            goToUseAmenity.setForeground(Color.white);
-            goToUseAmenity.setBackground(new Color(0x3ca3cb));
-            amenityUseFrameContentPane.add(goToUseAmenity);
-            goToUseAmenity.setBounds(485, 230, 250, 55);
+            //---- goToAddSession ----
+            goToAddSession.setText("ADD SESSION");
+            goToAddSession.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+            goToAddSession.setForeground(Color.white);
+            goToAddSession.setBackground(new Color(0x3ca3cb));
+            amenityUseFrameContentPane.add(goToAddSession);
+            goToAddSession.setBounds(485, 190, 250, 55);
 
             //---- goToReadSession ----
             goToReadSession.setText("READ SESSION");
@@ -83,7 +116,23 @@ public class AmenityUseView extends JFrame {
             goToReadSession.setForeground(Color.white);
             goToReadSession.setBackground(new Color(0x3ca3cb));
             amenityUseFrameContentPane.add(goToReadSession);
-            goToReadSession.setBounds(485, 455, 250, 55);
+            goToReadSession.setBounds(485, 300, 250, 55);
+
+            //---- goToUpdateSession ----
+            goToUpdateSession.setText("UPDATE SESSION");
+            goToUpdateSession.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+            goToUpdateSession.setForeground(Color.white);
+            goToUpdateSession.setBackground(new Color(0x3ca3cb));
+            amenityUseFrameContentPane.add(goToUpdateSession);
+            goToUpdateSession.setBounds(485, 415, 250, 55);
+
+            //---- goToDeleteSession ----
+            goToDeleteSession.setText("DELETE SESSION");
+            goToDeleteSession.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+            goToDeleteSession.setForeground(Color.white);
+            goToDeleteSession.setBackground(new Color(0x3ca3cb));
+            amenityUseFrameContentPane.add(goToDeleteSession);
+            goToDeleteSession.setBounds(485, 525, 250, 55);
 
             //---- label1 ----
             label1.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
@@ -110,17 +159,134 @@ public class AmenityUseView extends JFrame {
             amenityUseFrame.setVisible(true);
         }
 
+        //======== addSessionFrame ========
+        {
+            Container addSessionFrameContentPane = addSessionFrame.getContentPane();
+            addSessionFrameContentPane.setLayout(null);
+
+            //---- addSession ----
+            addSession.setText("ADD SESSION");
+            addSession.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+            addSession.setForeground(Color.white);
+            addSession.setBackground(new Color(0x3ca3cb));
+            addSessionFrameContentPane.add(addSession);
+            addSession.setBounds(490, 480, 250, 55);
+
+            //---- addSessionTitle ----
+            addSessionTitle.setText("Add Session");
+            addSessionTitle.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+            addSessionTitle.setEditable(false);
+            addSessionTitle.setHorizontalAlignment(SwingConstants.CENTER);
+            addSessionFrameContentPane.add(addSessionTitle);
+            addSessionTitle.setBounds(370, 170, 485, 35);
+
+            //---- memberIDText ----
+            memberIDText.setText("Member ID");
+            memberIDText.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+            memberIDText.setEditable(false);
+            addSessionFrameContentPane.add(memberIDText);
+            memberIDText.setBounds(420, 220, 175, 40);
+
+            //---- selectMemberBar ----
+            selectMemberBar.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+            selectMemberBar.setEditable(true);
+            addSessionFrameContentPane.add(selectMemberBar);
+            selectMemberBar.setBounds(635, 220, 175, 40);
+
+            //---- amenityIDText ----
+            amenityIDText.setText("Amenity ID");
+            amenityIDText.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+            amenityIDText.setEditable(false);
+            addSessionFrameContentPane.add(amenityIDText);
+            amenityIDText.setBounds(420, 280, 175, 40);
+
+            //---- selectAmenityBar ----
+            selectAmenityBar.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+            selectAmenityBar.setEditable(true);
+            addSessionFrameContentPane.add(selectAmenityBar);
+            selectAmenityBar.setBounds(635, 280, 175, 40);
+
+            //---- startTimeText ----
+            startTimeText.setText("Start Time");
+            startTimeText.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+            startTimeText.setEditable(false);
+            addSessionFrameContentPane.add(startTimeText);
+            startTimeText.setBounds(420, 350, 175, 35);
+
+            //---- startTime ----
+            startTime.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+            addSessionFrameContentPane.add(startTime);
+            startTime.setBounds(635, 350, 175, 35);
+
+            //---- usageHoursText ----
+            usageHoursText.setText("Usage Hours");
+            usageHoursText.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+            usageHoursText.setEditable(false);
+            addSessionFrameContentPane.add(usageHoursText);
+            usageHoursText.setBounds(420, 415, 175, 35);
+
+            //---- usageHours ----
+            usageHours.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+            addSessionFrameContentPane.add(usageHours);
+            usageHours.setBounds(635, 415, 175, 35);
+
+            //---- editorPane2 ----
+            editorPane2.setBackground(new Color(0xb5b9b8));
+            editorPane2.setEditable(false);
+            addSessionFrameContentPane.add(editorPane2);
+            editorPane2.setBounds(370, 205, 485, 365);
+
+            //---- addSessionBack ----
+            addSessionBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
+            addSessionBack.setIcon(new ImageIcon("resource/backButton.jpg"));
+            addSessionBack.setBackground(new Color(0xc80f2e));
+            addSessionFrameContentPane.add(addSessionBack);
+            addSessionBack.setBounds(5, 5, 95, 45);
+
+            //---- backgroundPicture2 ----
+            backgroundPicture2.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
+            addSessionFrameContentPane.add(backgroundPicture2);
+            backgroundPicture2.setBounds(new Rectangle(new Point(0, 55), backgroundPicture2.getPreferredSize()));
+
+            //---- amenityUseUseAmenity ----
+            amenityUseUseAmenity.setText("Amenity Use: Add Session");
+            amenityUseUseAmenity.setBackground(new Color(0xc80f2e));
+            amenityUseUseAmenity.setHorizontalAlignment(SwingConstants.CENTER);
+            amenityUseUseAmenity.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
+            amenityUseUseAmenity.setForeground(Color.white);
+            amenityUseUseAmenity.setEditable(false);
+            addSessionFrameContentPane.add(amenityUseUseAmenity);
+            amenityUseUseAmenity.setBounds(0, 0, 1200, 55);
+
+            {
+                // compute preferred size
+                Dimension preferredSize = new Dimension();
+                for(int i = 0; i < addSessionFrameContentPane.getComponentCount(); i++) {
+                    Rectangle bounds = addSessionFrameContentPane.getComponent(i).getBounds();
+                    preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+                    preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+                }
+                Insets insets = addSessionFrameContentPane.getInsets();
+                preferredSize.width += insets.right;
+                preferredSize.height += insets.bottom;
+                addSessionFrameContentPane.setMinimumSize(preferredSize);
+                addSessionFrameContentPane.setPreferredSize(preferredSize);
+            }
+            addSessionFrame.pack();
+            addSessionFrame.setLocationRelativeTo(addSessionFrame.getOwner());
+        }
+
         //======== readSessionFrame ========
         {
             Container readSessionFrameContentPane = readSessionFrame.getContentPane();
             readSessionFrameContentPane.setLayout(null);
 
-            //---- sessionReadBack ----
-            sessionReadBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
-            sessionReadBack.setIcon(new ImageIcon("resource/backButton.jpg"));
-            sessionReadBack.setBackground(new Color(0xc80f2e));
-            readSessionFrameContentPane.add(sessionReadBack);
-            sessionReadBack.setBounds(5, 5, 95, 45);
+            //---- readSessionBack ----
+            readSessionBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
+            readSessionBack.setIcon(new ImageIcon("resource/backButton.jpg"));
+            readSessionBack.setBackground(new Color(0xc80f2e));
+            readSessionFrameContentPane.add(readSessionBack);
+            readSessionBack.setBounds(5, 5, 95, 45);
 
             //======== tablePane ========
             {
@@ -184,119 +350,263 @@ public class AmenityUseView extends JFrame {
             readSessionFrame.setLocationRelativeTo(readSessionFrame.getOwner());
         }
 
-        //======== useAmenityFrame ========
+        //======== deleteSessionFrame ========
         {
-            Container useAmenityFrameContentPane = useAmenityFrame.getContentPane();
-            useAmenityFrameContentPane.setLayout(null);
+            Container deleteSessionFrameContentPane = deleteSessionFrame.getContentPane();
+            deleteSessionFrameContentPane.setLayout(null);
 
-            //---- useAmenity ----
-            useAmenity.setText("USE AMENITY");
-            useAmenity.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
-            useAmenity.setForeground(Color.white);
-            useAmenity.setBackground(new Color(0x3ca3cb));
-            useAmenityFrameContentPane.add(useAmenity);
-            useAmenity.setBounds(490, 480, 250, 55);
+            //---- deleteSession ----
+            deleteSession.setText("DELETE SESSION");
+            deleteSession.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+            deleteSession.setForeground(Color.white);
+            deleteSession.setBackground(new Color(0x3ca3cb));
+            deleteSessionFrameContentPane.add(deleteSession);
+            deleteSession.setBounds(490, 480, 250, 55);
 
-            //---- selectAmenity ----
-            selectAmenity.setText("Use Amenity");
-            selectAmenity.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
-            selectAmenity.setEditable(false);
-            selectAmenity.setHorizontalAlignment(SwingConstants.CENTER);
-            useAmenityFrameContentPane.add(selectAmenity);
-            selectAmenity.setBounds(370, 170, 485, 35);
+            //---- deleteSessionTitle ----
+            deleteSessionTitle.setText("Delete Session");
+            deleteSessionTitle.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+            deleteSessionTitle.setEditable(false);
+            deleteSessionTitle.setHorizontalAlignment(SwingConstants.CENTER);
+            deleteSessionFrameContentPane.add(deleteSessionTitle);
+            deleteSessionTitle.setBounds(370, 170, 485, 35);
 
-            //---- amenityIDText ----
-            amenityIDText.setText("Amenity ID");
-            amenityIDText.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
-            amenityIDText.setEditable(false);
-            useAmenityFrameContentPane.add(amenityIDText);
-            amenityIDText.setBounds(420, 280, 175, 40);
+            //---- selectDelete ----
+            selectDelete.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+            deleteSessionFrameContentPane.add(selectDelete);
+            selectDelete.setBounds(425, 335, 390, 40);
 
-            //---- selectAmenityBar ----
-            selectAmenityBar.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-            useAmenityFrameContentPane.add(selectAmenityBar);
-            selectAmenityBar.setBounds(635, 280, 175, 40);
+            //---- editorPane3 ----
+            editorPane3.setBackground(new Color(0xb5b9b8));
+            editorPane3.setEditable(false);
+            deleteSessionFrameContentPane.add(editorPane3);
+            editorPane3.setBounds(370, 205, 485, 365);
 
-            //---- memberIDText ----
-            memberIDText.setText("Member ID");
-            memberIDText.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
-            memberIDText.setEditable(false);
-            useAmenityFrameContentPane.add(memberIDText);
-            memberIDText.setBounds(420, 220, 175, 40);
+            //---- deleteSessionBack ----
+            deleteSessionBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
+            deleteSessionBack.setIcon(new ImageIcon("resource/backButton.jpg"));
+            deleteSessionBack.setBackground(new Color(0xc80f2e));
+            deleteSessionFrameContentPane.add(deleteSessionBack);
+            deleteSessionBack.setBounds(5, 5, 95, 45);
 
-            //---- selectMemberBar ----
-            selectMemberBar.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-            useAmenityFrameContentPane.add(selectMemberBar);
-            selectMemberBar.setBounds(635, 220, 175, 40);
+            //---- backgroundPicture4 ----
+            backgroundPicture4.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
+            deleteSessionFrameContentPane.add(backgroundPicture4);
+            backgroundPicture4.setBounds(new Rectangle(new Point(0, 55), backgroundPicture4.getPreferredSize()));
 
-            //---- startTimeText ----
-            startTimeText.setText("Start Time");
-            startTimeText.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
-            startTimeText.setEditable(false);
-            useAmenityFrameContentPane.add(startTimeText);
-            startTimeText.setBounds(420, 350, 175, 35);
-
-            //---- startTime ----
-            startTime.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-            useAmenityFrameContentPane.add(startTime);
-            startTime.setBounds(635, 350, 175, 35);
-
-            //---- usageHoursText ----
-            usageHoursText.setText("Usage Hours");
-            usageHoursText.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
-            usageHoursText.setEditable(false);
-            useAmenityFrameContentPane.add(usageHoursText);
-            usageHoursText.setBounds(420, 415, 175, 35);
-
-            //---- usageHours ----
-            usageHours.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-            useAmenityFrameContentPane.add(usageHours);
-            usageHours.setBounds(635, 415, 175, 35);
-
-            //---- editorPane2 ----
-            editorPane2.setBackground(new Color(0xb5b9b8));
-            editorPane2.setEditable(false);
-            useAmenityFrameContentPane.add(editorPane2);
-            editorPane2.setBounds(370, 205, 485, 365);
-
-            //---- useAmenityBack ----
-            useAmenityBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
-            useAmenityBack.setIcon(new ImageIcon("resource/backButton.jpg"));
-            useAmenityBack.setBackground(new Color(0xc80f2e));
-            useAmenityFrameContentPane.add(useAmenityBack);
-            useAmenityBack.setBounds(5, 5, 95, 45);
-
-            //---- backgroundPicture2 ----
-            backgroundPicture2.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
-            useAmenityFrameContentPane.add(backgroundPicture2);
-            backgroundPicture2.setBounds(new Rectangle(new Point(0, 55), backgroundPicture2.getPreferredSize()));
-
-            //---- amenityUseUseAmenity ----
-            amenityUseUseAmenity.setText("Amenity Use: Use Amenity");
-            amenityUseUseAmenity.setBackground(new Color(0xc80f2e));
-            amenityUseUseAmenity.setHorizontalAlignment(SwingConstants.CENTER);
-            amenityUseUseAmenity.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
-            amenityUseUseAmenity.setForeground(Color.white);
-            amenityUseUseAmenity.setEditable(false);
-            useAmenityFrameContentPane.add(amenityUseUseAmenity);
-            amenityUseUseAmenity.setBounds(0, 0, 1200, 55);
+            //---- amenityUseUseAmenity2 ----
+            amenityUseUseAmenity2.setText("Amenity Use: Delete Session");
+            amenityUseUseAmenity2.setBackground(new Color(0xc80f2e));
+            amenityUseUseAmenity2.setHorizontalAlignment(SwingConstants.CENTER);
+            amenityUseUseAmenity2.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
+            amenityUseUseAmenity2.setForeground(Color.white);
+            amenityUseUseAmenity2.setEditable(false);
+            deleteSessionFrameContentPane.add(amenityUseUseAmenity2);
+            amenityUseUseAmenity2.setBounds(0, 0, 1200, 55);
 
             {
                 // compute preferred size
                 Dimension preferredSize = new Dimension();
-                for(int i = 0; i < useAmenityFrameContentPane.getComponentCount(); i++) {
-                    Rectangle bounds = useAmenityFrameContentPane.getComponent(i).getBounds();
+                for(int i = 0; i < deleteSessionFrameContentPane.getComponentCount(); i++) {
+                    Rectangle bounds = deleteSessionFrameContentPane.getComponent(i).getBounds();
                     preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
                     preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
                 }
-                Insets insets = useAmenityFrameContentPane.getInsets();
+                Insets insets = deleteSessionFrameContentPane.getInsets();
                 preferredSize.width += insets.right;
                 preferredSize.height += insets.bottom;
-                useAmenityFrameContentPane.setMinimumSize(preferredSize);
-                useAmenityFrameContentPane.setPreferredSize(preferredSize);
+                deleteSessionFrameContentPane.setMinimumSize(preferredSize);
+                deleteSessionFrameContentPane.setPreferredSize(preferredSize);
             }
-            useAmenityFrame.pack();
-            useAmenityFrame.setLocationRelativeTo(useAmenityFrame.getOwner());
+            deleteSessionFrame.pack();
+            deleteSessionFrame.setLocationRelativeTo(deleteSessionFrame.getOwner());
+        }
+
+        //======== updateSelectSession ========
+        {
+            Container updateSelectSessionContentPane = updateSelectSession.getContentPane();
+            updateSelectSessionContentPane.setLayout(null);
+
+            //---- updateSessionSelect ----
+            updateSessionSelect.setText("UPDATE SESSION");
+            updateSessionSelect.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+            updateSessionSelect.setForeground(Color.white);
+            updateSessionSelect.setBackground(new Color(0x3ca3cb));
+            updateSelectSessionContentPane.add(updateSessionSelect);
+            updateSessionSelect.setBounds(490, 480, 250, 55);
+
+            //---- updateSessionTitle ----
+            updateSessionTitle.setText("Update Session");
+            updateSessionTitle.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+            updateSessionTitle.setEditable(false);
+            updateSessionTitle.setHorizontalAlignment(SwingConstants.CENTER);
+            updateSelectSessionContentPane.add(updateSessionTitle);
+            updateSessionTitle.setBounds(370, 170, 485, 35);
+
+            //---- selectUpdate ----
+            selectUpdate.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+            updateSelectSessionContentPane.add(selectUpdate);
+            selectUpdate.setBounds(425, 335, 390, 40);
+
+            //---- editorPane4 ----
+            editorPane4.setBackground(new Color(0xb5b9b8));
+            editorPane4.setEditable(false);
+            updateSelectSessionContentPane.add(editorPane4);
+            editorPane4.setBounds(370, 205, 485, 365);
+
+            //---- updateSelectBackk ----
+            updateSelectBackk.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
+            updateSelectBackk.setIcon(new ImageIcon("resource/backButton.jpg"));
+            updateSelectBackk.setBackground(new Color(0xc80f2e));
+            updateSelectSessionContentPane.add(updateSelectBackk);
+            updateSelectBackk.setBounds(5, 5, 95, 45);
+
+            //---- backgroundPicture5 ----
+            backgroundPicture5.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
+            updateSelectSessionContentPane.add(backgroundPicture5);
+            backgroundPicture5.setBounds(new Rectangle(new Point(0, 55), backgroundPicture5.getPreferredSize()));
+
+            //---- amenityUseUseAmenity3 ----
+            amenityUseUseAmenity3.setText("Amenity Use: Update Session");
+            amenityUseUseAmenity3.setBackground(new Color(0xc80f2e));
+            amenityUseUseAmenity3.setHorizontalAlignment(SwingConstants.CENTER);
+            amenityUseUseAmenity3.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
+            amenityUseUseAmenity3.setForeground(Color.white);
+            amenityUseUseAmenity3.setEditable(false);
+            updateSelectSessionContentPane.add(amenityUseUseAmenity3);
+            amenityUseUseAmenity3.setBounds(0, 0, 1200, 55);
+
+            {
+                // compute preferred size
+                Dimension preferredSize = new Dimension();
+                for(int i = 0; i < updateSelectSessionContentPane.getComponentCount(); i++) {
+                    Rectangle bounds = updateSelectSessionContentPane.getComponent(i).getBounds();
+                    preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+                    preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+                }
+                Insets insets = updateSelectSessionContentPane.getInsets();
+                preferredSize.width += insets.right;
+                preferredSize.height += insets.bottom;
+                updateSelectSessionContentPane.setMinimumSize(preferredSize);
+                updateSelectSessionContentPane.setPreferredSize(preferredSize);
+            }
+            updateSelectSession.pack();
+            updateSelectSession.setLocationRelativeTo(updateSelectSession.getOwner());
+        }
+
+        //======== updateDetailsSessionFrame ========
+        {
+            Container updateDetailsSessionFrameContentPane = updateDetailsSessionFrame.getContentPane();
+            updateDetailsSessionFrameContentPane.setLayout(null);
+
+            //---- updateSession ----
+            updateSession.setText("UPDATE SESSION");
+            updateSession.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+            updateSession.setForeground(Color.white);
+            updateSession.setBackground(new Color(0x3ca3cb));
+            updateDetailsSessionFrameContentPane.add(updateSession);
+            updateSession.setBounds(490, 480, 250, 55);
+
+            //---- selectAmenity4 ----
+            selectAmenity4.setText("Add Session");
+            selectAmenity4.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+            selectAmenity4.setEditable(false);
+            selectAmenity4.setHorizontalAlignment(SwingConstants.CENTER);
+            updateDetailsSessionFrameContentPane.add(selectAmenity4);
+            selectAmenity4.setBounds(370, 170, 485, 35);
+
+            //---- memberIDText2 ----
+            memberIDText2.setText("Member ID");
+            memberIDText2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+            memberIDText2.setEditable(false);
+            updateDetailsSessionFrameContentPane.add(memberIDText2);
+            memberIDText2.setBounds(420, 220, 175, 40);
+
+            //---- selectMemberBar2 ----
+            selectMemberBar2.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+            updateDetailsSessionFrameContentPane.add(selectMemberBar2);
+            selectMemberBar2.setBounds(635, 220, 175, 40);
+
+            //---- amenityIDText2 ----
+            amenityIDText2.setText("Amenity ID");
+            amenityIDText2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+            amenityIDText2.setEditable(false);
+            updateDetailsSessionFrameContentPane.add(amenityIDText2);
+            amenityIDText2.setBounds(420, 280, 175, 40);
+
+            //---- selectAmenityBar2 ----
+            selectAmenityBar2.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+            updateDetailsSessionFrameContentPane.add(selectAmenityBar2);
+            selectAmenityBar2.setBounds(635, 280, 175, 40);
+
+            //---- startTimeText2 ----
+            startTimeText2.setText("Start Time");
+            startTimeText2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+            startTimeText2.setEditable(false);
+            updateDetailsSessionFrameContentPane.add(startTimeText2);
+            startTimeText2.setBounds(420, 350, 175, 35);
+
+            //---- startTime2 ----
+            startTime2.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+            updateDetailsSessionFrameContentPane.add(startTime2);
+            startTime2.setBounds(635, 350, 175, 35);
+
+            //---- usageHoursText2 ----
+            usageHoursText2.setText("Usage Hours");
+            usageHoursText2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+            usageHoursText2.setEditable(false);
+            updateDetailsSessionFrameContentPane.add(usageHoursText2);
+            usageHoursText2.setBounds(420, 415, 175, 35);
+
+            //---- usageHours2 ----
+            usageHours2.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+            updateDetailsSessionFrameContentPane.add(usageHours2);
+            usageHours2.setBounds(635, 415, 175, 35);
+
+            //---- editorPane5 ----
+            editorPane5.setBackground(new Color(0xb5b9b8));
+            editorPane5.setEditable(false);
+            updateDetailsSessionFrameContentPane.add(editorPane5);
+            editorPane5.setBounds(370, 205, 485, 365);
+
+            //---- updateSessionDetailsBack ----
+            updateSessionDetailsBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
+            updateSessionDetailsBack.setIcon(new ImageIcon("resource/backButton.jpg"));
+            updateSessionDetailsBack.setBackground(new Color(0xc80f2e));
+            updateDetailsSessionFrameContentPane.add(updateSessionDetailsBack);
+            updateSessionDetailsBack.setBounds(5, 5, 95, 45);
+
+            //---- backgroundPicture6 ----
+            backgroundPicture6.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
+            updateDetailsSessionFrameContentPane.add(backgroundPicture6);
+            backgroundPicture6.setBounds(new Rectangle(new Point(0, 55), backgroundPicture6.getPreferredSize()));
+
+            //---- amenityUseUseAmenity4 ----
+            amenityUseUseAmenity4.setText("Amenity Use: Update Session");
+            amenityUseUseAmenity4.setBackground(new Color(0xc80f2e));
+            amenityUseUseAmenity4.setHorizontalAlignment(SwingConstants.CENTER);
+            amenityUseUseAmenity4.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
+            amenityUseUseAmenity4.setForeground(Color.white);
+            amenityUseUseAmenity4.setEditable(false);
+            updateDetailsSessionFrameContentPane.add(amenityUseUseAmenity4);
+            amenityUseUseAmenity4.setBounds(0, 0, 1200, 55);
+
+            {
+                // compute preferred size
+                Dimension preferredSize = new Dimension();
+                for(int i = 0; i < updateDetailsSessionFrameContentPane.getComponentCount(); i++) {
+                    Rectangle bounds = updateDetailsSessionFrameContentPane.getComponent(i).getBounds();
+                    preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+                    preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+                }
+                Insets insets = updateDetailsSessionFrameContentPane.getInsets();
+                preferredSize.width += insets.right;
+                preferredSize.height += insets.bottom;
+                updateDetailsSessionFrameContentPane.setMinimumSize(preferredSize);
+                updateDetailsSessionFrameContentPane.setPreferredSize(preferredSize);
+            }
+            updateDetailsSessionFrame.pack();
+            updateDetailsSessionFrame.setLocationRelativeTo(updateDetailsSessionFrame.getOwner());
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
@@ -304,32 +614,65 @@ public class AmenityUseView extends JFrame {
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     // Generated using JFormDesigner Evaluation license - Lucas Antonio V F. Tujan
     private JFrame amenityUseFrame;
-    private JButton amenityUseBack;
+    private JButton amenityUseBackButton;
     private JFormattedTextField titleBar;
-    private JButton goToUseAmenity;
+    private JButton goToAddSession;
     private JButton goToReadSession;
+    private JButton goToUpdateSession;
+    private JButton goToDeleteSession;
     private JLabel label1;
-    private JFrame readSessionFrame;
-    private JButton sessionReadBack;
-    private JScrollPane tablePane;
-    private JTable sessionTable;
-    private JFormattedTextField amenityUseReadSession;
-    private JLabel backgroundPicture3;
-    private JFrame useAmenityFrame;
-    private JButton useAmenity;
-    private JFormattedTextField selectAmenity;
-    private JFormattedTextField amenityIDText;
-    private JComboBox selectAmenityBar;
+    private JFrame addSessionFrame;
+    private JButton addSession;
+    private JFormattedTextField addSessionTitle;
     private JFormattedTextField memberIDText;
     private JComboBox selectMemberBar;
+    private JFormattedTextField amenityIDText;
+    private JComboBox selectAmenityBar;
     private JFormattedTextField startTimeText;
     private JTextPane startTime;
     private JFormattedTextField usageHoursText;
     private JTextPane usageHours;
     private JEditorPane editorPane2;
-    private JButton useAmenityBack;
+    private JButton addSessionBack;
     private JLabel backgroundPicture2;
     private JFormattedTextField amenityUseUseAmenity;
+    private JFrame readSessionFrame;
+    private JButton readSessionBack;
+    private JScrollPane tablePane;
+    private JTable sessionTable;
+    private JFormattedTextField amenityUseReadSession;
+    private JLabel backgroundPicture3;
+    private JFrame deleteSessionFrame;
+    private JButton deleteSession;
+    private JFormattedTextField deleteSessionTitle;
+    private JComboBox selectDelete;
+    private JEditorPane editorPane3;
+    private JButton deleteSessionBack;
+    private JLabel backgroundPicture4;
+    private JFormattedTextField amenityUseUseAmenity2;
+    private JFrame updateSelectSession;
+    private JButton updateSessionSelect;
+    private JFormattedTextField updateSessionTitle;
+    private JComboBox selectUpdate;
+    private JEditorPane editorPane4;
+    private JButton updateSelectBackk;
+    private JLabel backgroundPicture5;
+    private JFormattedTextField amenityUseUseAmenity3;
+    private JFrame updateDetailsSessionFrame;
+    private JButton updateSession;
+    private JFormattedTextField selectAmenity4;
+    private JFormattedTextField memberIDText2;
+    private JComboBox selectMemberBar2;
+    private JFormattedTextField amenityIDText2;
+    private JComboBox selectAmenityBar2;
+    private JFormattedTextField startTimeText2;
+    private JTextPane startTime2;
+    private JFormattedTextField usageHoursText2;
+    private JTextPane usageHours2;
+    private JEditorPane editorPane5;
+    private JButton updateSessionDetailsBack;
+    private JLabel backgroundPicture6;
+    private JFormattedTextField amenityUseUseAmenity4;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     // Getters
@@ -337,54 +680,125 @@ public class AmenityUseView extends JFrame {
         return this.amenityUseFrame;
     }
 
-    public JFrame getUseAmenityFrame() {
-        return this.useAmenityFrame;
+    public JFrame getAddSessionFrame() {
+        return this.addSessionFrame;
     }
 
     public JFrame getReadSessionFrame() {
         return this.readSessionFrame;
     }
 
-    // Use Amenity
-
-    public int getAmenityID(){
-        return this.selectAmenityBar.getSelectedIndex() + 1;
+    public JFrame getUpdateSelectSession() {
+        return this.updateSelectSession;
     }
 
-    public int getMemberID(){
+    public JFrame getUpdateDetailsSessionFrame() {
+        return this.updateDetailsSessionFrame;
+    }
+
+    public JFrame getDeleteSessionFrame() {
+        return this.deleteSessionFrame;
+    }
+
+    // Add Session
+    public int getSelectMemberBar() {
         return this.selectMemberBar.getSelectedIndex() + 1;
     }
 
-    public String getStartTime(){
+    public int getSelectAmenityBar() {
+        return this.selectAmenityBar.getSelectedIndex() + 1;
+    }
+
+    public String getStartTime() {
         return this.startTime.getText();
     }
 
-    public String getUsageHours(){
-        return this.startTime.getText();
+    public String getUsageHours() {
+        return this.usageHours.getText();
+    }
+
+    // Delete Session
+    public int getSelectDelete() {
+        return this.selectDelete.getSelectedIndex() + 1;
+    }
+
+    // Select Update
+    public int getSelectUpdate() {
+        return this.selectUpdate.getSelectedIndex() + 1;
+    }
+
+    // Update Details
+    public String getStartTime2() {
+        return this.startTime2.getText();
+    }
+
+    public String getUsageHours2() {
+        return this.usageHours2.getText();
+    }
+
+    // Setters
+    public void setSelectMemberBar2(int index) {
+        selectMemberBar2.setSelectedIndex(index + 1);
+    }
+
+    public void setSelectAmenityBar2(int index) {
+        selectAmenityBar2.setSelectedIndex(index + 1);
     }
 
     // Button Action Listeners
-    public void amenityUseBackButton(ActionListener actionListener){
-        this.amenityUseBack.addActionListener(actionListener);
+    public void amenityUseBackButtonButton(ActionListener actionListener) {
+        this.amenityUseBackButton.addActionListener(actionListener);
     }
 
-    public void goToUseAmenityButton(ActionListener actionListener){
-        this.goToUseAmenity.addActionListener(actionListener);
+    public void goToAddSessionButton(ActionListener actionListener) {
+        this.goToAddSession.addActionListener(actionListener);
     }
 
-    public void goToReadSessionButton(ActionListener actionListener){
+    public void goToReadSessionButton(ActionListener actionListener) {
         this.goToReadSession.addActionListener(actionListener);
     }
 
-    public void sessionReadBackButton(ActionListener actionListener){
-        this.sessionReadBack.addActionListener(actionListener);
+    public void goToUpdateSessionButton(ActionListener actionListener) {
+        this.goToUpdateSession.addActionListener(actionListener);
     }
 
-    public void useAmenityBackButton(ActionListener actionListener){
-        this.useAmenityBack.addActionListener(actionListener);
+    public void goToDeleteSessionButton(ActionListener actionListener) {
+        this.goToDeleteSession.addActionListener(actionListener);
     }
 
-    public void useAmenityButton(ActionListener actionListener){
-        this.useAmenity.addActionListener(actionListener);
+    public void addSessionButton(ActionListener actionListener) {
+        this.addSession.addActionListener(actionListener);
+    }
+
+    public void addSessionBackButton(ActionListener actionListener) {
+        this.addSessionBack.addActionListener(actionListener);
+    }
+
+    public void readSessionBackButton(ActionListener actionListener) {
+        this.readSessionBack.addActionListener(actionListener);
+    }
+
+    public void deleteSessionButton(ActionListener actionListener) {
+        this.deleteSession.addActionListener(actionListener);
+    }
+
+    public void deleteSessionBackButton(ActionListener actionListener) {
+        this.deleteSessionBack.addActionListener(actionListener);
+    }
+
+    public void updateSessionSelectButton(ActionListener actionListener) {
+        this.updateSessionSelect.addActionListener(actionListener);
+    }
+
+    public void updateSelectBackButton(ActionListener actionListener) {
+        this.updateSelectBackk.addActionListener(actionListener);
+    }
+
+    public void updateSessionButton(ActionListener actionListener) {
+        this.updateSession.addActionListener(actionListener);
+    }
+
+    public void updateSessionDetailsBackButton(ActionListener actionListener) {
+        this.updateSessionDetailsBack.addActionListener(actionListener);
     }
 }
