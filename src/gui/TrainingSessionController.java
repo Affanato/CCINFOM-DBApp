@@ -38,6 +38,15 @@ public class TrainingSessionController {
             }
         });
 
+        this.tsView.goToUpdateButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tsView.getUpdateSessionFrame1().setVisible(true);
+                tsView.getTrainingSessionFrame().dispose();
+                tsView.getUpdateTrainingSessionIDComboBox(); // set here
+            }
+        });
+
         this.tsView.scheduleBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -61,6 +70,21 @@ public class TrainingSessionController {
                 tsView.getCancelSessionFrame().dispose();
             }
         });
+        this.tsView.updateBackButton1(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tsView.getTrainingSessionFrame().setVisible(true);
+                tsView.getUpdateSessionFrame1().dispose();
+            }
+        });
+        this.tsView.updateBackButton2(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tsView.getUpdateSessionFrame1().setVisible(true);
+                tsView.getUpdateSessionFrame2().dispose();
+            }
+        });
+
         this.tsView.scheduleSessionButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -68,6 +92,19 @@ public class TrainingSessionController {
             }
         });
         this.tsView.cancelSessionButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //
+            }
+        });
+        this.tsView.proceedUpdateButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tsView.getUpdateSessionFrame1().dispose();
+                tsView.getUpdateSessionFrame2().setVisible(true);
+            }
+        });
+        this.tsView.updateTrainingSessionButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //

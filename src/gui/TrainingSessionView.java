@@ -25,6 +25,7 @@ public class TrainingSessionView {
 		goToAdd = new JButton();
 		goToDelete = new JButton();
 		goToRead = new JButton();
+		goToUpdate = new JButton();
 		label1 = new JLabel();
 		schedulSessionFrame = new JFrame();
 		subscriptionID = new JComboBox();
@@ -54,6 +55,28 @@ public class TrainingSessionView {
 		readBack = new JButton();
 		titleBar4 = new JFormattedTextField();
 		label4 = new JLabel();
+		updateSessionFrame1 = new JFrame();
+		trainingSessionText6 = new JFormattedTextField();
+		updateTrainingSessionID = new JComboBox();
+		proceedUpdate = new JButton();
+		editorPane3 = new JEditorPane();
+		updateBack1 = new JButton();
+		titleBar5 = new JFormattedTextField();
+		label5 = new JLabel();
+		updateSessionFrame2 = new JFrame();
+		updateSubscriptionID = new JComboBox();
+		updateTrainerID = new JComboBox();
+		updateStartdatetime = new JTextPane();
+		updateEnddatetime = new JTextPane();
+		updateSession = new JButton();
+		trainingSessionText7 = new JFormattedTextField();
+		trainingSessionText8 = new JFormattedTextField();
+		trainingSessionText9 = new JFormattedTextField();
+		trainingSessionText10 = new JFormattedTextField();
+		editorPane4 = new JEditorPane();
+		updateBack2 = new JButton();
+		titleBar6 = new JFormattedTextField();
+		label6 = new JLabel();
 
 		//======== trainingSessionFrame ========
 		{
@@ -61,8 +84,8 @@ public class TrainingSessionView {
 			trainingSessionFrameContentPane.setLayout(null);
 
 			//---- trainingSessionBackButton ----
-			trainingSessionBackButton.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
-			trainingSessionBackButton.setIcon(new ImageIcon("resource\\backButton.jpg"));
+			trainingSessionBackButton.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+			trainingSessionBackButton.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
 			trainingSessionBackButton.setBackground(new Color(0xc80f2e));
 			trainingSessionFrameContentPane.add(trainingSessionBackButton);
 			trainingSessionBackButton.setBounds(5, 5, trainingSessionBackButton.getPreferredSize().width, 45);
@@ -83,7 +106,7 @@ public class TrainingSessionView {
 			goToAdd.setForeground(Color.white);
 			goToAdd.setBackground(new Color(0x3ca3cb));
 			trainingSessionFrameContentPane.add(goToAdd);
-			goToAdd.setBounds(470, 225, 250, 55);
+			goToAdd.setBounds(470, 180, 250, 55);
 
 			//---- goToDelete ----
 			goToDelete.setText("CANCEL SESSION");
@@ -91,7 +114,7 @@ public class TrainingSessionView {
 			goToDelete.setForeground(Color.white);
 			goToDelete.setBackground(new Color(0x3ca3cb));
 			trainingSessionFrameContentPane.add(goToDelete);
-			goToDelete.setBounds(470, 310, 250, 55);
+			goToDelete.setBounds(470, 265, 250, 55);
 
 			//---- goToRead ----
 			goToRead.setText("READ SESSIONS");
@@ -99,10 +122,18 @@ public class TrainingSessionView {
 			goToRead.setForeground(Color.white);
 			goToRead.setBackground(new Color(0x3ca3cb));
 			trainingSessionFrameContentPane.add(goToRead);
-			goToRead.setBounds(470, 395, 250, 55);
+			goToRead.setBounds(470, 350, 250, 55);
+
+			//---- goToUpdate ----
+			goToUpdate.setText("UPDATE SESSION");
+			goToUpdate.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+			goToUpdate.setForeground(Color.white);
+			goToUpdate.setBackground(new Color(0x3ca3cb));
+			trainingSessionFrameContentPane.add(goToUpdate);
+			goToUpdate.setBounds(470, 435, 250, 55);
 
 			//---- label1 ----
-			label1.setIcon(new ImageIcon("resource\\trainers.jpg"));
+			label1.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\trainers.jpg"));
 			trainingSessionFrameContentPane.add(label1);
 			label1.setBounds(0, 55, 1200, 615);
 
@@ -199,8 +230,8 @@ public class TrainingSessionView {
 			editorPane1.setBounds(295, 145, 640, 350);
 
 			//---- scheduleBack ----
-			scheduleBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
-			scheduleBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
+			scheduleBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+			scheduleBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
 			scheduleBack.setBackground(new Color(0xc80f2e));
 			schedulSessionFrameContentPane.add(scheduleBack);
 			scheduleBack.setBounds(5, 5, scheduleBack.getPreferredSize().width, 45);
@@ -216,7 +247,7 @@ public class TrainingSessionView {
 			titleBar2.setBounds(0, 0, 1200, 55);
 
 			//---- label2 ----
-			label2.setIcon(new ImageIcon("resource\\trainers.jpg"));
+			label2.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\trainers.jpg"));
 			schedulSessionFrameContentPane.add(label2);
 			label2.setBounds(0, 55, 1200, 615);
 
@@ -270,8 +301,8 @@ public class TrainingSessionView {
 			editorPane2.setBounds(360, 215, 470, 220);
 
 			//---- cancelBack ----
-			cancelBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
-			cancelBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
+			cancelBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+			cancelBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
 			cancelBack.setBackground(new Color(0xc80f2e));
 			cancelSessionFrameContentPane.add(cancelBack);
 			cancelBack.setBounds(5, 5, cancelBack.getPreferredSize().width, 45);
@@ -287,7 +318,7 @@ public class TrainingSessionView {
 			titleBar3.setBounds(0, 0, 1200, 55);
 
 			//---- label3 ----
-			label3.setIcon(new ImageIcon("resource\\trainers.jpg"));
+			label3.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\trainers.jpg"));
 			cancelSessionFrameContentPane.add(label3);
 			label3.setBounds(0, 55, 1200, 615);
 
@@ -344,8 +375,8 @@ public class TrainingSessionView {
 			scrollPane1.setBounds(105, 115, 1000, 470);
 
 			//---- readBack ----
-			readBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
-			readBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
+			readBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+			readBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
 			readBack.setBackground(new Color(0xc80f2e));
 			readSessionFrameContentPane.add(readBack);
 			readBack.setBounds(5, 5, readBack.getPreferredSize().width, 45);
@@ -361,7 +392,7 @@ public class TrainingSessionView {
 			titleBar4.setBounds(0, 0, 1200, 55);
 
 			//---- label4 ----
-			label4.setIcon(new ImageIcon("resource\\trainers.jpg"));
+			label4.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\trainers.jpg"));
 			readSessionFrameContentPane.add(label4);
 			label4.setBounds(0, 55, 1200, 615);
 
@@ -382,6 +413,189 @@ public class TrainingSessionView {
 			readSessionFrame.setSize(1200, 700);
 			readSessionFrame.setLocationRelativeTo(null);
 		}
+
+		//======== updateSessionFrame1 ========
+		{
+			Container updateSessionFrame1ContentPane = updateSessionFrame1.getContentPane();
+			updateSessionFrame1ContentPane.setLayout(null);
+
+			//---- trainingSessionText6 ----
+			trainingSessionText6.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+			trainingSessionText6.setText("Select Training Session");
+			trainingSessionText6.setHorizontalAlignment(SwingConstants.CENTER);
+			trainingSessionText6.setEditable(false);
+			updateSessionFrame1ContentPane.add(trainingSessionText6);
+			trainingSessionText6.setBounds(360, 215, 470, 35);
+
+			//---- updateTrainingSessionID ----
+			updateTrainingSessionID.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			updateSessionFrame1ContentPane.add(updateTrainingSessionID);
+			updateTrainingSessionID.setBounds(400, 280, 390, 40);
+
+			//---- proceedUpdate ----
+			proceedUpdate.setText("PROCEED");
+			proceedUpdate.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+			proceedUpdate.setForeground(Color.white);
+			proceedUpdate.setBackground(new Color(0x3ca3cb));
+			updateSessionFrame1ContentPane.add(proceedUpdate);
+			proceedUpdate.setBounds(465, 360, 250, 55);
+
+			//---- editorPane3 ----
+			editorPane3.setBackground(new Color(0xb5b9b8));
+			updateSessionFrame1ContentPane.add(editorPane3);
+			editorPane3.setBounds(360, 215, 470, 220);
+
+			//---- updateBack1 ----
+			updateBack1.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+			updateBack1.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			updateBack1.setBackground(new Color(0xc80f2e));
+			updateSessionFrame1ContentPane.add(updateBack1);
+			updateBack1.setBounds(5, 5, updateBack1.getPreferredSize().width, 45);
+
+			//---- titleBar5 ----
+			titleBar5.setText("Training Session: Update a Session");
+			titleBar5.setBackground(new Color(0xc80f2e));
+			titleBar5.setHorizontalAlignment(SwingConstants.CENTER);
+			titleBar5.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
+			titleBar5.setForeground(Color.white);
+			titleBar5.setEditable(false);
+			updateSessionFrame1ContentPane.add(titleBar5);
+			titleBar5.setBounds(0, 0, 1200, 55);
+
+			//---- label5 ----
+			label5.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\trainers.jpg"));
+			updateSessionFrame1ContentPane.add(label5);
+			label5.setBounds(0, 55, 1200, 615);
+
+			{
+				// compute preferred size
+				Dimension preferredSize = new Dimension();
+				for(int i = 0; i < updateSessionFrame1ContentPane.getComponentCount(); i++) {
+					Rectangle bounds = updateSessionFrame1ContentPane.getComponent(i).getBounds();
+					preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+					preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+				}
+				Insets insets = updateSessionFrame1ContentPane.getInsets();
+				preferredSize.width += insets.right;
+				preferredSize.height += insets.bottom;
+				updateSessionFrame1ContentPane.setMinimumSize(preferredSize);
+				updateSessionFrame1ContentPane.setPreferredSize(preferredSize);
+			}
+			updateSessionFrame1.setSize(1200, 700);
+			updateSessionFrame1.setLocationRelativeTo(null);
+		}
+
+		//======== updateSessionFrame2 ========
+		{
+			Container updateSessionFrame2ContentPane = updateSessionFrame2.getContentPane();
+			updateSessionFrame2ContentPane.setLayout(null);
+
+			//---- updateSubscriptionID ----
+			updateSubscriptionID.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			updateSessionFrame2ContentPane.add(updateSubscriptionID);
+			updateSubscriptionID.setBounds(505, 175, 390, 40);
+
+			//---- updateTrainerID ----
+			updateTrainerID.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			updateSessionFrame2ContentPane.add(updateTrainerID);
+			updateTrainerID.setBounds(505, 235, 390, 40);
+
+			//---- updateStartdatetime ----
+			updateStartdatetime.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			updateStartdatetime.setText("YYYY-MM-DD hh:mm:ss");
+			updateSessionFrame2ContentPane.add(updateStartdatetime);
+			updateStartdatetime.setBounds(505, 295, 390, 35);
+
+			//---- updateEnddatetime ----
+			updateEnddatetime.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			updateEnddatetime.setText("YYYY-MM-DD hh:mm:ss");
+			updateSessionFrame2ContentPane.add(updateEnddatetime);
+			updateEnddatetime.setBounds(505, 350, 390, 35);
+
+			//---- updateSession ----
+			updateSession.setText("UPDATE SESSION");
+			updateSession.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+			updateSession.setForeground(Color.white);
+			updateSession.setBackground(new Color(0x3ca3cb));
+			updateSessionFrame2ContentPane.add(updateSession);
+			updateSession.setBounds(470, 415, 250, 55);
+
+			//---- trainingSessionText7 ----
+			trainingSessionText7.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+			trainingSessionText7.setText("Subscription ID");
+			trainingSessionText7.setHorizontalAlignment(SwingConstants.LEFT);
+			trainingSessionText7.setEditable(false);
+			updateSessionFrame2ContentPane.add(trainingSessionText7);
+			trainingSessionText7.setBounds(315, 175, 175, 40);
+
+			//---- trainingSessionText8 ----
+			trainingSessionText8.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+			trainingSessionText8.setText("Trainer ID");
+			trainingSessionText8.setHorizontalAlignment(SwingConstants.LEFT);
+			trainingSessionText8.setEditable(false);
+			updateSessionFrame2ContentPane.add(trainingSessionText8);
+			trainingSessionText8.setBounds(315, 235, 175, 40);
+
+			//---- trainingSessionText9 ----
+			trainingSessionText9.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+			trainingSessionText9.setText("Start Date and Time");
+			trainingSessionText9.setHorizontalAlignment(SwingConstants.LEFT);
+			trainingSessionText9.setEditable(false);
+			updateSessionFrame2ContentPane.add(trainingSessionText9);
+			trainingSessionText9.setBounds(315, 295, 175, 35);
+
+			//---- trainingSessionText10 ----
+			trainingSessionText10.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+			trainingSessionText10.setText("End Date and Time");
+			trainingSessionText10.setHorizontalAlignment(SwingConstants.LEFT);
+			trainingSessionText10.setEditable(false);
+			updateSessionFrame2ContentPane.add(trainingSessionText10);
+			trainingSessionText10.setBounds(315, 350, 175, 35);
+
+			//---- editorPane4 ----
+			editorPane4.setBackground(new Color(0xb5b9b8));
+			updateSessionFrame2ContentPane.add(editorPane4);
+			editorPane4.setBounds(295, 145, 640, 350);
+
+			//---- updateBack2 ----
+			updateBack2.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
+			updateBack2.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			updateBack2.setBackground(new Color(0xc80f2e));
+			updateSessionFrame2ContentPane.add(updateBack2);
+			updateBack2.setBounds(5, 5, updateBack2.getPreferredSize().width, 45);
+
+			//---- titleBar6 ----
+			titleBar6.setText("Training Session: Update a Session");
+			titleBar6.setBackground(new Color(0xc80f2e));
+			titleBar6.setHorizontalAlignment(SwingConstants.CENTER);
+			titleBar6.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
+			titleBar6.setForeground(Color.white);
+			titleBar6.setEditable(false);
+			updateSessionFrame2ContentPane.add(titleBar6);
+			titleBar6.setBounds(0, 0, 1200, 55);
+
+			//---- label6 ----
+			label6.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\trainers.jpg"));
+			updateSessionFrame2ContentPane.add(label6);
+			label6.setBounds(0, 55, 1200, 615);
+
+			{
+				// compute preferred size
+				Dimension preferredSize = new Dimension();
+				for(int i = 0; i < updateSessionFrame2ContentPane.getComponentCount(); i++) {
+					Rectangle bounds = updateSessionFrame2ContentPane.getComponent(i).getBounds();
+					preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+					preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+				}
+				Insets insets = updateSessionFrame2ContentPane.getInsets();
+				preferredSize.width += insets.right;
+				preferredSize.height += insets.bottom;
+				updateSessionFrame2ContentPane.setMinimumSize(preferredSize);
+				updateSessionFrame2ContentPane.setPreferredSize(preferredSize);
+			}
+			updateSessionFrame2.setSize(1200, 700);
+			updateSessionFrame2.setLocationRelativeTo(null);
+		}
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
 	}
 
@@ -393,6 +607,7 @@ public class TrainingSessionView {
 	private JButton goToAdd;
 	private JButton goToDelete;
 	private JButton goToRead;
+	private JButton goToUpdate;
 	private JLabel label1;
 	private JFrame schedulSessionFrame;
 	private JComboBox subscriptionID;
@@ -422,6 +637,28 @@ public class TrainingSessionView {
 	private JButton readBack;
 	private JFormattedTextField titleBar4;
 	private JLabel label4;
+	private JFrame updateSessionFrame1;
+	private JFormattedTextField trainingSessionText6;
+	private JComboBox updateTrainingSessionID;
+	private JButton proceedUpdate;
+	private JEditorPane editorPane3;
+	private JButton updateBack1;
+	private JFormattedTextField titleBar5;
+	private JLabel label5;
+	private JFrame updateSessionFrame2;
+	private JComboBox updateSubscriptionID;
+	private JComboBox updateTrainerID;
+	private JTextPane updateStartdatetime;
+	private JTextPane updateEnddatetime;
+	private JButton updateSession;
+	private JFormattedTextField trainingSessionText7;
+	private JFormattedTextField trainingSessionText8;
+	private JFormattedTextField trainingSessionText9;
+	private JFormattedTextField trainingSessionText10;
+	private JEditorPane editorPane4;
+	private JButton updateBack2;
+	private JFormattedTextField titleBar6;
+	private JLabel label6;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
 
@@ -434,6 +671,9 @@ public class TrainingSessionView {
 	}
 	public JComboBox<String> getTrainingSessionIDComboBox() {
 		return this.trainingSessionID;
+	}
+	public JComboBox<String> getUpdateTrainingSessionIDComboBox() {
+		return this.updateTrainingSessionID;
 	}
 
 	// getters
@@ -449,25 +689,42 @@ public class TrainingSessionView {
 	public JFrame getReadSessionFrame() {
 		return this.readSessionFrame;
 	}
+	public JFrame getUpdateSessionFrame1() {
+		return this.updateSessionFrame1;
+	}
+	public JFrame getUpdateSessionFrame2() {
+		return this.updateSessionFrame2;
+	}
 
 	public int getSubscriptionID() {
 		return this.subscriptionID.getSelectedIndex() + 1; // might have to edit if list is only for active suusbcriptions
 	}
-
 	public int getTrainerID() {
 		return this.trainerID.getSelectedIndex() + 1;
 	}
-
 	public String getStartDate() {
 		return this.startdatetime.getText();
 	}
-
 	public String getEndDate() {
 		return this.enddatetime.getText();
 	}
 
 	public int getTrainingSessionID() {
 		return this.trainingSessionID.getSelectedIndex() + 1;
+	}
+
+	// update
+	public int getUpdateSubscriptionID() {
+		return this.updateSubscriptionID.getSelectedIndex() + 1; // might have to edit if list is only for active suusbcriptions
+	}
+	public int getUpdateTrainerID() {
+		return this.updateTrainerID.getSelectedIndex() + 1;
+	}
+	public String getUpdateStartDate() {
+		return this.updateStartdatetime.getText();
+	}
+	public String getUpdateEndDate() {
+		return this.updateEnddatetime.getText();
 	}
 
 	// buttons
@@ -484,6 +741,9 @@ public class TrainingSessionView {
 	public void goToDeleteButton(ActionListener actionListener) {
 		this.goToDelete.addActionListener(actionListener);
 	}
+	public void goToUpdateButton(ActionListener actionListener) {
+		this.goToUpdate.addActionListener(actionListener);
+	}
 
 	public void scheduleBackButton(ActionListener actionListener) {
 		this.scheduleBack.addActionListener(actionListener);
@@ -494,11 +754,46 @@ public class TrainingSessionView {
 	public void readBackButton(ActionListener actionListener) {
 		this.readBack.addActionListener(actionListener);
 	}
+	public void updateBackButton1(ActionListener actionListener) {
+		this.updateBack1.addActionListener(actionListener);
+	}
+	public void updateBackButton2(ActionListener actionListener) {
+		this.updateBack2.addActionListener(actionListener);
+	}
 
 	public void scheduleSessionButton(ActionListener actionListener) {
 		this.scheduleSession.addActionListener(actionListener);
 	}
 	public void cancelSessionButton(ActionListener actionListener) {
 		this.cancelSession.addActionListener(actionListener);
+	}
+
+	public void proceedUpdateButton(ActionListener actionListener) {
+		this.proceedUpdate.addActionListener(actionListener);
+	}
+	public void updateTrainingSessionButton(ActionListener actionListener) {
+		this.updateSession.addActionListener(actionListener);
+	}
+	
+
+	// set table model
+	public void setTrainerSessionTable(Object[][] data) { 
+		String[] columnNames = {"Training Session ID", "Subscription ID", "Trainer ID", "Start Date and Time", "End Date and Time"};
+		DefaultTableModel model = new DefaultTableModel(data, columnNames);
+		trainingSessionTable.setModel(model);
+
+		{
+			TableColumnModel cm = trainingSessionTable.getColumnModel();
+			cm.getColumn(0).setMinWidth(150);
+			cm.getColumn(0).setMaxWidth(150);
+			cm.getColumn(1).setMinWidth(150);
+			cm.getColumn(1).setMaxWidth(150);
+			cm.getColumn(2).setMinWidth(150);
+			cm.getColumn(2).setMaxWidth(150);
+		}
+	}
+
+	public static void main(String[] args) {
+		new TrainingSessionController();
 	}
 }
