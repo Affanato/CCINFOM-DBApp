@@ -84,8 +84,8 @@ public class TrainingSessionView {
 			trainingSessionFrameContentPane.setLayout(null);
 
 			//---- trainingSessionBackButton ----
-			trainingSessionBackButton.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
-			trainingSessionBackButton.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			trainingSessionBackButton.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
+			trainingSessionBackButton.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			trainingSessionBackButton.setBackground(new Color(0xc80f2e));
 			trainingSessionFrameContentPane.add(trainingSessionBackButton);
 			trainingSessionBackButton.setBounds(5, 5, trainingSessionBackButton.getPreferredSize().width, 45);
@@ -133,7 +133,7 @@ public class TrainingSessionView {
 			goToUpdate.setBounds(470, 435, 250, 55);
 
 			//---- label1 ----
-			label1.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\trainers.jpg"));
+			label1.setIcon(new ImageIcon("resource\\trainers.jpg"));
 			trainingSessionFrameContentPane.add(label1);
 			label1.setBounds(0, 55, 1200, 615);
 
@@ -230,8 +230,8 @@ public class TrainingSessionView {
 			editorPane1.setBounds(295, 145, 640, 350);
 
 			//---- scheduleBack ----
-			scheduleBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
-			scheduleBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			scheduleBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
+			scheduleBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			scheduleBack.setBackground(new Color(0xc80f2e));
 			schedulSessionFrameContentPane.add(scheduleBack);
 			scheduleBack.setBounds(5, 5, scheduleBack.getPreferredSize().width, 45);
@@ -247,7 +247,7 @@ public class TrainingSessionView {
 			titleBar2.setBounds(0, 0, 1200, 55);
 
 			//---- label2 ----
-			label2.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\trainers.jpg"));
+			label2.setIcon(new ImageIcon("resource\\trainers.jpg"));
 			schedulSessionFrameContentPane.add(label2);
 			label2.setBounds(0, 55, 1200, 615);
 
@@ -301,8 +301,8 @@ public class TrainingSessionView {
 			editorPane2.setBounds(360, 215, 470, 220);
 
 			//---- cancelBack ----
-			cancelBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
-			cancelBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			cancelBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
+			cancelBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			cancelBack.setBackground(new Color(0xc80f2e));
 			cancelSessionFrameContentPane.add(cancelBack);
 			cancelBack.setBounds(5, 5, cancelBack.getPreferredSize().width, 45);
@@ -318,7 +318,7 @@ public class TrainingSessionView {
 			titleBar3.setBounds(0, 0, 1200, 55);
 
 			//---- label3 ----
-			label3.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\trainers.jpg"));
+			label3.setIcon(new ImageIcon("resource\\trainers.jpg"));
 			cancelSessionFrameContentPane.add(label3);
 			label3.setBounds(0, 55, 1200, 615);
 
@@ -375,8 +375,8 @@ public class TrainingSessionView {
 			scrollPane1.setBounds(105, 115, 1000, 470);
 
 			//---- readBack ----
-			readBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
-			readBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			readBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
+			readBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			readBack.setBackground(new Color(0xc80f2e));
 			readSessionFrameContentPane.add(readBack);
 			readBack.setBounds(5, 5, readBack.getPreferredSize().width, 45);
@@ -392,7 +392,7 @@ public class TrainingSessionView {
 			titleBar4.setBounds(0, 0, 1200, 55);
 
 			//---- label4 ----
-			label4.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\trainers.jpg"));
+			label4.setIcon(new ImageIcon("resource\\trainers.jpg"));
 			readSessionFrameContentPane.add(label4);
 			label4.setBounds(0, 55, 1200, 615);
 
@@ -446,8 +446,8 @@ public class TrainingSessionView {
 			editorPane3.setBounds(360, 215, 470, 220);
 
 			//---- updateBack1 ----
-			updateBack1.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
-			updateBack1.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			updateBack1.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
+			updateBack1.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			updateBack1.setBackground(new Color(0xc80f2e));
 			updateSessionFrame1ContentPane.add(updateBack1);
 			updateBack1.setBounds(5, 5, updateBack1.getPreferredSize().width, 45);
@@ -463,7 +463,7 @@ public class TrainingSessionView {
 			titleBar5.setBounds(0, 0, 1200, 55);
 
 			//---- label5 ----
-			label5.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\trainers.jpg"));
+			label5.setIcon(new ImageIcon("resource\\trainers.jpg"));
 			updateSessionFrame1ContentPane.add(label5);
 			label5.setBounds(0, 55, 1200, 615);
 
@@ -558,8 +558,8 @@ public class TrainingSessionView {
 			editorPane4.setBounds(295, 145, 640, 350);
 
 			//---- updateBack2 ----
-			updateBack2.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
-			updateBack2.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			updateBack2.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
+			updateBack2.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			updateBack2.setBackground(new Color(0xc80f2e));
 			updateSessionFrame2ContentPane.add(updateBack2);
 			updateBack2.setBounds(5, 5, updateBack2.getPreferredSize().width, 45);
@@ -575,7 +575,7 @@ public class TrainingSessionView {
 			titleBar6.setBounds(0, 0, 1200, 55);
 
 			//---- label6 ----
-			label6.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\trainers.jpg"));
+			label6.setIcon(new ImageIcon("resource\\trainers.jpg"));
 			updateSessionFrame2ContentPane.add(label6);
 			label6.setBounds(0, 55, 1200, 615);
 
