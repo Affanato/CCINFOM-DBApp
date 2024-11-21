@@ -10,20 +10,24 @@ public class ProductsDAO {
         this.statement = DBUtils.getNewStatement();
     }
 
-    // TODO: In Progress
     // TODO: Code related methods. Refer to any implemented DAO.
     // SINGLE UPDATE QUERIES
-    public void insertProduct(Product p) {
+    public void insertProduct(String productBrand, String productName, String productDescription, double productPrice, int availableQuantity) {
+        if (productPrice <= 0 || availableQuantity < 0) {
+            System.out.println("Invalid price or quantity");
+            return;
+        }
+
         String sql = "INSERT INTO products (product_brand, product_name, product_description, product_price, available_quantity) " +
                 "VALUES (?, ?, ?, ?, ?)";
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
-            ps.setString(1, p.productBrand());
-            ps.setString(2, p.productName());
-            ps.setString(3, p.productDescription());
-            ps.setDouble(4, p.productPrice());
-            ps.setInt(5, p.availableQuantity());
+            ps.setString(1, productBrand);
+            ps.setString(2, productName);
+            ps.setString(3, productDescription);
+            ps.setDouble(4, productPrice);
+            ps.setInt(5, availableQuantity);
 
             ps.executeUpdate();
             System.out.println("Product record inserted successfully.");
@@ -66,6 +70,7 @@ public class ProductsDAO {
     }
 
     // TRANSACTIONS
+    // NOTE: addProduct is just insertProduct
     public void sellProduct(int productID, int quantitySold) {
         // EDGE/INVALID CASES (invalid product id, insufficient stock)
         if (!DBUtils.primaryKeyExistsInATable("products", "product_id", productID)) {

@@ -2,8 +2,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Establishes and manages a databaseConnection to the database.
@@ -12,9 +15,9 @@ public class DBUtils {
 
     // TODO: Yep, these are actual credentials to my testing connection.
     //       Please replace with your own in a separate branch. - CJ
-    private static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/dbgym";
-    private static final String DB_USER = "db_admin";
-    private static final String DB_PASSWORD = "AkoSiGymAppDBAdmin";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/dbgym";
+    private static final String DB_USER = "root";
+    private static final String DB_PASSWORD = "gagokaba3696";
     private static final String SQL_FILEPATH = "dbgym_script.sql";
 
     private static Connection connection = null;
@@ -259,5 +262,15 @@ public class DBUtils {
             result[i] = list.get(i).toObjectArray();
         }
         return result;
+    }
+
+    public static LocalDateTime convertStringToLocalDateTime(String dateTimeString) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return LocalDateTime.parse(dateTimeString, formatter);
+    }
+
+    public static LocalDate convertStringToLocalDate(String dateString) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return LocalDate.parse(dateString, formatter);
     }
 }

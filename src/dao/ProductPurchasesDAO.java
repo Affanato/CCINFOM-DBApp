@@ -12,16 +12,21 @@ public class ProductPurchasesDAO {
 
     // TODO: Code related methods. Refer to any implemented DAO.
     // SINGLE QUERY UPDATE
-    public void insertProductPurchase(ProductPurchase pp) {
+    public void insertProductPurchase(int memberID, int productID, int quantitySold) {
+        if (quantitySold <= 0) {
+            System.out.println("Product purchase quantity sold is invalid.");
+            return;
+        }
+
         String sql = "INSERT INTO product_purchases (member_id, product_id, quantity_sold, purchase_date_time) " +
                 "VALUES (?, ?, ?, ?)";
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
-            ps.setInt(1, pp.memberID());              // member_id
-            ps.setInt(2, pp.productID());             // product_id
-            ps.setInt(3, pp.quantitySold());          // quantity_sold
-            ps.setTimestamp(4, Timestamp.valueOf(pp.purchaseDateTime()));  // purchase_date_time
+            ps.setInt(1, memberID);              // member_id
+            ps.setInt(2, productID);             // product_id
+            ps.setInt(3, quantitySold);          // quantity_sold
+            ps.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));  // purchase_date_time
 
             ps.executeUpdate();
             System.out.println("Product purchase record inserted successfully.");
@@ -77,7 +82,6 @@ public class ProductPurchasesDAO {
     public void deleteByProductID(int productID) {
         DBUtils.deleteTableRecordsByKey("product_purchases", "product_id", productID);
     }
-
 
     // SELECT QUERIES
     public static ProductPurchase selectProductPurchase(int productPurchaseID) {
