@@ -10,7 +10,6 @@ public class MembersDAO {
         this.statement = DBUtils.getNewStatement();
     }
 
-    // TODO: Code related methods. Refer to any implemented DAO.
     // SINGLE UPDATE QUERIES
     public void insertMember(Member m) {
         String sql = "INSERT INTO members (last_name, first_name, birthdate, sex, phone_number, street, barangay, city, province) " +
@@ -76,7 +75,6 @@ public class MembersDAO {
         }
     }
 
-
     // SELECT QUERIES
     public static Member selectMember(int memberID) {
         String condition = "WHERE member_id = " + memberID;
@@ -125,13 +123,38 @@ public class MembersDAO {
         }
     }
 
+    public static int getCurrentSubscriptionID(int memberID) {
+        String sql = "SELECT        s.subscription_id " +
+                     "FROM          members m " +
+                     "JOIN          subscriptions s ON m.member_id = s.member_id " +
+                     "WHERE         m.member_id = ? " +
+                     "AND           CURRENT_DATE BETWEEN s.subscription_start_date AND s.subscription_end_date; ";
+
+        try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
+            assert ps != null;
+            ps.setInt(1, memberID);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            } catch (SQLException e) {
+                ExceptionHandler.handleException(e);
+                return -1;
+            }
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+        }
+
+        return -1;
+    }
 
     public static int getCurrentSubscriptionTypeID(int memberID) {
-        String sql = "SELECT\t\t\ts.subscription_type_id " +
-                     "FROM\t\t\tmembers m " +
-                     "JOIN\t\t\tsubscriptions s ON m.member_id = s.member_id " +
-                     "WHERE\t\t\tm.member_id = ? " +
-                     "AND\t\t\t\tCURRENT_DATE BETWEEN s.subscription_start_date AND s.subscription_end_date; ";
+        String sql = "SELECT        s.subscription_type_id " +
+                     "FROM          members m " +
+                     "JOIN          subscriptions s ON m.member_id = s.member_id " +
+                     "WHERE         m.member_id = ? " +
+                     "AND           CURRENT_DATE BETWEEN s.subscription_start_date AND s.subscription_end_date; ";
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
