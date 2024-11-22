@@ -111,7 +111,28 @@ public class ProductPurchasesDAO {
         return DBUtils.to2DObjectArray(mapResultSetToProductPurchaseList(rs));
     }
 
+    // TRANSACIONS
+    // sell is insert
+    // delete is delete
+    public void cancelProductPurchase(int productPurchaseID) {
+        ProductPurchase pp = selectProductPurchase(productPurchaseID);
+        int quantity = pp.quantitySold();
+        ProductsDAO.undoPurchase(productPurchaseID, quantity);
+        deleteProductPurchase(productPurchaseID);
+    }
 
+    public void updateProductPurchase(int oldProductID, int newProductID, int quantitySold, int memberID) {
+        ProductPurchase oldPP = selectProductPurchase(oldProductID);
+        ProductPurchase newPP = new ProductPurchase(
+            oldPP.productPurchaseID(),
+            memberID,
+            newProductID,
+            quantitySold,
+            oldPP.purchaseDateTime()
+        );
+        ProductsDAO.undoPurchase(oldProductID, quantitySold);
+        ProductsDAO.removeStock(newProductID, quantitySold);
+    }
 
     // UTILITY FUNCTIONS
     public static ProductPurchase mapResultSetToProductPurchase(ResultSet rs) {

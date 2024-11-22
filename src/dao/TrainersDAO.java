@@ -100,6 +100,39 @@ public class TrainersDAO {
     }
 
     // REC MANAGEMENT & TRANSACTIONS
+    // TODO: turn into one functiom
+    public void updateTrainer(
+            int trainerID,
+            String lastName,
+            LocalDate birthdate,
+            String sex,
+            String phoneNumber,
+            String street,
+            String barangay,
+            String city,
+            String province,
+            String programSpecialty
+    ) {
+
+        Trainer oldT = selectTrainer(trainerID);
+        Trainer updatedTrainer = new Trainer(
+                trainerID,
+                lastName != null ? lastName : oldT.lastName(),
+                oldT.firstName(),
+                birthdate != null ? birthdate : oldT.birthdate(),
+                sex != null ? Sex.valueOf(sex) : oldT.sex(),
+                phoneNumber != null ? phoneNumber : oldT.phoneNumber(),
+                street != null ? street : oldT.street(),
+                barangay != null ? barangay : oldT.barangay(),
+                city != null ? city : oldT.city(),
+                province != null ? province : oldT.province(),
+                programSpecialty != null ? programSpecialty : oldT.programSpecialty(),
+                oldT.trainerStatus()
+        );
+        updateTrainer(trainerID, updatedTrainer);
+    }
+
+
     public void fireTrainer(int trainerID) {
         if (!DBUtils.primaryKeyExistsInATable("trainers", "trainer_id", trainerID)) {
             return;
@@ -227,8 +260,6 @@ public class TrainersDAO {
             return null;
         }
     }
-
-
 
     public void closeStatement() {
         DBUtils.closeStatement(statement);
