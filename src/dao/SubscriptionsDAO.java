@@ -114,6 +114,10 @@ public class SubscriptionsDAO {
     }
 
     // SELECT QUERIES //
+    public String[] getComboBoxSubscriptionIDs() {
+        return DBUtils.selectAllKeysFromTable("subscriptions", "subscription_id");
+    }
+
     public static Subscription selectSubscription(int subscriptionID) {
         String condition = "WHERE subscription_id = " + subscriptionID;
         ResultSet rs = DBUtils.selectAllRecordsFromTable("subscriptions", condition);
