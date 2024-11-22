@@ -90,7 +90,7 @@ public class MainMenuView extends JFrame {
         //---- button4 ----
         button4.setText("Amenities Report ");
         button4.setBackground(new Color(0x3ca3cb));
-        button4.setFont(button4.getFont().deriveFont(button4.getFont().getSize() + 12f));
+        button4.setFont(button4.getFont().deriveFont(button4.getFont().getSize() + 9f));
         button4.setForeground(Color.white);
         contentPane.add(button4);
         button4.setBounds(895, 115, 260, 77);
@@ -98,6 +98,7 @@ public class MainMenuView extends JFrame {
         //---- button5 ----
         button5.setText("Product");
         button5.setBackground(new Color(0xc80f2e));
+        button5.setFont(button5.getFont().deriveFont(button5.getFont().getSize() + 8f));
         button5.setForeground(Color.white);
         contentPane.add(button5);
         button5.setBounds(915, 540, 200, 90);
@@ -105,6 +106,7 @@ public class MainMenuView extends JFrame {
         //---- button6 ----
         button6.setText("Subscription");
         button6.setBackground(new Color(0xc80f2e));
+        button6.setFont(button6.getFont().deriveFont(button6.getFont().getSize() + 8f));
         button6.setForeground(Color.white);
         contentPane.add(button6);
         button6.setBounds(350, 540, 215, 90);
@@ -112,6 +114,7 @@ public class MainMenuView extends JFrame {
         //---- button7 ----
         button7.setText("Trainer");
         button7.setBackground(new Color(0xc80f2e));
+        button7.setFont(button7.getFont().deriveFont(button7.getFont().getSize() + 8f));
         button7.setForeground(Color.white);
         contentPane.add(button7);
         button7.setBounds(640, 380, 210, 90);
@@ -119,6 +122,7 @@ public class MainMenuView extends JFrame {
         //---- button8 ----
         button8.setText("Member");
         button8.setBackground(new Color(0xc80f2e));
+        button8.setFont(button8.getFont().deriveFont(button8.getFont().getSize() + 8f));
         button8.setForeground(Color.white);
         contentPane.add(button8);
         button8.setBounds(80, 540, 210, 90);
@@ -126,6 +130,7 @@ public class MainMenuView extends JFrame {
         //---- button9 ----
         button9.setText("Amenity ");
         button9.setBackground(new Color(0xc80f2e));
+        button9.setFont(button9.getFont().deriveFont(button9.getFont().getSize() + 8f));
         button9.setForeground(Color.white);
         contentPane.add(button9);
         button9.setBounds(80, 380, 210, 90);
@@ -133,6 +138,7 @@ public class MainMenuView extends JFrame {
         //---- button10 ----
         button10.setText("Training Session");
         button10.setBackground(new Color(0xc80f2e));
+        button10.setFont(button10.getFont().deriveFont(button10.getFont().getSize() + 8f));
         button10.setForeground(Color.white);
         contentPane.add(button10);
         button10.setBounds(910, 380, 205, 85);
@@ -140,6 +146,7 @@ public class MainMenuView extends JFrame {
         //---- button11 ----
         button11.setText("Amenity Use");
         button11.setBackground(new Color(0xc80f2e));
+        button11.setFont(button11.getFont().deriveFont(button11.getFont().getSize() + 8f));
         button11.setForeground(Color.white);
         contentPane.add(button11);
         button11.setBounds(350, 380, 210, 90);
@@ -147,6 +154,7 @@ public class MainMenuView extends JFrame {
         //---- button12 ----
         button12.setText("Subscription Type");
         button12.setBackground(new Color(0xc80f2e));
+        button12.setFont(button12.getFont().deriveFont(button12.getFont().getSize() + 8f));
         button12.setForeground(Color.white);
         contentPane.add(button12);
         button12.setBounds(645, 540, 210, 90);

@@ -2,6 +2,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.event.ActionListener;
+
 /*
  * Created by JFormDesigner on Mon Nov 18 21:57:03 PST 2024
  */
@@ -178,63 +179,64 @@ public class AmenityUseView extends JFrame {
             addSessionTitle.setEditable(false);
             addSessionTitle.setHorizontalAlignment(SwingConstants.CENTER);
             addSessionFrameContentPane.add(addSessionTitle);
-            addSessionTitle.setBounds(370, 170, 485, 35);
+            addSessionTitle.setBounds(250, 170, 700, 35);
 
             //---- memberIDText ----
             memberIDText.setText("Member ID");
             memberIDText.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
             memberIDText.setEditable(false);
             addSessionFrameContentPane.add(memberIDText);
-            memberIDText.setBounds(420, 220, 175, 40);
+            memberIDText.setBounds(285, 220, 310, 40);
 
             //---- selectMemberBar ----
             selectMemberBar.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
             selectMemberBar.setEditable(true);
             addSessionFrameContentPane.add(selectMemberBar);
-            selectMemberBar.setBounds(635, 220, 175, 40);
+            selectMemberBar.setBounds(635, 220, 275, 40);
 
             //---- amenityIDText ----
             amenityIDText.setText("Amenity ID");
             amenityIDText.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
             amenityIDText.setEditable(false);
             addSessionFrameContentPane.add(amenityIDText);
-            amenityIDText.setBounds(420, 280, 175, 40);
+            amenityIDText.setBounds(285, 280, 310, 40);
 
             //---- selectAmenityBar ----
             selectAmenityBar.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
             selectAmenityBar.setEditable(true);
             addSessionFrameContentPane.add(selectAmenityBar);
-            selectAmenityBar.setBounds(635, 280, 175, 40);
+            selectAmenityBar.setBounds(635, 280, 275, 40);
 
             //---- startTimeText ----
-            startTimeText.setText("Start Time");
+            startTimeText.setText("Start Date & Time");
             startTimeText.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
             startTimeText.setEditable(false);
             addSessionFrameContentPane.add(startTimeText);
-            startTimeText.setBounds(420, 350, 175, 35);
+            startTimeText.setBounds(285, 350, 310, 35);
 
             //---- startTime ----
             startTime.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+            startTime.setText("YYYY-MM-DD hh:mm:ss");
             addSessionFrameContentPane.add(startTime);
-            startTime.setBounds(635, 350, 175, 35);
+            startTime.setBounds(635, 350, 275, 35);
 
             //---- usageHoursText ----
             usageHoursText.setText("Usage Hours");
             usageHoursText.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
             usageHoursText.setEditable(false);
             addSessionFrameContentPane.add(usageHoursText);
-            usageHoursText.setBounds(420, 415, 175, 35);
+            usageHoursText.setBounds(285, 415, 310, 35);
 
             //---- usageHours ----
             usageHours.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
             addSessionFrameContentPane.add(usageHours);
-            usageHours.setBounds(635, 415, 175, 35);
+            usageHours.setBounds(635, 415, 275, 35);
 
             //---- editorPane2 ----
             editorPane2.setBackground(new Color(0xb5b9b8));
             editorPane2.setEditable(false);
             addSessionFrameContentPane.add(editorPane2);
-            editorPane2.setBounds(370, 205, 485, 365);
+            editorPane2.setBounds(250, 205, 700, 365);
 
             //---- addSessionBack ----
             addSessionBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
@@ -298,7 +300,7 @@ public class AmenityUseView extends JFrame {
                                 {null, null, null, null, null, null},
                         },
                         new String[] {
-                                "Amenity Log ID ", "Member ID  ", "Amenity ID ", "Start Use Time", "Usage Hours", "Total Price"
+                                "Amenity Log ID", "Member ID", "Amenity ID", "Start Date & Time", "Usage Hours", "Total Price"
                         }
                 ));
                 {
@@ -508,66 +510,67 @@ public class AmenityUseView extends JFrame {
             updateSession.setBounds(490, 480, 250, 55);
 
             //---- selectAmenity4 ----
-            selectAmenity4.setText("Add Session");
+            selectAmenity4.setText("Update Session");
             selectAmenity4.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
             selectAmenity4.setEditable(false);
             selectAmenity4.setHorizontalAlignment(SwingConstants.CENTER);
             updateDetailsSessionFrameContentPane.add(selectAmenity4);
-            selectAmenity4.setBounds(370, 170, 485, 35);
+            selectAmenity4.setBounds(250, 170, 700, 35);
 
             //---- memberIDText2 ----
             memberIDText2.setText("Member ID");
             memberIDText2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
             memberIDText2.setEditable(false);
             updateDetailsSessionFrameContentPane.add(memberIDText2);
-            memberIDText2.setBounds(420, 220, 175, 40);
+            memberIDText2.setBounds(285, 220, 310, 40);
 
             //---- selectMemberBar2 ----
             selectMemberBar2.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
             updateDetailsSessionFrameContentPane.add(selectMemberBar2);
-            selectMemberBar2.setBounds(635, 220, 175, 40);
+            selectMemberBar2.setBounds(635, 220, 280, 40);
 
             //---- amenityIDText2 ----
             amenityIDText2.setText("Amenity ID");
             amenityIDText2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
             amenityIDText2.setEditable(false);
             updateDetailsSessionFrameContentPane.add(amenityIDText2);
-            amenityIDText2.setBounds(420, 280, 175, 40);
+            amenityIDText2.setBounds(285, 280, 310, 40);
 
             //---- selectAmenityBar2 ----
             selectAmenityBar2.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
             updateDetailsSessionFrameContentPane.add(selectAmenityBar2);
-            selectAmenityBar2.setBounds(635, 280, 175, 40);
+            selectAmenityBar2.setBounds(635, 280, 280, 40);
 
             //---- startTimeText2 ----
-            startTimeText2.setText("Start Time");
+            startTimeText2.setText("Start Date & Time");
             startTimeText2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
             startTimeText2.setEditable(false);
             updateDetailsSessionFrameContentPane.add(startTimeText2);
-            startTimeText2.setBounds(420, 350, 175, 35);
+            startTimeText2.setBounds(285, 350, 310, 35);
 
             //---- startTime2 ----
             startTime2.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+            startTime2.setText("YYYY-MM-DD hh:mm:ss");
             updateDetailsSessionFrameContentPane.add(startTime2);
-            startTime2.setBounds(635, 350, 175, 35);
+            startTime2.setBounds(635, 350, 280, 35);
 
             //---- usageHoursText2 ----
             usageHoursText2.setText("Usage Hours");
             usageHoursText2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
             usageHoursText2.setEditable(false);
             updateDetailsSessionFrameContentPane.add(usageHoursText2);
-            usageHoursText2.setBounds(420, 415, 175, 35);
+            usageHoursText2.setBounds(285, 415, 310, 35);
 
             //---- usageHours2 ----
             usageHours2.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
             updateDetailsSessionFrameContentPane.add(usageHours2);
-            usageHours2.setBounds(635, 415, 175, 35);
+            usageHours2.setBounds(635, 415, 280, 35);
 
             //---- editorPane5 ----
             editorPane5.setBackground(new Color(0xb5b9b8));
             editorPane5.setEditable(false);
             updateDetailsSessionFrameContentPane.add(editorPane5);
-            editorPane5.setBounds(370, 205, 485, 365);
+            editorPane5.setBounds(250, 205, 700, 365);
 
             //---- updateSessionDetailsBack ----
             updateSessionDetailsBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
@@ -702,11 +705,11 @@ public class AmenityUseView extends JFrame {
 
     // Add Session
     public int getSelectMemberBar() {
-        return this.selectMemberBar.getSelectedIndex() + 1;
+        return this.selectMemberBar.getSelectedIndex();
     }
 
     public int getSelectAmenityBar() {
-        return this.selectAmenityBar.getSelectedIndex() + 1;
+        return this.selectAmenityBar.getSelectedIndex();
     }
 
     public String getStartTime() {
@@ -719,12 +722,12 @@ public class AmenityUseView extends JFrame {
 
     // Delete Session
     public int getSelectDelete() {
-        return this.selectDelete.getSelectedIndex() + 1;
+        return this.selectDelete.getSelectedIndex();
     }
 
     // Select Update
     public int getSelectUpdate() {
-        return this.selectUpdate.getSelectedIndex() + 1;
+        return this.selectUpdate.getSelectedIndex();
     }
 
     // Update Details
@@ -738,11 +741,11 @@ public class AmenityUseView extends JFrame {
 
     // Setters
     public void setSelectMemberBar2(int index) {
-        selectMemberBar2.setSelectedIndex(index + 1);
+        selectMemberBar2.setSelectedIndex(index);
     }
 
     public void setSelectAmenityBar2(int index) {
-        selectAmenityBar2.setSelectedIndex(index + 1);
+        selectAmenityBar2.setSelectedIndex(index);
     }
 
     // Button Action Listeners

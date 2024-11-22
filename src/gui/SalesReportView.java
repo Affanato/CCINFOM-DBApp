@@ -123,14 +123,14 @@ public class SalesReportView {
                                 {null, null, null},
                         },
                         new String[] {
-                                " Ranking", "Product Name  ", "Products Sold"
+                                "Product Brand", "Product Name", "Total Quantity Sold"
                         }
                 ));
                 {
                     TableColumnModel cm = sessionTable.getColumnModel();
-                    cm.getColumn(0).setMinWidth(100);
+                    cm.getColumn(0).setMinWidth(200);
                     cm.getColumn(1).setMinWidth(200);
-                    cm.getColumn(2).setMinWidth(200);
+                    cm.getColumn(2).setMinWidth(250);
                 }
                 sessionTable.setFont(new Font("Tw Cen MT", Font.PLAIN, 18));
                 sessionTable.setEnabled(false);
@@ -194,14 +194,14 @@ public class SalesReportView {
                                 {null, null, null},
                         },
                         new String[] {
-                                "Sales ", "Product Name  ", "Products Sold"
+                                "Product Brand", "Product Name", "Total Sales"
                         }
                 ));
                 {
                     TableColumnModel cm = sessionTable2.getColumnModel();
                     cm.getColumn(0).setMinWidth(200);
                     cm.getColumn(1).setMinWidth(200);
-                    cm.getColumn(2).setMinWidth(200);
+                    cm.getColumn(2).setMinWidth(250);
                 }
                 sessionTable2.setFont(new Font("Tw Cen MT", Font.PLAIN, 18));
                 sessionTable2.setEnabled(false);

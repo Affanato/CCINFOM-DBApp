@@ -739,7 +739,7 @@ public class AmenityView  {
     }
 
     public int getSelectStatus() {
-        return this.selectStatus.getSelectedIndex() + 1;
+        return this.selectStatus.getSelectedIndex();
     }
 
     public String getWalkInPrice() {
@@ -757,12 +757,12 @@ public class AmenityView  {
     // Delete
 
     public int getSelectDelete() {
-        return this.selectDelete.getSelectedIndex() + 1;
+        return this.selectDelete.getSelectedIndex();
     }
 
     // Update Select
     public int getSelectUpdate() {
-        return this.selectUpdate.getSelectedIndex() + 1;
+        return this.selectUpdate.getSelectedIndex();
     }
 
     // Update Details
@@ -771,7 +771,7 @@ public class AmenityView  {
     }
 
     public int getSelectStatus2() {
-        return this.selectStatus2.getSelectedIndex() + 1;
+        return this.selectStatus2.getSelectedIndex();
     }
 
     public String getWalkInPrice2() {
