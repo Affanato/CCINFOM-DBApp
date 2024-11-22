@@ -1,9 +1,8 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.DefaultComboBoxModel;
 
-import src.dao;
+//import src.dao;
 
 public class AmenityUseController {
     private final AmenityUseView view = new AmenityUseView();
@@ -24,7 +23,7 @@ public class AmenityUseController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //view.getMemberBar().setModel(new DefaultComboBoxModel<>(memberDAO.getComboBoxAmenityLogIDs()));
-                //view.getAmenityBar().setModel(new DefaultComboBoxModel<>(dao.getComboBoxAmenityLogIDs()));
+                view.getAmenityBar().setModel(new DefaultComboBoxModel<>(dao.getComboBoxAmenityLogIDs()));
                 view.getAmenityUseFrame().dispose();
                 view.getAddSessionFrame().setVisible(true);
             }

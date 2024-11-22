@@ -197,7 +197,7 @@ public class TrainersReportView extends JFrame {
                                 {null, null, null, null, null},
                         },
                         new String[] {
-                                "Month", "Last Name", "First Name", "Program Specialty", "Total Sessions"
+                                "Year", "Last Name", "First Name", "Program Specialty", "Total Sessions"
                         }
                 ));
                 {
@@ -305,4 +305,38 @@ public class TrainersReportView extends JFrame {
     public void yearlySessionsBackButton(ActionListener actionListener) {
         this.yearlySessionsBack.addActionListener(actionListener);
     }
+
+    // Table Setters
+    public void setMonthlyTable(Object[][] data) {
+        String[] columnNames = {
+                "Year", "Month", "Last Name", "First Name", "Program Specialty", "Total Sessions"
+        };
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        monthlyTable.setModel(model);
+
+        TableColumnModel cm = monthlyTable.getColumnModel();
+        cm.getColumn(0).setMinWidth(100);
+        cm.getColumn(1).setMinWidth(100);
+        cm.getColumn(2).setMinWidth(150);
+        cm.getColumn(3).setMinWidth(150);
+        cm.getColumn(4).setMinWidth(200);
+        cm.getColumn(5).setMinWidth(150);
+    }
+
+    public void setYearlyTable(Object[][] data) {
+        String[] columnNames = {
+                "Year", "Last Name", "First Name", "Program Specialty", "Total Sessions"
+        };
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        yearlyTable.setModel(model);
+
+        TableColumnModel cm = yearlyTable.getColumnModel();
+        cm.getColumn(0).setMinWidth(100);
+        cm.getColumn(1).setMinWidth(150);
+        cm.getColumn(2).setMinWidth(150);
+        cm.getColumn(3).setMinWidth(200);
+        cm.getColumn(4).setMinWidth(150);
+    }
+
 }
+

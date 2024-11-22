@@ -366,7 +366,7 @@ public class AmenitiesReportView extends JFrame {
                                 {null, null},
                         },
                         new String[] {
-                                "Amenity Name", "Number of Uses"
+                                "Amenity Name", "Total Revenue"
                         }
                 ));
                 {
@@ -508,5 +508,58 @@ public class AmenitiesReportView extends JFrame {
 
     public void totalRevenueBackButton(ActionListener actionListener) {
         this.totalRevenueBack.addActionListener(actionListener);
+    }
+
+    // Table Setters
+    public void setMonthlyUseTable(Object[][] data) {
+        String[] columnNames = {
+                "Year", "Month", "Amenity Name", "Total Usages"
+        };
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        mostPopularTable.setModel(model);
+
+        TableColumnModel cm = mostPopularTable.getColumnModel();
+        cm.getColumn(0).setMinWidth(100);
+        cm.getColumn(1).setMinWidth(100);
+        cm.getColumn(2).setMinWidth(200);
+        cm.getColumn(3).setMinWidth(150);
+    }
+
+    public void setTotalUseTable(Object[][] data) {
+        String[] columnNames = {
+                "Amenity Name", "Number of Uses"
+        };
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        mostPopularTable2.setModel(model);
+
+        TableColumnModel cm = mostPopularTable2.getColumnModel();
+        cm.getColumn(0).setMinWidth(120);
+        cm.getColumn(1).setMinWidth(150);
+    }
+
+    public void setMonthlyRevenueTable(Object[][] data) {
+        String[] columnNames = {
+                "Year", "Month", "Amenity Name", "Total Revenue"
+        };
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        mostPopularTable3.setModel(model);
+
+        TableColumnModel cm = mostPopularTable3.getColumnModel();
+        cm.getColumn(0).setMinWidth(100);
+        cm.getColumn(1).setMinWidth(100);
+        cm.getColumn(2).setMinWidth(200);
+        cm.getColumn(3).setMinWidth(150);
+    }
+
+    public void setTotalRevenueTable(Object[][] data) {
+        String[] columnNames = {
+                "Amenity Name", "Total Revenue"
+        };
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        mostPopularTable4.setModel(model);
+
+        TableColumnModel cm = mostPopularTable4.getColumnModel();
+        cm.getColumn(0).setMinWidth(120);
+        cm.getColumn(1).setMinWidth(150);
     }
 }

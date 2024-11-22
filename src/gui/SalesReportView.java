@@ -300,4 +300,33 @@ public class SalesReportView {
     public void salesBackButton(ActionListener actionListener){
         this.salesBack.addActionListener(actionListener);
     }
+
+    // Table Setters
+    public void setBestSellingTable(Object[][] data) {
+        String[] columnNames = {
+                "Product Brand", "Product Name", "Total Quantity Sold"
+        };
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        sessionTable.setModel(model);
+
+        TableColumnModel cm = sessionTable.getColumnModel();
+        cm.getColumn(0).setMinWidth(200);
+        cm.getColumn(1).setMinWidth(200);
+        cm.getColumn(2).setMinWidth(250);
+    };
+
+    public void setSalesTable(Object[][] data) {
+        String[] columnNames = {
+                "Product Brand", "Product Name", "Total Sales"
+        };
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        sessionTable2.setModel(model);
+
+        TableColumnModel cm = sessionTable2.getColumnModel();
+        cm.getColumn(0).setMinWidth(200);
+        cm.getColumn(1).setMinWidth(200);
+        cm.getColumn(2).setMinWidth(250);
+    };
+
+
 }
