@@ -202,7 +202,8 @@ public class DBUtils {
         String sql = "SELECT * " +
                      "FROM " + table + " ";
 
-        try (ResultSet rs = Objects.requireNonNull(getNewStatement()).executeQuery(sql)) {
+        try {
+            ResultSet rs = Objects.requireNonNull(getNewStatement()).executeQuery(sql);
             System.out.printf("All '%s' records retrieved successfully.", table);
             return rs;
         } catch (SQLException e) {
@@ -216,8 +217,9 @@ public class DBUtils {
                      "FROM " + table + " " +
                      condition + " ";
 
-        try (ResultSet rs = Objects.requireNonNull(getNewStatement()).executeQuery(sql)) {
-            System.out.printf("All '%s' records retrieved with condition successfully.", table);
+        try {
+            ResultSet rs = Objects.requireNonNull(getNewStatement()).executeQuery(sql);
+            System.out.printf("All records from '%s' with condition retrieved successfully.", table);
             return rs;
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
@@ -230,7 +232,9 @@ public class DBUtils {
                      "FROM " + table1 + " JOIN " + table2 + " " +
                      "ON " + table1Field + " = " + table2Field + " ";
 
-        try (ResultSet rs = Objects.requireNonNull(getNewStatement()).executeQuery(sql)) {
+        try {
+            ResultSet rs = Objects.requireNonNull(getNewStatement()).executeQuery(sql);
+            System.out.printf("All records from '%s' joined with '%s' retrieved successfully.", table1, table2);
             return rs;
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
@@ -244,7 +248,9 @@ public class DBUtils {
                      "ON " + table1Field + " = " + table2Field + " " +
                      "WHERE " + condition + " ";
 
-        try (ResultSet rs = Objects.requireNonNull(getNewStatement()).executeQuery(sql)) {
+        try {
+            ResultSet rs = Objects.requireNonNull(getNewStatement()).executeQuery(sql);
+            System.out.printf("All records from '%s' joined with '%s' with condition retrieved successfully.", table1, table2);
             return rs;
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
