@@ -1,10 +1,8 @@
 import java.sql.*;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Objects;
 
-// TODO: IN PROGRESS!!!
-// TODO: Verify if the methods are implemented correctly.
 public class AmenityLogsDAO {
 
     private final Statement statement;
@@ -13,13 +11,27 @@ public class AmenityLogsDAO {
         this.statement = DBUtils.getNewStatement();
     }
 
-    // TODO: Current.
     // SINGLE UPDATE QUERIES //
-    public void insertAmenityLog(int memberID, int amenityID, int usageDurationHours) {
-        if (!AmenitiesDAO.isActiveAmenity(amenityID)) {
-            System.out.println("Chosen amenity is inactive!");
-            return;
+    public boolean insertAmenityLog(int memberID, int amenityID, String startDateTime, int usageDurationHours) {
+        if (!MembersDAO.memberExists(memberID) || !AmenitiesDAO.amenityExists(amenityID)) { // member or amenity does not exist
+            System.out.println("Invalid 'Member ID' or 'Amenity ID'!");
+            return false;
         }
+
+        if (!AmenitiesDAO.isActiveAmenity(amenityID)) { // inactive amenity
+            System.out.println("Chosen amenity is inactive!");
+            return false;
+        }
+
+        if (usageDurationHours <= 0) {
+            System.out.println("Provide a positive number of usage hours!");
+            return false;
+        } // invalid usage duration hours
+
+        if (!AmenitiesDAO.isWithinAmenityHours(amenityID, startDateTime, usageDurationHours)) {
+            System.out.println("Chosen amenity usage datetime is beyond amenity hours!");
+            return false;
+        } // goes beyond hours
 
         String sql = "INSERT INTO amenity_logs (member_id, amenity_id, usage_start_datetime, usage_duration_hours, usage_total_price) " +
                      "VALUES (?, ?, ?, ?, ?) ";
@@ -28,7 +40,7 @@ public class AmenityLogsDAO {
             assert ps != null;
             ps.setInt(1, memberID);
             ps.setInt(2, amenityID);
-            ps.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+            ps.setTimestamp(3, Timestamp.valueOf(startDateTime)); // yyyy-MM-dd HH:mm:ss format
             ps.setInt(4, usageDurationHours);
             ps.setDouble(5, getUsageTotalPrice(memberID, amenityID, usageDurationHours));
 
@@ -36,14 +48,42 @@ public class AmenityLogsDAO {
             System.out.println("'amenity_logs' record inserted successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
+            return false;
         }
+
+        return true;
     }
 
-    public void deleteAmenityLog(int amenityLogID) {
-        DBUtils.deleteTableRecordsByKey("amenity_logs", "amenity_log_id", amenityLogID);
+    public boolean deleteAmenityLog(int amenityLogID) {
+        try {
+            DBUtils.deleteTableRecordsByKey("amenity_logs", "amenity_log_id", amenityLogID);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
-    public void updateAmenityLog(int amenityLogID, AmenityLog a) {
+    public boolean updateAmenityLog(int amenityLogID, int memberID, int amenityID, String startDateTime, int usageDurationHours) {
+        if (!MembersDAO.memberExists(memberID) || !AmenitiesDAO.amenityExists(amenityID)) { // member or amenity does not exist
+            System.out.println("Invalid 'Member ID' or 'Amenity ID'!");
+            return false;
+        }
+
+        if (!AmenitiesDAO.isActiveAmenity(amenityID)) { // inactive amenity
+            System.out.println("Chosen amenity is inactive!");
+            return false;
+        }
+
+        if (usageDurationHours <= 0) {
+            System.out.println("Provide a positive number of usage hours!");
+            return false;
+        } // invalid usage duration hours
+
+        if (!AmenitiesDAO.isWithinAmenityHours(amenityID, startDateTime, usageDurationHours)) {
+            System.out.println("Chosen amenity usage datetime is beyond amenity hours!");
+            return false;
+        } // goes beyond hours
+
         String sql = "UPDATE amenity_logs " +
                      "SET member_id = ?, " +
                      "    amenity_id = ?, " +
@@ -54,38 +94,40 @@ public class AmenityLogsDAO {
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
-            ps.setInt(1, a.memberID());
-            ps.setInt(2, a.amenityID());
-            ps.setTimestamp(3, Timestamp.valueOf(a.usageStartDateTime()));
-            ps.setInt(4, a.usageDurationHours());
-            ps.setDouble(5, a.usageTotalPrice());
+            ps.setInt(1, memberID);
+            ps.setInt(2, amenityID);
+            ps.setTimestamp(3, Timestamp.valueOf(startDateTime));
+            ps.setInt(4, usageDurationHours);
+            ps.setDouble(5, getUsageTotalPrice(memberID, amenityID, usageDurationHours));
             ps.setInt(6, amenityLogID);
 
             ps.executeUpdate();
-            System.out.println("amenity_log record updated successfully.");
+            System.out.println("'amenity_logs' record updated successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
         }
+
+        return true;
     }
 
     // MASS UPDATE QUERIES //
     public void updateMemberID(int oldID, int newID) {
         DBUtils.updateTableForeignKey("amenity_logs", "member_id", oldID, newID);
-    }
+    } // might not be needed anymore
 
     public void updateAmenityID(int oldID, int newID) {
         DBUtils.updateTableForeignKey("amenity_logs", "amenity_id", oldID, newID);
-    }
+    } // might not be needed anymore
 
     public void deleteByMemberID(int memberID) {
         DBUtils.deleteTableRecordsByKey("amenity_logs", "member_id", memberID);
     }
 
-    public void deleteByAmenityID(int amenityID) {
-        DBUtils.deleteTableRecordsByKey("amenity_logs", "amenity_id", amenityID);
+    // SELECT QUERIES //
+    public String[] getComboBoxAmenityLogIDs() {
+        return DBUtils.selectAllKeysFromTable("amenity_logs", "amenity_log_id");
     }
 
-    // SELECT QUERIES //
     public AmenityLog selectAmenityLog(int amenityLogID) {
         String condition = "WHERE amenity_log_id = " + amenityLogID;
         ResultSet rs = DBUtils.selectAllRecordsFromTable("amenity_logs", condition);
@@ -93,10 +135,10 @@ public class AmenityLogsDAO {
         return mapResultSetToAmenityLog(rs);
     }
 
-    public ArrayList<AmenityLog> selectAllAmenityLogs() {
+    public Object[][] selectAllAmenityLogs() {
         ResultSet rs = DBUtils.selectAllRecordsFromTable("amenity_logs");
         assert rs != null;
-        return mapResultSetToAmenityLogList(rs);
+        return DBUtils.to2DObjectArray(Objects.requireNonNull(mapResultSetToAmenityLogList(rs)));
     }
 
     // UTILITY METHODS //

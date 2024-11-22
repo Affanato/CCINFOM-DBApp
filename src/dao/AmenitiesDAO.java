@@ -1,5 +1,8 @@
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +19,7 @@ public class AmenitiesDAO {
     }
 
     // SINGLE UPDATE QUERIES
-    public void insertAmenity(Amenity a) {
+    public boolean insertAmenity(Amenity a) {
         String sql = "INSERT INTO amenities (amenity_name, walk_in_price_per_hour, opening_time, closing_time, amenity_status) " +
                      "VALUES (?, ?, ?, ?, ?) ";
 
@@ -32,14 +35,21 @@ public class AmenitiesDAO {
             System.out.println("Amenity record inserted successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
+            return false;
         }
+
+        return true;
     }
 
-    public void deleteAmenity(int amenityID) {
+    public boolean deleteAmenity(int amenityID) {
+        if (!amenityExists(amenityID)) return false;
+        DBUtils.invalidateTableForeignKey("amenity_logs", "amenity_id", amenityID);
+        DBUtils.invalidateTableForeignKey("subscription_type_amenities", "amenity_id", amenityID);
         DBUtils.deleteTableRecordsByKey("amenities", "amenity_id", amenityID);
+        return true;
     }
 
-    public void updateAmenity(int amenityID, Amenity a) {
+    public boolean updateAmenity(int amenityID, Amenity a) {
         String sql = "UPDATE amenities " +
                      "SET amenity_name = ?, " +
                      "    walk_in_price_per_hour = ?, " +
@@ -58,13 +68,20 @@ public class AmenitiesDAO {
             ps.setInt(6, amenityID);
 
             ps.executeUpdate();
-            System.out.println("Amenity record updated successfully.");
+            System.out.println("'amenities' record updated successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
+            return false;
         }
+
+        return true;
     }
 
     // SELECT QUERIES //
+    public String[] getComboBoxAmenityIDs() {
+        return DBUtils.selectAllKeysFromTable("amenities", "amenity_id");
+    }
+
     public static Amenity selectAmenity(int amenityID) {
         String condition = "WHERE amenity_id = " + amenityID;
         ResultSet rs = DBUtils.selectAllRecordsFromTable("amenities", condition);
@@ -72,21 +89,22 @@ public class AmenitiesDAO {
         return mapResultSetToAmenity(rs);
     }
 
-    public ArrayList<Amenity> selectAllAmenities() {
+    public Object[][] selectAllAmenities() {
         ResultSet rs = DBUtils.selectAllRecordsFromTable("amenities");
         assert rs != null;
-        return mapResultSetToAmenityList(rs);
+        return DBUtils.to2DObjectArray(Objects.requireNonNull(mapResultSetToAmenityList(rs)));
     }
 
-    public ArrayList<Amenity> selectAllActiveAmenities() {
+    public Object[][] selectAllActiveAmenities() {
         String condition = "WHERE amenity_status = 'Active'";
         ResultSet rs = DBUtils.selectAllRecordsFromTable("amenities", condition);
         assert rs != null;
-        return mapResultSetToAmenityList(rs);
+        return DBUtils.to2DObjectArray(Objects.requireNonNull(mapResultSetToAmenityList(rs)));
     }
 
     // TRANSACTIONS //
-    public void changeAmenityStatus(int amenityID, Status status) {
+    public boolean changeAmenityStatus(int amenityID, String status) {
+        if (!Status.hasDescription(status)) return false;
         Amenity oldA = selectAmenity(amenityID);
         Amenity newA = new Amenity(
                 oldA.amenityID(),
@@ -94,13 +112,14 @@ public class AmenitiesDAO {
                 oldA.walkInPricePerHour(),
                 oldA.openingTime(),
                 oldA.closingTime(),
-                status
+                Status.fromString(status)
         );
         updateAmenity(amenityID, newA);
+        return true;
     }
 
     // REPORTS //
-    public Object[][] selectAmenitiesByDecreasingUsage() {
+    public Object[][] queryAmenitiesUsageLifetime() {
         String sql = "SELECT        a.amenity_name, COUNT(*) AS total_usages " +
                      "FROM          amenity_logs al " +
                      "JOIN          amenities a ON al.amenity_id = a.amenity_id " +
@@ -125,7 +144,37 @@ public class AmenitiesDAO {
         }
     }
 
-    public Object[][] selectAmenitiesByDecreasingRevenue() {
+    public Object[][] queryAmenitiesUsagePerMonthPerYear() {
+        String sql = "SELECT        YEAR(al.usage_start_datetime) AS year, " +
+                     "              MONTH(al.usage_start_datetime) AS month, " +
+                     "              a.amenity_name, " +
+                     "              COUNT(*) AS total_usages " +
+                     "FROM          amenity_logs al " +
+                     "JOIN          amenities a ON al.amenity_id = a.amenity_id " +
+                     "GROUP BY      year, month, a.amenity_name " +
+                     "ORDER BY      year, month, a.amenity_name; ";
+
+        try (ResultSet rs = Objects.requireNonNull(statement.executeQuery(sql))) {
+            List<Object[]> tempList = new ArrayList<>();
+
+            while (rs.next()) {
+                int year = rs.getInt("year");
+                int month = rs.getInt("month");
+                String amenityName = rs.getString("amenity_name");
+                int totalUsages = rs.getInt("total_usages");
+
+                Object[] elem = {year, month, amenityName, totalUsages};
+                tempList.add(elem);
+            }
+
+            return tempList.toArray(new Object[0][]);
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
+    }
+
+    public Object[][] queryAmenitiesRevenueLifetime() {
         String sql = "SELECT        a.amenity_name, SUM(al.usage_total_price) AS total_revenue " +
                      "FROM          amenity_logs al " +
                      "JOIN          amenities a ON al.amenity_id = a.amenity_id " +
@@ -150,10 +199,60 @@ public class AmenitiesDAO {
         }
     }
 
+    public Object[][] queryAmenitiesRevenuePerMonthPerYear() {
+        String sql = "SELECT        YEAR(al.usage_start_datetime) AS year, " +
+                     "              MONTH(al.usage_start_datetime) AS month, " +
+                     "              a.amenity_name, " +
+                     "              SUM(al.usage_total_price) AS total_revenue " +
+                     "FROM          amenity_logs al " +
+                     "JOIN          amenities a ON al.amenity_id = a.amenity_id " +
+                     "GROUP BY      year, month, a.amenity_name " +
+                     "ORDER BY      year, month, a.amenity_name; ";
+
+        try (ResultSet rs = Objects.requireNonNull(statement.executeQuery(sql))) {
+            List<Object[]> tempList = new ArrayList<>();
+
+            while (rs.next()) {
+                int year = rs.getInt("year");
+                int month = rs.getInt("month");
+                String amenityName = rs.getString("amenity_name");
+                int totalUsages = rs.getInt("total_usages");
+
+                Object[] elem = {year, month, amenityName, totalUsages};
+                tempList.add(elem);
+            }
+
+            return tempList.toArray(new Object[0][]);
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
+    }
+
     // UTILITY METHODS //
+    public static boolean amenityExists(int amenityID) {
+        return selectAmenity(amenityID) != null;
+    }
+
     public static boolean isActiveAmenity(int amenityID) {
         Amenity a = selectAmenity(amenityID);
         return a != null && a.amenityStatus() == Status.ACTIVE;
+    }
+
+    public static boolean isWithinAmenityHours(int amenityID, String usageStartDateTime, int usageDurationHours) {
+        if (usageDurationHours <= 0) return false;
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalTime usageStartTime = LocalDateTime.parse(usageStartDateTime, formatter).toLocalTime();
+        LocalTime usageEndTime = usageStartTime.plusHours(usageDurationHours);
+        Amenity a = selectAmenity(amenityID);
+
+        return timeIsBetweenOrEqual(usageStartTime, a.openingTime(), a.closingTime()) &&
+               timeIsBetweenOrEqual(usageEndTime, a.openingTime(), a.closingTime());
+    }
+
+    public static boolean timeIsBetweenOrEqual(LocalTime target, LocalTime start, LocalTime end) {
+        return (target.equals(start) || target.isAfter(start)) && (target.isBefore(end) || target.equals(end));
     }
 
     public static Amenity mapResultSetToAmenity(ResultSet rs) {

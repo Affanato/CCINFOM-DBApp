@@ -1,8 +1,15 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultComboBoxModel;
+
+import src.dao;
+
 public class AmenityUseController {
     private final AmenityUseView view = new AmenityUseView();
+    private final AmenityLogsDAO dao = new AmenityLogsDAO();
+    private final MembersDAO memberDAO = new MembersDAO();
+    private final AmenitiesDAO amenityDAO = new AmenitiesDAO();
 
     public AmenityUseController() {
         this.view.amenityUseBackButtonButton(new ActionListener() {
@@ -16,6 +23,8 @@ public class AmenityUseController {
         this.view.goToAddSessionButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //view.getMemberBar().setModel(new DefaultComboBoxModel<>(memberDAO.getComboBoxAmenityLogIDs()));
+                //view.getAmenityBar().setModel(new DefaultComboBoxModel<>(dao.getComboBoxAmenityLogIDs()));
                 view.getAmenityUseFrame().dispose();
                 view.getAddSessionFrame().setVisible(true);
             }
@@ -24,6 +33,7 @@ public class AmenityUseController {
         this.view.goToReadSessionButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                view.setSessionTable(dao.selectAllAmenityLogs());
                 view.getAmenityUseFrame().dispose();
                 view.getReadSessionFrame().setVisible(true);
             }
@@ -32,6 +42,7 @@ public class AmenityUseController {
         this.view.goToUpdateSessionButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                view.getUpdateSession().setModel(new DefaultComboBoxModel<>(dao.getComboBoxAmenityLogIDs()));
                 view.getAmenityUseFrame().dispose();
                 view.getUpdateSelectSession().setVisible(true);
             }
@@ -40,6 +51,7 @@ public class AmenityUseController {
         this.view.goToDeleteSessionButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                view.getDeleteSession().setModel(new DefaultComboBoxModel<>(dao.getComboBoxAmenityLogIDs()));
                 view.getAmenityUseFrame().dispose();
                 view.getDeleteSessionFrame().setVisible(true);
             }
@@ -49,6 +61,18 @@ public class AmenityUseController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //Display Success or Fail Message
+                // LOAD COMBO BOXES
+                int memberID = Integer.parseInt(view.getSelectMemberBar());
+                int amenityID = Integer.parseInt(view.getSelectAmenityBar());
+                String startDateTime = view.getStartTime();
+                int usageHours = Integer.parseInt(view.getUsageHours());
+
+                if (dao.insertAmenityLog(memberID, amenityID, startDateTime, usageHours)) {
+                    Message.success();
+                } else {
+                    Message.failure();
+                }
+
             }
         });
 
@@ -72,6 +96,13 @@ public class AmenityUseController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //Display Success or Fail Message
+                int logID = Integer.parseInt(view.getSelectDelete());
+
+                if (dao.deleteAmenityLog(logID)) {
+                    Message.success();
+                } else {
+                    Message.failure();
+                }
             }
         });
 
@@ -86,6 +117,14 @@ public class AmenityUseController {
         this.view.updateSessionSelectButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int sessionID = Integer.parseInt(view.getSelectUpdate());
+                AmenityLog am = dao.selectAmenityLog(sessionID);
+
+                view.setSelectMemberBar2(am.memberID());
+                view.setSelectAmenityBar2(am.amenityID());
+                view.setStartTime2(String.valueOf(am.usageStartDateTime()));
+                view.setUsageHours2(String.valueOf(am.usageDurationHours()));
+                
                 view.getUpdateSelectSession().dispose();
                 view.getUpdateDetailsSessionFrame().setVisible(true);
             }
@@ -103,6 +142,16 @@ public class AmenityUseController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Display Success or Fail Message
+                String startDateTime = view.getStartTime2();
+                int usageHours = Integer.parseInt(view.getUsageHours2());
+                int sessionID = Integer.parseInt(view.getSelectUpdate());
+                AmenityLog am = dao.selectAmenityLog(sessionID);
+
+                if (dao.updateAmenityLog(am.amenityLogID(), am.memberID(), am.amenityID(), startDateTime, usageHours)) {
+                    Message.success();
+                } else {
+                    Message.failure();
+                }
             }
         });
 

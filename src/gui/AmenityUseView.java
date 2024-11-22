@@ -1,7 +1,7 @@
 import java.awt.*;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.table.*;
-import java.awt.event.ActionListener;
 
 /*
  * Created by JFormDesigner on Mon Nov 18 21:57:03 PST 2024
@@ -32,7 +32,7 @@ public class AmenityUseView extends JFrame {
         addSession = new JButton();
         addSessionTitle = new JFormattedTextField();
         memberIDText = new JFormattedTextField();
-        selectMemberBar = new JComboBox();
+        selectMemberBar = new JComboBox<>();
         amenityIDText = new JFormattedTextField();
         selectAmenityBar = new JComboBox();
         startTimeText = new JFormattedTextField();
@@ -52,7 +52,7 @@ public class AmenityUseView extends JFrame {
         deleteSessionFrame = new JFrame();
         deleteSession = new JButton();
         deleteSessionTitle = new JFormattedTextField();
-        selectDelete = new JComboBox();
+        selectDelete = new JComboBox<>();
         editorPane3 = new JEditorPane();
         deleteSessionBack = new JButton();
         backgroundPicture4 = new JLabel();
@@ -60,7 +60,7 @@ public class AmenityUseView extends JFrame {
         updateSelectSession = new JFrame();
         updateSessionSelect = new JButton();
         updateSessionTitle = new JFormattedTextField();
-        selectUpdate = new JComboBox();
+        selectUpdate = new JComboBox<>();
         editorPane4 = new JEditorPane();
         updateSelectBackk = new JButton();
         backgroundPicture5 = new JLabel();
@@ -69,9 +69,9 @@ public class AmenityUseView extends JFrame {
         updateSession = new JButton();
         selectAmenity4 = new JFormattedTextField();
         memberIDText2 = new JFormattedTextField();
-        selectMemberBar2 = new JComboBox();
+        selectMemberBar2 = new JComboBox<>();
         amenityIDText2 = new JFormattedTextField();
-        selectAmenityBar2 = new JComboBox();
+        selectAmenityBar2 = new JComboBox<>();
         startTimeText2 = new JFormattedTextField();
         startTime2 = new JTextPane();
         usageHoursText2 = new JFormattedTextField();
@@ -447,6 +447,11 @@ public class AmenityUseView extends JFrame {
 
             //---- selectUpdate ----
             selectUpdate.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+            selectUpdate.setModel(new DefaultComboBoxModel<>(new String[] {
+				"8",
+				"3",
+				"-"
+			}));
             updateSelectSessionContentPane.add(selectUpdate);
             selectUpdate.setBounds(425, 335, 390, 40);
 
@@ -628,9 +633,9 @@ public class AmenityUseView extends JFrame {
     private JButton addSession;
     private JFormattedTextField addSessionTitle;
     private JFormattedTextField memberIDText;
-    private JComboBox selectMemberBar;
+    private JComboBox<String> selectMemberBar;
     private JFormattedTextField amenityIDText;
-    private JComboBox selectAmenityBar;
+    private JComboBox<String> selectAmenityBar;
     private JFormattedTextField startTimeText;
     private JTextPane startTime;
     private JFormattedTextField usageHoursText;
@@ -648,7 +653,7 @@ public class AmenityUseView extends JFrame {
     private JFrame deleteSessionFrame;
     private JButton deleteSession;
     private JFormattedTextField deleteSessionTitle;
-    private JComboBox selectDelete;
+    private JComboBox<String> selectDelete;
     private JEditorPane editorPane3;
     private JButton deleteSessionBack;
     private JLabel backgroundPicture4;
@@ -656,7 +661,7 @@ public class AmenityUseView extends JFrame {
     private JFrame updateSelectSession;
     private JButton updateSessionSelect;
     private JFormattedTextField updateSessionTitle;
-    private JComboBox selectUpdate;
+    private JComboBox<String> selectUpdate;
     private JEditorPane editorPane4;
     private JButton updateSelectBackk;
     private JLabel backgroundPicture5;
@@ -665,9 +670,9 @@ public class AmenityUseView extends JFrame {
     private JButton updateSession;
     private JFormattedTextField selectAmenity4;
     private JFormattedTextField memberIDText2;
-    private JComboBox selectMemberBar2;
+    private JComboBox<String> selectMemberBar2;
     private JFormattedTextField amenityIDText2;
-    private JComboBox selectAmenityBar2;
+    private JComboBox<String> selectAmenityBar2;
     private JFormattedTextField startTimeText2;
     private JTextPane startTime2;
     private JFormattedTextField usageHoursText2;
@@ -703,13 +708,30 @@ public class AmenityUseView extends JFrame {
         return this.deleteSessionFrame;
     }
 
-    // Add Session
-    public int getSelectMemberBar() {
-        return this.selectMemberBar.getSelectedIndex();
+    public JComboBox<String> getUpdateSession() {
+        return this.selectUpdate;
     }
 
-    public int getSelectAmenityBar() {
-        return this.selectAmenityBar.getSelectedIndex();
+    public JComboBox<String> getDeleteSession() {
+        return this.selectDelete;
+    }
+
+    public JComboBox<String> getMemberBar() {
+        return this.selectMemberBar;
+    }
+
+    public JComboBox<String> getAmenityBar() {
+        return this.selectAmenityBar;
+    }
+
+
+    // Add Session
+    public String getSelectMemberBar() {
+        return (String) this.selectMemberBar.getSelectedItem();
+    }
+
+    public String getSelectAmenityBar() {
+        return (String) this.selectAmenityBar.getSelectedItem();
     }
 
     public String getStartTime() {
@@ -721,13 +743,13 @@ public class AmenityUseView extends JFrame {
     }
 
     // Delete Session
-    public int getSelectDelete() {
-        return this.selectDelete.getSelectedIndex();
+    public String getSelectDelete() {
+        return (String) this.selectDelete.getSelectedItem();
     }
 
     // Select Update
-    public int getSelectUpdate() {
-        return this.selectUpdate.getSelectedIndex();
+    public String getSelectUpdate() {
+        return (String) this.selectUpdate.getSelectedItem();
     }
 
     // Update Details
@@ -741,11 +763,19 @@ public class AmenityUseView extends JFrame {
 
     // Setters
     public void setSelectMemberBar2(int index) {
-        selectMemberBar2.setSelectedIndex(index);
+        selectMemberBar2.setSelectedItem(index);
     }
 
     public void setSelectAmenityBar2(int index) {
-        selectAmenityBar2.setSelectedIndex(index);
+        selectAmenityBar2.setSelectedItem(index);
+    }
+
+    public void setStartTime2(String text) {
+        startTime2.setText(text);
+    }
+
+    public void setUsageHours2(String text) {
+        usageHours2.setText(text);
     }
 
     // Button Action Listeners
@@ -803,5 +833,23 @@ public class AmenityUseView extends JFrame {
 
     public void updateSessionDetailsBackButton(ActionListener actionListener) {
         this.updateSessionDetailsBack.addActionListener(actionListener);
+    }
+
+    public void setSessionTable(Object[][] data) {
+        String[] columnNames = {
+            "Amenity Log ID", "Member ID", "Amenity ID", "Start Date & Time", "Usage Hours", "Total Price"
+    };
+
+    DefaultTableModel model = new DefaultTableModel(data, columnNames);
+    sessionTable.setModel(model);
+    
+        TableColumnModel cm = sessionTable.getColumnModel();
+        cm.getColumn(0).setMinWidth(100);
+        cm.getColumn(1).setMinWidth(100);
+        cm.getColumn(2).setMinWidth(100);
+        cm.getColumn(3).setMinWidth(150);
+        cm.getColumn(4).setMinWidth(150);
+        cm.getColumn(5).setMinWidth(150);
+
     }
 }

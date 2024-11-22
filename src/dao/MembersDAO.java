@@ -1,6 +1,7 @@
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MembersDAO {
 
@@ -34,8 +35,15 @@ public class MembersDAO {
         }
     }
 
-    public void deleteMember(int memberID) {
+    // TODO: Please update product_purchases and training_sessions corresponding delete methods (not functions HAHAHA)
+    //       to update their foreign keys to 0 first before deleting, i.e., call invalidate method as seen below.
+    public boolean deleteMember(int memberID) {
+        if (!memberExists(memberID)) return false;
+        DBUtils.invalidateTableForeignKey("amenity_logs", "member_id", memberID);
+        DBUtils.invalidateTableForeignKey("subscriptions", "member_id", memberID);
+        DBUtils.invalidateTableForeignKey("product_purchases", "member_id", memberID);
         DBUtils.deleteTableRecordsByKey("members", "member_id", memberID);
+        return true;
     }
 
     public void updateMember(int memberID, Member m) {
@@ -86,10 +94,14 @@ public class MembersDAO {
     public Object[][] selectAllMembers() {
         ResultSet rs = DBUtils.selectAllRecordsFromTable("members");
         assert rs != null;
-        return DBUtils.to2DObjectArray(mapResultSetToMemberList(rs));
+        return DBUtils.to2DObjectArray(Objects.requireNonNull(mapResultSetToMemberList(rs)));
     }
 
     // UTIL METHODS
+    public static boolean memberExists(int memberID) {
+        return selectMember(memberID) != null;
+    }
+
     public static Member mapResultSetToMember(ResultSet rs) {
         try {
             int memberID = rs.getInt("member_id");

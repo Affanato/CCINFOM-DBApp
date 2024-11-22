@@ -1,8 +1,7 @@
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Objects;
 
-// TODO: DONE FOR NOW!!!
-// TODO: Verify if the methods are implemented correctly.
 public class SubscriptionTypesDAO {
 
     private final Statement statement;
@@ -11,8 +10,8 @@ public class SubscriptionTypesDAO {
         this.statement = DBUtils.getNewStatement();
     }
 
-    // SINGLE UPDATE QUERIES
-    public void insertSubscriptionType(SubscriptionType s) {
+    // SINGLE UPDATE QUERIES //
+    public boolean insertSubscriptionType(SubscriptionType s) {
         String sql = "INSERT INTO subscription_types (subscription_type_name, subscription_type_price) " +
                      "VALUES (?, ?) ";
 
@@ -25,14 +24,21 @@ public class SubscriptionTypesDAO {
             System.out.println("subscription_types record inserted successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
+            return false;
         }
+
+        return true;
     }
 
-    public void deleteSubscriptionType(int subscriptionTypeID) {
+    public boolean deleteSubscriptionType(int subscriptionTypeID) {
+        if (!subscriptionTypeExists(subscriptionTypeID)) return false;
+        DBUtils.invalidateTableForeignKey("subscription_type_amenities", "subscription_type_id", subscriptionTypeID);
+        DBUtils.invalidateTableForeignKey("subscriptions", "subscription_type_id", subscriptionTypeID);
         DBUtils.deleteTableRecordsByKey("subscription_types", "subscription_type_id", subscriptionTypeID);
+        return true;
     }
 
-    public void updateSubscriptionType(int subscriptionTypeID, SubscriptionType s) {
+    public boolean updateSubscriptionType(int subscriptionTypeID, SubscriptionType s) {
         String sql = "UPDATE subscription_types " +
                      "SET subscription_type_name = ?, " +
                      "    subscription_type_price = ? " +
@@ -48,24 +54,35 @@ public class SubscriptionTypesDAO {
             System.out.println("subscription_types record updated successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
+            return false;
         }
+
+        return true;
     }
 
-    // SELECT QUERIES
-    public SubscriptionType selectSubscriptionType(int subscriptionTypeID) {
+    // SELECT QUERIES //
+    public String[] getComboBoxSubscriptionTypeIDs() {
+        return DBUtils.selectAllKeysFromTable("subscription_types", "subscription_type_id");
+    }
+
+    public static SubscriptionType selectSubscriptionType(int subscriptionTypeID) {
         String condition = "WHERE subscription_type_id = " + subscriptionTypeID;
         ResultSet rs = DBUtils.selectAllRecordsFromTable("subscription_types", condition);
         assert rs != null;
         return mapResultSetToSubscriptionType(rs);
     }
 
-    public ArrayList<SubscriptionType> selectAllSubscriptionTypes() {
+    public Object[][] selectAllSubscriptionTypes() {
         ResultSet rs = DBUtils.selectAllRecordsFromTable("subscription_types");
         assert rs != null;
-        return mapResultSetToSubscriptionTypeList(rs);
+        return DBUtils.to2DObjectArray(Objects.requireNonNull(mapResultSetToSubscriptionTypeList(rs)));
     }
 
     // UTILITY METHODS //
+    public static boolean subscriptionTypeExists(int subscriptionTypeID) {
+        return selectSubscriptionType(subscriptionTypeID) != null;
+    }
+
     public static SubscriptionType mapResultSetToSubscriptionType(ResultSet rs) {
         try {
             int subscriptionTypeID = rs.getInt("subscription_type_id");
