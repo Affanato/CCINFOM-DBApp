@@ -154,8 +154,8 @@ public class ProductView {
 			productFrameContentPane.setLayout(null);
 
 			//---- productBackButton ----
-			productBackButton.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
-			productBackButton.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			productBackButton.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
+			productBackButton.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			productBackButton.setBackground(new Color(0xc80f2e));
 			productFrameContentPane.add(productBackButton);
 			productBackButton.setBounds(5, 5, 95, 45);
@@ -219,7 +219,7 @@ public class ProductView {
 			goToRestock.setBounds(660, 410, 250, 55);
 
 			//---- background ----
-			background.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\products.jpg"));
+			background.setIcon(new ImageIcon("resource\\products.jpg"));
 			productFrameContentPane.add(background);
 			background.setBounds(0, 55, 1200, 615);
 
@@ -249,8 +249,8 @@ public class ProductView {
 			addProductFrameContentPane.setLayout(null);
 
 			//---- addBack ----
-			addBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
-			addBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			addBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
+			addBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			addBack.setBackground(new Color(0xc80f2e));
 			addProductFrameContentPane.add(addBack);
 			addBack.setBounds(5, 5, 95, 45);
@@ -340,7 +340,7 @@ public class ProductView {
 			editorPane1.setBounds(115, 165, 975, 315);
 
 			//---- background2 ----
-			background2.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\products.jpg"));
+			background2.setIcon(new ImageIcon("resource\\products.jpg"));
 			addProductFrameContentPane.add(background2);
 			background2.setBounds(0, 55, 1200, 615);
 
@@ -368,8 +368,8 @@ public class ProductView {
 			deleteProductFrameContentPane.setLayout(null);
 
 			//---- deleteBack ----
-			deleteBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
-			deleteBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			deleteBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
+			deleteBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			deleteBack.setBackground(new Color(0xc80f2e));
 			deleteProductFrameContentPane.add(deleteBack);
 			deleteBack.setBounds(5, 5, 95, 45);
@@ -415,7 +415,7 @@ public class ProductView {
 			titleBar3.setBounds(0, 0, 1200, 55);
 
 			//---- background3 ----
-			background3.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\products.jpg"));
+			background3.setIcon(new ImageIcon("resource\\products.jpg"));
 			deleteProductFrameContentPane.add(background3);
 			background3.setBounds(0, 55, 1200, 615);
 
@@ -443,8 +443,8 @@ public class ProductView {
 			updateProductFrameContentPane.setLayout(null);
 
 			//---- updateBack ----
-			updateBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
-			updateBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			updateBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
+			updateBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			updateBack.setBackground(new Color(0xc80f2e));
 			updateProductFrameContentPane.add(updateBack);
 			updateBack.setBounds(5, 5, 95, 45);
@@ -537,7 +537,7 @@ public class ProductView {
 			editorPane3.setBounds(115, 165, 975, 315);
 
 			//---- background4 ----
-			background4.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\products.jpg"));
+			background4.setIcon(new ImageIcon("resource\\products.jpg"));
 			updateProductFrameContentPane.add(background4);
 			background4.setBounds(0, 55, 1200, 615);
 
@@ -565,8 +565,8 @@ public class ProductView {
 			restockProductFrameContentPane.setLayout(null);
 
 			//---- restockBack ----
-			restockBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
-			restockBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			restockBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
+			restockBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			restockBack.setBackground(new Color(0xc80f2e));
 			restockProductFrameContentPane.add(restockBack);
 			restockBack.setBounds(5, 5, 95, 45);
@@ -625,7 +625,7 @@ public class ProductView {
 			titleBar5.setBounds(0, 0, 1200, 55);
 
 			//---- background5 ----
-			background5.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\products.jpg"));
+			background5.setIcon(new ImageIcon("resource\\products.jpg"));
 			restockProductFrameContentPane.add(background5);
 			background5.setBounds(0, 55, 1200, 615);
 
@@ -653,8 +653,8 @@ public class ProductView {
 			sellProductFrameContentPane.setLayout(null);
 
 			//---- sellBack ----
-			sellBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
-			sellBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			sellBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
+			sellBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			sellBack.setBackground(new Color(0xc80f2e));
 			sellProductFrameContentPane.add(sellBack);
 			sellBack.setBounds(5, 5, 95, 45);
@@ -729,7 +729,7 @@ public class ProductView {
 			editorPane5.setBounds(305, 195, 610, 290);
 
 			//---- background6 ----
-			background6.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\products.jpg"));
+			background6.setIcon(new ImageIcon("resource\\products.jpg"));
 			sellProductFrameContentPane.add(background6);
 			background6.setBounds(0, 55, 1200, 615);
 
@@ -757,8 +757,8 @@ public class ProductView {
 			readProductFrameContentPane.setLayout(null);
 
 			//---- readBack ----
-			readBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
-			readBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			readBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
+			readBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			readBack.setBackground(new Color(0xc80f2e));
 			readProductFrameContentPane.add(readBack);
 			readBack.setBounds(5, 5, 95, 45);
@@ -806,7 +806,7 @@ public class ProductView {
 			titleBar7.setBounds(0, 0, 1200, 55);
 
 			//---- background7 ----
-			background7.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\products.jpg"));
+			background7.setIcon(new ImageIcon("resource\\products.jpg"));
 			readProductFrameContentPane.add(background7);
 			background7.setBounds(0, 55, 1200, 615);
 
@@ -834,8 +834,8 @@ public class ProductView {
 			updateProduct1ContentPane.setLayout(null);
 
 			//---- updateBack1 ----
-			updateBack1.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
-			updateBack1.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			updateBack1.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
+			updateBack1.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			updateBack1.setBackground(new Color(0xc80f2e));
 			updateProduct1ContentPane.add(updateBack1);
 			updateBack1.setBounds(5, 5, 95, 45);
@@ -881,7 +881,7 @@ public class ProductView {
 			titleBar8.setBounds(0, 0, 1200, 55);
 
 			//---- background8 ----
-			background8.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\products.jpg"));
+			background8.setIcon(new ImageIcon("resource\\products.jpg"));
 			updateProduct1ContentPane.add(background8);
 			background8.setBounds(0, 55, 1200, 615);
 
@@ -909,8 +909,8 @@ public class ProductView {
 			readProductPurchasesFrameContentPane.setLayout(null);
 
 			//---- readPurchasesBack ----
-			readPurchasesBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
-			readPurchasesBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			readPurchasesBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
+			readPurchasesBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			readPurchasesBack.setBackground(new Color(0xc80f2e));
 			readProductPurchasesFrameContentPane.add(readPurchasesBack);
 			readPurchasesBack.setBounds(5, 5, 95, 45);
@@ -948,7 +948,7 @@ public class ProductView {
 			scrollPane2.setBounds(70, 115, 1060, 490);
 
 			//---- background9 ----
-			background9.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\products.jpg"));
+			background9.setIcon(new ImageIcon("resource\\products.jpg"));
 			readProductPurchasesFrameContentPane.add(background9);
 			background9.setBounds(0, 55, 1200, 615);
 
@@ -976,8 +976,8 @@ public class ProductView {
 			productFrame2ContentPane.setLayout(null);
 
 			//---- productPurchaseBackButton ----
-			productPurchaseBackButton.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
-			productPurchaseBackButton.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			productPurchaseBackButton.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
+			productPurchaseBackButton.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			productPurchaseBackButton.setBackground(new Color(0xc80f2e));
 			productFrame2ContentPane.add(productPurchaseBackButton);
 			productPurchaseBackButton.setBounds(5, 5, 95, 45);
@@ -1025,7 +1025,7 @@ public class ProductView {
 			goToDelete2.setBounds(470, 460, 250, 55);
 
 			//---- background10 ----
-			background10.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\products.jpg"));
+			background10.setIcon(new ImageIcon("resource\\products.jpg"));
 			productFrame2ContentPane.add(background10);
 			background10.setBounds(0, 55, 1200, 615);
 
@@ -1053,8 +1053,8 @@ public class ProductView {
 			deleteProductPurchaseFrameContentPane.setLayout(null);
 
 			//---- deletePurchaseBack ----
-			deletePurchaseBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
-			deletePurchaseBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			deletePurchaseBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
+			deletePurchaseBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			deletePurchaseBack.setBackground(new Color(0xc80f2e));
 			deleteProductPurchaseFrameContentPane.add(deletePurchaseBack);
 			deletePurchaseBack.setBounds(5, 5, 95, 45);
@@ -1100,7 +1100,7 @@ public class ProductView {
 			titleBar11.setBounds(0, 0, 1200, 55);
 
 			//---- background11 ----
-			background11.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\products.jpg"));
+			background11.setIcon(new ImageIcon("resource\\products.jpg"));
 			deleteProductPurchaseFrameContentPane.add(background11);
 			background11.setBounds(0, 55, 1200, 615);
 
@@ -1128,8 +1128,8 @@ public class ProductView {
 			updateProductPurchaseFrameContentPane.setLayout(null);
 
 			//---- updatePurchaseBack ----
-			updatePurchaseBack.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
-			updatePurchaseBack.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			updatePurchaseBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
+			updatePurchaseBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			updatePurchaseBack.setBackground(new Color(0xc80f2e));
 			updateProductPurchaseFrameContentPane.add(updatePurchaseBack);
 			updatePurchaseBack.setBounds(5, 5, 95, 45);
@@ -1175,7 +1175,7 @@ public class ProductView {
 			titleBar12.setBounds(0, 0, 1200, 55);
 
 			//---- background12 ----
-			background12.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\products.jpg"));
+			background12.setIcon(new ImageIcon("resource\\products.jpg"));
 			updateProductPurchaseFrameContentPane.add(background12);
 			background12.setBounds(0, 55, 1200, 615);
 
@@ -1203,8 +1203,8 @@ public class ProductView {
 			updateProductPurchase2ContentPane.setLayout(null);
 
 			//---- updatePurchaseBack2 ----
-			updatePurchaseBack2.setSelectedIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resources\\backButton.jpg"));
-			updatePurchaseBack2.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\backButton.jpg"));
+			updatePurchaseBack2.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
+			updatePurchaseBack2.setIcon(new ImageIcon("resource\\backButton.jpg"));
 			updatePurchaseBack2.setBackground(new Color(0xc80f2e));
 			updateProductPurchase2ContentPane.add(updatePurchaseBack2);
 			updatePurchaseBack2.setBounds(5, 5, 95, 45);
@@ -1279,7 +1279,7 @@ public class ProductView {
 			editorPane9.setBounds(305, 195, 610, 290);
 
 			//---- background13 ----
-			background13.setIcon(new ImageIcon("C:\\Users\\Diane\\Desktop\\CCINFOM-DBApp\\resource\\products.jpg"));
+			background13.setIcon(new ImageIcon("resource\\products.jpg"));
 			updateProductPurchase2ContentPane.add(background13);
 			background13.setBounds(0, 55, 1200, 615);
 
