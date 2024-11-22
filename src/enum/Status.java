@@ -30,4 +30,13 @@ public enum Status {
             throw new IllegalArgumentException("Invalid status: " + name);
         }
     }
+
+    public static boolean hasDescription(String desc) {
+        for (Status s : Status.values()) {
+            if (s.getDescription().equalsIgnoreCase(desc)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

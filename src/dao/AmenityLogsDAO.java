@@ -59,7 +59,27 @@ public class AmenityLogsDAO {
         DBUtils.deleteTableRecordsByKey("amenity_logs", "amenity_log_id", amenityLogID);
     }
 
-    public void updateAmenityLog(int amenityLogID, AmenityLog a) {
+    public boolean updateAmenityLog(int amenityLogID, int memberID, int amenityID, String startDateTime, int usageDurationHours) {
+        if (!MembersDAO.memberExists(memberID) || !AmenitiesDAO.amenityExists(amenityID)) { // member or amenity does not exist
+            System.out.println("Invalid 'Member ID' or 'Amenity ID'!");
+            return false;
+        }
+
+        if (!AmenitiesDAO.isActiveAmenity(amenityID)) { // inactive amenity
+            System.out.println("Chosen amenity is inactive!");
+            return false;
+        }
+
+        if (usageDurationHours <= 0) {
+            System.out.println("Provide a positive number of usage hours!");
+            return false;
+        } // invalid usage duration hours
+
+        if (!AmenitiesDAO.isWithinAmenityHours(amenityID, startDateTime, usageDurationHours)) {
+            System.out.println("Chosen amenity usage datetime is beyond amenity hours!");
+            return false;
+        } // goes beyond hours
+
         String sql = "UPDATE amenity_logs " +
                      "SET member_id = ?, " +
                      "    amenity_id = ?, " +
@@ -70,11 +90,11 @@ public class AmenityLogsDAO {
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
-            ps.setInt(1, a.memberID());
-            ps.setInt(2, a.amenityID());
-            ps.setTimestamp(3, Timestamp.valueOf(a.usageStartDateTime()));
-            ps.setInt(4, a.usageDurationHours());
-            ps.setDouble(5, a.usageTotalPrice());
+            ps.setInt(1, memberID);
+            ps.setInt(2, amenityID);
+            ps.setTimestamp(3, Timestamp.valueOf(startDateTime));
+            ps.setInt(4, usageDurationHours);
+            ps.setDouble(5, getUsageTotalPrice(memberID, amenityID, usageDurationHours));
             ps.setInt(6, amenityLogID);
 
             ps.executeUpdate();
@@ -82,6 +102,8 @@ public class AmenityLogsDAO {
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
         }
+
+        return true;
     }
 
     // MASS UPDATE QUERIES //
