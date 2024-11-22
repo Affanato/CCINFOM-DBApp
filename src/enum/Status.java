@@ -39,4 +39,13 @@ public enum Status {
         }
         return false;
     }
+
+    public static String obtainStatus(String description) {
+        for (Status status : Status.values()) {
+            if (status.getDescription().equalsIgnoreCase(description)) {
+                return status.name(); // Return the enum constant (e.g., Status.ACTIVE)
+            }
+        }
+        throw new IllegalArgumentException("No enum constant with display name: " + description);
+    }
 }

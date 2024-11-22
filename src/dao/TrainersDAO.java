@@ -157,7 +157,7 @@ public class TrainersDAO {
         return updateTrainer(trainerID, updatedTrainer);
     }
 
-    public boolean setTrainerToInactive(int trainerID) {
+    public boolean setTrainerStatus(int trainerID, String status) {
         if (!DBUtils.primaryKeyExistsInATable("trainers", "trainer_id", trainerID)) {
             return false;
         }
@@ -168,7 +168,7 @@ public class TrainersDAO {
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
-            ps.setString(1, "inactive");
+            ps.setString(1, status);
             ps.setInt(2, trainerID);
 
             System.out.println("Trainer record set to inactive successfully.");
@@ -266,14 +266,14 @@ public class TrainersDAO {
             String lastName = rs.getString("last_name");
             String firstName = rs.getString("first_name");
             LocalDate birthdate = rs.getDate("birthdate").toLocalDate();
-            Sex sex = Sex.valueOf(rs.getString("sex"));
+            Sex sex = Sex.valueOf(Status.obtainStatus(rs.getString("sex")));
             String phoneNumber = rs.getString("phone_number");
             String street = rs.getString("street");
             String barangay = rs.getString("barangay");
             String city = rs.getString("city");
             String province = rs.getString("province");
             String programSpecialty = rs.getString("program_specialty");
-            Status trainerStatus = Status.valueOf(rs.getString("trainer_status"));
+            Status trainerStatus = Status.valueOf(Status.obtainStatus(rs.getString("trainer_status")));
 
             return new Trainer(trainerID, lastName, firstName, birthdate, sex, phoneNumber, street, barangay, city, province, programSpecialty, trainerStatus);
         } catch (SQLException e) {
