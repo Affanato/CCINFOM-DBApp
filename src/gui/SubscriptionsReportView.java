@@ -139,7 +139,7 @@ public class SubscriptionsReportView extends JFrame {
                                 {null, null, null, null, null},
                         },
                         new String[] {
-                                "Month", "Year", "Total Subscriptions", "Subscription Type", "Subscription Revenue  "
+                                "Year", "Month", "Subscription Type", "Total Subscriptions", "Total Revenue"
                         }
                 ));
                 {
@@ -213,7 +213,7 @@ public class SubscriptionsReportView extends JFrame {
                                 {null, null, null, null},
                         },
                         new String[] {
-                                "Year", "Total Subscriptions", "Subscription Type", "Subscription Revenue  "
+                                "Year", "Subscription Type", "Total Subscriptions", "Total Revenue"
                         }
                 ));
                 {
@@ -285,7 +285,7 @@ public class SubscriptionsReportView extends JFrame {
                                 {null, null, null},
                         },
                         new String[] {
-                                "Total Subscriptions", "Subscription Type", "Subscription Revenue  "
+                                "Subscription Type", "Total Subscriptions", "Total Revenue"
                         }
                 ));
                 {
