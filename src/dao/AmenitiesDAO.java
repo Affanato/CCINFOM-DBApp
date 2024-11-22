@@ -38,7 +38,9 @@ public class AmenitiesDAO {
         }
     }
 
+    // TODO: Modify this to update referencing records' keys to some sentinel like 0!!
     public void deleteAmenity(int amenityID) {
+
         DBUtils.deleteTableRecordsByKey("amenities", "amenity_id", amenityID);
     }
 
@@ -68,6 +70,10 @@ public class AmenitiesDAO {
     }
 
     // SELECT QUERIES //
+    public String[] getComboBoxAmenityIDs() {
+        return DBUtils.selectAllKeysFromTable("amenities", "amenity_id");
+    }
+
     public static Amenity selectAmenity(int amenityID) {
         String condition = "WHERE amenity_id = " + amenityID;
         ResultSet rs = DBUtils.selectAllRecordsFromTable("amenities", condition);
@@ -128,6 +134,36 @@ public class AmenitiesDAO {
         }
     }
 
+    public Object[][] queryAmenitiesUsagePerMonthPerYear() {
+        String sql = "SELECT        YEAR(al.usage_start_datetime) AS year, " +
+                     "              MONTH(al.usage_start_datetime) AS month, " +
+                     "              a.amenity_name, " +
+                     "              COUNT(*) AS total_usages " +
+                     "FROM          amenity_logs al " +
+                     "JOIN          amenities a ON al.amenity_id = a.amenity_id " +
+                     "GROUP BY      year, month, a.amenity_name " +
+                     "ORDER BY      year, month, a.amenity_name; ";
+
+        try (ResultSet rs = Objects.requireNonNull(statement.executeQuery(sql))) {
+            List<Object[]> tempList = new ArrayList<>();
+
+            while (rs.next()) {
+                int year = rs.getInt("year");
+                int month = rs.getInt("month");
+                String amenityName = rs.getString("amenity_name");
+                int totalUsages = rs.getInt("total_usages");
+
+                Object[] elem = {year, month, amenityName, totalUsages};
+                tempList.add(elem);
+            }
+
+            return tempList.toArray(new Object[0][]);
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
+    }
+
     public Object[][] queryAmenitiesRevenueLifetime() {
         String sql = "SELECT        a.amenity_name, SUM(al.usage_total_price) AS total_revenue " +
                      "FROM          amenity_logs al " +
@@ -153,46 +189,26 @@ public class AmenitiesDAO {
         }
     }
 
-    public Object[][] queryAmenitiesUsagePerMonthPerYear() {
-        String sql = "SELECT        a.amenity_name, COUNT(*) AS total_usages " +
-                "FROM          amenity_logs al " +
-                "JOIN          amenities a ON al.amenity_id = a.amenity_id " +
-                "GROUP BY      a.amenity_name " +
-                "ORDER BY      total_usages DESC; ";
+    public Object[][] queryAmenitiesRevenuePerMonthPerYear() {
+        String sql = "SELECT        YEAR(al.usage_start_datetime) AS year, " +
+                     "              MONTH(al.usage_start_datetime) AS month, " +
+                     "              a.amenity_name, " +
+                     "              SUM(al.usage_total_price) AS total_revenue " +
+                     "FROM          amenity_logs al " +
+                     "JOIN          amenities a ON al.amenity_id = a.amenity_id " +
+                     "GROUP BY      year, month, a.amenity_name " +
+                     "ORDER BY      year, month, a.amenity_name; ";
 
         try (ResultSet rs = Objects.requireNonNull(statement.executeQuery(sql))) {
             List<Object[]> tempList = new ArrayList<>();
 
             while (rs.next()) {
+                int year = rs.getInt("year");
+                int month = rs.getInt("month");
                 String amenityName = rs.getString("amenity_name");
                 int totalUsages = rs.getInt("total_usages");
 
-                Object[] elem = {amenityName, totalUsages};
-                tempList.add(elem);
-            }
-
-            return tempList.toArray(new Object[0][]);
-        } catch (SQLException e) {
-            ExceptionHandler.handleException(e);
-            return null;
-        }
-    }
-
-    public Object[][] queryAmenitiesRevenuePerMonthPerYear() {
-        String sql = "SELECT        a.amenity_name, SUM(al.usage_total_price) AS total_revenue " +
-                "FROM          amenity_logs al " +
-                "JOIN          amenities a ON al.amenity_id = a.amenity_id " +
-                "GROUP BY      a.amenity_name " +
-                "ORDER BY      total_revenue DESC; ";
-
-        try (ResultSet rs = Objects.requireNonNull(statement.executeQuery(sql))) {
-            List<Object[]> tempList = new ArrayList<>();
-
-            while (rs.next()) {
-                String amenityName = rs.getString("amenity_name");
-                int totalRevenue = rs.getInt("total_revenue");
-
-                Object[] elem = {amenityName, totalRevenue};
+                Object[] elem = {year, month, amenityName, totalUsages};
                 tempList.add(elem);
             }
 
