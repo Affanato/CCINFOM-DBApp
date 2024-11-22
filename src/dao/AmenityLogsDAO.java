@@ -54,8 +54,13 @@ public class AmenityLogsDAO {
         return true;
     }
 
-    public void deleteAmenityLog(int amenityLogID) {
-        DBUtils.deleteTableRecordsByKey("amenity_logs", "amenity_log_id", amenityLogID);
+    public boolean deleteAmenityLog(int amenityLogID) {
+        try {
+            DBUtils.deleteTableRecordsByKey("amenity_logs", "amenity_log_id", amenityLogID);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
     public boolean updateAmenityLog(int amenityLogID, int memberID, int amenityID, String startDateTime, int usageDurationHours) {
@@ -116,15 +121,6 @@ public class AmenityLogsDAO {
 
     public void deleteByMemberID(int memberID) {
         DBUtils.deleteTableRecordsByKey("amenity_logs", "member_id", memberID);
-    }
-
-    public boolean deleteAmenityLog(int amenityLogID) {
-        try {
-            DBUtils.deleteTableRecordsByKey("amenity_logs", "amenity_log_id", amenityLogID);
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
     }
 
     // SELECT QUERIES //
