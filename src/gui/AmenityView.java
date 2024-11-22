@@ -1,9 +1,10 @@
 import java.awt.*;
-import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.table.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 /*
- * Created by JFormDesigner on Mon Nov 18 15:55:49 PST 2024
+ * Created by JFormDesigner on Thu Nov 21 22:09:11 PST 2024
  */
 
 
@@ -20,79 +21,81 @@ public class AmenityView  {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Lucas Antonio V F. Tujan
         amenityFrame = new JFrame();
-        amenityBackButton = new JButton();
+        amenityBack = new JButton();
         titleBar = new JFormattedTextField();
-        goToAdd = new JButton();
-        goToRead = new JButton();
-        goToUpdate = new JButton();
-        goToDelete = new JButton();
+        goToAddAmenity = new JButton();
+        goToReadAmenity = new JButton();
+        goToUpdateAmenity = new JButton();
+        goToDeleteAmenity = new JButton();
         label1 = new JLabel();
         addAmenityFrame = new JFrame();
+        addAmenity = new JButton();
+        addAmenityTitle = new JFormattedTextField();
         nameText = new JFormattedTextField();
         name = new JTextPane();
+        statusText = new JFormattedTextField();
+        selectStatus = new JComboBox();
         walkInPriceText = new JFormattedTextField();
-        walkInPrice = new JTextPane();
+        walkinPrice = new JTextPane();
         timeOpenText = new JFormattedTextField();
         timeOpen = new JTextPane();
         timeCloseText = new JFormattedTextField();
         timeClose = new JTextPane();
-        addAmenityBackButton = new JButton();
-        amenityAddAmenity = new JFormattedTextField();
-        statusText = new JFormattedTextField();
-        status = new JComboBox();
-        greyBar = new JFormattedTextField();
-        addAmenity = new JButton();
-        backgroundPicture = new JLabel();
-        deleteAmenityFrame = new JFrame();
-        deleteAmenityButton = new JButton();
-        selectAmenity = new JFormattedTextField();
-        selectAmenityBar = new JComboBox();
         editorPane2 = new JEditorPane();
-        deleteAmenityBack = new JButton();
+        addAmenityBack = new JButton();
         backgroundPicture2 = new JLabel();
-        amenityDeleteAmenity = new JFormattedTextField();
+        amenityAddAmenity = new JFormattedTextField();
         readAmenityFrame = new JFrame();
-        amenityReadBack = new JButton();
+        readAmenityBack = new JButton();
         tablePane = new JScrollPane();
-        amenityTable = new JTable();
+        sessionTable = new JTable();
         amenityReadAmenity = new JFormattedTextField();
         backgroundPicture3 = new JLabel();
-        updateAmenitySelectFrame = new JFrame();
-        updateAmenityButton = new JButton();
-        selectAmenity2 = new JFormattedTextField();
-        selectAmenityBar2 = new JComboBox();
+        deleteAmenityFrame = new JFrame();
+        deleteAmenity = new JButton();
+        deleteAmenityTitle = new JFormattedTextField();
+        selectDelete = new JComboBox();
         editorPane3 = new JEditorPane();
-        updateAmenityBack = new JButton();
+        deleteAmenityBack = new JButton();
         backgroundPicture4 = new JLabel();
-        amenityUpdateAmenity = new JFormattedTextField();
-        updateAmenityFrame = new JFrame();
+        amenityDeleteAmenity = new JFormattedTextField();
+        updateSelectAmenityFrame = new JFrame();
+        updateAmenity = new JButton();
+        updateAmenityTitle = new JFormattedTextField();
+        selectUpdate = new JComboBox();
+        editorPane4 = new JEditorPane();
+        updateSelectAmenityBack = new JButton();
+        backgroundPicture5 = new JLabel();
+        amenityUpdateAmenity2 = new JFormattedTextField();
+        updateAmenityDetailsFrame = new JFrame();
+        updateAmenity2 = new JButton();
+        updateAmenityTitle2 = new JFormattedTextField();
         nameText2 = new JFormattedTextField();
         name2 = new JTextPane();
+        statusText2 = new JFormattedTextField();
+        selectStatus2 = new JComboBox();
         walkInPriceText2 = new JFormattedTextField();
-        walkInPrice2 = new JTextPane();
+        walkinPrice2 = new JTextPane();
         timeOpenText2 = new JFormattedTextField();
         timeOpen2 = new JTextPane();
         timeCloseText2 = new JFormattedTextField();
         timeClose2 = new JTextPane();
-        updateAmenityBackButton = new JButton();
-        amenityAddAmenity2 = new JFormattedTextField();
-        statusText2 = new JFormattedTextField();
-        status2 = new JComboBox();
-        greyBar2 = new JFormattedTextField();
-        updateAmenity2 = new JButton();
-        backgroundPicture5 = new JLabel();
+        editorPane5 = new JEditorPane();
+        updateDetailsAmenityBack = new JButton();
+        backgroundPicture6 = new JLabel();
+        amenityUseUseAmenity2 = new JFormattedTextField();
 
         //======== amenityFrame ========
         {
             Container amenityFrameContentPane = amenityFrame.getContentPane();
             amenityFrameContentPane.setLayout(null);
 
-            //---- amenityBackButton ----
-            amenityBackButton.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
-            amenityBackButton.setIcon(new ImageIcon("resource/backButton.jpg"));
-            amenityBackButton.setBackground(new Color(0xc80f2e));
-            amenityFrameContentPane.add(amenityBackButton);
-            amenityBackButton.setBounds(5, 5, 95, 45);
+            //---- amenityBack ----
+            amenityBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
+            amenityBack.setIcon(new ImageIcon("resource/backButton.jpg"));
+            amenityBack.setBackground(new Color(0xc80f2e));
+            amenityFrameContentPane.add(amenityBack);
+            amenityBack.setBounds(5, 5, 95, 45);
 
             //---- titleBar ----
             titleBar.setText("Amenity");
@@ -104,37 +107,37 @@ public class AmenityView  {
             amenityFrameContentPane.add(titleBar);
             titleBar.setBounds(0, 0, 1200, 55);
 
-            //---- goToAdd ----
-            goToAdd.setText("ADD AMENITY");
-            goToAdd.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
-            goToAdd.setForeground(Color.white);
-            goToAdd.setBackground(new Color(0x3ca3cb));
-            amenityFrameContentPane.add(goToAdd);
-            goToAdd.setBounds(485, 195, 250, 55);
+            //---- goToAddAmenity ----
+            goToAddAmenity.setText("ADD AMENITY");
+            goToAddAmenity.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+            goToAddAmenity.setForeground(Color.white);
+            goToAddAmenity.setBackground(new Color(0x3ca3cb));
+            amenityFrameContentPane.add(goToAddAmenity);
+            goToAddAmenity.setBounds(485, 190, 250, 55);
 
-            //---- goToRead ----
-            goToRead.setText("READ AMENITY");
-            goToRead.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
-            goToRead.setForeground(Color.white);
-            goToRead.setBackground(new Color(0x3ca3cb));
-            amenityFrameContentPane.add(goToRead);
-            goToRead.setBounds(485, 285, 250, 55);
+            //---- goToReadAmenity ----
+            goToReadAmenity.setText("READ AMENITY");
+            goToReadAmenity.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+            goToReadAmenity.setForeground(Color.white);
+            goToReadAmenity.setBackground(new Color(0x3ca3cb));
+            amenityFrameContentPane.add(goToReadAmenity);
+            goToReadAmenity.setBounds(485, 300, 250, 55);
 
-            //---- goToUpdate ----
-            goToUpdate.setText("UPDATE AMENITY");
-            goToUpdate.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
-            goToUpdate.setForeground(Color.white);
-            goToUpdate.setBackground(new Color(0x3ca3cb));
-            amenityFrameContentPane.add(goToUpdate);
-            goToUpdate.setBounds(485, 375, 250, 55);
+            //---- goToUpdateAmenity ----
+            goToUpdateAmenity.setText("UPDATE AMENITY");
+            goToUpdateAmenity.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+            goToUpdateAmenity.setForeground(Color.white);
+            goToUpdateAmenity.setBackground(new Color(0x3ca3cb));
+            amenityFrameContentPane.add(goToUpdateAmenity);
+            goToUpdateAmenity.setBounds(485, 415, 250, 55);
 
-            //---- goToDelete ----
-            goToDelete.setText("DELETE AMENITY");
-            goToDelete.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
-            goToDelete.setForeground(Color.white);
-            goToDelete.setBackground(new Color(0x3ca3cb));
-            amenityFrameContentPane.add(goToDelete);
-            goToDelete.setBounds(485, 465, 250, 55);
+            //---- goToDeleteAmenity ----
+            goToDeleteAmenity.setText("DELETE AMENITY");
+            goToDeleteAmenity.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+            goToDeleteAmenity.setForeground(Color.white);
+            goToDeleteAmenity.setBackground(new Color(0x3ca3cb));
+            amenityFrameContentPane.add(goToDeleteAmenity);
+            goToDeleteAmenity.setBounds(485, 525, 250, 55);
 
             //---- label1 ----
             label1.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
@@ -166,63 +169,103 @@ public class AmenityView  {
             Container addAmenityFrameContentPane = addAmenityFrame.getContentPane();
             addAmenityFrameContentPane.setLayout(null);
 
+            //---- addAmenity ----
+            addAmenity.setText("ADD AMENITY");
+            addAmenity.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+            addAmenity.setForeground(Color.white);
+            addAmenity.setBackground(new Color(0x3ca3cb));
+            addAmenityFrameContentPane.add(addAmenity);
+            addAmenity.setBounds(490, 480, 250, 55);
+
+            //---- addAmenityTitle ----
+            addAmenityTitle.setText("Add Amenity");
+            addAmenityTitle.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+            addAmenityTitle.setEditable(false);
+            addAmenityTitle.setHorizontalAlignment(SwingConstants.CENTER);
+            addAmenityFrameContentPane.add(addAmenityTitle);
+            addAmenityTitle.setBounds(370, 170, 485, 35);
+
             //---- nameText ----
             nameText.setText("Name");
             nameText.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
             nameText.setEditable(false);
             addAmenityFrameContentPane.add(nameText);
-            nameText.setBounds(395, 175, 205, 35);
+            nameText.setBounds(420, 225, 175, 40);
 
             //---- name ----
             name.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
             addAmenityFrameContentPane.add(name);
-            name.setBounds(650, 175, 200, 35);
+            name.setBounds(635, 225, 175, 40);
+
+            //---- statusText ----
+            statusText.setText("Status");
+            statusText.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+            statusText.setEditable(false);
+            addAmenityFrameContentPane.add(statusText);
+            statusText.setBounds(420, 280, 175, 40);
+
+            //---- selectStatus ----
+            selectStatus.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+            selectStatus.setEditable(true);
+            addAmenityFrameContentPane.add(selectStatus);
+            selectStatus.setBounds(635, 280, 175, 40);
 
             //---- walkInPriceText ----
             walkInPriceText.setText("Walk-in Price Per Hour");
-            walkInPriceText.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+            walkInPriceText.setFont(new Font("Tw Cen MT", Font.PLAIN, 17));
             walkInPriceText.setEditable(false);
             addAmenityFrameContentPane.add(walkInPriceText);
-            walkInPriceText.setBounds(395, 315, 205, 35);
+            walkInPriceText.setBounds(420, 335, 175, 35);
 
-            //---- walkInPrice ----
-            walkInPrice.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-            addAmenityFrameContentPane.add(walkInPrice);
-            walkInPrice.setBounds(650, 315, 200, 35);
+            //---- walkinPrice ----
+            walkinPrice.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+            addAmenityFrameContentPane.add(walkinPrice);
+            walkinPrice.setBounds(635, 335, 175, 35);
 
             //---- timeOpenText ----
-            timeOpenText.setText("Time Open  ");
+            timeOpenText.setText("Time Open");
             timeOpenText.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
             timeOpenText.setEditable(false);
             addAmenityFrameContentPane.add(timeOpenText);
-            timeOpenText.setBounds(395, 385, 205, 35);
+            timeOpenText.setBounds(420, 385, 175, 35);
 
             //---- timeOpen ----
             timeOpen.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
             addAmenityFrameContentPane.add(timeOpen);
-            timeOpen.setBounds(650, 385, 200, 35);
+            timeOpen.setBounds(635, 385, 175, 35);
 
             //---- timeCloseText ----
             timeCloseText.setText("Time Close");
             timeCloseText.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
             timeCloseText.setEditable(false);
             addAmenityFrameContentPane.add(timeCloseText);
-            timeCloseText.setBounds(395, 455, 205, 35);
+            timeCloseText.setBounds(420, 435, 175, 35);
 
             //---- timeClose ----
             timeClose.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
             addAmenityFrameContentPane.add(timeClose);
-            timeClose.setBounds(650, 455, 200, 35);
+            timeClose.setBounds(635, 435, 175, 35);
 
-            //---- addAmenityBackButton ----
-            addAmenityBackButton.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
-            addAmenityBackButton.setIcon(new ImageIcon("resource/backButton.jpg"));
-            addAmenityBackButton.setBackground(new Color(0xc80f2e));
-            addAmenityFrameContentPane.add(addAmenityBackButton);
-            addAmenityBackButton.setBounds(5, 5, 95, 45);
+            //---- editorPane2 ----
+            editorPane2.setBackground(new Color(0xb5b9b8));
+            editorPane2.setEditable(false);
+            addAmenityFrameContentPane.add(editorPane2);
+            editorPane2.setBounds(370, 205, 485, 365);
+
+            //---- addAmenityBack ----
+            addAmenityBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
+            addAmenityBack.setIcon(new ImageIcon("resource/backButton.jpg"));
+            addAmenityBack.setBackground(new Color(0xc80f2e));
+            addAmenityFrameContentPane.add(addAmenityBack);
+            addAmenityBack.setBounds(5, 5, 95, 45);
+
+            //---- backgroundPicture2 ----
+            backgroundPicture2.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
+            addAmenityFrameContentPane.add(backgroundPicture2);
+            backgroundPicture2.setBounds(new Rectangle(new Point(0, 55), backgroundPicture2.getPreferredSize()));
 
             //---- amenityAddAmenity ----
-            amenityAddAmenity.setText("Amenity: Add Amenity");
+            amenityAddAmenity.setText("Amenity: Add Amenity ");
             amenityAddAmenity.setBackground(new Color(0xc80f2e));
             amenityAddAmenity.setHorizontalAlignment(SwingConstants.CENTER);
             amenityAddAmenity.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
@@ -230,40 +273,6 @@ public class AmenityView  {
             amenityAddAmenity.setEditable(false);
             addAmenityFrameContentPane.add(amenityAddAmenity);
             amenityAddAmenity.setBounds(0, 0, 1200, 55);
-
-            //---- statusText ----
-            statusText.setText("Status");
-            statusText.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
-            statusText.setEditable(false);
-            addAmenityFrameContentPane.add(statusText);
-            statusText.setBounds(395, 245, 205, 35);
-
-            //---- status ----
-            status.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-            addAmenityFrameContentPane.add(status);
-            status.setBounds(650, 245, 200, 35);
-
-            //---- greyBar ----
-            greyBar.setBackground(new Color(0xb5b9b8));
-            greyBar.setHorizontalAlignment(SwingConstants.CENTER);
-            greyBar.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
-            greyBar.setForeground(Color.white);
-            greyBar.setEditable(false);
-            addAmenityFrameContentPane.add(greyBar);
-            greyBar.setBounds(65, 125, 1075, 415);
-
-            //---- addAmenity ----
-            addAmenity.setText("ADD AMENITY");
-            addAmenity.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
-            addAmenity.setForeground(Color.white);
-            addAmenity.setBackground(new Color(0x3ca3cb));
-            addAmenityFrameContentPane.add(addAmenity);
-            addAmenity.setBounds(500, 580, 250, 55);
-
-            //---- backgroundPicture ----
-            backgroundPicture.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
-            addAmenityFrameContentPane.add(backgroundPicture);
-            backgroundPicture.setBounds(0, 50, 1200, 620);
 
             {
                 // compute preferred size
@@ -283,115 +292,43 @@ public class AmenityView  {
             addAmenityFrame.setLocationRelativeTo(addAmenityFrame.getOwner());
         }
 
-        //======== deleteAmenityFrame ========
-        {
-            Container deleteAmenityFrameContentPane = deleteAmenityFrame.getContentPane();
-            deleteAmenityFrameContentPane.setLayout(null);
-
-            //---- deleteAmenityButton ----
-            deleteAmenityButton.setText("DELETE AMENITY");
-            deleteAmenityButton.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
-            deleteAmenityButton.setForeground(Color.white);
-            deleteAmenityButton.setBackground(new Color(0x3ca3cb));
-            deleteAmenityFrameContentPane.add(deleteAmenityButton);
-            deleteAmenityButton.setBounds(490, 395, 250, 55);
-
-            //---- selectAmenity ----
-            selectAmenity.setText("Select Amenity");
-            selectAmenity.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
-            selectAmenity.setEditable(false);
-            selectAmenity.setHorizontalAlignment(SwingConstants.CENTER);
-            deleteAmenityFrameContentPane.add(selectAmenity);
-            selectAmenity.setBounds(370, 235, 485, 35);
-
-            //---- selectAmenityBar ----
-            selectAmenityBar.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-            deleteAmenityFrameContentPane.add(selectAmenityBar);
-            selectAmenityBar.setBounds(420, 320, 390, 40);
-
-            //---- editorPane2 ----
-            editorPane2.setBackground(new Color(0xb5b9b8));
-            editorPane2.setEditable(false);
-            deleteAmenityFrameContentPane.add(editorPane2);
-            editorPane2.setBounds(370, 235, 485, 240);
-
-            //---- deleteAmenityBack ----
-            deleteAmenityBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
-            deleteAmenityBack.setIcon(new ImageIcon("resource/backButton.jpg"));
-            deleteAmenityBack.setBackground(new Color(0xc80f2e));
-            deleteAmenityFrameContentPane.add(deleteAmenityBack);
-            deleteAmenityBack.setBounds(5, 5, 95, 45);
-
-            //---- backgroundPicture2 ----
-            backgroundPicture2.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
-            deleteAmenityFrameContentPane.add(backgroundPicture2);
-            backgroundPicture2.setBounds(new Rectangle(new Point(0, 55), backgroundPicture2.getPreferredSize()));
-
-            //---- amenityDeleteAmenity ----
-            amenityDeleteAmenity.setText("Amenity: Delete Amenity");
-            amenityDeleteAmenity.setBackground(new Color(0xc80f2e));
-            amenityDeleteAmenity.setHorizontalAlignment(SwingConstants.CENTER);
-            amenityDeleteAmenity.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
-            amenityDeleteAmenity.setForeground(Color.white);
-            amenityDeleteAmenity.setEditable(false);
-            deleteAmenityFrameContentPane.add(amenityDeleteAmenity);
-            amenityDeleteAmenity.setBounds(0, 0, 1200, 55);
-
-            {
-                // compute preferred size
-                Dimension preferredSize = new Dimension();
-                for(int i = 0; i < deleteAmenityFrameContentPane.getComponentCount(); i++) {
-                    Rectangle bounds = deleteAmenityFrameContentPane.getComponent(i).getBounds();
-                    preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
-                    preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
-                }
-                Insets insets = deleteAmenityFrameContentPane.getInsets();
-                preferredSize.width += insets.right;
-                preferredSize.height += insets.bottom;
-                deleteAmenityFrameContentPane.setMinimumSize(preferredSize);
-                deleteAmenityFrameContentPane.setPreferredSize(preferredSize);
-            }
-            deleteAmenityFrame.pack();
-            deleteAmenityFrame.setLocationRelativeTo(deleteAmenityFrame.getOwner());
-        }
-
         //======== readAmenityFrame ========
         {
             Container readAmenityFrameContentPane = readAmenityFrame.getContentPane();
             readAmenityFrameContentPane.setLayout(null);
 
-            //---- amenityReadBack ----
-            amenityReadBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
-            amenityReadBack.setIcon(new ImageIcon("resource/backButton.jpg"));
-            amenityReadBack.setBackground(new Color(0xc80f2e));
-            readAmenityFrameContentPane.add(amenityReadBack);
-            amenityReadBack.setBounds(5, 5, 95, 45);
+            //---- readAmenityBack ----
+            readAmenityBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
+            readAmenityBack.setIcon(new ImageIcon("resource/backButton.jpg"));
+            readAmenityBack.setBackground(new Color(0xc80f2e));
+            readAmenityFrameContentPane.add(readAmenityBack);
+            readAmenityBack.setBounds(5, 5, 95, 45);
 
             //======== tablePane ========
             {
 
-                //---- amenityTable ----
-                amenityTable.setModel(new DefaultTableModel(
+                //---- sessionTable ----
+                sessionTable.setModel(new DefaultTableModel(
                         new Object[][] {
-                                {null, null, null, "", null, null},
+                                {null, null, null, "", "", null},
                                 {null, null, null, null, null, null},
                         },
                         new String[] {
-                                "Amenity ID ", "Name  ", "Walk In Price Per Hour", "Time Open  ", "Time Close ", "Status"
+                                "Amenity ID", "Name", "Walk-in Price Per Hour", "Time Open", "Time Close", "Status"
                         }
                 ));
                 {
-                    TableColumnModel cm = amenityTable.getColumnModel();
-                    cm.getColumn(0).setMinWidth(80);
+                    TableColumnModel cm = sessionTable.getColumnModel();
+                    cm.getColumn(0).setMinWidth(100);
                     cm.getColumn(1).setMinWidth(200);
-                    cm.getColumn(2).setMinWidth(150);
-                    cm.getColumn(3).setMinWidth(100);
-                    cm.getColumn(4).setMinWidth(100);
+                    cm.getColumn(2).setMinWidth(200);
+                    cm.getColumn(3).setMinWidth(150);
+                    cm.getColumn(4).setMinWidth(150);
                     cm.getColumn(5).setMinWidth(100);
                 }
-                amenityTable.setFont(new Font("Tw Cen MT", Font.PLAIN, 18));
-                amenityTable.setEnabled(false);
-                tablePane.setViewportView(amenityTable);
+                sessionTable.setFont(new Font("Tw Cen MT", Font.PLAIN, 18));
+                sessionTable.setEnabled(false);
+                tablePane.setViewportView(sessionTable);
             }
             readAmenityFrameContentPane.add(tablePane);
             tablePane.setBounds(115, 145, 970, 435);
@@ -429,198 +366,276 @@ public class AmenityView  {
             readAmenityFrame.setLocationRelativeTo(readAmenityFrame.getOwner());
         }
 
-        //======== updateAmenitySelectFrame ========
+        //======== deleteAmenityFrame ========
         {
-            Container updateAmenitySelectFrameContentPane = updateAmenitySelectFrame.getContentPane();
-            updateAmenitySelectFrameContentPane.setLayout(null);
+            Container deleteAmenityFrameContentPane = deleteAmenityFrame.getContentPane();
+            deleteAmenityFrameContentPane.setLayout(null);
 
-            //---- updateAmenityButton ----
-            updateAmenityButton.setText("UPDATE AMENITY");
-            updateAmenityButton.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
-            updateAmenityButton.setForeground(Color.white);
-            updateAmenityButton.setBackground(new Color(0x3ca3cb));
-            updateAmenitySelectFrameContentPane.add(updateAmenityButton);
-            updateAmenityButton.setBounds(490, 395, 250, 55);
+            //---- deleteAmenity ----
+            deleteAmenity.setText("DELETE AMENITY");
+            deleteAmenity.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+            deleteAmenity.setForeground(Color.white);
+            deleteAmenity.setBackground(new Color(0x3ca3cb));
+            deleteAmenityFrameContentPane.add(deleteAmenity);
+            deleteAmenity.setBounds(490, 480, 250, 55);
 
-            //---- selectAmenity2 ----
-            selectAmenity2.setText("Select Amenity");
-            selectAmenity2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
-            selectAmenity2.setEditable(false);
-            selectAmenity2.setHorizontalAlignment(SwingConstants.CENTER);
-            updateAmenitySelectFrameContentPane.add(selectAmenity2);
-            selectAmenity2.setBounds(370, 235, 485, 35);
+            //---- deleteAmenityTitle ----
+            deleteAmenityTitle.setText("Delete Amenity");
+            deleteAmenityTitle.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+            deleteAmenityTitle.setEditable(false);
+            deleteAmenityTitle.setHorizontalAlignment(SwingConstants.CENTER);
+            deleteAmenityFrameContentPane.add(deleteAmenityTitle);
+            deleteAmenityTitle.setBounds(370, 170, 485, 35);
 
-            //---- selectAmenityBar2 ----
-            selectAmenityBar2.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-            updateAmenitySelectFrameContentPane.add(selectAmenityBar2);
-            selectAmenityBar2.setBounds(420, 320, 390, 40);
+            //---- selectDelete ----
+            selectDelete.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+            deleteAmenityFrameContentPane.add(selectDelete);
+            selectDelete.setBounds(425, 335, 390, 40);
 
             //---- editorPane3 ----
             editorPane3.setBackground(new Color(0xb5b9b8));
             editorPane3.setEditable(false);
-            updateAmenitySelectFrameContentPane.add(editorPane3);
-            editorPane3.setBounds(370, 235, 485, 240);
+            deleteAmenityFrameContentPane.add(editorPane3);
+            editorPane3.setBounds(370, 205, 485, 365);
 
-            //---- updateAmenityBack ----
-            updateAmenityBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
-            updateAmenityBack.setIcon(new ImageIcon("resource/backButton.jpg"));
-            updateAmenityBack.setBackground(new Color(0xc80f2e));
-            updateAmenitySelectFrameContentPane.add(updateAmenityBack);
-            updateAmenityBack.setBounds(5, 5, 95, 45);
+            //---- deleteAmenityBack ----
+            deleteAmenityBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
+            deleteAmenityBack.setIcon(new ImageIcon("resource/backButton.jpg"));
+            deleteAmenityBack.setBackground(new Color(0xc80f2e));
+            deleteAmenityFrameContentPane.add(deleteAmenityBack);
+            deleteAmenityBack.setBounds(5, 5, 95, 45);
 
             //---- backgroundPicture4 ----
             backgroundPicture4.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
-            updateAmenitySelectFrameContentPane.add(backgroundPicture4);
+            deleteAmenityFrameContentPane.add(backgroundPicture4);
             backgroundPicture4.setBounds(new Rectangle(new Point(0, 55), backgroundPicture4.getPreferredSize()));
 
-            //---- amenityUpdateAmenity ----
-            amenityUpdateAmenity.setText("Amenity: Update Amenity");
-            amenityUpdateAmenity.setBackground(new Color(0xc80f2e));
-            amenityUpdateAmenity.setHorizontalAlignment(SwingConstants.CENTER);
-            amenityUpdateAmenity.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
-            amenityUpdateAmenity.setForeground(Color.white);
-            amenityUpdateAmenity.setEditable(false);
-            updateAmenitySelectFrameContentPane.add(amenityUpdateAmenity);
-            amenityUpdateAmenity.setBounds(0, 0, 1200, 55);
+            //---- amenityDeleteAmenity ----
+            amenityDeleteAmenity.setText("Amenity: Delete Amenity");
+            amenityDeleteAmenity.setBackground(new Color(0xc80f2e));
+            amenityDeleteAmenity.setHorizontalAlignment(SwingConstants.CENTER);
+            amenityDeleteAmenity.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
+            amenityDeleteAmenity.setForeground(Color.white);
+            amenityDeleteAmenity.setEditable(false);
+            deleteAmenityFrameContentPane.add(amenityDeleteAmenity);
+            amenityDeleteAmenity.setBounds(0, 0, 1200, 55);
 
             {
                 // compute preferred size
                 Dimension preferredSize = new Dimension();
-                for(int i = 0; i < updateAmenitySelectFrameContentPane.getComponentCount(); i++) {
-                    Rectangle bounds = updateAmenitySelectFrameContentPane.getComponent(i).getBounds();
+                for(int i = 0; i < deleteAmenityFrameContentPane.getComponentCount(); i++) {
+                    Rectangle bounds = deleteAmenityFrameContentPane.getComponent(i).getBounds();
                     preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
                     preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
                 }
-                Insets insets = updateAmenitySelectFrameContentPane.getInsets();
+                Insets insets = deleteAmenityFrameContentPane.getInsets();
                 preferredSize.width += insets.right;
                 preferredSize.height += insets.bottom;
-                updateAmenitySelectFrameContentPane.setMinimumSize(preferredSize);
-                updateAmenitySelectFrameContentPane.setPreferredSize(preferredSize);
+                deleteAmenityFrameContentPane.setMinimumSize(preferredSize);
+                deleteAmenityFrameContentPane.setPreferredSize(preferredSize);
             }
-            updateAmenitySelectFrame.pack();
-            updateAmenitySelectFrame.setLocationRelativeTo(updateAmenitySelectFrame.getOwner());
+            deleteAmenityFrame.pack();
+            deleteAmenityFrame.setLocationRelativeTo(deleteAmenityFrame.getOwner());
         }
 
-        //======== updateAmenityFrame ========
+        //======== updateSelectAmenityFrame ========
         {
-            Container updateAmenityFrameContentPane = updateAmenityFrame.getContentPane();
-            updateAmenityFrameContentPane.setLayout(null);
+            Container updateSelectAmenityFrameContentPane = updateSelectAmenityFrame.getContentPane();
+            updateSelectAmenityFrameContentPane.setLayout(null);
 
-            //---- nameText2 ----
-            nameText2.setText("Name");
-            nameText2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
-            nameText2.setEditable(false);
-            updateAmenityFrameContentPane.add(nameText2);
-            nameText2.setBounds(395, 175, 205, 35);
+            //---- updateAmenity ----
+            updateAmenity.setText("UPDATE AMENITY");
+            updateAmenity.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+            updateAmenity.setForeground(Color.white);
+            updateAmenity.setBackground(new Color(0x3ca3cb));
+            updateSelectAmenityFrameContentPane.add(updateAmenity);
+            updateAmenity.setBounds(490, 480, 250, 55);
 
-            //---- name2 ----
-            name2.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-            updateAmenityFrameContentPane.add(name2);
-            name2.setBounds(650, 175, 200, 35);
+            //---- updateAmenityTitle ----
+            updateAmenityTitle.setText("Update Amenity");
+            updateAmenityTitle.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+            updateAmenityTitle.setEditable(false);
+            updateAmenityTitle.setHorizontalAlignment(SwingConstants.CENTER);
+            updateSelectAmenityFrameContentPane.add(updateAmenityTitle);
+            updateAmenityTitle.setBounds(370, 170, 485, 35);
 
-            //---- walkInPriceText2 ----
-            walkInPriceText2.setText("Walk-in Price Per Hour");
-            walkInPriceText2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
-            walkInPriceText2.setEditable(false);
-            updateAmenityFrameContentPane.add(walkInPriceText2);
-            walkInPriceText2.setBounds(395, 315, 205, 35);
+            //---- selectUpdate ----
+            selectUpdate.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+            updateSelectAmenityFrameContentPane.add(selectUpdate);
+            selectUpdate.setBounds(425, 335, 390, 40);
 
-            //---- walkInPrice2 ----
-            walkInPrice2.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-            updateAmenityFrameContentPane.add(walkInPrice2);
-            walkInPrice2.setBounds(650, 315, 200, 35);
+            //---- editorPane4 ----
+            editorPane4.setBackground(new Color(0xb5b9b8));
+            editorPane4.setEditable(false);
+            updateSelectAmenityFrameContentPane.add(editorPane4);
+            editorPane4.setBounds(370, 205, 485, 365);
 
-            //---- timeOpenText2 ----
-            timeOpenText2.setText("Time Open  ");
-            timeOpenText2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
-            timeOpenText2.setEditable(false);
-            updateAmenityFrameContentPane.add(timeOpenText2);
-            timeOpenText2.setBounds(395, 385, 205, 35);
+            //---- updateSelectAmenityBack ----
+            updateSelectAmenityBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
+            updateSelectAmenityBack.setIcon(new ImageIcon("resource/backButton.jpg"));
+            updateSelectAmenityBack.setBackground(new Color(0xc80f2e));
+            updateSelectAmenityFrameContentPane.add(updateSelectAmenityBack);
+            updateSelectAmenityBack.setBounds(5, 5, 95, 45);
 
-            //---- timeOpen2 ----
-            timeOpen2.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-            updateAmenityFrameContentPane.add(timeOpen2);
-            timeOpen2.setBounds(650, 385, 200, 35);
+            //---- backgroundPicture5 ----
+            backgroundPicture5.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
+            updateSelectAmenityFrameContentPane.add(backgroundPicture5);
+            backgroundPicture5.setBounds(new Rectangle(new Point(0, 55), backgroundPicture5.getPreferredSize()));
 
-            //---- timeCloseText2 ----
-            timeCloseText2.setText("Time Close");
-            timeCloseText2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
-            timeCloseText2.setEditable(false);
-            updateAmenityFrameContentPane.add(timeCloseText2);
-            timeCloseText2.setBounds(395, 455, 205, 35);
+            //---- amenityUpdateAmenity2 ----
+            amenityUpdateAmenity2.setText("Amenity: Update Amenity");
+            amenityUpdateAmenity2.setBackground(new Color(0xc80f2e));
+            amenityUpdateAmenity2.setHorizontalAlignment(SwingConstants.CENTER);
+            amenityUpdateAmenity2.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
+            amenityUpdateAmenity2.setForeground(Color.white);
+            amenityUpdateAmenity2.setEditable(false);
+            updateSelectAmenityFrameContentPane.add(amenityUpdateAmenity2);
+            amenityUpdateAmenity2.setBounds(0, 0, 1200, 55);
 
-            //---- timeClose2 ----
-            timeClose2.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-            updateAmenityFrameContentPane.add(timeClose2);
-            timeClose2.setBounds(650, 455, 200, 35);
+            {
+                // compute preferred size
+                Dimension preferredSize = new Dimension();
+                for(int i = 0; i < updateSelectAmenityFrameContentPane.getComponentCount(); i++) {
+                    Rectangle bounds = updateSelectAmenityFrameContentPane.getComponent(i).getBounds();
+                    preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+                    preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+                }
+                Insets insets = updateSelectAmenityFrameContentPane.getInsets();
+                preferredSize.width += insets.right;
+                preferredSize.height += insets.bottom;
+                updateSelectAmenityFrameContentPane.setMinimumSize(preferredSize);
+                updateSelectAmenityFrameContentPane.setPreferredSize(preferredSize);
+            }
+            updateSelectAmenityFrame.pack();
+            updateSelectAmenityFrame.setLocationRelativeTo(updateSelectAmenityFrame.getOwner());
+        }
 
-            //---- updateAmenityBackButton ----
-            updateAmenityBackButton.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
-            updateAmenityBackButton.setIcon(new ImageIcon("resource/backButton.jpg"));
-            updateAmenityBackButton.setBackground(new Color(0xc80f2e));
-            updateAmenityFrameContentPane.add(updateAmenityBackButton);
-            updateAmenityBackButton.setBounds(5, 5, 95, 45);
-
-            //---- amenityAddAmenity2 ----
-            amenityAddAmenity2.setText("Amenity: Update Amenity");
-            amenityAddAmenity2.setBackground(new Color(0xc80f2e));
-            amenityAddAmenity2.setHorizontalAlignment(SwingConstants.CENTER);
-            amenityAddAmenity2.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
-            amenityAddAmenity2.setForeground(Color.white);
-            amenityAddAmenity2.setEditable(false);
-            updateAmenityFrameContentPane.add(amenityAddAmenity2);
-            amenityAddAmenity2.setBounds(0, 0, 1200, 55);
-
-            //---- statusText2 ----
-            statusText2.setText("Status");
-            statusText2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
-            statusText2.setEditable(false);
-            updateAmenityFrameContentPane.add(statusText2);
-            statusText2.setBounds(395, 245, 205, 35);
-
-            //---- status2 ----
-            status2.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-            updateAmenityFrameContentPane.add(status2);
-            status2.setBounds(650, 245, 200, 35);
-
-            //---- greyBar2 ----
-            greyBar2.setBackground(new Color(0xb5b9b8));
-            greyBar2.setHorizontalAlignment(SwingConstants.CENTER);
-            greyBar2.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
-            greyBar2.setForeground(Color.white);
-            greyBar2.setEditable(false);
-            updateAmenityFrameContentPane.add(greyBar2);
-            greyBar2.setBounds(65, 125, 1075, 415);
+        //======== updateAmenityDetailsFrame ========
+        {
+            Container updateAmenityDetailsFrameContentPane = updateAmenityDetailsFrame.getContentPane();
+            updateAmenityDetailsFrameContentPane.setLayout(null);
 
             //---- updateAmenity2 ----
             updateAmenity2.setText("UPDATE AMENITY");
             updateAmenity2.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
             updateAmenity2.setForeground(Color.white);
             updateAmenity2.setBackground(new Color(0x3ca3cb));
-            updateAmenityFrameContentPane.add(updateAmenity2);
-            updateAmenity2.setBounds(500, 580, 250, 55);
+            updateAmenityDetailsFrameContentPane.add(updateAmenity2);
+            updateAmenity2.setBounds(490, 480, 250, 55);
 
-            //---- backgroundPicture5 ----
-            backgroundPicture5.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
-            updateAmenityFrameContentPane.add(backgroundPicture5);
-            backgroundPicture5.setBounds(0, 50, 1200, 620);
+            //---- updateAmenityTitle2 ----
+            updateAmenityTitle2.setText("Add Update");
+            updateAmenityTitle2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+            updateAmenityTitle2.setEditable(false);
+            updateAmenityTitle2.setHorizontalAlignment(SwingConstants.CENTER);
+            updateAmenityDetailsFrameContentPane.add(updateAmenityTitle2);
+            updateAmenityTitle2.setBounds(370, 170, 485, 35);
+
+            //---- nameText2 ----
+            nameText2.setText("Name");
+            nameText2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+            nameText2.setEditable(false);
+            updateAmenityDetailsFrameContentPane.add(nameText2);
+            nameText2.setBounds(420, 225, 175, 40);
+
+            //---- name2 ----
+            name2.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+            updateAmenityDetailsFrameContentPane.add(name2);
+            name2.setBounds(635, 225, 175, 40);
+
+            //---- statusText2 ----
+            statusText2.setText("Status");
+            statusText2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+            statusText2.setEditable(false);
+            updateAmenityDetailsFrameContentPane.add(statusText2);
+            statusText2.setBounds(420, 280, 175, 40);
+
+            //---- selectStatus2 ----
+            selectStatus2.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+            selectStatus2.setEditable(true);
+            updateAmenityDetailsFrameContentPane.add(selectStatus2);
+            selectStatus2.setBounds(635, 280, 175, 40);
+
+            //---- walkInPriceText2 ----
+            walkInPriceText2.setText("Walk-in Price Per Hour");
+            walkInPriceText2.setFont(new Font("Tw Cen MT", Font.PLAIN, 17));
+            walkInPriceText2.setEditable(false);
+            updateAmenityDetailsFrameContentPane.add(walkInPriceText2);
+            walkInPriceText2.setBounds(420, 335, 175, 35);
+
+            //---- walkinPrice2 ----
+            walkinPrice2.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+            updateAmenityDetailsFrameContentPane.add(walkinPrice2);
+            walkinPrice2.setBounds(635, 335, 175, 35);
+
+            //---- timeOpenText2 ----
+            timeOpenText2.setText("Time Open");
+            timeOpenText2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+            timeOpenText2.setEditable(false);
+            updateAmenityDetailsFrameContentPane.add(timeOpenText2);
+            timeOpenText2.setBounds(420, 385, 175, 35);
+
+            //---- timeOpen2 ----
+            timeOpen2.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+            updateAmenityDetailsFrameContentPane.add(timeOpen2);
+            timeOpen2.setBounds(635, 385, 175, 35);
+
+            //---- timeCloseText2 ----
+            timeCloseText2.setText("Time Close");
+            timeCloseText2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+            timeCloseText2.setEditable(false);
+            updateAmenityDetailsFrameContentPane.add(timeCloseText2);
+            timeCloseText2.setBounds(420, 435, 175, 35);
+
+            //---- timeClose2 ----
+            timeClose2.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+            updateAmenityDetailsFrameContentPane.add(timeClose2);
+            timeClose2.setBounds(635, 435, 175, 35);
+
+            //---- editorPane5 ----
+            editorPane5.setBackground(new Color(0xb5b9b8));
+            editorPane5.setEditable(false);
+            updateAmenityDetailsFrameContentPane.add(editorPane5);
+            editorPane5.setBounds(370, 205, 485, 365);
+
+            //---- updateDetailsAmenityBack ----
+            updateDetailsAmenityBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
+            updateDetailsAmenityBack.setIcon(new ImageIcon("resource/backButton.jpg"));
+            updateDetailsAmenityBack.setBackground(new Color(0xc80f2e));
+            updateAmenityDetailsFrameContentPane.add(updateDetailsAmenityBack);
+            updateDetailsAmenityBack.setBounds(5, 5, 95, 45);
+
+            //---- backgroundPicture6 ----
+            backgroundPicture6.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
+            updateAmenityDetailsFrameContentPane.add(backgroundPicture6);
+            backgroundPicture6.setBounds(new Rectangle(new Point(0, 55), backgroundPicture6.getPreferredSize()));
+
+            //---- amenityUseUseAmenity2 ----
+            amenityUseUseAmenity2.setText("Amenity: Update Amenity ");
+            amenityUseUseAmenity2.setBackground(new Color(0xc80f2e));
+            amenityUseUseAmenity2.setHorizontalAlignment(SwingConstants.CENTER);
+            amenityUseUseAmenity2.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
+            amenityUseUseAmenity2.setForeground(Color.white);
+            amenityUseUseAmenity2.setEditable(false);
+            updateAmenityDetailsFrameContentPane.add(amenityUseUseAmenity2);
+            amenityUseUseAmenity2.setBounds(0, 0, 1200, 55);
 
             {
                 // compute preferred size
                 Dimension preferredSize = new Dimension();
-                for(int i = 0; i < updateAmenityFrameContentPane.getComponentCount(); i++) {
-                    Rectangle bounds = updateAmenityFrameContentPane.getComponent(i).getBounds();
+                for(int i = 0; i < updateAmenityDetailsFrameContentPane.getComponentCount(); i++) {
+                    Rectangle bounds = updateAmenityDetailsFrameContentPane.getComponent(i).getBounds();
                     preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
                     preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
                 }
-                Insets insets = updateAmenityFrameContentPane.getInsets();
+                Insets insets = updateAmenityDetailsFrameContentPane.getInsets();
                 preferredSize.width += insets.right;
                 preferredSize.height += insets.bottom;
-                updateAmenityFrameContentPane.setMinimumSize(preferredSize);
-                updateAmenityFrameContentPane.setPreferredSize(preferredSize);
+                updateAmenityDetailsFrameContentPane.setMinimumSize(preferredSize);
+                updateAmenityDetailsFrameContentPane.setPreferredSize(preferredSize);
             }
-            updateAmenityFrame.pack();
-            updateAmenityFrame.setLocationRelativeTo(updateAmenityFrame.getOwner());
+            updateAmenityDetailsFrame.pack();
+            updateAmenityDetailsFrame.setLocationRelativeTo(updateAmenityDetailsFrame.getOwner());
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
@@ -628,67 +643,69 @@ public class AmenityView  {
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     // Generated using JFormDesigner Evaluation license - Lucas Antonio V F. Tujan
     private JFrame amenityFrame;
-    private JButton amenityBackButton;
+    private JButton amenityBack;
     private JFormattedTextField titleBar;
-    private JButton goToAdd;
-    private JButton goToRead;
-    private JButton goToUpdate;
-    private JButton goToDelete;
+    private JButton goToAddAmenity;
+    private JButton goToReadAmenity;
+    private JButton goToUpdateAmenity;
+    private JButton goToDeleteAmenity;
     private JLabel label1;
     private JFrame addAmenityFrame;
+    private JButton addAmenity;
+    private JFormattedTextField addAmenityTitle;
     private JFormattedTextField nameText;
     private JTextPane name;
+    private JFormattedTextField statusText;
+    private JComboBox selectStatus;
     private JFormattedTextField walkInPriceText;
-    private JTextPane walkInPrice;
+    private JTextPane walkinPrice;
     private JFormattedTextField timeOpenText;
     private JTextPane timeOpen;
     private JFormattedTextField timeCloseText;
     private JTextPane timeClose;
-    private JButton addAmenityBackButton;
-    private JFormattedTextField amenityAddAmenity;
-    private JFormattedTextField statusText;
-    private JComboBox status;
-    private JFormattedTextField greyBar;
-    private JButton addAmenity;
-    private JLabel backgroundPicture;
-    private JFrame deleteAmenityFrame;
-    private JButton deleteAmenityButton;
-    private JFormattedTextField selectAmenity;
-    private JComboBox selectAmenityBar;
     private JEditorPane editorPane2;
-    private JButton deleteAmenityBack;
+    private JButton addAmenityBack;
     private JLabel backgroundPicture2;
-    private JFormattedTextField amenityDeleteAmenity;
+    private JFormattedTextField amenityAddAmenity;
     private JFrame readAmenityFrame;
-    private JButton amenityReadBack;
+    private JButton readAmenityBack;
     private JScrollPane tablePane;
-    private JTable amenityTable;
+    private JTable sessionTable;
     private JFormattedTextField amenityReadAmenity;
     private JLabel backgroundPicture3;
-    private JFrame updateAmenitySelectFrame;
-    private JButton updateAmenityButton;
-    private JFormattedTextField selectAmenity2;
-    private JComboBox selectAmenityBar2;
+    private JFrame deleteAmenityFrame;
+    private JButton deleteAmenity;
+    private JFormattedTextField deleteAmenityTitle;
+    private JComboBox selectDelete;
     private JEditorPane editorPane3;
-    private JButton updateAmenityBack;
+    private JButton deleteAmenityBack;
     private JLabel backgroundPicture4;
-    private JFormattedTextField amenityUpdateAmenity;
-    private JFrame updateAmenityFrame;
+    private JFormattedTextField amenityDeleteAmenity;
+    private JFrame updateSelectAmenityFrame;
+    private JButton updateAmenity;
+    private JFormattedTextField updateAmenityTitle;
+    private JComboBox selectUpdate;
+    private JEditorPane editorPane4;
+    private JButton updateSelectAmenityBack;
+    private JLabel backgroundPicture5;
+    private JFormattedTextField amenityUpdateAmenity2;
+    private JFrame updateAmenityDetailsFrame;
+    private JButton updateAmenity2;
+    private JFormattedTextField updateAmenityTitle2;
     private JFormattedTextField nameText2;
     private JTextPane name2;
+    private JFormattedTextField statusText2;
+    private JComboBox selectStatus2;
     private JFormattedTextField walkInPriceText2;
-    private JTextPane walkInPrice2;
+    private JTextPane walkinPrice2;
     private JFormattedTextField timeOpenText2;
     private JTextPane timeOpen2;
     private JFormattedTextField timeCloseText2;
     private JTextPane timeClose2;
-    private JButton updateAmenityBackButton;
-    private JFormattedTextField amenityAddAmenity2;
-    private JFormattedTextField statusText2;
-    private JComboBox status2;
-    private JFormattedTextField greyBar2;
-    private JButton updateAmenity2;
-    private JLabel backgroundPicture5;
+    private JEditorPane editorPane5;
+    private JButton updateDetailsAmenityBack;
+    private JLabel backgroundPicture6;
+    private JFormattedTextField amenityUseUseAmenity2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     // Getters
@@ -696,138 +713,134 @@ public class AmenityView  {
         return this.amenityFrame;
     }
 
-    public JFrame getAddAmenityFrame(){
+    public JFrame getAddAmenityFrame() {
         return this.addAmenityFrame;
     }
 
-    public JFrame getDeleteAmenityFrame(){
-        return this.deleteAmenityFrame;
-    }
-
-    public JFrame getReadAmenityFrame(){
+    public JFrame getReadAmenityFrame() {
         return this.readAmenityFrame;
     }
 
-    public JFrame getUpdateAmenityFrame(){
-        return this.updateAmenityFrame;
+    public JFrame getDeleteAmenityFrame() {
+        return this.deleteAmenityFrame;
     }
 
-    public JFrame getUpdateAmenitySelectFrame(){
-        return this.updateAmenitySelectFrame;
+    public JFrame getUpdateSelectAmenityFrame() {
+        return this.updateSelectAmenityFrame;
     }
 
-    // Add
-    public String getName(){
+    public JFrame getUpdateAmenityDetailsFrame() {
+        return this.updateAmenityDetailsFrame;
+    }
+
+    // Add Amenity
+    public String getName() {
         return this.name.getText();
     }
 
-    public int getStatus(){
-        return this.status.getSelectedIndex() + 1;
+    public int getSelectStatus() {
+        return this.selectStatus.getSelectedIndex() + 1;
     }
 
-    public String getWalkInPrice(){
-        return this.walkInPrice.getText();
+    public String getWalkInPrice() {
+        return this.walkinPrice.getText();
     }
 
-    public String getTimeOpen(){
+    public String getTimeOpen() {
         return this.timeOpen.getText();
     }
 
-    public String getTimeClose(){
+    public String getTimeClose() {
         return this.timeClose.getText();
     }
 
     // Delete
-    public int getDeleteAmenityID(){
-        return this.selectAmenityBar.getSelectedIndex() + 1;
+
+    public int getSelectDelete() {
+        return this.selectDelete.getSelectedIndex() + 1;
     }
 
-    // Update
-    public int getAmenityID(){
-        return this.selectAmenityBar2.getSelectedIndex() + 1;
+    // Update Select
+    public int getSelectUpdate() {
+        return this.selectUpdate.getSelectedIndex() + 1;
     }
 
-    public String getUpdateName(){
+    // Update Details
+    public String getName2() {
         return this.name2.getText();
     }
 
-    public int getUpdateStatus(){
-        return this.status2.getSelectedIndex() + 1;
+    public int getSelectStatus2() {
+        return this.selectStatus2.getSelectedIndex() + 1;
     }
 
-    public String getUpdateWalkInPrice(){
-        return this.walkInPrice2.getText();
+    public String getWalkInPrice2() {
+        return this.walkinPrice2.getText();
     }
 
-    public String getUpdateTimeOpen(){
+    public String getTimeOpen2() {
         return this.timeOpen2.getText();
     }
 
-    public String getUpdateTimeClose(){
+    public String getTimeClose2() {
         return this.timeClose2.getText();
     }
 
-    // Setters
-    public void setName(String name){
-        this.name.setText(name);
-    }
-
     // Button Action Listeners
-    public void amenityBackButtonB(ActionListener actionListener){
-        this.amenityBackButton.addActionListener(actionListener);
+    public void amenityBackButton(ActionListener actionListener) {
+        this.amenityBack.addActionListener(actionListener);
     }
 
-    public void goToAddB(ActionListener actionListener){
-        this.goToAdd.addActionListener(actionListener);
+    public void goToAddAmenityButton(ActionListener actionListener) {
+        this.goToAddAmenity.addActionListener(actionListener);
     }
 
-    public void goToReadB(ActionListener actionListener){
-        this.goToRead.addActionListener(actionListener);
+    public void goToReadAmenityButton(ActionListener actionListener) {
+        this.goToReadAmenity.addActionListener(actionListener);
     }
 
-    public void goToUpdateB(ActionListener actionListener){
-        this.goToUpdate.addActionListener(actionListener);
+    public void goToUpdateAmenityButton(ActionListener actionListener) {
+        this.goToUpdateAmenity.addActionListener(actionListener);
     }
 
-    public void goToDeleteB(ActionListener actionListener){
-        this.goToDelete.addActionListener(actionListener);
+    public void goToDeleteAmenityButton(ActionListener actionListener) {
+        this.goToDeleteAmenity.addActionListener(actionListener);
     }
 
-    public void addAmenityBackButtonB(ActionListener actionListener){
-        this.addAmenityBackButton.addActionListener(actionListener);
-    }
-
-    public void addAmenityB(ActionListener actionListener){
+    public void addAmenityButton(ActionListener actionListener) {
         this.amenityAddAmenity.addActionListener(actionListener);
     }
 
-    public void deleteAmenityBackB(ActionListener actionListener){
+    public void addAmenityBackButton(ActionListener actionListener) {
+        this.addAmenityBack.addActionListener(actionListener);
+    }
+
+    public void readAmenityBackButton(ActionListener actionListener) {
+        this.readAmenityBack.addActionListener(actionListener);
+    }
+
+    public void deleteAmenityButton(ActionListener actionListener) {
+        this.deleteAmenity.addActionListener(actionListener);
+    }
+
+    public void deleteAmenityBackButton(ActionListener actionListener) {
         this.deleteAmenityBack.addActionListener(actionListener);
     }
 
-    public void deleteAmenityButtonB(ActionListener actionListener){
-        this.deleteAmenityButton.addActionListener(actionListener);
+    public void updateAmenityButton(ActionListener actionListener) {
+        this.updateAmenity.addActionListener(actionListener);
     }
 
-    public void amenityReadBackB(ActionListener actionListener){
-        this.amenityReadBack.addActionListener(actionListener);
+    public void updateSelectAmenityBackButton(ActionListener actionListener) {
+        this.updateSelectAmenityBack.addActionListener(actionListener);
     }
 
-    public void updateAmenityButtonB(ActionListener actionListener){
-        this.updateAmenityButton.addActionListener(actionListener);
-    }
-
-    public void updateAmenityBackB(ActionListener actionListener){
-        this.updateAmenityBack.addActionListener(actionListener);
-    }
-
-    public void updateAmenityBackButtonB(ActionListener actionListener){
-        this.updateAmenityBackButton.addActionListener(actionListener);
-    }
-
-    public void updateAmenity2B(ActionListener actionListener){
+    public void updateAmenity2Button(ActionListener actionListener) {
         this.updateAmenity2.addActionListener(actionListener);
     }
 
+    public void updateDetailsAmenityBackButton(ActionListener actionListener) {
+        this.updateDetailsAmenityBack.addActionListener(actionListener);
+    }
 
 }

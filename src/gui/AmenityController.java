@@ -1,117 +1,120 @@
+import com.sun.tools.javac.Main;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AmenityController {
-    private final AmenityView aView = new AmenityView();
+    private final AmenityView view = new AmenityView();
 
     public AmenityController() {
-        this.aView.amenityBackButtonB(new ActionListener() {
+        this.view.amenityBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                view.getAmenityFrame().dispose();
                 MainMenuController mainMenuController = new MainMenuController();
-                aView.getAmenityFrame().dispose();
             }
         });
 
-        this.aView.goToAddB(new ActionListener(){
+        this.view.goToAddAmenityButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                aView.getAddAmenityFrame().setVisible(true);
-                aView.getAmenityFrame().dispose();
+                view.getAmenityFrame().dispose();
+                view.getAddAmenityFrame().setVisible(true);
             }
         });
 
-        this.aView.goToDeleteB(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                aView.getDeleteAmenityFrame().setVisible(true);
-                aView.getAmenityFrame().dispose();
-            }
-        });
-
-        this.aView.goToReadB(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                aView.getReadAmenityFrame().setVisible(true);
-                aView.getAmenityFrame().dispose();
-            }
-        });
-
-        this.aView.goToUpdateB(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                aView.getUpdateAmenitySelectFrame().setVisible(true);
-                aView.getAmenityFrame().dispose();
-            }
-        });
-
-        this.aView.addAmenityBackButtonB(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                aView.getAmenityFrame().setVisible(true);
-                aView.getAddAmenityFrame().dispose();
-            }
-        });
-
-        this.aView.addAmenityB(new ActionListener() {
+        this.view.goToReadAmenityButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //
+                view.getAmenityFrame().dispose();
+                view.getReadAmenityFrame().setVisible(true);
             }
         });
 
-        this.aView.deleteAmenityBackB(new ActionListener(){
+        this.view.goToUpdateAmenityButton(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
-                aView.getAmenityFrame().setVisible(true);
-                aView.getDeleteAmenityFrame().dispose();
+            public void actionPerformed(ActionEvent e) {
+                view.getAmenityFrame().dispose();
+                view.getUpdateSelectAmenityFrame().setVisible(true);
             }
         });
 
-        this.aView.deleteAmenityButtonB(new ActionListener(){
+        this.view.goToDeleteAmenityButton(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
-                //
+            public void actionPerformed(ActionEvent e) {
+                view.getAmenityFrame().dispose();
+                view.getDeleteAmenityFrame().setVisible(true);
             }
         });
 
-        this.aView.amenityReadBackB(new ActionListener(){
+        this.view.addAmenityButton(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
-                aView.getAmenityFrame().setVisible(true);
-                aView.getReadAmenityFrame().dispose();
+            public void actionPerformed(ActionEvent e) {
+                //Display Success or Fail Message
             }
         });
 
-        this.aView.updateAmenityBackB(new ActionListener(){
+        this.view.addAmenityBackButton(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
-                aView.getAmenityFrame().setVisible(true);
-                aView.getUpdateAmenitySelectFrame().dispose();
+            public void actionPerformed(ActionEvent e) {
+                view.getAddAmenityFrame().dispose();
+                view.getAmenityFrame().setVisible(true);
             }
         });
 
-        this.aView.updateAmenityButtonB(new ActionListener(){
+        this.view.readAmenityBackButton(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
-                aView.getUpdateAmenityFrame().setVisible(true);
-                aView.getUpdateAmenitySelectFrame().dispose();
+            public void actionPerformed(ActionEvent e) {
+                view.getReadAmenityFrame().dispose();
+                view.getAmenityFrame().setVisible(true);
             }
         });
 
-        this.aView.updateAmenityBackButtonB(new ActionListener(){
+        this.view.deleteAmenityButton(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
-                aView.getUpdateAmenitySelectFrame().setVisible(true);
-                aView.getUpdateAmenityFrame().dispose();
+            public void actionPerformed(ActionEvent e) {
+                //Display Success or Fail Message
             }
         });
 
-        this.aView.updateAmenity2B(new ActionListener(){
+        this.view.deleteAmenityBackButton(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
-                //
+            public void actionPerformed(ActionEvent e) {
+                view.getDeleteAmenityFrame().dispose();
+                view.getAmenityFrame().setVisible(true);
+            }
+        });
+
+        this.view.updateAmenityButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                view.getUpdateSelectAmenityFrame().dispose();
+                view.getUpdateAmenityDetailsFrame().setVisible(true);
+            }
+        });
+
+        this.view.updateSelectAmenityBackButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                view.getUpdateSelectAmenityFrame().dispose();
+                view.getAmenityFrame().setVisible(true);
+            }
+        });
+
+        this.view.updateAmenity2Button(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //Display Success or Fail Message
+            }
+        });
+
+        this.view.updateDetailsAmenityBackButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                view.getUpdateAmenityDetailsFrame().dispose();
+                view.getUpdateSelectAmenityFrame().setVisible(true);
             }
         });
     }
+
 }
