@@ -942,20 +942,20 @@ public class SubscriptionTypeView {
 	}
 
 	// delete
-	public int getSubscriptionTypeID() {
-		return this.subscriptionTypeID.getSelectedIndex() + 1;
+	public String getSubscriptionTypeID() {
+		return (String) this.subscriptionTypeID.getSelectedItem();
 	}
 
 	// update
-	public int getUpdateSubscriptionName() {
-		return this.updateSubscriptionName.getSelectedIndex() + 1;
+	public String getUpdateSubscriptionName() {
+		return (String) this.updateSubscriptionName.getSelectedItem();
 	}
 
 	public String getUpdateSubscriptionTypeName() {
-		return this.updateSubscriptionTypeName.getText();
+		return this.updateSubscriptionTypeName.getText().trim();
 	}
 	public String getUpdateSubscriptionTypePrice() {
-		return this.updateSubscriptionTypePrice.getText();
+		return this.updateSubscriptionTypePrice.getText().trim();
 	}
 
 	public int getAddAmenityID() {

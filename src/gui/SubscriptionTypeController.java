@@ -2,8 +2,11 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultComboBoxModel;
+
 public class SubscriptionTypeController {
     private SubscriptionTypeView mtView = new SubscriptionTypeView();
+    private SubscriptionTypesDAO dao = new SubscriptionTypesDAO();
 
     public SubscriptionTypeController() {
         this.mtView.memberBackButton(new ActionListener() {
@@ -25,6 +28,7 @@ public class SubscriptionTypeController {
         this.mtView.goToDeleteButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                mtView.getSubscriptionTypeIDJComboBox().setModel(new DefaultComboBoxModel<>(dao.getComboBoxSubscriptionTypeIDs()));
                 mtView.getDeleteSubscriptionTypeFrame().setVisible(true);
                 mtView.getSubscriptionTypeFrame().dispose();
             }
@@ -33,6 +37,7 @@ public class SubscriptionTypeController {
         this.mtView.goToUpdateButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                mtView.getUpdateSubscriptionNameJComboBox().setModel(new DefaultComboBoxModel<>(dao.getComboBoxSubscriptionTypeIDs()));
                 mtView.getUpdateSubscriptionTypeFrame1().setVisible(true);
                 mtView.getSubscriptionTypeFrame().dispose();
             }
@@ -41,6 +46,7 @@ public class SubscriptionTypeController {
         this.mtView.goToReadButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                mtView.setMemberTable(dao.selectAllSubscriptionTypes());
                 mtView.getReadSubscriptionTypeFrame().setVisible(true);
                 mtView.getSubscriptionTypeFrame().dispose();
             }
@@ -57,7 +63,19 @@ public class SubscriptionTypeController {
         this.mtView.addSubscriptionTypeButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //
+                System.out.println("String: " + mtView.getSubscriptionTypeName());
+                System.out.println("Double: " + mtView.getSubscriptionTypePrice());
+                String name = mtView.getSubscriptionTypeName();
+                double price = Double.parseDouble(mtView.getSubscriptionTypePrice());
+                System.out.println(name);
+                System.out.println(price);
+                SubscriptionType st = new SubscriptionType(0, name, price);
+
+                if (dao.insertSubscriptionType(st)) {
+                    Message.success();
+                } else {
+                    Message.failure();
+                }
             }
         });
 
@@ -72,7 +90,12 @@ public class SubscriptionTypeController {
         this.mtView.deleteSubscriptionTypeButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //
+                int id = Integer.parseInt(mtView.getSubscriptionTypeID());
+                if (dao.deleteSubscriptionType(id)) {
+                    Message.success();
+                } else {
+                    Message.failure();
+                }
             }
         });
 
@@ -87,6 +110,13 @@ public class SubscriptionTypeController {
         this.mtView.proceedUpdateButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println(mtView.getUpdateSubscriptionName());
+                int id = Integer.parseInt(mtView.getUpdateSubscriptionName());
+                SubscriptionType st = dao.selectSubscriptionType(id);
+
+                mtView.setUpdateSubscriptionTypeName(st.subscriptionTypeName());
+                mtView.setUpdateSubscriptionTypePrice(String.valueOf(st.subscriptionTypePrice()));
+
                 mtView.getUpdateSubscriptionTypeFrame2().setVisible(true);
                 mtView.getUpdateSubscriptionTypeFrame1().dispose();
             }
