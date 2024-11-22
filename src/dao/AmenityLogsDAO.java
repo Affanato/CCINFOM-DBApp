@@ -119,8 +119,13 @@ public class AmenityLogsDAO {
         DBUtils.deleteTableRecordsByKey("amenity_logs", "member_id", memberID);
     }
 
-    public void deleteByAmenityID(int amenityID) {
-        DBUtils.deleteTableRecordsByKey("amenity_logs", "amenity_id", amenityID);
+    public boolean deleteAmenityLog(int amenityLogID) {
+        try {
+            DBUtils.deleteTableRecordsByKey("amenity_logs", "amenity_log_id", amenityLogID);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
     // SELECT QUERIES //
