@@ -15,7 +15,7 @@ public class TrainersDAO {
     // TODO: In Progress
     // TODO: Code related methods. Refer to any implemented DAO.
     // SINGLE UPDATE QUERIES
-    public void insertTrainer(
+    public boolean insertTrainer(
             String lastName,
             String firstName,
             LocalDate birthdate,
@@ -48,16 +48,21 @@ public class TrainersDAO {
             System.out.println("Trainer record inserted successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
+            return false;
         }
+        return true;
     }
 
-    public void deleteTrainer(int trainerID) {
+    public boolean deleteTrainer(int trainerID) {
+        if (!trainerExists(trainerID)) return false;
+        DBUtils.invalidateTableForeignKey("training_sessions", "trainer_id", trainerID);
         DBUtils.deleteTableRecordsByKey("trainers", "trainer_id", trainerID);
+        return true;
     }
 
-    public void updateTrainer(int trainerID, Trainer t) {
+    public boolean updateTrainer(int trainerID, Trainer t) {
         if (!DBUtils.primaryKeyExistsInATable("trainers", "trainer_id", trainerID)) {
-            return;
+            return false;
         }
 
         String sql = "UPDATE trainers " +
@@ -75,7 +80,9 @@ public class TrainersDAO {
             System.out.println("Trainer record updated successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
+            return false;
         }
+        return true;
     }
 
     // SELECT QUERIES
@@ -116,7 +123,7 @@ public class TrainersDAO {
     // REC MANAGEMENT & TRANSACTIONS
     // create is insertTrainer
     // delete is deletetrainer
-    public void updateTrainer(
+    public boolean updateTrainer(
             int trainerID,
             String lastName,
             LocalDate birthdate,
@@ -128,6 +135,9 @@ public class TrainersDAO {
             String province,
             String programSpecialty
     ) {
+        if (!DBUtils.primaryKeyExistsInATable("trainers", "trainer_id", trainerID)) {
+            return false;
+        }
 
         Trainer oldT = selectTrainer(trainerID);
         Trainer updatedTrainer = new Trainer(
@@ -144,12 +154,12 @@ public class TrainersDAO {
                 programSpecialty != null ? programSpecialty : oldT.programSpecialty(),
                 oldT.trainerStatus()
         );
-        updateTrainer(trainerID, updatedTrainer);
+        return updateTrainer(trainerID, updatedTrainer);
     }
 
-    public void setTrainerToInactive(int trainerID) {
+    public boolean setTrainerToInactive(int trainerID) {
         if (!DBUtils.primaryKeyExistsInATable("trainers", "trainer_id", trainerID)) {
-            return;
+            return false;
         }
 
         String sql = "UPDATE trainers " +
@@ -165,7 +175,9 @@ public class TrainersDAO {
             ps.executeUpdate();
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
+            return false;
         }
+        return true;
     }
 
     // REPORTS
@@ -240,6 +252,14 @@ public class TrainersDAO {
     }
 
     // UTILITY METHODS
+    public String[] getComboBoxTrainerIDs() {
+        return DBUtils.selectAllKeysFromTable("trainers", "trainer_id");
+    }
+
+    public static boolean trainerExists(int trainerID) {
+        return selectTrainer(trainerID) != null;
+    }
+
     public static Trainer mapResultSetToTrainer(ResultSet rs) {
         try {
             int trainerID = rs.getInt("trainer_id");
