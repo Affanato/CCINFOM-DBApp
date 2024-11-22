@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-// TODO: DONE FOR NOW!!!
-// TODO: Verify if the methods are implemented correctly.
 public class SubscriptionsDAO {
 
     private final Statement statement;
