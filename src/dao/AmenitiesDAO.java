@@ -49,7 +49,7 @@ public class AmenitiesDAO {
         return true;
     }
 
-    public void updateAmenity(int amenityID, Amenity a) {
+    public boolean updateAmenity(int amenityID, Amenity a) {
         String sql = "UPDATE amenities " +
                      "SET amenity_name = ?, " +
                      "    walk_in_price_per_hour = ?, " +
@@ -71,7 +71,10 @@ public class AmenitiesDAO {
             System.out.println("'amenities' record updated successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
+            return false;
         }
+
+        return true;
     }
 
     // SELECT QUERIES //

@@ -1,6 +1,7 @@
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MembersDAO {
 
@@ -93,7 +94,7 @@ public class MembersDAO {
     public Object[][] selectAllMembers() {
         ResultSet rs = DBUtils.selectAllRecordsFromTable("members");
         assert rs != null;
-        return DBUtils.to2DObjectArray(mapResultSetToMemberList(rs));
+        return DBUtils.to2DObjectArray(Objects.requireNonNull(mapResultSetToMemberList(rs)));
     }
 
     // UTIL METHODS

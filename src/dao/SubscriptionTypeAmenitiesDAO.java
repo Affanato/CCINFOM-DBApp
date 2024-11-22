@@ -1,8 +1,8 @@
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
-// TODO: DONE FOR NOW!!!
-// TODO: Verify if the methods are implemented correctly.
 public class SubscriptionTypeAmenitiesDAO {
 
     private final Statement statement;
@@ -12,7 +12,7 @@ public class SubscriptionTypeAmenitiesDAO {
     }
 
     // SINGLE UPDATE QUERIES //
-    public void insertSubscriptionTypeAmenity(SubscriptionTypeAmenity s) {
+    public boolean insertSubscriptionTypeAmenity(SubscriptionTypeAmenity s) {
         String sql = "INSERT INTO subscription_type_amenities (subscription_type_id, amenity_id) " +
                      "VALUES (?, ?) ";
 
@@ -22,13 +22,16 @@ public class SubscriptionTypeAmenitiesDAO {
             ps.setInt(2, s.amenityID());
 
             ps.executeUpdate();
-            System.out.println("Subscription type amenity record inserted successfully.");
+            System.out.println("'subscription_type_amenities' record inserted successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
+            return false;
         }
+
+        return true;
     }
 
-    public void deleteSubscriptionTypeAmenity(SubscriptionTypeAmenity s) {
+    public boolean deleteSubscriptionTypeAmenity(SubscriptionTypeAmenity s) {
         String sql = "DELETE FROM subscription_type_amenities " +
                      "WHERE subscription_type_id = ?, " +
                      "      amenity_id = ? ";
@@ -41,7 +44,10 @@ public class SubscriptionTypeAmenitiesDAO {
             ps.executeUpdate();
         } catch(SQLException e) {
             ExceptionHandler.handleException(e);
+            return false;
         }
+
+        return true;
     }
 
     // MASS UPDATE QUERIES //
@@ -70,18 +76,40 @@ public class SubscriptionTypeAmenitiesDAO {
         return mapResultSetToSubscriptionTypeAmenity(rs);
     }
 
-    public ArrayList<SubscriptionTypeAmenity> selectAllSubscriptionTypeAmenities() {
+    public Object[][] selectAllSubscriptionTypeAmenities() {
         ResultSet rs = DBUtils.selectAllRecordsFromTable("subscription_type_amenities");
         assert rs != null;
-        return mapResultSetToSubscriptionTypeAmenityList(rs);
+        return DBUtils.to2DObjectArray(Objects.requireNonNull(mapResultSetToSubscriptionTypeAmenityList(rs)));
     }
 
-    public static ArrayList<Amenity> selectAllAmenitiesOfASubscriptionType(int subscriptionTypeID) {
-        String condition = "WHERE subscription_type_id = " + subscriptionTypeID;
-        ResultSet rs = DBUtils.selectAllRecordsFromInnerJoinedTables(
-                "subscription_type_amenities", "amenities", "amenity_id", "amenity_id", condition);
-        assert rs != null;
-        return AmenitiesDAO.mapResultSetToAmenityList(rs);
+    public static String[] selectAllAmenitiesOfASubscriptionType(int subscriptionTypeID) {
+        String sql = "SELECT a.amenity_name " +
+                     "FROM subscription_types st " +
+                     "JOIN subscription_type_amenities sta " +
+                     "ON st.subscription_type_id = sta.subscription_type_id " +
+                     "JOIN amenities a " +
+                     "ON a.amenity_id = st.amenity_id " +
+                     "WHERE subscription_type_id = ? ";
+
+        List<String> amenityNames = new ArrayList<>();
+
+        try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
+            assert ps != null;
+            ps.setInt(1, subscriptionTypeID);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    amenityNames.add(rs.getString("amenity_name"));
+                }
+            } catch (SQLException e) {
+                ExceptionHandler.handleException(e);
+            }
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+        }
+
+        // Convert List<String> to String[] and return
+        return amenityNames.toArray(new String[0]);
     }
 
     // UTILITY METHODS //
@@ -111,9 +139,14 @@ public class SubscriptionTypeAmenitiesDAO {
     }
 
     public static boolean subscriptionTypeHasAmenity(int subscriptionTypeID, int amenityID) {
-        ArrayList<Amenity> aList = selectAllAmenitiesOfASubscriptionType(subscriptionTypeID);
-        for (Amenity a : aList) {
-            if (a.amenityID() == amenityID) {
+        if (!SubscriptionTypesDAO.subscriptionTypeExists(subscriptionTypeID)) return false;
+        if (!AmenitiesDAO.amenityExists(amenityID)) return false;
+
+        String[] amenityNames = selectAllAmenitiesOfASubscriptionType(subscriptionTypeID);
+        String amenityName = AmenitiesDAO.selectAmenity(amenityID).amenityName();
+
+        for (String a : amenityNames) {
+            if (a.equals(amenityName)) {
                 return true;
             }
         }
