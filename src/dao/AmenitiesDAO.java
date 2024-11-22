@@ -19,7 +19,7 @@ public class AmenitiesDAO {
     }
 
     // SINGLE UPDATE QUERIES
-    public void insertAmenity(Amenity a) {
+    public boolean insertAmenity(Amenity a) {
         String sql = "INSERT INTO amenities (amenity_name, walk_in_price_per_hour, opening_time, closing_time, amenity_status) " +
                      "VALUES (?, ?, ?, ?, ?) ";
 
@@ -35,13 +35,18 @@ public class AmenitiesDAO {
             System.out.println("Amenity record inserted successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
+            return false;
         }
+
+        return true;
     }
 
-    // TODO: Modify this to update referencing records' keys to some sentinel like 0!!
-    public void deleteAmenity(int amenityID) {
-
+    public boolean deleteAmenity(int amenityID) {
+        if (!amenityExists(amenityID)) return false;
+        DBUtils.updateTableForeignKey("amenity_logs", "amenity_id", amenityID, 0);
+        DBUtils.updateTableForeignKey("subscription_type_amenities", "amenity_id", amenityID, 0);
         DBUtils.deleteTableRecordsByKey("amenities", "amenity_id", amenityID);
+        return true;
     }
 
     public void updateAmenity(int amenityID, Amenity a) {
@@ -63,7 +68,7 @@ public class AmenitiesDAO {
             ps.setInt(6, amenityID);
 
             ps.executeUpdate();
-            System.out.println("Amenity record updated successfully.");
+            System.out.println("'amenities' record updated successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
         }
@@ -81,21 +86,22 @@ public class AmenitiesDAO {
         return mapResultSetToAmenity(rs);
     }
 
-    public ArrayList<Amenity> selectAllAmenities() {
+    public Object[][] selectAllAmenities() {
         ResultSet rs = DBUtils.selectAllRecordsFromTable("amenities");
         assert rs != null;
-        return mapResultSetToAmenityList(rs);
+        return DBUtils.to2DObjectArray(Objects.requireNonNull(mapResultSetToAmenityList(rs)));
     }
 
-    public ArrayList<Amenity> selectAllActiveAmenities() {
+    public Object[][] selectAllActiveAmenities() {
         String condition = "WHERE amenity_status = 'Active'";
         ResultSet rs = DBUtils.selectAllRecordsFromTable("amenities", condition);
         assert rs != null;
-        return mapResultSetToAmenityList(rs);
+        return DBUtils.to2DObjectArray(Objects.requireNonNull(mapResultSetToAmenityList(rs)));
     }
 
     // TRANSACTIONS //
-    public void changeAmenityStatus(int amenityID, Status status) {
+    public boolean changeAmenityStatus(int amenityID, String status) {
+        if (!Status.hasDescription(status)) return false;
         Amenity oldA = selectAmenity(amenityID);
         Amenity newA = new Amenity(
                 oldA.amenityID(),
@@ -103,9 +109,10 @@ public class AmenitiesDAO {
                 oldA.walkInPricePerHour(),
                 oldA.openingTime(),
                 oldA.closingTime(),
-                status
+                Status.fromString(status)
         );
         updateAmenity(amenityID, newA);
+        return true;
     }
 
     // REPORTS //

@@ -19,4 +19,13 @@ public enum Sex {
     public String toString() {
         return description;
     }
+
+    public static boolean hasDescription(String desc) {
+        for (Status s : Status.values()) {
+            if (s.getDescription().equalsIgnoreCase(desc)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
