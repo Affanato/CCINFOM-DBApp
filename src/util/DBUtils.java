@@ -5,6 +5,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.time.format.DateTimeFormatter;
 
@@ -259,6 +260,28 @@ public class DBUtils {
             ExceptionHandler.handleException(e);
             return null;
         }
+    }
+
+    public static String[] selectAllKeysFromTable(String table, String key) {
+        ResultSet rs = DBUtils.selectAllRecordsFromTable(table);
+        assert rs != null;
+        List<String> sList = new ArrayList<String>();
+
+        try {
+            while (rs.next()) {
+                sList.add(rs.getString(key));
+            }
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+        }
+
+        try {
+            rs.close();
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+        }
+
+        return sList.toArray(new String[0]);
     }
 
     // CONVERTER METHODS //

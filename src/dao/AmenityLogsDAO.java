@@ -1,7 +1,8 @@
 import java.sql.*;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class AmenityLogsDAO {
 
@@ -101,6 +102,10 @@ public class AmenityLogsDAO {
     }
 
     // SELECT QUERIES //
+    public String[] getComboBoxAmenityLogIDs() {
+        return DBUtils.selectAllKeysFromTable("amenity_logs", "amenity_log_id");
+    }
+
     public AmenityLog selectAmenityLog(int amenityLogID) {
         String condition = "WHERE amenity_log_id = " + amenityLogID;
         ResultSet rs = DBUtils.selectAllRecordsFromTable("amenity_logs", condition);
@@ -108,10 +113,10 @@ public class AmenityLogsDAO {
         return mapResultSetToAmenityLog(rs);
     }
 
-    public ArrayList<AmenityLog> selectAllAmenityLogs() {
+    public Object[][] selectAllAmenityLogs() {
         ResultSet rs = DBUtils.selectAllRecordsFromTable("amenity_logs");
         assert rs != null;
-        return mapResultSetToAmenityLogList(rs);
+        return DBUtils.to2DObjectArray(Objects.requireNonNull(mapResultSetToAmenityLogList(rs)));
     }
 
     // UTILITY METHODS //
