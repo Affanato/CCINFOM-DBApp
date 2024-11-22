@@ -145,6 +145,10 @@ public class DBUtils {
         }
     }
 
+    public static void invalidateTableForeignKey(String table, String foreignKey, int oldID) {
+        updateTableForeignKey(table, foreignKey, oldID, 0);
+    }
+
     /**
      * Deletes all records of a table with a particular key and key value.
      * @param table - name of the table

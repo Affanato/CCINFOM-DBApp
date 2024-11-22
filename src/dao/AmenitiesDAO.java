@@ -43,8 +43,8 @@ public class AmenitiesDAO {
 
     public boolean deleteAmenity(int amenityID) {
         if (!amenityExists(amenityID)) return false;
-        DBUtils.updateTableForeignKey("amenity_logs", "amenity_id", amenityID, 0);
-        DBUtils.updateTableForeignKey("subscription_type_amenities", "amenity_id", amenityID, 0);
+        DBUtils.invalidateTableForeignKey("amenity_logs", "amenity_id", amenityID);
+        DBUtils.invalidateTableForeignKey("subscription_type_amenities", "amenity_id", amenityID);
         DBUtils.deleteTableRecordsByKey("amenities", "amenity_id", amenityID);
         return true;
     }
