@@ -15,23 +15,34 @@ public class TrainersDAO {
     // TODO: In Progress
     // TODO: Code related methods. Refer to any implemented DAO.
     // SINGLE UPDATE QUERIES
-    public void insertTrainer(Trainer t) {
+    public void insertTrainer(
+            String lastName,
+            String firstName,
+            LocalDate birthdate,
+            String sex,
+            String phoneNumber,
+            String street,
+            String barangay,
+            String city,
+            String province,
+            String programSpecialty
+    ) {
         String sql = "INSERT INTO trainers (last_name, first_name, birthdate, sex, phone_number, street, barangay, city, province, program_specialty, trainer_status) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
-            ps.setString(1, t.lastName());
-            ps.setString(2, t.firstName());
-            ps.setDate(3, Date.valueOf(t.birthdate()));
-            ps.setString(4, t.sex().toString());
-            ps.setString(5, t.phoneNumber());
-            ps.setString(6, t.street());
-            ps.setString(7, t.barangay());
-            ps.setString(8, t.city());
-            ps.setString(9, t.province());
-            ps.setString(10, t.programSpecialty());
-            ps.setString(11, t.trainerStatus().toString());
+            ps.setString(1, lastName);
+            ps.setString(2, firstName);
+            ps.setDate(3, Date.valueOf(birthdate));
+            ps.setString(4, sex);
+            ps.setString(5, phoneNumber);
+            ps.setString(6, street);
+            ps.setString(7, barangay);
+            ps.setString(8, city);
+            ps.setString(9, province);
+            ps.setString(10, programSpecialty);
+            ps.setString(11, "Active");
 
             ps.executeUpdate();
             System.out.println("Trainer record inserted successfully.");
@@ -89,6 +100,39 @@ public class TrainersDAO {
     }
 
     // REC MANAGEMENT & TRANSACTIONS
+    // TODO: turn into one functiom
+    public void updateTrainer(
+            int trainerID,
+            String lastName,
+            LocalDate birthdate,
+            String sex,
+            String phoneNumber,
+            String street,
+            String barangay,
+            String city,
+            String province,
+            String programSpecialty
+    ) {
+
+        Trainer oldT = selectTrainer(trainerID);
+        Trainer updatedTrainer = new Trainer(
+                trainerID,
+                lastName != null ? lastName : oldT.lastName(),
+                oldT.firstName(),
+                birthdate != null ? birthdate : oldT.birthdate(),
+                sex != null ? Sex.valueOf(sex) : oldT.sex(),
+                phoneNumber != null ? phoneNumber : oldT.phoneNumber(),
+                street != null ? street : oldT.street(),
+                barangay != null ? barangay : oldT.barangay(),
+                city != null ? city : oldT.city(),
+                province != null ? province : oldT.province(),
+                programSpecialty != null ? programSpecialty : oldT.programSpecialty(),
+                oldT.trainerStatus()
+        );
+        updateTrainer(trainerID, updatedTrainer);
+    }
+
+
     public void fireTrainer(int trainerID) {
         if (!DBUtils.primaryKeyExistsInATable("trainers", "trainer_id", trainerID)) {
             return;
@@ -216,8 +260,6 @@ public class TrainersDAO {
             return null;
         }
     }
-
-
 
     public void closeStatement() {
         DBUtils.closeStatement(statement);

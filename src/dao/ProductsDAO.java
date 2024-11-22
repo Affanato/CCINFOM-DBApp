@@ -10,20 +10,24 @@ public class ProductsDAO {
         this.statement = DBUtils.getNewStatement();
     }
 
-    // TODO: In Progress
     // TODO: Code related methods. Refer to any implemented DAO.
     // SINGLE UPDATE QUERIES
-    public void insertProduct(Product p) {
+    public void insertProduct(String productBrand, String productName, String productDescription, double productPrice, int availableQuantity) {
+        if (productPrice <= 0 || availableQuantity < 0) {
+            System.out.println("Invalid price or quantity");
+            return;
+        }
+
         String sql = "INSERT INTO products (product_brand, product_name, product_description, product_price, available_quantity) " +
                 "VALUES (?, ?, ?, ?, ?)";
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
-            ps.setString(1, p.productBrand());
-            ps.setString(2, p.productName());
-            ps.setString(3, p.productDescription());
-            ps.setDouble(4, p.productPrice());
-            ps.setInt(5, p.availableQuantity());
+            ps.setString(1, productBrand);
+            ps.setString(2, productName);
+            ps.setString(3, productDescription);
+            ps.setDouble(4, productPrice);
+            ps.setInt(5, availableQuantity);
 
             ps.executeUpdate();
             System.out.println("Product record inserted successfully.");
@@ -66,6 +70,7 @@ public class ProductsDAO {
     }
 
     // TRANSACTIONS
+    // NOTE: addProduct is just insertProduct
     public void sellProduct(int productID, int quantitySold) {
         // EDGE/INVALID CASES (invalid product id, insufficient stock)
         if (!DBUtils.primaryKeyExistsInATable("products", "product_id", productID)) {
@@ -116,13 +121,13 @@ public class ProductsDAO {
 
     // REPORTS
     public Object[][] selectProductsByYearlyQuantitySold(int year) {
-        String sql = "SELECT p.product_id, p.product_brand, p.product_name, " +
-                "       SUM(pp.quantity_sold) AS totalQuantitySold " +
-                "FROM products p " +
-                "JOIN product_purchases pp ON pp.product_id = p.product_id " +
-                "WHERE YEAR(pp.purchase_datetime) = ? " +
-                "GROUP BY p.product_id " +
-                "ORDER BY totalQuantitySold DESC, p.product_brand, p.product_name;";
+        String sql = "SELECT p.product_brand, p.product_name, " +
+                    "       SUM(pp.quantity_sold) AS totalQuantitySold " +
+                    "FROM products p " +
+                    "JOIN product_purchases pp ON pp.product_id = p.product_id " +
+                    "WHERE YEAR(pp.purchase_datetime) = ? " +
+                    "GROUP BY p.product_id " +
+                    "ORDER BY totalQuantitySold DESC, p.product_brand, p.product_name;";
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             ps.setInt(1, year);  // Set the year parameter
@@ -149,7 +154,7 @@ public class ProductsDAO {
     }
 
     public Object[][] selectProductsByMonthlyQuantitySold(int year, int month) {
-        String sql = "SELECT p.product_id, p.product_brand, p.product_name, " +
+        String sql = "SELECT p.product_brand, p.product_name, " +
                     "       SUM(pp.quantity_sold) AS totalQuantitySold " +
                     "FROM products p " +
                     "JOIN product_purchases pp ON pp.product_id = p.product_id " +
@@ -184,7 +189,7 @@ public class ProductsDAO {
     }
 
     public Object[][] selectProductsByYearlyTotalRevenue(int year) {
-        String sql = "SELECT p.product_id, p.product_brand, p.product_name, " +
+        String sql = "SELECT p.product_brand, p.product_name, " +
                     "       SUM(pp.quantity_sold) AS totalQuantitySold, p.product_price, " +
                     "       SUM(pp.quantity_sold * p.product_price) AS totalRevenue " +
                     "FROM products p " +
@@ -220,7 +225,7 @@ public class ProductsDAO {
     }
 
     public Object[][] selectProductsByMonthlyTotalRevenue(int year, int month) {
-        String sql = "SELECT p.product_id, p.product_brand, p.product_name, " +
+        String sql = "SELECT p.product_brand, p.product_name, " +
                 "       SUM(pp.quantity_sold) AS totalQuantitySold, p.product_price, " +
                 "       SUM(pp.quantity_sold * p.product_price) AS totalRevenue " +
                 "FROM products p " +
@@ -301,6 +306,83 @@ public class ProductsDAO {
         }
     }
 
+    // PRODUCT PURCHASE <-> PRODUCT CROSS-TABLE UTILITY METHODS
+    public static void staticUpdateProduct(int productID, Product product) {
+        if (!DBUtils.primaryKeyExistsInATable("products", "product_id", productID)) {
+            return;
+        }
+
+        String sql = "UPDATE products " +
+                "SET product_brand = ?, " +
+                "    product_name = ?, " +
+                "    product_description = ?, " +
+                "    product_price = ?, " +
+                "    available_quantity = ? " +
+                "WHERE product_id = ?";
+
+        try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
+            assert ps != null;
+            ps.setString(1, product.productBrand());        // product_brand
+            ps.setString(2, product.productName());         // product_name
+            ps.setString(3, product.productDescription());  // product_description
+            ps.setDouble(4, product.productPrice());        // product_price
+            ps.setInt(5, product.availableQuantity());      // available_quantity
+            ps.setInt(6, productID);                        // product_id
+
+            ps.executeUpdate();
+            System.out.println("Product record updated successfully.");
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+        }
+    }
+
+    public static void undoPurchase(int productID, int quantityAdded) {
+        if (!DBUtils.primaryKeyExistsInATable("products", "product_id", productID)) {
+            return;
+        }
+
+        Product product = selectProduct(productID);
+        Product updatedProduct = new Product(
+                product.productID(),
+                product.productBrand(),
+                product.productName(),
+                product.productDescription(),
+                product.productPrice(),
+                product.availableQuantity() + quantityAdded
+        );
+
+        staticUpdateProduct(productID, updatedProduct);
+    }
+
+    public static void removeStock(int productID, int quantitySold) {
+        // EDGE/INVALID CASES (invalid product id, insufficient stock)
+        if (!DBUtils.primaryKeyExistsInATable("products", "product_id", productID)) {
+            System.out.println("The Product ID " + productID + " does not exist.");
+            return;
+        }
+
+        Product product = selectProduct(productID);
+        if (product.availableQuantity() < quantitySold) {
+            System.out.println("Insufficient stock for Product ID: " + productID + ".");
+            return;
+        }
+
+        // Calculate the new available quantity
+        int newQuantity = product.availableQuantity() - quantitySold;
+
+        // Create an updated Product object with the new quantity
+        Product updatedProduct = new Product(
+                product.productID(),
+                product.productBrand(),
+                product.productName(),
+                product.productDescription(),
+                product.productPrice(),
+                newQuantity
+        );
+
+        // Update the product in the database
+        staticUpdateProduct(productID, updatedProduct);
+    }
 
     public void closeStatement() {
         DBUtils.closeStatement(statement);

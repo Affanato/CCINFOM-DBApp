@@ -14,16 +14,46 @@ public class TrainingSessionsDAO {
     // TODO: In Progress
     // TODO: Code related methods. Refer to any implemented DAO.
     // SINGLE UPDATE QUERIES
-    public void insertTrainingSession(TrainingSession ts) {
+    public void insertTrainingSession(int memberID, int trainerID, String startDateTimeString, String endDateTimeString) {
+        // Check if the trainer ID exists
+        if (!DBUtils.primaryKeyExistsInATable("trainers", "trainer_id", trainerID)) {
+            System.out.println("The Trainer ID " + trainerID + " does not exist.");
+            return;
+        }
+
+        // dateTime parser
+        LocalDateTime sessionStartDateTime = DBUtils.convertStringToLocalDateTime(startDateTimeString);
+        LocalDateTime sessionEndDateTime = DBUtils.convertStringToLocalDateTime(endDateTimeString);
+
+        // Check if the end time is after the start time
+        if (sessionEndDateTime.isBefore(sessionStartDateTime)) {
+            System.out.println("The session end time cannot be earlier than the start time.");
+            return;
+        }
+
+        // Validate trainer availability for the given time
+        if (isTrainerUnavailable(trainerID, sessionStartDateTime, sessionEndDateTime)) {
+            System.out.println("The Trainer ID " + trainerID + " is unavailable for the selected time slot.");
+            return;
+        }
+
         String sql = "INSERT INTO training_sessions (subscription_id, trainer_id, session_start_date_time, session_end_date_time) " +
                 "VALUES (?, ?, ?, ?)";
 
+        int subscriptionID;
+
+        if (MembersDAO.getSubscription(memberID) == -1) {
+            subscriptionID = 0;
+            System.out.println("Invalid Member ID; Member may not have subscription or ID does not exist.");
+            return;
+        }
+
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
-            ps.setInt(1, ts.subscriptionID());
-            ps.setInt(2, ts.trainerID());
-            ps.setTimestamp(3, Timestamp.valueOf(ts.sessionStartDateTime()));
-            ps.setTimestamp(4, Timestamp.valueOf(ts.sessionEndDateTime()));
+            ps.setInt(1, MembersDAO.getSubscription(memberID));
+            ps.setInt(2, trainerID);
+            ps.setTimestamp(3, Timestamp.valueOf(sessionStartDateTime));
+            ps.setTimestamp(4, Timestamp.valueOf(sessionEndDateTime));
 
             ps.executeUpdate();
             System.out.println("Training session record inserted successfully.");
@@ -65,20 +95,35 @@ public class TrainingSessionsDAO {
     }
 
     // MASS UPDATE QUERIES
-    public void updateMemberID(int oldID, int newID) {
+    public void updateByTrainerID(int oldID, int newID) {
         DBUtils.updateTableForeignKey("training_sessions", "member_id", oldID, newID);
     }
 
-    public void updateSubscriptionID(int oldID, int newID) {
+    public void updateBySubscriptionID(int oldID, int newID) {
         DBUtils.updateTableForeignKey("training_sessions", "subscription_id", oldID, newID);
     }
 
-    public void deleteByMemberID(int memberID) {
-        DBUtils.deleteTableRecordsByKey("training_sessions", "member_id", memberID);
+    public void deleteByTrainerID(int trainerID) {
+        DBUtils.deleteTableRecordsByKey("training_sessions", "trainer_id", trainerID);
     }
 
     public void deleteBySubscriptionID(int subscriptionID) {
         DBUtils.deleteTableRecordsByKey("training_sessions", "subscription_id", subscriptionID);
+    }
+
+    // TRANSACTIONS AND REC MANANGEMENT
+    // add session is insertTrainingSession
+    // delete session is deleteTrainingSession
+    public void updateTrainingSession(int trainingsessionID, int newTrainerID, String newStartTime, String newEndTime) {
+        TrainingSession oldTS = selectTrainingSession(trainingsessionID);
+        TrainingSession newTS = new TrainingSession(
+                trainingsessionID,
+                oldTS.subscriptionID(),
+                newTrainerID,
+                DBUtils.convertStringToLocalDateTime(newStartTime),
+                DBUtils.convertStringToLocalDateTime(newEndTime)
+        );
+        updateTrainingSession(trainingsessionID, newTS);
     }
 
     // SELECT QUERIES
@@ -107,11 +152,6 @@ public class TrainingSessionsDAO {
         ResultSet rs = DBUtils.selectAllRecordsFromTable("training_sessions", condition);
         assert rs != null;
         return DBUtils.to2DObjectArray(mapResultSetToTrainingSessionList(rs));
-    }
-
-    // TRANSACTIONS
-    public void scheduleTrainingSession(TrainingSession ts) {
-        insertTrainingSession(ts);
     }
 
     // UTILITY METHODS
@@ -148,6 +188,26 @@ public class TrainingSessionsDAO {
             ExceptionHandler.handleException(e);
         }
         return trainingSessionList;
+    }
+
+    private boolean isTrainerUnavailable(int trainerID, LocalDateTime start, LocalDateTime end) {
+        String sql = "SELECT COUNT(*) FROM training_sessions " +
+                "WHERE trainer_id = ? AND " +
+                "      (session_start_datetime < ? AND session_end_datetime > ?)";
+        try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
+            assert ps != null;
+            ps.setInt(1, trainerID);
+            ps.setTimestamp(2, Timestamp.valueOf(end));
+            ps.setTimestamp(3, Timestamp.valueOf(start));
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next() && rs.getInt(1) > 0) {
+                    return true; // Trainer has a conflicting session
+                }
+            }
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+        }
+        return false;
     }
 
 
