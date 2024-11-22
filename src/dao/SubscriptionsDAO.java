@@ -241,6 +241,61 @@ public class SubscriptionsDAO {
     }
 
     // UTILITY METHODS //
+    public static int getMemberID(int subscriptionID) {
+        String sql = "SELECT        m.member_id " +
+                     "FROM          members m " +
+                     "JOIN          subscriptions s ON m.member_id = s.member_id " +
+                     "WHERE         s.subscription_id = ? " +
+                     "AND           CURRENT_DATE BETWEEN s.subscription_start_date AND s.subscription_end_date; ";
+
+        try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
+            assert ps != null;
+            ps.setInt(1, subscriptionID);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            } catch (SQLException e) {
+                ExceptionHandler.handleException(e);
+                return -1;
+            }
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+        }
+
+        return -1;
+    }
+
+    public static String[] getMemberName(int subscriptionID) {
+        String sql = "SELECT        m.last_name, m.first_name " +
+                     "FROM          members m " +
+                     "JOIN          subscriptions s ON m.member_id = s.member_id " +
+                     "WHERE         s.subscription_id = ? " +
+                     "AND           CURRENT_DATE BETWEEN s.subscription_start_date AND s.subscription_end_date; ";
+
+        try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
+            assert ps != null;
+            ps.setInt(1, subscriptionID);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    String[] name = new String[2];
+                    name[0] = rs.getString(1);
+                    name[1] = rs.getString(2);
+                    return name;
+                }
+            } catch (SQLException e) {
+                ExceptionHandler.handleException(e);
+                return null;
+            }
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+        }
+
+        return null;
+    }
+
     public static Subscription mapResultSetToSubscription(ResultSet rs) {
         try {
             int subscriptionID = rs.getInt("subscription_id");
