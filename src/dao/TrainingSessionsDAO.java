@@ -40,17 +40,14 @@ public class TrainingSessionsDAO {
         String sql = "INSERT INTO training_sessions (subscription_id, trainer_id, session_start_date_time, session_end_date_time) " +
                 "VALUES (?, ?, ?, ?)";
 
-        int subscriptionID;
-
-        if (MembersDAO.getSubscription(memberID) == -1) {
-            subscriptionID = 0;
+        if (MembersDAO.getCurrentSubscriptionID(memberID) == -1) {
             System.out.println("Invalid Member ID; Member may not have subscription or ID does not exist.");
             return;
         }
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
-            ps.setInt(1, MembersDAO.getSubscription(memberID));
+            ps.setInt(1, MembersDAO.getCurrentSubscriptionID(memberID));
             ps.setInt(2, trainerID);
             ps.setTimestamp(3, Timestamp.valueOf(sessionStartDateTime));
             ps.setTimestamp(4, Timestamp.valueOf(sessionEndDateTime));
@@ -129,6 +126,13 @@ public class TrainingSessionsDAO {
     // SELECT QUERIES
     public static TrainingSession selectTrainingSession(int trainingSessionID) {
         String condition = "WHERE training_session_id = " + trainingSessionID;
+        ResultSet rs = DBUtils.selectAllRecordsFromTable("training_sessions", condition);
+        assert rs != null;
+        return mapResultSetToTrainingSession(rs);
+    }
+
+    public static TrainingSession selectTrainingSession(String lastname) {
+        String condition = "WHERE lastname = " + lastname;
         ResultSet rs = DBUtils.selectAllRecordsFromTable("training_sessions", condition);
         assert rs != null;
         return mapResultSetToTrainingSession(rs);

@@ -86,6 +86,20 @@ public class TrainersDAO {
         return mapResultSetToTrainer(rs);
     }
 
+    public static Trainer selectTrainer(String lastName, String firstName) {
+        String condition = "WHERE last_name = '" + lastName + "' && first_name = '" + firstName + "'";
+        ResultSet rs = DBUtils.selectAllRecordsFromTable("trainers", condition);
+        assert rs != null;
+        return mapResultSetToTrainer(rs);
+    }
+
+    public static Trainer selectTrainer(String lastName) {
+        String condition = "WHERE last_name = '" + lastName + "'";
+        ResultSet rs = DBUtils.selectAllRecordsFromTable("trainers", condition);
+        assert rs != null;
+        return mapResultSetToTrainer(rs);
+    }
+
     public Object[][] selectAllTrainers() {
         ResultSet rs = DBUtils.selectAllRecordsFromTable("trainers");
         assert rs != null;
@@ -100,7 +114,8 @@ public class TrainersDAO {
     }
 
     // REC MANAGEMENT & TRANSACTIONS
-    // TODO: turn into one functiom
+    // create is insertTrainer
+    // delete is deletetrainer
     public void updateTrainer(
             int trainerID,
             String lastName,
@@ -132,8 +147,7 @@ public class TrainersDAO {
         updateTrainer(trainerID, updatedTrainer);
     }
 
-
-    public void fireTrainer(int trainerID) {
+    public void setTrainerToInactive(int trainerID) {
         if (!DBUtils.primaryKeyExistsInATable("trainers", "trainer_id", trainerID)) {
             return;
         }
@@ -193,12 +207,12 @@ public class TrainersDAO {
 
     public Object[][] selectYearlyMembersTrained(int year) {
         String sql = "SELECT t.trainer_id, t.last_name, t.first_name, t.program_specialty, " +
-                "       COUNT(ts.subscription_id) AS numOfMembersTrained " +
-                "FROM trainers t " +
-                "LEFT JOIN training_sessions ts ON (t.trainer_id = ts.trainer_id) " +
-                "                                  AND (YEAR(ts.session_start_datetime) = ?) " +
-                "GROUP BY t.trainer_id " +
-                "ORDER BY numOfMembersTrained DESC, t.program_specialty, t.last_name, t.first_name;";
+                    "       COUNT(ts.subscription_id) AS numOfMembersTrained " +
+                    "FROM trainers t " +
+                    "LEFT JOIN training_sessions ts ON (t.trainer_id = ts.trainer_id) " +
+                    "                                  AND (YEAR(ts.session_start_datetime) = ?) " +
+                    "GROUP BY t.trainer_id " +
+                    "ORDER BY numOfMembersTrained DESC, t.program_specialty, t.last_name, t.first_name;";
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             ps.setInt(1, year);
