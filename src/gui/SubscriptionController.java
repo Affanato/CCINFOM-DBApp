@@ -30,10 +30,17 @@ public class SubscriptionController {
             }
         });
 
-        this.mView.goToReadButton(new ActionListener() {
+        this.mView.goToReadAllButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mView.getReadSubscriptionFrame().setVisible(true);
+                mView.getReadAllSubscriptionFrame().setVisible(true);
+                mView.getSubscriptionFrame().dispose();
+            }
+        });
+        this.mView.goToReadActiveButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mView.getReadActiveSubscriptionFrame().setVisible(true);
                 mView.getSubscriptionFrame().dispose();
             }
         });
@@ -61,11 +68,19 @@ public class SubscriptionController {
             }
         });
 
-        this.mView.readBackButton(new ActionListener() {
+        this.mView.readAllBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mView.getSubscriptionFrame().setVisible(true);
-                mView.getReadSubscriptionFrame().dispose();
+                mView.getReadAllSubscriptionFrame().dispose();
+            }
+        });
+
+        this.mView.readActiveBackButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mView.getSubscriptionFrame().setVisible(true);
+                mView.getReadActiveSubscriptionFrame().dispose();
             }
         });
 

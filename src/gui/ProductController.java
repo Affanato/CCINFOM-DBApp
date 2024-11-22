@@ -192,6 +192,13 @@ public class ProductController {
                 pView.getProductPurchasesFrame().dispose();
             }
         });
+        this.pView.goToCancelButton2(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pView.getCancelProductPurchaseFrame().setVisible(true);
+                pView.getProductPurchasesFrame().dispose();
+            }
+        });
         this.pView.goToUpdateButton2(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -212,6 +219,13 @@ public class ProductController {
             public void actionPerformed(ActionEvent e) {
                 pView.getProductPurchasesFrame().setVisible(true);
                 pView.getDeleteProductPurchaseFrame().dispose();
+            }
+        });
+        this.pView.cancelPurchaseBackButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pView.getProductPurchasesFrame().setVisible(true);
+                pView.getCancelProductPurchaseFrame().dispose();
             }
         });
         this.pView.proceedUpdatePurchaseProductButton(new ActionListener() {

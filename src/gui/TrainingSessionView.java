@@ -24,7 +24,8 @@ public class TrainingSessionView {
 		titleBar = new JFormattedTextField();
 		goToAdd = new JButton();
 		goToDelete = new JButton();
-		goToRead = new JButton();
+		goToReadUpcoming = new JButton();
+		goToReadAll = new JButton();
 		goToUpdate = new JButton();
 		label1 = new JLabel();
 		schedulSessionFrame = new JFrame();
@@ -52,7 +53,7 @@ public class TrainingSessionView {
 		readSessionFrame = new JFrame();
 		scrollPane1 = new JScrollPane();
 		trainingSessionTable = new JTable();
-		readBack = new JButton();
+		readAllBack = new JButton();
 		titleBar4 = new JFormattedTextField();
 		label4 = new JLabel();
 		updateSessionFrame1 = new JFrame();
@@ -64,7 +65,6 @@ public class TrainingSessionView {
 		titleBar5 = new JFormattedTextField();
 		label5 = new JLabel();
 		updateSessionFrame2 = new JFrame();
-		updateSubscriptionID = new JComboBox();
 		updateTrainerID = new JComboBox();
 		updateStartdatetime = new JTextPane();
 		updateEnddatetime = new JTextPane();
@@ -73,10 +73,17 @@ public class TrainingSessionView {
 		trainingSessionText8 = new JFormattedTextField();
 		trainingSessionText9 = new JFormattedTextField();
 		trainingSessionText10 = new JFormattedTextField();
+		updateSubscriptionID = new JTextPane();
 		editorPane4 = new JEditorPane();
 		updateBack2 = new JButton();
 		titleBar6 = new JFormattedTextField();
 		label6 = new JLabel();
+		readUpcomingSessionFrame = new JFrame();
+		scrollPane2 = new JScrollPane();
+		trainingSessionTable2 = new JTable();
+		readUpcomingBack = new JButton();
+		titleBar7 = new JFormattedTextField();
+		label7 = new JLabel();
 
 		//======== trainingSessionFrame ========
 		{
@@ -106,7 +113,7 @@ public class TrainingSessionView {
 			goToAdd.setForeground(Color.white);
 			goToAdd.setBackground(new Color(0x3ca3cb));
 			trainingSessionFrameContentPane.add(goToAdd);
-			goToAdd.setBounds(470, 180, 250, 55);
+			goToAdd.setBounds(305, 195, 250, 55);
 
 			//---- goToDelete ----
 			goToDelete.setText("CANCEL SESSION");
@@ -114,15 +121,23 @@ public class TrainingSessionView {
 			goToDelete.setForeground(Color.white);
 			goToDelete.setBackground(new Color(0x3ca3cb));
 			trainingSessionFrameContentPane.add(goToDelete);
-			goToDelete.setBounds(470, 265, 250, 55);
+			goToDelete.setBounds(650, 195, 250, 55);
 
-			//---- goToRead ----
-			goToRead.setText("READ SESSIONS");
-			goToRead.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
-			goToRead.setForeground(Color.white);
-			goToRead.setBackground(new Color(0x3ca3cb));
-			trainingSessionFrameContentPane.add(goToRead);
-			goToRead.setBounds(470, 350, 250, 55);
+			//---- goToReadUpcoming ----
+			goToReadUpcoming.setText("READ UPCOMING SESSIONS");
+			goToReadUpcoming.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+			goToReadUpcoming.setForeground(Color.white);
+			goToReadUpcoming.setBackground(new Color(0x3ca3cb));
+			trainingSessionFrameContentPane.add(goToReadUpcoming);
+			goToReadUpcoming.setBounds(650, 300, 250, 55);
+
+			//---- goToReadAll ----
+			goToReadAll.setText("READ ALL SESSIONS");
+			goToReadAll.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+			goToReadAll.setForeground(Color.white);
+			goToReadAll.setBackground(new Color(0x3ca3cb));
+			trainingSessionFrameContentPane.add(goToReadAll);
+			goToReadAll.setBounds(305, 300, 250, 55);
 
 			//---- goToUpdate ----
 			goToUpdate.setText("UPDATE SESSION");
@@ -130,7 +145,7 @@ public class TrainingSessionView {
 			goToUpdate.setForeground(Color.white);
 			goToUpdate.setBackground(new Color(0x3ca3cb));
 			trainingSessionFrameContentPane.add(goToUpdate);
-			goToUpdate.setBounds(470, 435, 250, 55);
+			goToUpdate.setBounds(485, 410, 250, 55);
 
 			//---- label1 ----
 			label1.setIcon(new ImageIcon("resource\\trainers.jpg"));
@@ -194,7 +209,7 @@ public class TrainingSessionView {
 
 			//---- trainingSessionText2 ----
 			trainingSessionText2.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
-			trainingSessionText2.setText("Subscription ID");
+			trainingSessionText2.setText("Member ID");
 			trainingSessionText2.setHorizontalAlignment(SwingConstants.LEFT);
 			trainingSessionText2.setEditable(false);
 			schedulSessionFrameContentPane.add(trainingSessionText2);
@@ -374,15 +389,15 @@ public class TrainingSessionView {
 			readSessionFrameContentPane.add(scrollPane1);
 			scrollPane1.setBounds(105, 115, 1000, 470);
 
-			//---- readBack ----
-			readBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
-			readBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
-			readBack.setBackground(new Color(0xc80f2e));
-			readSessionFrameContentPane.add(readBack);
-			readBack.setBounds(5, 5, readBack.getPreferredSize().width, 45);
+			//---- readAllBack ----
+			readAllBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
+			readAllBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
+			readAllBack.setBackground(new Color(0xc80f2e));
+			readSessionFrameContentPane.add(readAllBack);
+			readAllBack.setBounds(5, 5, readAllBack.getPreferredSize().width, 45);
 
 			//---- titleBar4 ----
-			titleBar4.setText("Training Session: Read Sessions");
+			titleBar4.setText("Training Session: Read All Sessions");
 			titleBar4.setBackground(new Color(0xc80f2e));
 			titleBar4.setHorizontalAlignment(SwingConstants.CENTER);
 			titleBar4.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
@@ -490,11 +505,6 @@ public class TrainingSessionView {
 			Container updateSessionFrame2ContentPane = updateSessionFrame2.getContentPane();
 			updateSessionFrame2ContentPane.setLayout(null);
 
-			//---- updateSubscriptionID ----
-			updateSubscriptionID.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-			updateSessionFrame2ContentPane.add(updateSubscriptionID);
-			updateSubscriptionID.setBounds(505, 175, 390, 40);
-
 			//---- updateTrainerID ----
 			updateTrainerID.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			updateSessionFrame2ContentPane.add(updateTrainerID);
@@ -552,6 +562,11 @@ public class TrainingSessionView {
 			updateSessionFrame2ContentPane.add(trainingSessionText10);
 			trainingSessionText10.setBounds(315, 350, 175, 35);
 
+			//---- updateSubscriptionID ----
+			updateSubscriptionID.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			updateSessionFrame2ContentPane.add(updateSubscriptionID);
+			updateSubscriptionID.setBounds(505, 175, 390, 40);
+
 			//---- editorPane4 ----
 			editorPane4.setBackground(new Color(0xb5b9b8));
 			updateSessionFrame2ContentPane.add(editorPane4);
@@ -596,6 +611,80 @@ public class TrainingSessionView {
 			updateSessionFrame2.setSize(1200, 700);
 			updateSessionFrame2.setLocationRelativeTo(null);
 		}
+
+		//======== readUpcomingSessionFrame ========
+		{
+			Container readUpcomingSessionFrameContentPane = readUpcomingSessionFrame.getContentPane();
+			readUpcomingSessionFrameContentPane.setLayout(null);
+
+			//======== scrollPane2 ========
+			{
+
+				//---- trainingSessionTable2 ----
+				trainingSessionTable2.setModel(new DefaultTableModel(
+					new Object[][] {
+						{null, null, null, null, null},
+						{null, null, null, null, null},
+					},
+					new String[] {
+						"Training Session ID", "Subscription ID", "Trainer ID", "Start Date and Time", "End Date and Time"
+					}
+				));
+				{
+					TableColumnModel cm = trainingSessionTable2.getColumnModel();
+					cm.getColumn(0).setMinWidth(150);
+					cm.getColumn(0).setMaxWidth(150);
+					cm.getColumn(1).setMinWidth(150);
+					cm.getColumn(1).setMaxWidth(150);
+					cm.getColumn(2).setMinWidth(150);
+					cm.getColumn(2).setMaxWidth(150);
+				}
+				trainingSessionTable2.setFont(new Font("Tw Cen MT", Font.PLAIN, 18));
+				trainingSessionTable2.setEnabled(false);
+				scrollPane2.setViewportView(trainingSessionTable2);
+			}
+			readUpcomingSessionFrameContentPane.add(scrollPane2);
+			scrollPane2.setBounds(105, 115, 1000, 470);
+
+			//---- readUpcomingBack ----
+			readUpcomingBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
+			readUpcomingBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
+			readUpcomingBack.setBackground(new Color(0xc80f2e));
+			readUpcomingSessionFrameContentPane.add(readUpcomingBack);
+			readUpcomingBack.setBounds(5, 5, readUpcomingBack.getPreferredSize().width, 45);
+
+			//---- titleBar7 ----
+			titleBar7.setText("Training Session: Read Upcoming Sessions");
+			titleBar7.setBackground(new Color(0xc80f2e));
+			titleBar7.setHorizontalAlignment(SwingConstants.CENTER);
+			titleBar7.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
+			titleBar7.setForeground(Color.white);
+			titleBar7.setEditable(false);
+			readUpcomingSessionFrameContentPane.add(titleBar7);
+			titleBar7.setBounds(0, 0, 1200, 55);
+
+			//---- label7 ----
+			label7.setIcon(new ImageIcon("resource\\trainers.jpg"));
+			readUpcomingSessionFrameContentPane.add(label7);
+			label7.setBounds(0, 55, 1200, 615);
+
+			{
+				// compute preferred size
+				Dimension preferredSize = new Dimension();
+				for(int i = 0; i < readUpcomingSessionFrameContentPane.getComponentCount(); i++) {
+					Rectangle bounds = readUpcomingSessionFrameContentPane.getComponent(i).getBounds();
+					preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+					preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+				}
+				Insets insets = readUpcomingSessionFrameContentPane.getInsets();
+				preferredSize.width += insets.right;
+				preferredSize.height += insets.bottom;
+				readUpcomingSessionFrameContentPane.setMinimumSize(preferredSize);
+				readUpcomingSessionFrameContentPane.setPreferredSize(preferredSize);
+			}
+			readUpcomingSessionFrame.setSize(1200, 700);
+			readUpcomingSessionFrame.setLocationRelativeTo(null);
+		}
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
 	}
 
@@ -606,7 +695,8 @@ public class TrainingSessionView {
 	private JFormattedTextField titleBar;
 	private JButton goToAdd;
 	private JButton goToDelete;
-	private JButton goToRead;
+	private JButton goToReadUpcoming;
+	private JButton goToReadAll;
 	private JButton goToUpdate;
 	private JLabel label1;
 	private JFrame schedulSessionFrame;
@@ -634,7 +724,7 @@ public class TrainingSessionView {
 	private JFrame readSessionFrame;
 	private JScrollPane scrollPane1;
 	private JTable trainingSessionTable;
-	private JButton readBack;
+	private JButton readAllBack;
 	private JFormattedTextField titleBar4;
 	private JLabel label4;
 	private JFrame updateSessionFrame1;
@@ -646,7 +736,6 @@ public class TrainingSessionView {
 	private JFormattedTextField titleBar5;
 	private JLabel label5;
 	private JFrame updateSessionFrame2;
-	private JComboBox updateSubscriptionID;
 	private JComboBox updateTrainerID;
 	private JTextPane updateStartdatetime;
 	private JTextPane updateEnddatetime;
@@ -655,10 +744,17 @@ public class TrainingSessionView {
 	private JFormattedTextField trainingSessionText8;
 	private JFormattedTextField trainingSessionText9;
 	private JFormattedTextField trainingSessionText10;
+	private JTextPane updateSubscriptionID;
 	private JEditorPane editorPane4;
 	private JButton updateBack2;
 	private JFormattedTextField titleBar6;
 	private JLabel label6;
+	private JFrame readUpcomingSessionFrame;
+	private JScrollPane scrollPane2;
+	private JTable trainingSessionTable2;
+	private JButton readUpcomingBack;
+	private JFormattedTextField titleBar7;
+	private JLabel label7;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
 
@@ -689,6 +785,9 @@ public class TrainingSessionView {
 	public JFrame getReadSessionFrame() {
 		return this.readSessionFrame;
 	}
+	public JFrame getReadUpcomingSessionFrame() {
+		return this.readUpcomingSessionFrame;
+	}
 	public JFrame getUpdateSessionFrame1() {
 		return this.updateSessionFrame1;
 	}
@@ -697,10 +796,10 @@ public class TrainingSessionView {
 	}
 
 	public int getSubscriptionID() {
-		return this.subscriptionID.getSelectedIndex() + 1; // might have to edit if list is only for active suusbcriptions
+		return this.subscriptionID.getSelectedIndex(); // might have to edit if list is only for active suusbcriptions
 	}
 	public int getTrainerID() {
-		return this.trainerID.getSelectedIndex() + 1;
+		return this.trainerID.getSelectedIndex();
 	}
 	public String getStartDate() {
 		return this.startdatetime.getText();
@@ -710,15 +809,15 @@ public class TrainingSessionView {
 	}
 
 	public int getTrainingSessionID() {
-		return this.trainingSessionID.getSelectedIndex() + 1;
+		return this.trainingSessionID.getSelectedIndex();
 	}
 
 	// update
-	public int getUpdateSubscriptionID() {
-		return this.updateSubscriptionID.getSelectedIndex() + 1; // might have to edit if list is only for active suusbcriptions
+	public void setUpdateSubscriptionID(String text) {
+		updateSubscriptionID.setText(text); // might have to edit if list is only for active suusbcriptions
 	}
 	public int getUpdateTrainerID() {
-		return this.updateTrainerID.getSelectedIndex() + 1;
+		return this.updateTrainerID.getSelectedIndex();
 	}
 	public String getUpdateStartDate() {
 		return this.updateStartdatetime.getText();
@@ -735,8 +834,11 @@ public class TrainingSessionView {
 	public void goToAddButton(ActionListener actionListener) {
 		this.goToAdd.addActionListener(actionListener);
 	}
-	public void goToReadButton(ActionListener actionListener) {
-		this.goToRead.addActionListener(actionListener);
+	public void goToReadAllButton(ActionListener actionListener) {
+		this.goToReadAll.addActionListener(actionListener);
+	}
+	public void goToReadUpcomingButton(ActionListener actionListener) {
+		this.goToReadUpcoming.addActionListener(actionListener);
 	}
 	public void goToDeleteButton(ActionListener actionListener) {
 		this.goToDelete.addActionListener(actionListener);
@@ -751,8 +853,11 @@ public class TrainingSessionView {
 	public void cancelBackButton(ActionListener actionListener) {
 		this.cancelBack.addActionListener(actionListener);
 	}
-	public void readBackButton(ActionListener actionListener) {
-		this.readBack.addActionListener(actionListener);
+	public void readAllBackButton(ActionListener actionListener) {
+		this.readAllBack.addActionListener(actionListener);
+	}
+	public void readUpcomingBackButton(ActionListener actionListener) {
+		this.readUpcomingBack.addActionListener(actionListener);
 	}
 	public void updateBackButton1(ActionListener actionListener) {
 		this.updateBack1.addActionListener(actionListener);

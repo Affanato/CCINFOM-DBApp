@@ -115,6 +115,7 @@ public class ProductView {
 		productPurchaseBackButton = new JButton();
 		titleBar10 = new JFormattedTextField();
 		goToAdd2 = new JButton();
+		goToCancel2 = new JButton();
 		goToRead2 = new JButton();
 		goToUpdate2 = new JButton();
 		goToDelete2 = new JButton();
@@ -147,6 +148,14 @@ public class ProductView {
 		memberPurchaseID = new JComboBox<>();
 		editorPane9 = new JEditorPane();
 		background13 = new JLabel();
+		deleteProductPurchaseFrame2 = new JFrame();
+		cancelPurchaseBack = new JButton();
+		cancelProductPurchase = new JButton();
+		productidtext5 = new JFormattedTextField();
+		cancelProductPurchaseID = new JComboBox<>();
+		editorPane10 = new JEditorPane();
+		titleBar14 = new JFormattedTextField();
+		background14 = new JLabel();
 
 		//======== productFrame ========
 		{
@@ -998,7 +1007,15 @@ public class ProductView {
 			goToAdd2.setForeground(Color.white);
 			goToAdd2.setBackground(new Color(0x3ca3cb));
 			productFrame2ContentPane.add(goToAdd2);
-			goToAdd2.setBounds(470, 170, 250, 55);
+			goToAdd2.setBounds(280, 205, 250, 55);
+
+			//---- goToCancel2 ----
+			goToCancel2.setText("CANCEL PURCHASE");
+			goToCancel2.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+			goToCancel2.setForeground(Color.white);
+			goToCancel2.setBackground(new Color(0x3ca3cb));
+			productFrame2ContentPane.add(goToCancel2);
+			goToCancel2.setBounds(470, 425, 250, 55);
 
 			//---- goToRead2 ----
 			goToRead2.setText("READ PURCHASES");
@@ -1006,7 +1023,7 @@ public class ProductView {
 			goToRead2.setForeground(Color.white);
 			goToRead2.setBackground(new Color(0x3ca3cb));
 			productFrame2ContentPane.add(goToRead2);
-			goToRead2.setBounds(470, 270, 250, 55);
+			goToRead2.setBounds(640, 205, 250, 55);
 
 			//---- goToUpdate2 ----
 			goToUpdate2.setText("UPDATE PURCHASE");
@@ -1014,7 +1031,7 @@ public class ProductView {
 			goToUpdate2.setForeground(Color.white);
 			goToUpdate2.setBackground(new Color(0x3ca3cb));
 			productFrame2ContentPane.add(goToUpdate2);
-			goToUpdate2.setBounds(470, 365, 250, 55);
+			goToUpdate2.setBounds(280, 315, 250, 55);
 
 			//---- goToDelete2 ----
 			goToDelete2.setText("DELETE PURCHASE");
@@ -1022,7 +1039,7 @@ public class ProductView {
 			goToDelete2.setForeground(Color.white);
 			goToDelete2.setBackground(new Color(0x3ca3cb));
 			productFrame2ContentPane.add(goToDelete2);
-			goToDelete2.setBounds(470, 460, 250, 55);
+			goToDelete2.setBounds(640, 315, 250, 55);
 
 			//---- background10 ----
 			background10.setIcon(new ImageIcon("resource\\products.jpg"));
@@ -1060,7 +1077,7 @@ public class ProductView {
 			deletePurchaseBack.setBounds(5, 5, 95, 45);
 
 			//---- deleteProductPurchase ----
-			deleteProductPurchase.setText("DELETE PRODUCT");
+			deleteProductPurchase.setText("DELETE PURCHASE");
 			deleteProductPurchase.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
 			deleteProductPurchase.setForeground(Color.white);
 			deleteProductPurchase.setBackground(new Color(0x3ca3cb));
@@ -1068,7 +1085,7 @@ public class ProductView {
 			deleteProductPurchase.setBounds(475, 380, 250, 55);
 
 			//---- productidtext3 ----
-			productidtext3.setText("Select Product");
+			productidtext3.setText("Select Product Purchase");
 			productidtext3.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			productidtext3.setEditable(false);
 			productidtext3.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1143,7 +1160,7 @@ public class ProductView {
 			proceedUpdatePurchase.setBounds(475, 380, 250, 55);
 
 			//---- productidtext4 ----
-			productidtext4.setText("Select Product");
+			productidtext4.setText("Select Product Purchase");
 			productidtext4.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			productidtext4.setEditable(false);
 			productidtext4.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1165,7 +1182,7 @@ public class ProductView {
 			editorPane8.setBounds(365, 235, 470, 240);
 
 			//---- titleBar12 ----
-			titleBar12.setText("Product: Update Product");
+			titleBar12.setText("Product: Update Product Purchase");
 			titleBar12.setBackground(new Color(0xc80f2e));
 			titleBar12.setHorizontalAlignment(SwingConstants.CENTER);
 			titleBar12.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
@@ -1230,7 +1247,7 @@ public class ProductView {
 			//---- quantityPurchase ----
 			quantityPurchase.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			updateProductPurchase2ContentPane.add(quantityPurchase);
-			quantityPurchase.setBounds(480, 345, 380, 35);
+			quantityPurchase.setBounds(480, 340, 380, 35);
 
 			//---- productPurchaseID ----
 			productPurchaseID.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
@@ -1254,7 +1271,7 @@ public class ProductView {
 			sellquantitytext2.setEditable(false);
 			sellquantitytext2.setHorizontalAlignment(SwingConstants.LEFT);
 			updateProductPurchase2ContentPane.add(sellquantitytext2);
-			sellquantitytext2.setBounds(330, 345, 130, 35);
+			sellquantitytext2.setBounds(330, 340, 130, 35);
 
 			//---- memberidtext2 ----
 			memberidtext2.setText("Select Member");
@@ -1299,6 +1316,81 @@ public class ProductView {
 			}
 			updateProductPurchase2.pack();
 			updateProductPurchase2.setLocationRelativeTo(updateProductPurchase2.getOwner());
+		}
+
+		//======== deleteProductPurchaseFrame2 ========
+		{
+			Container deleteProductPurchaseFrame2ContentPane = deleteProductPurchaseFrame2.getContentPane();
+			deleteProductPurchaseFrame2ContentPane.setLayout(null);
+
+			//---- cancelPurchaseBack ----
+			cancelPurchaseBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
+			cancelPurchaseBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
+			cancelPurchaseBack.setBackground(new Color(0xc80f2e));
+			deleteProductPurchaseFrame2ContentPane.add(cancelPurchaseBack);
+			cancelPurchaseBack.setBounds(5, 5, 95, 45);
+
+			//---- cancelProductPurchase ----
+			cancelProductPurchase.setText("CANCEL PRODUCT");
+			cancelProductPurchase.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+			cancelProductPurchase.setForeground(Color.white);
+			cancelProductPurchase.setBackground(new Color(0x3ca3cb));
+			deleteProductPurchaseFrame2ContentPane.add(cancelProductPurchase);
+			cancelProductPurchase.setBounds(475, 380, 250, 55);
+
+			//---- productidtext5 ----
+			productidtext5.setText("Select Product Purchase");
+			productidtext5.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
+			productidtext5.setEditable(false);
+			productidtext5.setHorizontalAlignment(SwingConstants.CENTER);
+			deleteProductPurchaseFrame2ContentPane.add(productidtext5);
+			productidtext5.setBounds(365, 235, 470, 35);
+
+			//---- cancelProductPurchaseID ----
+			cancelProductPurchaseID.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			cancelProductPurchaseID.setModel(new DefaultComboBoxModel<>(new String[] {
+				"Product"
+			}));
+			deleteProductPurchaseFrame2ContentPane.add(cancelProductPurchaseID);
+			cancelProductPurchaseID.setBounds(410, 315, 390, 35);
+
+			//---- editorPane10 ----
+			editorPane10.setBackground(new Color(0xb5b9b8));
+			editorPane10.setEditable(false);
+			deleteProductPurchaseFrame2ContentPane.add(editorPane10);
+			editorPane10.setBounds(365, 235, 470, 240);
+
+			//---- titleBar14 ----
+			titleBar14.setText("Product: Cancel Product Purchase");
+			titleBar14.setBackground(new Color(0xc80f2e));
+			titleBar14.setHorizontalAlignment(SwingConstants.CENTER);
+			titleBar14.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
+			titleBar14.setForeground(Color.white);
+			titleBar14.setEditable(false);
+			deleteProductPurchaseFrame2ContentPane.add(titleBar14);
+			titleBar14.setBounds(0, 0, 1200, 55);
+
+			//---- background14 ----
+			background14.setIcon(new ImageIcon("resource\\products.jpg"));
+			deleteProductPurchaseFrame2ContentPane.add(background14);
+			background14.setBounds(0, 55, 1200, 615);
+
+			{
+				// compute preferred size
+				Dimension preferredSize = new Dimension();
+				for(int i = 0; i < deleteProductPurchaseFrame2ContentPane.getComponentCount(); i++) {
+					Rectangle bounds = deleteProductPurchaseFrame2ContentPane.getComponent(i).getBounds();
+					preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+					preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+				}
+				Insets insets = deleteProductPurchaseFrame2ContentPane.getInsets();
+				preferredSize.width += insets.right;
+				preferredSize.height += insets.bottom;
+				deleteProductPurchaseFrame2ContentPane.setMinimumSize(preferredSize);
+				deleteProductPurchaseFrame2ContentPane.setPreferredSize(preferredSize);
+			}
+			deleteProductPurchaseFrame2.pack();
+			deleteProductPurchaseFrame2.setLocationRelativeTo(deleteProductPurchaseFrame2.getOwner());
 		}
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
 	}
@@ -1401,6 +1493,7 @@ public class ProductView {
 	private JButton productPurchaseBackButton;
 	private JFormattedTextField titleBar10;
 	private JButton goToAdd2;
+	private JButton goToCancel2;
 	private JButton goToRead2;
 	private JButton goToUpdate2;
 	private JButton goToDelete2;
@@ -1433,6 +1526,14 @@ public class ProductView {
 	private JComboBox<String> memberPurchaseID;
 	private JEditorPane editorPane9;
 	private JLabel background13;
+	private JFrame deleteProductPurchaseFrame2;
+	private JButton cancelPurchaseBack;
+	private JButton cancelProductPurchase;
+	private JFormattedTextField productidtext5;
+	private JComboBox<String> cancelProductPurchaseID;
+	private JEditorPane editorPane10;
+	private JFormattedTextField titleBar14;
+	private JLabel background14;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
 	// jcombobox getters
@@ -1483,6 +1584,9 @@ public class ProductView {
 	public JFrame getDeleteProductPurchaseFrame() {
 		return this.deleteProductPurchaseFrame;
 	}
+	public JFrame getCancelProductPurchaseFrame() {
+		return this.deleteProductPurchaseFrame2;
+	}
 	public JFrame getUpdateProductPurchaseFrame() {
 		return this.updateProductPurchaseFrame;
 	}
@@ -1513,12 +1617,12 @@ public class ProductView {
 
 	// delete
 	public int getDeleteProductID() {
-		return this.deleteProductID.getSelectedIndex() + 1;
+		return this.deleteProductID.getSelectedIndex();
 	}
 
 	// update
 	public int getUpdateProductID() {
-		return this.updateProductID1.getSelectedIndex() + 1;
+		return this.updateProductID1.getSelectedIndex();
 	}
 	public String getUpdateProductPrice() {
 		return this.updateProductPrice.getText();
@@ -1544,10 +1648,10 @@ public class ProductView {
 
 	// sell
 	public int getSellProductID() {
-		return this.sellproductid.getSelectedIndex() + 1;
+		return this.sellproductid.getSelectedIndex();
 	}
 	public int getSellMemberID() {
-		return this.memberid.getSelectedIndex() + 1;
+		return this.memberid.getSelectedIndex();
 	}
 	public String getSellQuantity() {
 		return this.sellquantity.getText();
@@ -1555,7 +1659,7 @@ public class ProductView {
 
 	// restock
 	public int getRestockProductID() {
-		return this.restockproductid.getSelectedIndex() + 1;
+		return this.restockproductid.getSelectedIndex();
 	}
 	public String getRestockQuantity() {
 		return this.restockquantity.getText();
@@ -1600,6 +1704,9 @@ public class ProductView {
 	}
 	public void goToUpdateButton2(ActionListener actionListener) {
 		this.goToUpdate2.addActionListener(actionListener);
+	}
+	public void goToCancelButton2(ActionListener actionListener) {
+		this.goToCancel2.addActionListener(actionListener);
 	}
 
 	public void addBackButton(ActionListener actionListener) {
@@ -1647,6 +1754,12 @@ public class ProductView {
 	}
 	public void deletePurchaseBackButton(ActionListener actionListener) {
 		this.deletePurchaseBack.addActionListener(actionListener);
+	}
+	public void cancelPurchaseProductButton(ActionListener actionListener) {
+		this.cancelProductPurchase.addActionListener(actionListener);
+	}
+	public void cancelPurchaseBackButton(ActionListener actionListener) {
+		this.cancelPurchaseBack.addActionListener(actionListener);
 	}
 	public void proceedUpdatePurchaseProductButton(ActionListener actionListener) {
 		this.proceedUpdatePurchase.addActionListener(actionListener);

@@ -39,8 +39,6 @@ public class TrainerView {
 		firstName = new JTextPane();
 		birthDate = new JTextPane();
 		phoneNumber = new JTextPane();
-		availability = new JTextPane();
-		availabilitytext = new JFormattedTextField();
 		speciality = new JTextPane();
 		specialitytext = new JFormattedTextField();
 		citytext = new JFormattedTextField();
@@ -53,8 +51,6 @@ public class TrainerView {
 		province = new JTextPane();
 		sextext = new JFormattedTextField();
 		sex = new JComboBox<>();
-		startdatetext = new JFormattedTextField();
-		startdate = new JTextPane();
 		editorPane1 = new JEditorPane();
 		addTrainer = new JButton();
 		background2 = new JLabel();
@@ -93,8 +89,6 @@ public class TrainerView {
 		updateFirstname = new JTextPane();
 		updateBirthDate = new JTextPane();
 		updatePhoneNumber = new JTextPane();
-		updateAvailability = new JTextPane();
-		updateavailabilitytext = new JFormattedTextField();
 		updateSpeciality = new JTextPane();
 		updatespecialitytext = new JFormattedTextField();
 		updatecitytext = new JFormattedTextField();
@@ -105,10 +99,8 @@ public class TrainerView {
 		updateprovincetext = new JFormattedTextField();
 		updateBarangay = new JTextPane();
 		updateProvince = new JTextPane();
-		updatesextext = new JFormattedTextField();
 		updateSex = new JTextPane();
-		updatestartdatetext = new JFormattedTextField();
-		updateStartDate = new JTextPane();
+		updatesextext = new JFormattedTextField();
 		editorPane4 = new JEditorPane();
 		updateTrainer = new JButton();
 		background6 = new JLabel();
@@ -235,155 +227,132 @@ public class TrainerView {
 			lastnametext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			lastnametext.setEditable(false);
 			addTrainerFrameContentPane.add(lastnametext);
-			lastnametext.setBounds(130, 150, 110, 35);
+			lastnametext.setBounds(240, 165, 110, 35);
 
 			//---- firstnametext ----
 			firstnametext.setText("First Name");
 			firstnametext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			firstnametext.setEditable(false);
 			addTrainerFrameContentPane.add(firstnametext);
-			firstnametext.setBounds(480, 150, 125, 35);
+			firstnametext.setBounds(630, 165, 125, 35);
 
 			//---- birthdatetext ----
 			birthdatetext.setText("Birth Date");
 			birthdatetext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			birthdatetext.setEditable(false);
 			addTrainerFrameContentPane.add(birthdatetext);
-			birthdatetext.setBounds(130, 210, 110, 35);
+			birthdatetext.setBounds(240, 225, 110, 35);
 
 			//---- phonenumtext ----
 			phonenumtext.setText("Phone Number");
 			phonenumtext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			phonenumtext.setEditable(false);
 			addTrainerFrameContentPane.add(phonenumtext);
-			phonenumtext.setBounds(480, 210, 125, 35);
+			phonenumtext.setBounds(630, 225, 125, 35);
 
 			//---- lastName ----
 			lastName.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			addTrainerFrameContentPane.add(lastName);
-			lastName.setBounds(265, 150, 170, 35);
+			lastName.setBounds(375, 165, 170, 35);
 
 			//---- firstName ----
 			firstName.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			addTrainerFrameContentPane.add(firstName);
-			firstName.setBounds(630, 150, 170, 35);
+			firstName.setBounds(780, 165, 175, 35);
 
 			//---- birthDate ----
 			birthDate.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			addTrainerFrameContentPane.add(birthDate);
-			birthDate.setBounds(265, 210, 170, 35);
+			birthDate.setBounds(375, 225, 170, 35);
 
 			//---- phoneNumber ----
 			phoneNumber.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			addTrainerFrameContentPane.add(phoneNumber);
-			phoneNumber.setBounds(630, 210, 170, 35);
-
-			//---- availability ----
-			availability.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-			addTrainerFrameContentPane.add(availability);
-			availability.setBounds(785, 410, 170, 35);
-
-			//---- availabilitytext ----
-			availabilitytext.setText("Availability");
-			availabilitytext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
-			availabilitytext.setEditable(false);
-			addTrainerFrameContentPane.add(availabilitytext);
-			availabilitytext.setBounds(630, 410, 125, 35);
+			phoneNumber.setBounds(780, 225, 175, 35);
 
 			//---- speciality ----
 			speciality.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			addTrainerFrameContentPane.add(speciality);
-			speciality.setBounds(375, 410, 170, 35);
+			speciality.setBounds(375, 290, 170, 35);
 
 			//---- specialitytext ----
-			specialitytext.setText("Speciality");
+			specialitytext.setText("Specialty");
 			specialitytext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			specialitytext.setEditable(false);
 			addTrainerFrameContentPane.add(specialitytext);
-			specialitytext.setBounds(240, 410, 110, 35);
+			specialitytext.setBounds(240, 290, 110, 35);
 
 			//---- citytext ----
 			citytext.setText("City");
 			citytext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			citytext.setEditable(false);
 			addTrainerFrameContentPane.add(citytext);
-			citytext.setBounds(240, 350, 110, 35);
+			citytext.setBounds(240, 420, 110, 35);
 
 			//---- city ----
 			city.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			addTrainerFrameContentPane.add(city);
-			city.setBounds(375, 350, 170, 35);
+			city.setBounds(375, 420, 170, 35);
 
 			//---- street ----
 			street.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			addTrainerFrameContentPane.add(street);
-			street.setBounds(375, 285, 170, 35);
+			street.setBounds(375, 355, 170, 35);
 
 			//---- streettext ----
 			streettext.setText("Street");
 			streettext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			streettext.setEditable(false);
 			addTrainerFrameContentPane.add(streettext);
-			streettext.setBounds(240, 285, 110, 35);
+			streettext.setBounds(240, 355, 110, 35);
 
 			//---- barangaytext ----
 			barangaytext.setText("Barangay");
 			barangaytext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			barangaytext.setEditable(false);
 			addTrainerFrameContentPane.add(barangaytext);
-			barangaytext.setBounds(630, 285, 125, 35);
+			barangaytext.setBounds(630, 355, 125, 35);
 
 			//---- provincetext ----
 			provincetext.setText("Province");
 			provincetext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			provincetext.setEditable(false);
 			addTrainerFrameContentPane.add(provincetext);
-			provincetext.setBounds(630, 350, 125, 35);
+			provincetext.setBounds(630, 420, 125, 35);
 
 			//---- barangay ----
 			barangay.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			addTrainerFrameContentPane.add(barangay);
-			barangay.setBounds(785, 285, 170, 35);
+			barangay.setBounds(780, 355, 175, 35);
 
 			//---- province ----
 			province.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			addTrainerFrameContentPane.add(province);
-			province.setBounds(785, 350, 170, 35);
+			province.setBounds(780, 420, 175, 35);
 
 			//---- sextext ----
 			sextext.setText("Sex");
 			sextext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			sextext.setEditable(false);
 			addTrainerFrameContentPane.add(sextext);
-			sextext.setBounds(840, 150, 100, 35);
+			sextext.setBounds(630, 290, 125, 35);
 
 			//---- sex ----
 			sex.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			sex.setModel(new DefaultComboBoxModel<>(new String[] {
-				"F",
-				"M",
-				"-"
+				"Female",
+				"Male",
+				"Non-binary",
+				"Unspecified"
 			}));
 			addTrainerFrameContentPane.add(sex);
-			sex.setBounds(955, 150, 110, 35);
-
-			//---- startdatetext ----
-			startdatetext.setText("Start Date");
-			startdatetext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
-			startdatetext.setEditable(false);
-			addTrainerFrameContentPane.add(startdatetext);
-			startdatetext.setBounds(840, 210, 100, 35);
-
-			//---- startdate ----
-			startdate.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-			addTrainerFrameContentPane.add(startdate);
-			startdate.setBounds(955, 210, 110, 35);
+			sex.setBounds(780, 290, 175, 35);
 
 			//---- editorPane1 ----
 			editorPane1.setBackground(new Color(0xb5b9b8));
 			editorPane1.setEditable(false);
 			addTrainerFrameContentPane.add(editorPane1);
-			editorPane1.setBounds(95, 115, 1000, 375);
+			editorPane1.setBounds(165, 130, 865, 375);
 
 			//---- addTrainer ----
 			addTrainer.setText("ADD TRAINER");
@@ -391,7 +360,7 @@ public class TrainerView {
 			addTrainer.setForeground(Color.white);
 			addTrainer.setBackground(new Color(0x3ca3cb));
 			addTrainerFrameContentPane.add(addTrainer);
-			addTrainer.setBounds(490, 515, 250, 55);
+			addTrainer.setBounds(490, 530, 250, 55);
 
 			//---- background2 ----
 			background2.setIcon(new ImageIcon("resource\\trainersbg.jpg"));
@@ -505,8 +474,8 @@ public class TrainerView {
 
 			//======== tablePane ========
 			{
-				tablePane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-				tablePane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+				tablePane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+				tablePane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
 				//---- trainerTable ----
 				trainerTable.setModel(new DefaultTableModel(
@@ -535,9 +504,11 @@ public class TrainerView {
 					cm.getColumn(10).setMinWidth(150);
 					cm.getColumn(10).setMaxWidth(150);
 				}
-				trainerTable.setEnabled(false);
 				trainerTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+				trainerTable.setEnabled(false);
 				trainerTable.setPreferredScrollableViewportSize(new Dimension(1000, 400));
+				trainerTable.setRowSelectionAllowed(false);
+				trainerTable.setFont(new Font("Tw Cen MT", Font.PLAIN, 18));
 				tablePane.setViewportView(trainerTable);
 			}
 			readTrainerFrameContentPane.add(tablePane);
@@ -554,7 +525,7 @@ public class TrainerView {
 			titleBar4.setBounds(0, 0, 1200, 55);
 
 			//---- background4 ----
-			background4.setIcon(new ImageIcon("resource\\trainersbg.jpg"));
+			background4.setIcon(new ImageIcon("resource\\memberBG.jpg"));
 			readTrainerFrameContentPane.add(background4);
 			background4.setBounds(0, 55, 1200, 615);
 
@@ -693,154 +664,129 @@ public class TrainerView {
 			updatelastnametext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			updatelastnametext.setEditable(false);
 			updateTrainerFrameContentPane.add(updatelastnametext);
-			updatelastnametext.setBounds(130, 150, 110, 35);
+			updatelastnametext.setBounds(240, 150, 110, 35);
 
 			//---- updatefirstnametext ----
 			updatefirstnametext.setText("First Name");
 			updatefirstnametext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			updatefirstnametext.setEditable(false);
 			updateTrainerFrameContentPane.add(updatefirstnametext);
-			updatefirstnametext.setBounds(480, 150, 125, 35);
+			updatefirstnametext.setBounds(630, 150, 125, 35);
 
 			//---- upatebirthdatetext ----
 			upatebirthdatetext.setText("Birth Date");
 			upatebirthdatetext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			upatebirthdatetext.setEditable(false);
 			updateTrainerFrameContentPane.add(upatebirthdatetext);
-			upatebirthdatetext.setBounds(130, 210, 110, 35);
+			upatebirthdatetext.setBounds(240, 210, 110, 35);
 
 			//---- updatephonenumbertext ----
 			updatephonenumbertext.setText("Phone Number");
 			updatephonenumbertext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			updatephonenumbertext.setEditable(false);
 			updateTrainerFrameContentPane.add(updatephonenumbertext);
-			updatephonenumbertext.setBounds(480, 210, 125, 35);
+			updatephonenumbertext.setBounds(630, 210, 125, 35);
 
 			//---- updateLastName ----
 			updateLastName.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			updateTrainerFrameContentPane.add(updateLastName);
-			updateLastName.setBounds(265, 150, 170, 35);
+			updateLastName.setBounds(375, 150, 170, 35);
 
 			//---- updateFirstname ----
 			updateFirstname.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			updateFirstname.setEditable(false);
 			updateTrainerFrameContentPane.add(updateFirstname);
-			updateFirstname.setBounds(630, 150, 170, 35);
+			updateFirstname.setBounds(780, 150, 175, 35);
 
 			//---- updateBirthDate ----
 			updateBirthDate.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			updateBirthDate.setEditable(false);
 			updateTrainerFrameContentPane.add(updateBirthDate);
-			updateBirthDate.setBounds(265, 210, 170, 35);
+			updateBirthDate.setBounds(375, 210, 170, 35);
 
 			//---- updatePhoneNumber ----
 			updatePhoneNumber.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			updateTrainerFrameContentPane.add(updatePhoneNumber);
-			updatePhoneNumber.setBounds(630, 210, 170, 35);
-
-			//---- updateAvailability ----
-			updateAvailability.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-			updateTrainerFrameContentPane.add(updateAvailability);
-			updateAvailability.setBounds(785, 410, 170, 35);
-
-			//---- updateavailabilitytext ----
-			updateavailabilitytext.setText("Availability");
-			updateavailabilitytext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
-			updateavailabilitytext.setEditable(false);
-			updateTrainerFrameContentPane.add(updateavailabilitytext);
-			updateavailabilitytext.setBounds(630, 410, 125, 35);
+			updatePhoneNumber.setBounds(780, 210, 175, 35);
 
 			//---- updateSpeciality ----
 			updateSpeciality.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			updateTrainerFrameContentPane.add(updateSpeciality);
-			updateSpeciality.setBounds(375, 410, 170, 35);
+			updateSpeciality.setBounds(375, 270, 170, 35);
 
 			//---- updatespecialitytext ----
 			updatespecialitytext.setText("Speciality");
 			updatespecialitytext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			updatespecialitytext.setEditable(false);
 			updateTrainerFrameContentPane.add(updatespecialitytext);
-			updatespecialitytext.setBounds(240, 410, 110, 35);
+			updatespecialitytext.setBounds(240, 270, 110, 35);
 
 			//---- updatecitytext ----
 			updatecitytext.setText("City");
 			updatecitytext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			updatecitytext.setEditable(false);
 			updateTrainerFrameContentPane.add(updatecitytext);
-			updatecitytext.setBounds(240, 350, 110, 35);
+			updatecitytext.setBounds(240, 400, 110, 35);
 
 			//---- updateCity ----
 			updateCity.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			updateTrainerFrameContentPane.add(updateCity);
-			updateCity.setBounds(375, 350, 170, 35);
+			updateCity.setBounds(375, 400, 170, 35);
 
 			//---- updateStreet ----
 			updateStreet.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			updateTrainerFrameContentPane.add(updateStreet);
-			updateStreet.setBounds(375, 285, 170, 35);
+			updateStreet.setBounds(375, 335, 170, 35);
 
 			//---- updatestreettext ----
 			updatestreettext.setText("Street");
 			updatestreettext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			updatestreettext.setEditable(false);
 			updateTrainerFrameContentPane.add(updatestreettext);
-			updatestreettext.setBounds(240, 285, 110, 35);
+			updatestreettext.setBounds(240, 335, 110, 35);
 
 			//---- updatebarangaytext ----
 			updatebarangaytext.setText("Barangay");
 			updatebarangaytext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			updatebarangaytext.setEditable(false);
 			updateTrainerFrameContentPane.add(updatebarangaytext);
-			updatebarangaytext.setBounds(630, 285, 125, 35);
+			updatebarangaytext.setBounds(630, 335, 125, 35);
 
 			//---- updateprovincetext ----
 			updateprovincetext.setText("Province");
 			updateprovincetext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			updateprovincetext.setEditable(false);
 			updateTrainerFrameContentPane.add(updateprovincetext);
-			updateprovincetext.setBounds(630, 350, 125, 35);
+			updateprovincetext.setBounds(630, 400, 125, 35);
 
 			//---- updateBarangay ----
 			updateBarangay.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			updateTrainerFrameContentPane.add(updateBarangay);
-			updateBarangay.setBounds(785, 285, 170, 35);
+			updateBarangay.setBounds(780, 335, 175, 35);
 
 			//---- updateProvince ----
 			updateProvince.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			updateTrainerFrameContentPane.add(updateProvince);
-			updateProvince.setBounds(785, 350, 170, 35);
+			updateProvince.setBounds(780, 400, 175, 35);
+
+			//---- updateSex ----
+			updateSex.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			updateSex.setEnabled(false);
+			updateTrainerFrameContentPane.add(updateSex);
+			updateSex.setBounds(780, 270, 175, 35);
 
 			//---- updatesextext ----
 			updatesextext.setText("Sex");
 			updatesextext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			updatesextext.setEditable(false);
 			updateTrainerFrameContentPane.add(updatesextext);
-			updatesextext.setBounds(840, 150, 100, 35);
-
-			//---- updateSex ----
-			updateSex.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-			updateSex.setEditable(false);
-			updateTrainerFrameContentPane.add(updateSex);
-			updateSex.setBounds(955, 150, 110, 35);
-
-			//---- updatestartdatetext ----
-			updatestartdatetext.setText("Start Date");
-			updatestartdatetext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
-			updatestartdatetext.setEditable(false);
-			updateTrainerFrameContentPane.add(updatestartdatetext);
-			updatestartdatetext.setBounds(840, 210, 100, 35);
-
-			//---- updateStartDate ----
-			updateStartDate.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-			updateStartDate.setEditable(false);
-			updateTrainerFrameContentPane.add(updateStartDate);
-			updateStartDate.setBounds(955, 210, 110, 35);
+			updatesextext.setBounds(630, 270, 125, 35);
 
 			//---- editorPane4 ----
 			editorPane4.setBackground(new Color(0xb5b9b8));
 			editorPane4.setEditable(false);
 			updateTrainerFrameContentPane.add(editorPane4);
-			editorPane4.setBounds(95, 115, 1000, 375);
+			editorPane4.setBounds(190, 115, 830, 375);
 
 			//---- updateTrainer ----
 			updateTrainer.setText("UPDATE TRAINER");
@@ -972,8 +918,6 @@ public class TrainerView {
 	private JTextPane firstName;
 	private JTextPane birthDate;
 	private JTextPane phoneNumber;
-	private JTextPane availability;
-	private JFormattedTextField availabilitytext;
 	private JTextPane speciality;
 	private JFormattedTextField specialitytext;
 	private JFormattedTextField citytext;
@@ -986,8 +930,6 @@ public class TrainerView {
 	private JTextPane province;
 	private JFormattedTextField sextext;
 	private JComboBox<String> sex;
-	private JFormattedTextField startdatetext;
-	private JTextPane startdate;
 	private JEditorPane editorPane1;
 	private JButton addTrainer;
 	private JLabel background2;
@@ -1026,8 +968,6 @@ public class TrainerView {
 	private JTextPane updateFirstname;
 	private JTextPane updateBirthDate;
 	private JTextPane updatePhoneNumber;
-	private JTextPane updateAvailability;
-	private JFormattedTextField updateavailabilitytext;
 	private JTextPane updateSpeciality;
 	private JFormattedTextField updatespecialitytext;
 	private JFormattedTextField updatecitytext;
@@ -1038,10 +978,8 @@ public class TrainerView {
 	private JFormattedTextField updateprovincetext;
 	private JTextPane updateBarangay;
 	private JTextPane updateProvince;
-	private JFormattedTextField updatesextext;
 	private JTextPane updateSex;
-	private JFormattedTextField updatestartdatetext;
-	private JTextPane updateStartDate;
+	private JFormattedTextField updatesextext;
 	private JEditorPane editorPane4;
 	private JButton updateTrainer;
 	private JLabel background6;
@@ -1115,14 +1053,8 @@ public class TrainerView {
 	public String getProvince() {
 		return this.province.getText();
 	}
-	public String getAvailability() {
-		return this.availability.getText();
-	}
 	public String getSpeciality() {
 		return this.speciality.getText();
-	}
-	public String getStartDate() {
-		return this.startdate.getText();
 	}
 
 	// update
@@ -1144,9 +1076,6 @@ public class TrainerView {
 	public String getUpdateProvince() {
 		return this.updateProvince.getText();
 	}
-	public String getUpdateAvailability() {
-		return this.updateAvailability.getText();
-	}
 	public String getUpdateSpeciality() {
 		return this.updateSpeciality.getText();
 	}
@@ -1160,17 +1089,11 @@ public class TrainerView {
 	public void setUpdateLastName(String name) {
 		updateLastName.setText(name);
 	}
-	public void setUpdateSex(String name) {
-		updateSex.setText(name);
-	}
 	public void setBirthDate(String name) {
 		updateBirthDate.setText(name);
 	}
 	public void setPhoneNumber(String name) {
 		updatePhoneNumber.setText(name);
-	}
-	public void setStartDate(String name) {
-		updateStartDate.setText(name);
 	}
 	public void setStreet(String name) {
 		updateStreet.setText(name);
@@ -1186,9 +1109,6 @@ public class TrainerView {
 	}
 	public void setSpeciality(String name) {
 		updateSpeciality.setText(name);
-	}
-	public void setavailability(String name) {
-		updateAvailability.setText(name);
 	}
 
 	// delete
@@ -1284,5 +1204,4 @@ public class TrainerView {
 			cm.getColumn(10).setMaxWidth(150);
 		}
 	}
-
 }

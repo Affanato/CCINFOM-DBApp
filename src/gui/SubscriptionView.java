@@ -23,20 +23,19 @@ public class SubscriptionView  {
 		membershipBackButton = new JButton();
 		titleBar = new JFormattedTextField();
 		goToAdd = new JButton();
-		goToRead = new JButton();
+		goToReadAll = new JButton();
 		goToDelete = new JButton();
 		goToTerminate = new JButton();
+		goToReadActive = new JButton();
 		background = new JLabel();
 		addMembershipFrame = new JFrame();
 		addBack = new JButton();
 		titleBar2 = new JFormattedTextField();
 		memberidtext = new JFormattedTextField();
 		typetext = new JFormattedTextField();
-		trainerID = new JComboBox<>();
 		memberID = new JComboBox<>();
 		membershiptype = new JComboBox<>();
 		startdate = new JTextPane();
-		traineridtext = new JFormattedTextField();
 		startdatetext = new JFormattedTextField();
 		addMembership = new JButton();
 		editorPane3 = new JEditorPane();
@@ -50,7 +49,7 @@ public class SubscriptionView  {
 		titleBar3 = new JFormattedTextField();
 		background3 = new JLabel();
 		readMembershipFrame = new JFrame();
-		readBack = new JButton();
+		readAllBack = new JButton();
 		tablePane = new JScrollPane();
 		membershipTable = new JTable();
 		titleBar4 = new JFormattedTextField();
@@ -63,6 +62,12 @@ public class SubscriptionView  {
 		editorPane4 = new JEditorPane();
 		titleBar5 = new JFormattedTextField();
 		background5 = new JLabel();
+		readMembershipFrame2 = new JFrame();
+		readActiveBack = new JButton();
+		tablePane2 = new JScrollPane();
+		membershipTable2 = new JTable();
+		titleBar6 = new JFormattedTextField();
+		background6 = new JLabel();
 
 		//======== membershipFrame ========
 		{
@@ -92,15 +97,15 @@ public class SubscriptionView  {
 			goToAdd.setForeground(Color.white);
 			goToAdd.setBackground(new Color(0x3ca3cb));
 			membershipFrameContentPane.add(goToAdd);
-			goToAdd.setBounds(475, 175, 250, 55);
+			goToAdd.setBounds(295, 195, 250, 55);
 
-			//---- goToRead ----
-			goToRead.setText("READ SUBSCRIPTION");
-			goToRead.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
-			goToRead.setForeground(Color.white);
-			goToRead.setBackground(new Color(0x3ca3cb));
-			membershipFrameContentPane.add(goToRead);
-			goToRead.setBounds(475, 270, 250, 55);
+			//---- goToReadAll ----
+			goToReadAll.setText("READ ALL SUBSCRIPTIONS");
+			goToReadAll.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+			goToReadAll.setForeground(Color.white);
+			goToReadAll.setBackground(new Color(0x3ca3cb));
+			membershipFrameContentPane.add(goToReadAll);
+			goToReadAll.setBounds(295, 300, 250, 55);
 
 			//---- goToDelete ----
 			goToDelete.setText("DELETE SUBSCRIPTION");
@@ -108,7 +113,7 @@ public class SubscriptionView  {
 			goToDelete.setForeground(Color.white);
 			goToDelete.setBackground(new Color(0x3ca3cb));
 			membershipFrameContentPane.add(goToDelete);
-			goToDelete.setBounds(475, 365, 250, 55);
+			goToDelete.setBounds(650, 195, 250, 55);
 
 			//---- goToTerminate ----
 			goToTerminate.setText("TERMINATE SUBSCRIPTION");
@@ -116,7 +121,15 @@ public class SubscriptionView  {
 			goToTerminate.setForeground(Color.white);
 			goToTerminate.setBackground(new Color(0x3ca3cb));
 			membershipFrameContentPane.add(goToTerminate);
-			goToTerminate.setBounds(475, 460, 250, 55);
+			goToTerminate.setBounds(480, 410, 250, 55);
+
+			//---- goToReadActive ----
+			goToReadActive.setText("READ ACTIVE SUBSCRIPTIONS");
+			goToReadActive.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+			goToReadActive.setForeground(Color.white);
+			goToReadActive.setBackground(new Color(0x3ca3cb));
+			membershipFrameContentPane.add(goToReadActive);
+			goToReadActive.setBounds(650, 300, 250, 55);
 
 			//---- background ----
 			background.setIcon(new ImageIcon("resource\\membership.jpg"));
@@ -137,7 +150,7 @@ public class SubscriptionView  {
 				membershipFrameContentPane.setMinimumSize(preferredSize);
 				membershipFrameContentPane.setPreferredSize(preferredSize);
 			}
-			membershipFrame.pack();
+			membershipFrame.pack();  
 			membershipFrame.setSize(1200, 700);
 			membershipFrame.setLocationRelativeTo(null);
 			membershipFrame.setVisible(true);
@@ -170,48 +183,43 @@ public class SubscriptionView  {
 			memberidtext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			memberidtext.setEditable(false);
 			addMembershipFrameContentPane.add(memberidtext);
-			memberidtext.setBounds(340, 190, 115, 35);
+			memberidtext.setBounds(340, 220, 115, 35);
 
 			//---- typetext ----
 			typetext.setText("Type");
 			typetext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			typetext.setEditable(false);
 			addMembershipFrameContentPane.add(typetext);
-			typetext.setBounds(340, 315, 115, 35);
-
-			//---- trainerID ----
-			trainerID.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-			addMembershipFrameContentPane.add(trainerID);
-			trainerID.setBounds(510, 250, 340, 35);
+			typetext.setBounds(340, 280, 115, 35);
 
 			//---- memberID ----
 			memberID.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			memberID.setModel(new DefaultComboBoxModel<>(new String[] {
+				"ID"
+			}));
 			addMembershipFrameContentPane.add(memberID);
-			memberID.setBounds(510, 190, 340, 35);
+			memberID.setBounds(510, 220, 340, 35);
 
 			//---- membershiptype ----
 			membershiptype.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			membershiptype.setModel(new DefaultComboBoxModel<>(new String[] {
+				"ID"
+			}));
 			addMembershipFrameContentPane.add(membershiptype);
-			membershiptype.setBounds(510, 315, 340, 35);
+			membershiptype.setBounds(510, 280, 340, 35);
 
 			//---- startdate ----
 			startdate.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			startdate.setText("YYYY-MM-DD");
 			addMembershipFrameContentPane.add(startdate);
-			startdate.setBounds(510, 375, 320, 35);
-
-			//---- traineridtext ----
-			traineridtext.setText("Trainer ID");
-			traineridtext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
-			traineridtext.setEditable(false);
-			addMembershipFrameContentPane.add(traineridtext);
-			traineridtext.setBounds(340, 250, 115, 35);
+			startdate.setBounds(510, 340, 320, 35);
 
 			//---- startdatetext ----
 			startdatetext.setText("Start Date");
 			startdatetext.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
 			startdatetext.setEditable(false);
 			addMembershipFrameContentPane.add(startdatetext);
-			startdatetext.setBounds(340, 375, 115, 35);
+			startdatetext.setBounds(340, 340, 115, 35);
 
 			//---- addMembership ----
 			addMembership.setText("ADD SUBSCRIPTION");
@@ -219,14 +227,14 @@ public class SubscriptionView  {
 			addMembership.setForeground(Color.white);
 			addMembership.setBackground(new Color(0x3ca3cb));
 			addMembershipFrameContentPane.add(addMembership);
-			addMembership.setBounds(475, 450, 250, 55);
+			addMembership.setBounds(475, 415, 250, 55);
 
 			//---- editorPane3 ----
 			editorPane3.setBackground(new Color(0xb5b9b8));
 			editorPane3.setEditable(false);
 			editorPane3.setEnabled(false);
 			addMembershipFrameContentPane.add(editorPane3);
-			editorPane3.setBounds(300, 160, 595, 380);
+			editorPane3.setBounds(300, 185, 595, 320);
 
 			//---- background2 ----
 			background2.setIcon(new ImageIcon("resource\\membership.jpg"));
@@ -273,6 +281,9 @@ public class SubscriptionView  {
 
 			//---- membershipID ----
 			membershipID.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			membershipID.setModel(new DefaultComboBoxModel<>(new String[] {
+				"ID"
+			}));
 			deleteMembershipFrameContentPane.add(membershipID);
 			membershipID.setBounds(345, 295, 500, 35);
 
@@ -329,12 +340,12 @@ public class SubscriptionView  {
 			Container readMembershipFrameContentPane = readMembershipFrame.getContentPane();
 			readMembershipFrameContentPane.setLayout(null);
 
-			//---- readBack ----
-			readBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
-			readBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
-			readBack.setBackground(new Color(0xc80f2e));
-			readMembershipFrameContentPane.add(readBack);
-			readBack.setBounds(5, 5, 95, 45);
+			//---- readAllBack ----
+			readAllBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
+			readAllBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
+			readAllBack.setBackground(new Color(0xc80f2e));
+			readMembershipFrameContentPane.add(readAllBack);
+			readAllBack.setBounds(5, 5, 95, 45);
 
 			//======== tablePane ========
 			{
@@ -346,16 +357,17 @@ public class SubscriptionView  {
 						{null, null, null, null, null, null},
 					},
 					new String[] {
-						"Subscription ID", "Member ID", "Subscription Type", "Start Date", "End Date"
+						"Subscription ID", "Member ID", "Trainer ID", "Subscription Type ID", "Start Date", "End Date"
 					}
 				));
 				{
 					TableColumnModel cm = membershipTable.getColumnModel();
-					cm.getColumn(0).setMaxWidth(100);
-					cm.getColumn(1).setMaxWidth(100);
-					cm.getColumn(2).setMaxWidth(340);
-					cm.getColumn(3).setMaxWidth(220);
-					cm.getColumn(4).setMaxWidth(220);
+					cm.getColumn(0).setMinWidth(100);
+					cm.getColumn(1).setMinWidth(100);
+					cm.getColumn(2).setMinWidth(100);
+					cm.getColumn(3).setMinWidth(100);
+					cm.getColumn(4).setMinWidth(220);
+					cm.getColumn(5).setMinWidth(220);
 				}
 				membershipTable.setFont(new Font("Tw Cen MT", Font.PLAIN, 18));
 				membershipTable.setEnabled(false);
@@ -365,7 +377,7 @@ public class SubscriptionView  {
 			tablePane.setBounds(110, 140, 970, 435);
 
 			//---- titleBar4 ----
-			titleBar4.setText("Subscription: Read Subscription");
+			titleBar4.setText("Subscription: Read All Subscriptions");
 			titleBar4.setBackground(new Color(0xc80f2e));
 			titleBar4.setHorizontalAlignment(SwingConstants.CENTER);
 			titleBar4.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
@@ -419,6 +431,9 @@ public class SubscriptionView  {
 
 			//---- terminateMembershipID ----
 			terminateMembershipID.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+			terminateMembershipID.setModel(new DefaultComboBoxModel<>(new String[] {
+				"ID"
+			}));
 			terminateMembershipFrameContentPane.add(terminateMembershipID);
 			terminateMembershipID.setBounds(360, 310, 475, 35);
 
@@ -469,6 +484,80 @@ public class SubscriptionView  {
 			terminateMembershipFrame.pack();
 			terminateMembershipFrame.setLocationRelativeTo(terminateMembershipFrame.getOwner());
 		}
+
+		//======== readMembershipFrame2 ========
+		{
+			Container readMembershipFrame2ContentPane = readMembershipFrame2.getContentPane();
+			readMembershipFrame2ContentPane.setLayout(null);
+
+			//---- readActiveBack ----
+			readActiveBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
+			readActiveBack.setIcon(new ImageIcon("resource\\backButton.jpg"));
+			readActiveBack.setBackground(new Color(0xc80f2e));
+			readMembershipFrame2ContentPane.add(readActiveBack);
+			readActiveBack.setBounds(5, 5, 95, 45);
+
+			//======== tablePane2 ========
+			{
+
+				//---- membershipTable2 ----
+				membershipTable2.setModel(new DefaultTableModel(
+					new Object[][] {
+						{null, null, null, "", null, null},
+						{null, null, null, null, null, null},
+					},
+					new String[] {
+						"Subscription ID", "Member ID", "Trainer ID", "Subscription Type ID", "Start Date", "End Date"
+					}
+				));
+				{
+					TableColumnModel cm = membershipTable2.getColumnModel();
+					cm.getColumn(0).setMinWidth(100);
+					cm.getColumn(1).setMinWidth(100);
+					cm.getColumn(2).setMinWidth(100);
+					cm.getColumn(3).setMinWidth(100);
+					cm.getColumn(4).setMinWidth(220);
+					cm.getColumn(5).setMinWidth(220);
+				}
+				membershipTable2.setFont(new Font("Tw Cen MT", Font.PLAIN, 18));
+				membershipTable2.setEnabled(false);
+				tablePane2.setViewportView(membershipTable2);
+			}
+			readMembershipFrame2ContentPane.add(tablePane2);
+			tablePane2.setBounds(110, 140, 970, 435);
+
+			//---- titleBar6 ----
+			titleBar6.setText("Subscription: Read Active Subscriptions");
+			titleBar6.setBackground(new Color(0xc80f2e));
+			titleBar6.setHorizontalAlignment(SwingConstants.CENTER);
+			titleBar6.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
+			titleBar6.setForeground(Color.white);
+			titleBar6.setEditable(false);
+			readMembershipFrame2ContentPane.add(titleBar6);
+			titleBar6.setBounds(0, 0, 1200, 55);
+
+			//---- background6 ----
+			background6.setIcon(new ImageIcon("resource\\membership.jpg"));
+			readMembershipFrame2ContentPane.add(background6);
+			background6.setBounds(0, 55, 1200, 615);
+
+			{
+				// compute preferred size
+				Dimension preferredSize = new Dimension();
+				for(int i = 0; i < readMembershipFrame2ContentPane.getComponentCount(); i++) {
+					Rectangle bounds = readMembershipFrame2ContentPane.getComponent(i).getBounds();
+					preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+					preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+				}
+				Insets insets = readMembershipFrame2ContentPane.getInsets();
+				preferredSize.width += insets.right;
+				preferredSize.height += insets.bottom;
+				readMembershipFrame2ContentPane.setMinimumSize(preferredSize);
+				readMembershipFrame2ContentPane.setPreferredSize(preferredSize);
+			}
+			readMembershipFrame2.pack();
+			readMembershipFrame2.setLocationRelativeTo(readMembershipFrame2.getOwner());
+		}
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
 	}
 
@@ -478,20 +567,19 @@ public class SubscriptionView  {
 	private JButton membershipBackButton;
 	private JFormattedTextField titleBar;
 	private JButton goToAdd;
-	private JButton goToRead;
+	private JButton goToReadAll;
 	private JButton goToDelete;
 	private JButton goToTerminate;
+	private JButton goToReadActive;
 	private JLabel background;
 	private JFrame addMembershipFrame;
 	private JButton addBack;
 	private JFormattedTextField titleBar2;
 	private JFormattedTextField memberidtext;
 	private JFormattedTextField typetext;
-	private JComboBox<String> trainerID;
 	private JComboBox<String> memberID;
 	private JComboBox<String> membershiptype;
 	private JTextPane startdate;
-	private JFormattedTextField traineridtext;
 	private JFormattedTextField startdatetext;
 	private JButton addMembership;
 	private JEditorPane editorPane3;
@@ -505,7 +593,7 @@ public class SubscriptionView  {
 	private JFormattedTextField titleBar3;
 	private JLabel background3;
 	private JFrame readMembershipFrame;
-	private JButton readBack;
+	private JButton readAllBack;
 	private JScrollPane tablePane;
 	private JTable membershipTable;
 	private JFormattedTextField titleBar4;
@@ -518,15 +606,18 @@ public class SubscriptionView  {
 	private JEditorPane editorPane4;
 	private JFormattedTextField titleBar5;
 	private JLabel background5;
+	private JFrame readMembershipFrame2;
+	private JButton readActiveBack;
+	private JScrollPane tablePane2;
+	private JTable membershipTable2;
+	private JFormattedTextField titleBar6;
+	private JLabel background6;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
 
 	// jcombobox getters
 	public JComboBox<String> getMemberIDComboBox() {
 		return this.memberID;
-	}
-	public JComboBox<String> getTrainerIDComboBox() {
-		return this.trainerID;
 	}
 	public JComboBox<String> getMembershipTypeComboBox() {
 		return this.membershiptype;
@@ -548,8 +639,11 @@ public class SubscriptionView  {
 	public JFrame getDeleteSubscriptionFrame() {
 		return this.deleteMembershipFrame;
 	}
-	public JFrame getReadSubscriptionFrame() {
+	public JFrame getReadAllSubscriptionFrame() {
 		return this.readMembershipFrame;
+	}
+	public JFrame getReadActiveSubscriptionFrame() {
+		return this.readMembershipFrame2;
 	}
 	public JFrame getTerminateSubscriptionFrame() {
 		return this.terminateMembershipFrame;
@@ -563,9 +657,6 @@ public class SubscriptionView  {
 	}
 	public String getStartDate() {
 		return this.startdate.getText();
-	}
-	public int getTrainerID() {
-		return this.trainerID.getSelectedIndex() + 1;
 	}
 	public int getSubscriptionID() {
 		return this.membershipID.getSelectedIndex() + 1;
@@ -582,8 +673,11 @@ public class SubscriptionView  {
 	public void goToAddButton(ActionListener actionListener) {
 		this.goToAdd.addActionListener(actionListener);
 	}
-	public void goToReadButton(ActionListener actionListener) {
-		this.goToRead.addActionListener(actionListener);
+	public void goToReadAllButton(ActionListener actionListener) {
+		this.goToReadAll.addActionListener(actionListener);
+	}
+	public void goToReadActiveButton(ActionListener actionListener) {
+		this.goToReadActive.addActionListener(actionListener);
 	}
 	public void goToDeleteButton(ActionListener actionListener) {
 		this.goToDelete.addActionListener(actionListener);
@@ -604,8 +698,11 @@ public class SubscriptionView  {
 	public void deleteSubscriptionButton(ActionListener actionListener) {
 		this.deleteMembership.addActionListener(actionListener);
 	}
-	public void readBackButton(ActionListener actionListener) {
-		this.readBack.addActionListener(actionListener);
+	public void readAllBackButton(ActionListener actionListener) {
+		this.readAllBack.addActionListener(actionListener);
+	}
+	public void readActiveBackButton(ActionListener actionListener) {
+		this.readActiveBack.addActionListener(actionListener);
 	}
 	public void terminateBackButton(ActionListener actionListener) {
 		this.terminateBack.addActionListener(actionListener);

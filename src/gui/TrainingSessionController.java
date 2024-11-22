@@ -22,10 +22,18 @@ public class TrainingSessionController {
             }
         });
 
-        this.tsView.goToReadButton(new ActionListener() {
+        this.tsView.goToReadAllButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 tsView.getReadSessionFrame().setVisible(true);
+                tsView.getTrainingSessionFrame().dispose();
+            }
+        });
+
+        this.tsView.goToReadUpcomingButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tsView.getReadUpcomingSessionFrame().setVisible(true);
                 tsView.getTrainingSessionFrame().dispose();
             }
         });
@@ -55,11 +63,19 @@ public class TrainingSessionController {
             }
         });
 
-        this.tsView.readBackButton(new ActionListener() {
+        this.tsView.readAllBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 tsView.getTrainingSessionFrame().setVisible(true);
                 tsView.getReadSessionFrame().dispose();
+            }
+        });
+
+        this.tsView.readUpcomingBackButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tsView.getTrainingSessionFrame().setVisible(true);
+                tsView.getReadUpcomingSessionFrame().dispose();
             }
         });
 
