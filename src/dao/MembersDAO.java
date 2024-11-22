@@ -90,6 +90,10 @@ public class MembersDAO {
     }
 
     // UTIL METHODS
+    public static boolean memberExists(int memberID) {
+        return selectMember(memberID) != null;
+    }
+
     public static Member mapResultSetToMember(ResultSet rs) {
         try {
             int memberID = rs.getInt("member_id");

@@ -1,5 +1,8 @@
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -100,7 +103,7 @@ public class AmenitiesDAO {
     }
 
     // REPORTS //
-    public Object[][] selectAmenitiesByDecreasingUsage() {
+    public Object[][] queryAmenitiesUsageLifetime() {
         String sql = "SELECT        a.amenity_name, COUNT(*) AS total_usages " +
                      "FROM          amenity_logs al " +
                      "JOIN          amenities a ON al.amenity_id = a.amenity_id " +
@@ -125,7 +128,7 @@ public class AmenitiesDAO {
         }
     }
 
-    public Object[][] selectAmenitiesByDecreasingRevenue() {
+    public Object[][] queryAmenitiesRevenueLifetime() {
         String sql = "SELECT        a.amenity_name, SUM(al.usage_total_price) AS total_revenue " +
                      "FROM          amenity_logs al " +
                      "JOIN          amenities a ON al.amenity_id = a.amenity_id " +
@@ -150,10 +153,80 @@ public class AmenitiesDAO {
         }
     }
 
+    public Object[][] queryAmenitiesUsagePerMonthPerYear() {
+        String sql = "SELECT        a.amenity_name, COUNT(*) AS total_usages " +
+                "FROM          amenity_logs al " +
+                "JOIN          amenities a ON al.amenity_id = a.amenity_id " +
+                "GROUP BY      a.amenity_name " +
+                "ORDER BY      total_usages DESC; ";
+
+        try (ResultSet rs = Objects.requireNonNull(statement.executeQuery(sql))) {
+            List<Object[]> tempList = new ArrayList<>();
+
+            while (rs.next()) {
+                String amenityName = rs.getString("amenity_name");
+                int totalUsages = rs.getInt("total_usages");
+
+                Object[] elem = {amenityName, totalUsages};
+                tempList.add(elem);
+            }
+
+            return tempList.toArray(new Object[0][]);
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
+    }
+
+    public Object[][] queryAmenitiesRevenuePerMonthPerYear() {
+        String sql = "SELECT        a.amenity_name, SUM(al.usage_total_price) AS total_revenue " +
+                "FROM          amenity_logs al " +
+                "JOIN          amenities a ON al.amenity_id = a.amenity_id " +
+                "GROUP BY      a.amenity_name " +
+                "ORDER BY      total_revenue DESC; ";
+
+        try (ResultSet rs = Objects.requireNonNull(statement.executeQuery(sql))) {
+            List<Object[]> tempList = new ArrayList<>();
+
+            while (rs.next()) {
+                String amenityName = rs.getString("amenity_name");
+                int totalRevenue = rs.getInt("total_revenue");
+
+                Object[] elem = {amenityName, totalRevenue};
+                tempList.add(elem);
+            }
+
+            return tempList.toArray(new Object[0][]);
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
+    }
+
     // UTILITY METHODS //
+    public static boolean amenityExists(int amenityID) {
+        return selectAmenity(amenityID) != null;
+    }
+
     public static boolean isActiveAmenity(int amenityID) {
         Amenity a = selectAmenity(amenityID);
         return a != null && a.amenityStatus() == Status.ACTIVE;
+    }
+
+    public static boolean isWithinAmenityHours(int amenityID, String usageStartDateTime, int usageDurationHours) {
+        if (usageDurationHours <= 0) return false;
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalTime usageStartTime = LocalDateTime.parse(usageStartDateTime, formatter).toLocalTime();
+        LocalTime usageEndTime = usageStartTime.plusHours(usageDurationHours);
+        Amenity a = selectAmenity(amenityID);
+
+        return timeIsBetweenOrEqual(usageStartTime, a.openingTime(), a.closingTime()) &&
+               timeIsBetweenOrEqual(usageEndTime, a.openingTime(), a.closingTime());
+    }
+
+    public static boolean timeIsBetweenOrEqual(LocalTime target, LocalTime start, LocalTime end) {
+        return (target.equals(start) || target.isAfter(start)) && (target.isBefore(end) || target.equals(end));
     }
 
     public static Amenity mapResultSetToAmenity(ResultSet rs) {
