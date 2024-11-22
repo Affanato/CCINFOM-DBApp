@@ -5,7 +5,7 @@ public class TrainersReportController {
     private final TrainersReportView view = new TrainersReportView();
 
     public TrainersReportController() {
-        view.trainersReportBackButton(new ActionListener() {
+        this.view.trainersReportBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 view.getTrainersReportFrame().dispose();
@@ -13,18 +13,34 @@ public class TrainersReportController {
             }
         });
 
-        view.goToMostPopularButton(new ActionListener() {
+        this.view.goToMonthlySessionsButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 view.getTrainersReportFrame().dispose();
-                view.getMostPopularFrame().setVisible(true);
+                view.getMonthlySessionsFrame().setVisible(true);
             }
         });
 
-        view.mostPopularBackButton(new ActionListener() {
+        this.view.goToYearlySessionsButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                view.getMostPopularFrame().dispose();
+                view.getTrainersReportFrame().dispose();
+                view.getYearlySessionsFrame().setVisible(true);
+            }
+        });
+
+        this.view.monthlySessionBackButton(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               view.getMonthlySessionsFrame().dispose();
+               view.getTrainersReportFrame().setVisible(true);
+           }
+        });
+
+        this.view.yearlySessionsBackButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                view.getYearlySessionsFrame().dispose();
                 view.getTrainersReportFrame().setVisible(true);
             }
         });
