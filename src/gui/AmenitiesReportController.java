@@ -1,12 +1,10 @@
-import com.sun.tools.javac.Main;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AmenitiesReportController {
     private final AmenitiesReportView view = new AmenitiesReportView();
 
-    public AmenitiesReportController() {
+    AmenitiesReportController() {
         this.view.amenitiesReportBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -15,34 +13,66 @@ public class AmenitiesReportController {
             }
         });
 
-        this.view.goToMostPopularButton(new ActionListener() {
+        this.view.goToMonthlyAmenitiesButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 view.getAmenitiesReportFrame().dispose();
-                view.getMostPopularFrame().setVisible(true);
+                view.getMonthlyUseFrame().setVisible(true);
             }
         });
 
-        this.view.goToAmenitiesRevenueButton(new ActionListener(){
+        this.view.goToTotalAmenitiesButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 view.getAmenitiesReportFrame().dispose();
-                view.getAmenitiesRevenueFrame().setVisible(true);
+                view.getTotalUseFrame().setVisible(true);
             }
         });
 
-        this.view.mostPopularBackButton(new ActionListener() {
+        this.view.goToMonthlyRevenueButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                view.getMostPopularFrame().dispose();
+                view.getAmenitiesReportFrame().dispose();
+                view.getMonthlyRevenueFrame().setVisible(true);
+            }
+        });
+
+        this.view.goToTotalRevenueButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                view.getAmenitiesReportFrame().dispose();
+                view.getTotalRevenueFrame().setVisible(true);
+            }
+        });
+
+        this.view.monthlyBackButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                view.getMonthlyUseFrame().dispose();
                 view.getAmenitiesReportFrame().setVisible(true);
             }
         });
 
-        this.view.amenitiesRevenueBack(new ActionListener(){
+        this.view.totalUseBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                view.getAmenitiesRevenueFrame().dispose();
+                view.getTotalUseFrame().dispose();
+                view.getAmenitiesReportFrame().setVisible(true);
+            }
+        });
+
+        this.view.monthlyRevenueBackButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                view.getMonthlyRevenueFrame().dispose();
+                view.getAmenitiesReportFrame().setVisible(true);
+            }
+        });
+
+        this.view.totalRevenueBackButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                view.getTotalRevenueFrame().dispose();
                 view.getAmenitiesReportFrame().setVisible(true);
             }
         });

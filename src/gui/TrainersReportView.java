@@ -61,7 +61,7 @@ public class TrainersReportView extends JFrame {
             trainersReport.setBounds(0, 0, 1200, 55);
 
             //---- goToMonthlySessions ----
-            goToMonthlySessions.setText("MONTHLY TRAINER SESSIONS");
+            goToMonthlySessions.setText("MONTHLY TRAINERS SESSIONS");
             goToMonthlySessions.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
             goToMonthlySessions.setForeground(Color.white);
             goToMonthlySessions.setBackground(new Color(0x3ca3cb));
@@ -69,7 +69,7 @@ public class TrainersReportView extends JFrame {
             goToMonthlySessions.setBounds(485, 265, 250, 55);
 
             //---- goToYearlySessions ----
-            goToYearlySessions.setText("YEARLY TRAINER SESSIONS");
+            goToYearlySessions.setText("YEARLY TRAINERS SESSIONS");
             goToYearlySessions.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
             goToYearlySessions.setForeground(Color.white);
             goToYearlySessions.setBackground(new Color(0x3ca3cb));
@@ -143,7 +143,7 @@ public class TrainersReportView extends JFrame {
             tablePane.setBounds(115, 145, 970, 435);
 
             //---- mostPopular ----
-            mostPopular.setText("Trainers Report: Monthly Trainer Sessions");
+            mostPopular.setText("Trainers Report: Monthly Trainers Sessions");
             mostPopular.setBackground(new Color(0xc80f2e));
             mostPopular.setHorizontalAlignment(SwingConstants.CENTER);
             mostPopular.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
@@ -216,7 +216,7 @@ public class TrainersReportView extends JFrame {
             tablePane2.setBounds(115, 145, 970, 435);
 
             //---- mostPopular2 ----
-            mostPopular2.setText("Trainers Report: Yearly Trainer Sessions");
+            mostPopular2.setText("Trainers Report: Yearly Trainers Sessions");
             mostPopular2.setBackground(new Color(0xc80f2e));
             mostPopular2.setHorizontalAlignment(SwingConstants.CENTER);
             mostPopular2.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
