@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-// TODO: DONE FOR NOW!!!
-// TODO: Verify if the methods are implemented correctly.
 public class SubscriptionsDAO {
 
     private final Statement statement;
@@ -15,6 +13,7 @@ public class SubscriptionsDAO {
     }
 
     // SINGLE UPDATE QUERIES //
+    // TODO: Validate start date.
     public void insertSubscription(Subscription s) {
         String sql = "INSERT INTO subscriptions (member_id, subscription_type_id, subscription_start_date, subscription_end_date) " +
                      "VALUES (?, ?, ?, ?) ";
@@ -33,10 +32,14 @@ public class SubscriptionsDAO {
         }
     }
 
-    public void deleteSubscription(int subscriptionID) {
+    public boolean deleteSubscription(int subscriptionID) {
+        if (!subscriptionExists(subscriptionID)) return false;
+        DBUtils.invalidateTableForeignKey("training_sessions", "subscription_id", subscriptionID);
         DBUtils.deleteTableRecordsByKey("subscriptions", "subscription_id", subscriptionID);
+        return true;
     }
 
+    // TODO: Validate this too.
     public void updateSubscription(int subscriptionID, Subscription s) {
         if (!DBUtils.primaryKeyExistsInATable("subscriptions", "subscription_id", subscriptionID)) {
             return;
@@ -78,13 +81,15 @@ public class SubscriptionsDAO {
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
             ps.setInt(1, subscriptionID);
+
             ps.executeUpdate();
             System.out.println("Subscription terminated successfully.");
-            return true;
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
             return false;
         }
+
+        return true;
     }
 
     // MASS UPDATE QUERIES //
@@ -107,32 +112,37 @@ public class SubscriptionsDAO {
     }
 
     // SELECT QUERIES //
-    public Subscription selectSubscription(int subscriptionID) {
+    public String[] getComboBoxSubscriptionIDs() {
+        return DBUtils.selectAllKeysFromTable("subscriptions", "subscription_id");
+    }
+
+    public static Subscription selectSubscription(int subscriptionID) {
         String condition = "WHERE subscription_id = " + subscriptionID;
         ResultSet rs = DBUtils.selectAllRecordsFromTable("subscriptions", condition);
         assert rs != null;
         return mapResultSetToSubscription(rs);
     }
 
-    public ArrayList<Subscription> selectAllSubscriptions() {
+    public Object[][] selectAllSubscriptions() {
         ResultSet rs = DBUtils.selectAllRecordsFromTable("subscriptions");
         assert rs != null;
-        return mapResultSetToSubscriptionList(rs);
+        return DBUtils.to2DObjectArray(Objects.requireNonNull(mapResultSetToSubscriptionList(rs)));
     }
 
-    public ArrayList<Subscription> selectActiveSubscriptions() {
+    public Object[][] selectActiveSubscriptions() {
         String condition = "WHERE CURRENT_DATE BETWEEN subscription_start_date AND subscription_end_date ";
         ResultSet rs = DBUtils.selectAllRecordsFromTable("subscriptions", condition);
         assert rs != null;
-        return mapResultSetToSubscriptionList(rs);
+        return DBUtils.to2DObjectArray(Objects.requireNonNull(mapResultSetToSubscriptionList(rs)));
     }
 
     // REPORTS
-    public Object[][] getTotalSubsPerSubTypePerMonthPerYear() {
+    public Object[][] getTotalSubsRevenuePerSubTypePerMonthPerYear() {
         String sql = "SELECT			YEAR(s.subscription_start_date) AS year, " +
                      "                  MONTH(s.subscription_start_date) AS month, " +
                      "                  st.subscription_type_name AS subscription_type, " +
                      "                  COUNT(*) AS total_subscriptions " +
+                     "                  COUNT(*) * st.subscription_type_price AS total_revenue " +
                      "FROM              subscriptions s " +
                      "JOIN              subscription_types st ON s.subscription_type_id = st.subscription_type_id " +
                      "GROUP BY          year, month, subscription_type " +
@@ -146,8 +156,9 @@ public class SubscriptionsDAO {
                 int month = rs.getInt("month");
                 String subscriptionType = rs.getString("subscription_type");
                 int totalSubscriptions = rs.getInt("total_subscriptions");
+                double totalRevenue = rs.getDouble("total_revenue");
 
-                Object[] elem = {year, month, subscriptionType, totalSubscriptions};
+                Object[] elem = {year, month, subscriptionType, totalSubscriptions, totalRevenue};
                 tempList.add(elem);
             }
 
@@ -158,18 +169,44 @@ public class SubscriptionsDAO {
         }
     }
 
-    // TODO: Code this.
-    public Object[][] getTotalSubsPerSubTypePerYear() {
+    public Object[][] getTotalSubsRevenuePerSubTypePerYear() {
+        String sql = "SELECT			YEAR(s.subscription_start_date) AS year, " +
+                     "                  st.subscription_type_name AS subscription_type, " +
+                     "                  COUNT(*) AS total_subscriptions " +
+                     "                  COUNT(*) * st.subscription_type_price AS total_revenue " +
+                     "FROM              subscriptions s " +
+                     "JOIN              subscription_types st ON s.subscription_type_id = st.subscription_type_id " +
+                     "GROUP BY          year, subscription_type " +
+                     "ORDER BY          year, subscription_type; ";
 
+        try (ResultSet rs = Objects.requireNonNull(statement.executeQuery(sql))) {
+            List<Object[]> tempList = new ArrayList<>();
+
+            while (rs.next()) {
+                int year = rs.getInt("year");
+                String subscriptionType = rs.getString("subscription_type");
+                int totalSubscriptions = rs.getInt("total_subscriptions");
+                double totalRevenue = rs.getDouble("total_revenue");
+
+                Object[] elem = {year, subscriptionType, totalSubscriptions, totalRevenue};
+                tempList.add(elem);
+            }
+
+            return tempList.toArray(new Object[0][]);
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
     }
 
-    public Object[][] getTotalSubsPerSubTypeLifetime() {
-        String sql = "SELECT        st.subscription_type_name AS subscription_type, " +
-                "              COUNT(*) AS total_subscriptions " +
-                "FROM          subscriptions s " +
-                "JOIN          subscription_types st ON s.subscription_type_id = st.subscription_type_id " +
-                "GROUP BY      subscription_type " +
-                "ORDER BY      total_subscriptions DESC; ";
+    public Object[][] getTotalSubsRevenuePerSubTypeLifetime() {
+        String sql = "SELECT			st.subscription_type_name AS subscription_type, " +
+                     "                  COUNT(*) AS total_subscriptions " +
+                     "                  COUNT(*) * st.subscription_type_price AS total_revenue " +
+                     "FROM              subscriptions s " +
+                     "JOIN              subscription_types st ON s.subscription_type_id = st.subscription_type_id " +
+                     "GROUP BY          subscription_type " +
+                     "ORDER BY          total_revenue DESC; ";
 
         try (ResultSet rs = Objects.requireNonNull(statement.executeQuery(sql))) {
             List<Object[]> tempList = new ArrayList<>();
@@ -177,70 +214,9 @@ public class SubscriptionsDAO {
             while (rs.next()) {
                 String subscriptionType = rs.getString("subscription_type");
                 int totalSubscriptions = rs.getInt("total_subscriptions");
+                double totalRevenue = rs.getDouble("total_revenue");
 
-                Object[] elem = {subscriptionType, totalSubscriptions};
-                tempList.add(elem);
-            }
-
-            return tempList.toArray(new Object[0][]);
-        } catch (SQLException e) {
-            ExceptionHandler.handleException(e);
-            return null;
-        }
-    }
-
-    public Object[][] getTotalRevenuePerSubTypePerMonthPerYear() {
-        String sql = "SELECT        YEAR(s.subscription_start_date) AS year, " +
-                     "              MONTH(s.subscription_start_date) AS month, " +
-                     "              st.subscription_type_name AS subscription_type, " +
-                     "              COUNT(*) * st.subscription_type_price AS total_revenue " +
-                     "FROM          subscriptions s " +
-                     "JOIN          subscription_types st ON s.subscription_type_id = st.subscription_type_id " +
-                     "GROUP BY      year, month, subscription_type " +
-                     "ORDER BY      year, month, subscription_type; ";
-
-        try (ResultSet rs = Objects.requireNonNull(statement.executeQuery(sql))) {
-            List<Object[]> tempList = new ArrayList<>();
-
-            while (rs.next()) {
-                int year = rs.getInt("year");
-                int month = rs.getInt("month");
-                String subscriptionType = rs.getString("subscription_type");
-                double totalRevenue = rs.getInt("total_revenue");
-
-                Object[] elem = {year, month, subscriptionType, totalRevenue};
-                tempList.add(elem);
-            }
-
-            return tempList.toArray(new Object[0][]);
-        } catch (SQLException e) {
-            ExceptionHandler.handleException(e);
-            return null;
-        }
-    }
-
-    // TODO: Code this.
-    public Object[][] getTotalRevenuePerSubTypePerYear() {
-
-    }
-
-
-    public Object[][] getTotalRevenuePerSubTypeLifetime() {
-        String sql = "SELECT        st.subscription_type_name AS subscription_type, " +
-                     "              COUNT(*) * st.subscription_type_price AS total_revenue " +
-                     "FROM          subscriptions s " +
-                     "JOIN          subscription_types st ON s.subscription_type_id = st.subscription_type_id " +
-                     "GROUP BY      subscription_type " +
-                     "ORDER BY      total_revenue DESC; ";
-
-        try (ResultSet rs = Objects.requireNonNull(statement.executeQuery(sql))) {
-            List<Object[]> tempList = new ArrayList<>();
-
-            while (rs.next()) {
-                String subscriptionType = rs.getString("subscription_type");
-                double totalRevenue = rs.getInt("total_revenue");
-
-                Object[] elem = {subscriptionType, totalRevenue};
+                Object[] elem = {subscriptionType, totalSubscriptions, totalRevenue};
                 tempList.add(elem);
             }
 
@@ -252,6 +228,10 @@ public class SubscriptionsDAO {
     }
 
     // UTILITY METHODS //
+    public static boolean subscriptionExists(int subscriptionID) {
+        return selectSubscription(subscriptionID) != null;
+    }
+
     public static int getMemberID(int subscriptionID) {
         String sql = "SELECT        m.member_id " +
                      "FROM          members m " +
