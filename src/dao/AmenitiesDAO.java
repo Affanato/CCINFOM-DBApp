@@ -2,6 +2,7 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,20 +20,24 @@ public class AmenitiesDAO {
     }
 
     // SINGLE UPDATE QUERIES
-    public boolean insertAmenity(Amenity a) {
+    public boolean insertAmenity(String amenityName, double walkInPricePerHour, String openingTime, String closingTime, String amenityStatus) {
+        if (!isValidAmenityInsertion(walkInPricePerHour, openingTime, closingTime, amenityStatus)) {
+            return false;
+        }
+
         String sql = "INSERT INTO amenities (amenity_name, walk_in_price_per_hour, opening_time, closing_time, amenity_status) " +
                      "VALUES (?, ?, ?, ?, ?) ";
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
-            ps.setString(1, a.amenityName());
-            ps.setDouble(2, a.walkInPricePerHour());
-            ps.setTime(3, Time.valueOf(a.openingTime()));
-            ps.setTime(4, Time.valueOf(a.closingTime()));
-            ps.setString(5, a.amenityStatus().toString());
+            ps.setString(1, amenityName);
+            ps.setDouble(2, walkInPricePerHour);
+            ps.setTime(3, Time.valueOf(openingTime));
+            ps.setTime(4, Time.valueOf(closingTime));
+            ps.setString(5, amenityStatus);
 
             ps.executeUpdate();
-            System.out.println("Amenity record inserted successfully.");
+            System.out.println("'amenities' record inserted successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
             return false;
@@ -49,7 +54,11 @@ public class AmenitiesDAO {
         return true;
     }
 
-    public boolean updateAmenity(int amenityID, Amenity a) {
+    public boolean updateAmenity(int amenityID, String amenityName, double walkInPricePerHour, String openingTime, String closingTime, String amenityStatus) {
+        if (!isValidAmenityInsertion(walkInPricePerHour, openingTime, closingTime, amenityStatus)) {
+            return false;
+        }
+
         String sql = "UPDATE amenities " +
                      "SET amenity_name = ?, " +
                      "    walk_in_price_per_hour = ?, " +
@@ -60,12 +69,11 @@ public class AmenitiesDAO {
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
-            ps.setString(1, a.amenityName());
-            ps.setDouble(2, a.walkInPricePerHour());
-            ps.setTime(3, Time.valueOf(a.openingTime()));
-            ps.setTime(4, Time.valueOf(a.closingTime()));
-            ps.setString(5, a.amenityStatus().toString());
-            ps.setInt(6, amenityID);
+            ps.setString(1, amenityName);
+            ps.setDouble(2, walkInPricePerHour);
+            ps.setTime(3, Time.valueOf(openingTime));
+            ps.setTime(4, Time.valueOf(closingTime));
+            ps.setString(5, amenityStatus);
 
             ps.executeUpdate();
             System.out.println("'amenities' record updated successfully.");
@@ -230,6 +238,22 @@ public class AmenitiesDAO {
     }
 
     // UTILITY METHODS //
+    public boolean isValidAmenityInsertion(double walkInPricePerHour, String openingTime, String closingTime, String amenityStatus) {
+        if (!Status.hasDescription(amenityStatus)) return false;
+
+        LocalTime openTime;
+        LocalTime closeTime;
+        try {
+            openTime = LocalTime.parse(openingTime); // Default format: HH:mm[:ss]
+            closeTime = LocalTime.parse(closingTime);
+        } catch (DateTimeParseException e) {
+            System.out.println("Invalid time format. Please use 'HH:mm[:ss]'.");
+            return false;
+        }
+
+        return openTime.isBefore(closeTime);// invalid opening and closing time
+    }
+
     public static boolean amenityExists(int amenityID) {
         return selectAmenity(amenityID) != null;
     }
