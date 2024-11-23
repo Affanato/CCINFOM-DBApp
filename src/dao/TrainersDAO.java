@@ -315,13 +315,12 @@ public class TrainersDAO {
 
             while (rs.next()) {
                 int year = rs.getInt("year");
-                int month = rs.getInt("month");
                 String lastName = rs.getString("last_name");
                 String firstName = rs.getString("first_name");
                 String programSpecialty = rs.getString("program_specialty");
                 int membersTrained = rs.getInt("numOfMembersTrained");
 
-                Object[] elem = {year, month, lastName, firstName, programSpecialty, membersTrained};
+                Object[] elem = {year, lastName, firstName, programSpecialty, membersTrained};
                 tempList.add(elem);
             }
 
