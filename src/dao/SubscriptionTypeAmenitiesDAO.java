@@ -95,6 +95,7 @@ public class SubscriptionTypeAmenitiesDAO {
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
+
             ps.setInt(1, subscriptionTypeID);
 
             try (ResultSet rs = ps.executeQuery()) {
@@ -114,6 +115,11 @@ public class SubscriptionTypeAmenitiesDAO {
     // UTILITY METHODS //
     public static SubscriptionTypeAmenity mapResultSetToSubscriptionTypeAmenity(ResultSet rs) {
         try {
+            if (!rs.next()) {
+                System.out.println("No SubscriptionTypeAmenity ResultSet data.\n");
+                return null;
+            }
+
             int subscriptionTypeID = rs.getInt(1);
             int amenityID = rs.getInt(2);
 
@@ -141,11 +147,11 @@ public class SubscriptionTypeAmenitiesDAO {
         if (!SubscriptionTypesDAO.subscriptionTypeExists(subscriptionTypeID)) return false;
         if (!AmenitiesDAO.amenityExists(amenityID)) return false;
 
-        String[] amenityNames = selectAllAmenitiesOfASubscriptionType(subscriptionTypeID);
+        Object[][] amenityNames = selectAllAmenitiesOfASubscriptionType(subscriptionTypeID);
         String amenityName = AmenitiesDAO.selectAmenity(amenityID).amenityName();
 
-        for (String a : amenityNames) {
-            if (a.equals(amenityName)) {
+        for (Object[] name : amenityNames) {
+            if (name[0].equals(amenityName)) {
                 return true;
             }
         }
