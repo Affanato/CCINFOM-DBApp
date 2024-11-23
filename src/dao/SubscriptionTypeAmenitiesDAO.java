@@ -142,11 +142,11 @@ public class SubscriptionTypeAmenitiesDAO {
         if (!SubscriptionTypesDAO.subscriptionTypeExists(subscriptionTypeID)) return false;
         if (!AmenitiesDAO.amenityExists(amenityID)) return false;
 
-        String[] amenityNames = selectAllAmenitiesOfASubscriptionType(subscriptionTypeID);
+        Object[][] amenityNames = selectAllAmenitiesOfASubscriptionType(subscriptionTypeID);
         String amenityName = AmenitiesDAO.selectAmenity(amenityID).amenityName();
 
-        for (String a : amenityNames) {
-            if (a.equals(amenityName)) {
+        for (Object[] name : amenityNames) {
+            if (name[0].equals(amenityName)) {
                 return true;
             }
         }
