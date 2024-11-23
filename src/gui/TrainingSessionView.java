@@ -845,7 +845,7 @@ public class TrainingSessionView {
 		this.updateStartdatetime.setText(text);
 	}
 	public void setUpdateEndDate(String text) {
-		this.updateStartdatetime.setText(text);
+		this.updateEnddatetime.setText(text);
 	}
 
 	public String getUpdateTrainerID() {

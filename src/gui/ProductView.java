@@ -1565,6 +1565,9 @@ public class ProductView {
 	public JComboBox<String> getCancelProductPurchaseID() {
 		return this.cancelProductPurchaseID;
 	}
+	public void setQuantityPurchase(String text) {
+		this.quantityPurchase.setText(text);
+	}
 	public String getQuantityPurchase() {
 		return this.quantityPurchase.getText();
 	}

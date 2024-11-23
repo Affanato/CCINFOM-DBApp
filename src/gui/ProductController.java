@@ -302,7 +302,9 @@ public class ProductController {
                 ProductPurchase pp = purch.selectProductPurchase(id);
                 pView.getMemberPurchaseID().setModel(new DefaultComboBoxModel<>(mem.getComboBoxMemberIDs()));
                 pView.getProductPurchaseID().setModel(new DefaultComboBoxModel<>(dao.getComboBoxProductIDs()));
-                
+                pView.getMemberPurchaseID().setSelectedItem(String.valueOf(pp.memberID()));
+                pView.getProductPurchaseID().setSelectedItem(String.valueOf(pp.productID()));
+                pView.setQuantityPurchase(String.valueOf(pp.quantitySold()));
 
                 pView.getUpdateProductPurchaseFrame1().setVisible(true);
                 pView.getUpdateProductPurchaseFrame().dispose();

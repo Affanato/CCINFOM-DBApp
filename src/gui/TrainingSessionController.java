@@ -1,6 +1,7 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.DefaultComboBoxModel;
 
@@ -145,12 +146,13 @@ public class TrainingSessionController {
                 int sessionid = Integer.parseInt(tsView.getUpdateTrainingSessionID());
                 TrainingSession ts = dao.selectTrainingSession(sessionid);
                 TrainersDAO t = new TrainersDAO();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
                 tsView.setUpdateSubscriptionID(String.valueOf(ts.subscriptionID()));
                 tsView.getUpdateTrainerIDComboBox().setModel(new DefaultComboBoxModel<>(t.getComboBoxTrainerIDs())); 
-                tsView.getUpdateTrainerIDComboBox().setSelectedItem((Object) ts.trainerID());
-                tsView.setUpdateStartDate(String.valueOf(ts.sessionStartDateTime()));
-                tsView.setUpdateEndDate(String.valueOf(ts.sessionEndDateTime()));
+                tsView.getUpdateTrainerIDComboBox().setSelectedItem(String.valueOf(ts.trainerID()));
+                tsView.setUpdateStartDate(String.valueOf(ts.sessionStartDateTime().format(formatter)));
+                tsView.setUpdateEndDate(String.valueOf(ts.sessionEndDateTime().format(formatter)));
 
 
                 tsView.getUpdateSessionFrame1().dispose();
