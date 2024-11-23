@@ -82,14 +82,14 @@ public class SubscriptionTypeAmenitiesDAO {
         return DBUtils.to2DObjectArray(Objects.requireNonNull(mapResultSetToSubscriptionTypeAmenityList(rs)));
     }
 
-    public static Object[][] selectAllAmenitiesOfASubscriptionType(int subscriptionTypeID) {
+    public static Object[][] selectAllAmenityNamesOfASubscriptionType(int subscriptionTypeID) {
         String sql = "SELECT a.amenity_name " +
                      "FROM subscription_types st " +
                      "JOIN subscription_type_amenities sta " +
                      "ON st.subscription_type_id = sta.subscription_type_id " +
                      "JOIN amenities a " +
                      "ON a.amenity_id = sta.amenity_id " +
-                     "WHERE subscription_type_id = ? ";
+                     "WHERE st.subscription_type_id = ? ";
 
         List<Object[]> amenityNames = new ArrayList<>();
 
@@ -110,6 +110,36 @@ public class SubscriptionTypeAmenitiesDAO {
         }
 
         return amenityNames.toArray(new Object[0][]);
+    }
+
+    public static String[] selectAllAmenityIDsOfASubscriptionType(int subscriptionTypeID) {
+        String sql = "SELECT a.amenity_id " +
+                "FROM subscription_types st " +
+                "JOIN subscription_type_amenities sta " +
+                "ON st.subscription_type_id = sta.subscription_type_id " +
+                "JOIN amenities a " +
+                "ON a.amenity_id = sta.amenity_id " +
+                "WHERE st.subscription_type_id = ? ";
+
+        List<String> amenityNames = new ArrayList<>();
+
+        try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
+            assert ps != null;
+
+            ps.setInt(1, subscriptionTypeID);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    amenityNames.add(rs.getString("amenity_id"));
+                }
+            } catch (SQLException e) {
+                ExceptionHandler.handleException(e);
+            }
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+        }
+
+        return amenityNames.toArray(new String[0]);
     }
 
     // UTILITY METHODS //
@@ -147,7 +177,7 @@ public class SubscriptionTypeAmenitiesDAO {
         if (!SubscriptionTypesDAO.subscriptionTypeExists(subscriptionTypeID)) return false;
         if (!AmenitiesDAO.amenityExists(amenityID)) return false;
 
-        Object[][] amenityNames = selectAllAmenitiesOfASubscriptionType(subscriptionTypeID);
+        Object[][] amenityNames = selectAllAmenityNamesOfASubscriptionType(subscriptionTypeID);
         String amenityName = AmenitiesDAO.selectAmenity(amenityID).amenityName();
 
         for (Object[] name : amenityNames) {
