@@ -11,8 +11,6 @@ public class TrainingSessionsDAO {
         this.statement = DBUtils.getNewStatement();
     }
 
-    // TODO: In Progress
-    // TODO: Code related methods. Refer to any implemented DAO.
     // SINGLE UPDATE QUERIES
     public boolean insertTrainingSession(int memberID, int trainerID, String startDateTimeString, String endDateTimeString) {
         // Check if the trainer ID exists
@@ -32,6 +30,7 @@ public class TrainingSessionsDAO {
 
         // Validate trainer availability for the given time
         if (isTrainerUnavailable(trainerID, sessionStartDateTime, sessionEndDateTime)) {
+            System.out.println("Chosen trainer is unavailable during the chosen time.\n");
             return false;
         }
 
@@ -39,7 +38,7 @@ public class TrainingSessionsDAO {
                 "VALUES (?, ?, ?, ?)";
 
         if (MembersDAO.getCurrentSubscriptionID(memberID) == -1) {
-            System.out.println("Invalid Member ID; Member may not have subscription or ID does not exist.");
+            System.out.println("\nInvalid Member ID; Member may not have subscription or ID does not exist.\n");
             return false;
         }
 
@@ -51,7 +50,7 @@ public class TrainingSessionsDAO {
             ps.setTimestamp(4, Timestamp.valueOf(sessionEndDateTime));
 
             ps.executeUpdate();
-            System.out.println("Training session record inserted successfully.");
+            System.out.println("Training session record inserted successfully.\n");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
             return false;
@@ -133,14 +132,36 @@ public class TrainingSessionsDAO {
         String condition = "WHERE training_session_id = " + trainingSessionID;
         ResultSet rs = DBUtils.selectAllRecordsFromTable("training_sessions", condition);
         assert rs != null;
-        return mapResultSetToTrainingSession(rs);
+
+        try {
+            if (rs.next()) {
+                return mapResultSetToTrainingSession(rs);
+            } else {
+                System.out.println("No TrainingSession ResultSet data for trainingSessionID: " + trainingSessionID);
+                return null;
+            }
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
     }
 
     public static TrainingSession selectTrainingSession(String lastname) {
         String condition = "WHERE lastname = " + lastname;
         ResultSet rs = DBUtils.selectAllRecordsFromTable("training_sessions", condition);
         assert rs != null;
-        return mapResultSetToTrainingSession(rs);
+
+        try {
+            if (rs.next()) {
+                return mapResultSetToTrainingSession(rs);
+            } else {
+                System.out.println("No TrainingSession ResultSet data for lastname: " + lastname);
+                return null;
+            }
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
     }
 
     public Object[][] selectAllTrainingSessions() {
@@ -161,6 +182,7 @@ public class TrainingSessionsDAO {
         ResultSet rs = DBUtils.selectAllRecordsFromTable("training_sessions", condition);
         assert rs != null;
         return DBUtils.to2DObjectArray(mapResultSetToTrainingSessionList(rs));
+        // TODO: I have confirmed that this method works. Frontend display issue 'to. - CJ
     }
 
     // UTILITY METHODS
@@ -169,42 +191,35 @@ public class TrainingSessionsDAO {
     }
 
     public String[] getComboBoxTrainerIDs() {
-        return DBUtils.selectAllKeysFromTable("trainers", "trainer_id");
+        return DBUtils.removeFirstElement(DBUtils.selectAllKeysFromTable("trainers", "trainer_id"));
     }
 
     public static TrainingSession mapResultSetToTrainingSession(ResultSet rs) {
         try {
-            if (rs.next()) {
-                int trainingSessionID = rs.getInt("training_session_id");
-                int subscriptionID = rs.getInt("subscription_id");
-                int trainerID = rs.getInt("trainer_id");
-                LocalDateTime sessionStartDateTime = rs.getTimestamp("session_start_datetime").toLocalDateTime();
-                LocalDateTime sessionEndDateTime = rs.getTimestamp("session_start_datetime").toLocalDateTime();
+            int trainingSessionID = rs.getInt("training_session_id");
+            int subscriptionID = rs.getInt("subscription_id");
+            int trainerID = rs.getInt("trainer_id");
+            LocalDateTime sessionStartDateTime = rs.getTimestamp("session_start_datetime").toLocalDateTime();
+            LocalDateTime sessionEndDateTime = rs.getTimestamp("session_end_datetime").toLocalDateTime();
 
-                return new TrainingSession(trainingSessionID, subscriptionID, trainerID, sessionStartDateTime, sessionEndDateTime);
-            }
+            return new TrainingSession(trainingSessionID, subscriptionID, trainerID, sessionStartDateTime, sessionEndDateTime);
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
+            return null;
         }
-        return null;
     }
 
     public static ArrayList<TrainingSession> mapResultSetToTrainingSessionList(ResultSet rs) {
-        ArrayList<TrainingSession> trainingSessionList = new ArrayList<>();
+        ArrayList<TrainingSession> trainingSessionList = new ArrayList<TrainingSession>();
         try {
             while (rs.next()) {
-                int trainingSessionID = rs.getInt("training_session_id");
-                int subscriptionID = rs.getInt("subscription_id");
-                int trainerID = rs.getInt("trainer_id");
-                LocalDateTime sessionStartDateTime = rs.getTimestamp("session_start_datetime").toLocalDateTime();
-                LocalDateTime sessionEndDateTime = rs.getTimestamp("session_start_datetime").toLocalDateTime();
-
-                trainingSessionList.add(new TrainingSession(trainingSessionID, subscriptionID, trainerID, sessionStartDateTime, sessionEndDateTime));
+                trainingSessionList.add(mapResultSetToTrainingSession(rs));
             }
+            return trainingSessionList;
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
+            return null;
         }
-        return trainingSessionList;
     }
 
     private boolean isTrainerUnavailable(int trainerID, LocalDateTime start, LocalDateTime end) {

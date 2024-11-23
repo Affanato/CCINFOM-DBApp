@@ -345,7 +345,17 @@ public class ProductsDAO {
         String condition = "WHERE product_id = " + productID;
         ResultSet rs = DBUtils.selectAllRecordsFromTable("products", condition);
         assert rs != null;
-        return mapResultSetToProduct(rs);
+
+        try {
+            if (rs.next()) {
+                return mapResultSetToProduct(rs);
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
     }
 
     public Object[][] selectAllProducts() {
@@ -357,11 +367,6 @@ public class ProductsDAO {
     // UTILITY METHODS
     public static Product mapResultSetToProduct(ResultSet rs) {
         try {
-            if (!rs.next()) {
-                System.out.println("No Product ResultSet data.\n");
-                return null;
-            }
-
             int productID = rs.getInt("product_id");
             String productBrand = rs.getString("product_brand");
             String productName = rs.getString("product_name");
@@ -420,7 +425,7 @@ public class ProductsDAO {
     }
 
     public String[] getComboBoxProductIDs() {
-        return DBUtils.selectAllKeysFromTable("products", "product_id");
+        return DBUtils.removeFirstElement(DBUtils.selectAllKeysFromTable("products", "product_id"));
     }
 
     // PRODUCT PURCHASE <-> PRODUCT CROSS-TABLE UTILITY METHODS

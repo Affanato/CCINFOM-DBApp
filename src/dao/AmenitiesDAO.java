@@ -4,6 +4,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -84,15 +85,27 @@ public class AmenitiesDAO {
     }
 
     // SELECT QUERIES //
-    public String[] getComboBoxAmenityIDs() {
-        return DBUtils.selectAllKeysFromTable("amenities", "amenity_id");
+    public static String[] getComboBoxAmenityIDs() {
+        String condition = "ORDER BY amenity_id ";
+        return DBUtils.removeFirstElement(DBUtils.selectAllKeysFromTable("amenities", "amenity_id", condition));
     }
 
     public static Amenity selectAmenity(int amenityID) {
         String condition = "WHERE amenity_id = " + amenityID;
         ResultSet rs = DBUtils.selectAllRecordsFromTable("amenities", condition);
         assert rs != null;
-        return mapResultSetToAmenity(rs);
+
+        try {
+            if (rs.next()) {  // Ensure we move to the first row
+                return mapResultSetToAmenity(rs);
+            } else {
+                System.out.println("No Amenity ResultSet data for amenity_id: " + amenityID);
+                return null;
+            }
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
     }
 
     public Object[][] selectAllAmenities() {
@@ -257,26 +270,59 @@ public class AmenitiesDAO {
     public static boolean isWithinAmenityHours(int amenityID, String usageStartDateTime, int usageDurationHours) {
         if (usageDurationHours <= 0) return false;
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalTime usageStartTime = LocalDateTime.parse(usageStartDateTime, formatter).toLocalTime();
-        LocalTime usageEndTime = usageStartTime.plusHours(usageDurationHours);
-        Amenity a = selectAmenity(amenityID);
+        try {
+            // DateTimeFormatter for the format including date and time
+            DateTimeFormatter dtFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-        return timeIsBetweenOrEqual(usageStartTime, a.openingTime(), a.closingTime()) &&
-               timeIsBetweenOrEqual(usageEndTime, a.openingTime(), a.closingTime());
+            // Parse the full DateTime (date and time)
+            LocalDateTime parsedDateTime = LocalDateTime.parse(usageStartDateTime, dtFormatter);
+
+            // Extract time from the parsed DateTime
+            LocalTime usageStartTime = DBUtils.normalizeTime(parsedDateTime.toLocalTime());
+            LocalTime usageEndTime = DBUtils.normalizeTime(usageStartTime.plusHours(usageDurationHours));
+
+            // Retrieve the amenity object using amenityID
+            Amenity a = selectAmenity(amenityID);
+            if (a == null) {
+                System.err.println("Amenity not found with ID: " + amenityID);
+                return false;
+            }
+
+            LocalTime openingTime = DBUtils.normalizeTime(a.openingTime());
+            LocalTime closingTime = DBUtils.normalizeTime(a.closingTime());
+
+            // Debugging output
+            DateTimeFormatter tFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+
+            System.out.println("Start time: " + usageStartTime.format(tFormatter));
+            System.out.println("End time: " + usageEndTime.format(tFormatter));
+            System.out.println("Opening time: " + openingTime.format(tFormatter));
+            System.out.println("Closing time: " + closingTime.format(tFormatter));
+
+            // Check if both start and end times are within the amenity's operating hours
+            return timeIsBetweenOrEqual(usageStartTime, openingTime, closingTime) &&
+                    timeIsBetweenOrEqual(usageEndTime, openingTime, closingTime);
+        } catch (DateTimeParseException e) {
+            System.err.println("Invalid usageStartDateTime format: " + usageStartDateTime);
+            return false;
+        }
     }
 
     public static boolean timeIsBetweenOrEqual(LocalTime target, LocalTime start, LocalTime end) {
-        return (target.equals(start) || target.isAfter(start)) && (target.isBefore(end) || target.equals(end));
+        DateTimeFormatter tFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+
+        System.out.println("\n[NEW TIME]");
+        System.out.println("Target: " + target.format(tFormatter));
+        System.out.println("Start time: " + start.format(tFormatter));
+        System.out.println("End time: " + end.format(tFormatter));
+
+        boolean timeIsBetweenOrEqual = target.equals(start) || target.isAfter(start) && (target.isBefore(end) || target.equals(end));
+        System.out.println("Between or equal = " + timeIsBetweenOrEqual);
+        return timeIsBetweenOrEqual;
     }
 
     public static Amenity mapResultSetToAmenity(ResultSet rs) {
         try {
-            if (!rs.next()) {
-                System.out.println("No Amenity ResultSet data.\n");
-                return null;
-            }
-
             int amenityID = rs.getInt(1);
             String amenityName = rs.getString(2);
             double walkInPrice = rs.getDouble(3);

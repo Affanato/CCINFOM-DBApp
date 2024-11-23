@@ -22,7 +22,7 @@ public class MembersDAO {
             ps.setString(1, m.lastName());
             ps.setString(2, m.firstName());
             ps.setDate(3, Date.valueOf(m.birthdate()));
-            ps.setString(4, m.sex().toString());
+            ps.setString(4, String.valueOf(m.sex().toString().charAt(0)));
             ps.setString(5, m.phoneNumber());
             ps.setString(6, m.street());
             ps.setString(7, m.barangay());
@@ -122,16 +122,15 @@ public class MembersDAO {
             ps.setString(1, lastName);
             ps.setString(2, firstName);
             ps.setDate(3, Date.valueOf(birthdate));
-            ps.setString(4, sex);
+            ps.setString(4, String.valueOf(sex.toString().charAt(0)));
             ps.setString(5, phoneNumber);
             ps.setString(6, street);
             ps.setString(7, barangay);
             ps.setString(8, city);
             ps.setString(9, province);
-            ps.setString(10, "Active");
 
             ps.executeUpdate();
-            System.out.println("Trainer record inserted successfully.");
+            System.out.println("'members' record inserted successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
             return false;
@@ -224,8 +223,7 @@ public class MembersDAO {
                     rs.getString("street"),
                     rs.getString("barangay"),
                     rs.getString("city"),
-                    rs.getString("province"),
-                    rs.getString("trainer_status")
+                    rs.getString("province")
             };
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);

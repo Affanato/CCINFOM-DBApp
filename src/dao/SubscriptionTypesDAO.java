@@ -62,14 +62,25 @@ public class SubscriptionTypesDAO {
 
     // SELECT QUERIES //
     public String[] getComboBoxSubscriptionTypeIDs() {
-        return DBUtils.selectAllKeysFromTable("subscription_types", "subscription_type_id");
+        return DBUtils.removeFirstElement(DBUtils.selectAllKeysFromTable("subscription_types", "subscription_type_id"));
     }
 
     public static SubscriptionType selectSubscriptionType(int subscriptionTypeID) {
         String condition = "WHERE subscription_type_id = " + subscriptionTypeID;
         ResultSet rs = DBUtils.selectAllRecordsFromTable("subscription_types", condition);
         assert rs != null;
-        return mapResultSetToSubscriptionType(rs);
+
+        try {
+            if (rs.next()) {
+                return mapResultSetToSubscriptionType(rs);
+            } else {
+                System.out.println("No subscription type found with ID: " + subscriptionTypeID);
+                return null;
+            }
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
     }
 
     public Object[][] selectAllSubscriptionTypes() {
@@ -85,11 +96,6 @@ public class SubscriptionTypesDAO {
 
     public static SubscriptionType mapResultSetToSubscriptionType(ResultSet rs) {
         try {
-            if (!rs.next()) {
-                System.out.println("No SubscriptionType ResultSet data.\n");
-                return null;
-            }
-
             int subscriptionTypeID = rs.getInt("subscription_type_id");
             String subscriptionTypeName = rs.getString("subscription_type_name");
             double subscriptionTypePrice = rs.getDouble("subscription_type_price");

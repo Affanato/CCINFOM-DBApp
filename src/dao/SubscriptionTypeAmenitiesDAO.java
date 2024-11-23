@@ -1,5 +1,6 @@
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -73,7 +74,18 @@ public class SubscriptionTypeAmenitiesDAO {
                            "      amenity_id = " + amenityID;
         ResultSet rs = DBUtils.selectAllRecordsFromTable("subscription_type_amenities", condition);
         assert rs != null;
-        return mapResultSetToSubscriptionTypeAmenity(rs);
+
+        try {
+            if (rs.next()) {
+                return mapResultSetToSubscriptionTypeAmenity(rs);
+            } else {
+                System.out.println("No subscription type amenity found with subscription type ID: " + subscriptionTypeID + " | amenity ID: " + amenityID);
+                return null;
+            }
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
     }
 
     public Object[][] selectAllSubscriptionTypeAmenities() {
@@ -83,13 +95,14 @@ public class SubscriptionTypeAmenitiesDAO {
     }
 
     public static Object[][] selectAllAmenityNamesOfASubscriptionType(int subscriptionTypeID) {
-        String sql = "SELECT a.amenity_name " +
+        String sql = "SELECT DISTINCT a.amenity_name " +
                      "FROM subscription_types st " +
                      "JOIN subscription_type_amenities sta " +
                      "ON st.subscription_type_id = sta.subscription_type_id " +
                      "JOIN amenities a " +
                      "ON a.amenity_id = sta.amenity_id " +
-                     "WHERE st.subscription_type_id = ? ";
+                     "WHERE st.subscription_type_id = ? " +
+                     "AND a.amenity_id != 1 ";
 
         List<Object[]> amenityNames = new ArrayList<>();
 
@@ -113,13 +126,15 @@ public class SubscriptionTypeAmenitiesDAO {
     }
 
     public static String[] selectAllAmenityIDsOfASubscriptionType(int subscriptionTypeID) {
-        String sql = "SELECT a.amenity_id " +
+        String sql = "SELECT DISTINCT a.amenity_id " +
                 "FROM subscription_types st " +
                 "JOIN subscription_type_amenities sta " +
                 "ON st.subscription_type_id = sta.subscription_type_id " +
                 "JOIN amenities a " +
                 "ON a.amenity_id = sta.amenity_id " +
-                "WHERE st.subscription_type_id = ? ";
+                "WHERE st.subscription_type_id = ? " +
+                "AND a.amenity_id != 1 " +
+                "ORDER BY a.amenity_id; ";
 
         List<String> amenityNames = new ArrayList<>();
 
@@ -143,13 +158,17 @@ public class SubscriptionTypeAmenitiesDAO {
     }
 
     // UTILITY METHODS //
+    public String[] getComboBoxNonExistingAmenities(int subscriptionTypeID) {
+        String[] existingAmenities = selectAllAmenityIDsOfASubscriptionType(subscriptionTypeID);
+        String[] allAmenities = AmenitiesDAO.getComboBoxAmenityIDs();
+
+        return Arrays.stream(allAmenities)
+                .filter(amenity -> !Arrays.asList(existingAmenities).contains(amenity))
+                .toArray(String[]::new);
+    }
+
     public static SubscriptionTypeAmenity mapResultSetToSubscriptionTypeAmenity(ResultSet rs) {
         try {
-            if (!rs.next()) {
-                System.out.println("No SubscriptionTypeAmenity ResultSet data.\n");
-                return null;
-            }
-
             int subscriptionTypeID = rs.getInt(1);
             int amenityID = rs.getInt(2);
 
