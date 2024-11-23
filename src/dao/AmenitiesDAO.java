@@ -51,7 +51,6 @@ public class AmenitiesDAO {
         return true;
     }
 
-    // TODO: Debug.
     public boolean updateAmenity(int amenityID, String amenityName, double walkInPricePerHour, String openingTime, String closingTime, String amenityStatus) {
         if (!isValidAmenityInsertion(walkInPricePerHour, openingTime, closingTime, amenityStatus)) {
             return false;
@@ -62,7 +61,7 @@ public class AmenitiesDAO {
                      "    walk_in_price_per_hour = ?, " +
                      "    opening_time = ?, " +
                      "    closing_time = ?, " +
-                     "    amenity_status = ?, " +
+                     "    amenity_status = ? " +
                      "WHERE amenity_id = ? ";
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
@@ -72,6 +71,7 @@ public class AmenitiesDAO {
             ps.setTime(3, Time.valueOf(openingTime));
             ps.setTime(4, Time.valueOf(closingTime));
             ps.setString(5, amenityStatus);
+            ps.setInt(6, amenityID);
 
             ps.executeUpdate();
             System.out.println("'amenities' record updated successfully.");

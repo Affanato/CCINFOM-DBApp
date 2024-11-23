@@ -149,7 +149,7 @@ public class DBUtils {
     }
 
     public static void invalidateTableForeignKey(String table, String foreignKey, int oldID) {
-        updateTableForeignKey(table, foreignKey, oldID, 0);
+        updateTableForeignKey(table, foreignKey, oldID, 1);
     }
 
     /**
@@ -223,7 +223,7 @@ public class DBUtils {
     public static ResultSet selectAllRecordsFromTable(String table, String condition) {
         String sql = "SELECT * " +
                      "FROM " + table + " " +
-                     condition + " ";
+                     condition + "; ";
 
         try {
             ResultSet rs = Objects.requireNonNull(getNewStatement()).executeQuery(sql);

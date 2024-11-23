@@ -216,19 +216,22 @@ CREATE TABLE IF NOT EXISTS `dbgym`.`training_sessions` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Populator script
+-- Script to populate dbgym tables with entries.
 -- -----------------------------------------------------
 -- Subscription Types
 INSERT INTO subscription_types (subscription_type_name, subscription_type_price)
 VALUES
+	('N/A', 0),
 	('Standard', 4000),
 	('Premium', 8000),
 	('Deluxe', 12000),
 	('VIP', 16000);
 
+
 -- Amenities
 INSERT INTO amenities (amenity_name, walk_in_price_per_hour, opening_time, closing_time, amenity_status)
 VALUES
+    ('N/A', 0, '00:00:00', '00:00:00', 'Inactive'),
 	('Gym', 150, '09:00:00', '21:00:00', 'Active'),
 	('Bathrooms', 150, '09:00:00', '21:00:00', 'Active'),
 	('Showers & Changing Rooms', 150, '09:00:00', '21:00:00', 'Active'),
@@ -270,6 +273,7 @@ VALUES
 -- Members
 INSERT INTO members (last_name, first_name, birthdate, sex, phone_number, street, barangay, city, province)
 VALUES
+    ('N/A', 'N/A', '9999-01-01', 'U', '00000000000', 'N/A', 'N/A', 'N/A', 'N/A'),
     ('Smith', 'John', '1987-05-12', 'M', '09213456789', '1234 Elm St', 'Barangay 1', 'City 1', 'Province 1'),
     ('Johnson', 'Emily', '1993-11-01', 'F', '09214567890', '5678 Oak St', 'Barangay 2', 'City 2', 'Province 2'),
     ('Williams', 'Michael', '1989-08-15', 'M', '09215678901', '9101 Pine St', 'Barangay 3', 'City 3', 'Province 3'),
@@ -308,6 +312,7 @@ VALUES
 -- Subscriptions
 INSERT INTO subscriptions (member_id, subscription_type_id, subscription_start_date, subscription_end_date)
 VALUES
+    (0, 0, '9999-01-01', '9999-01-01'),
     (1, 1, '2023-11-01', DATE_ADD('2023-11-01', INTERVAL 30 DAY)),
     (2, 2, '2023-11-02', DATE_ADD('2023-11-02', INTERVAL 30 DAY)),
     (3, 3, '2023-11-03', DATE_ADD('2023-11-03', INTERVAL 30 DAY)),
@@ -352,6 +357,7 @@ VALUES
 -- Trainers
 INSERT INTO trainers (last_name, first_name, birthdate, sex, phone_number, street, barangay, city, province, program_specialty, trainer_status)
 VALUES
+    ('N/A', 'N/A', '9999-01-01', 'U', '00000000000', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'Inactive'),
     ('Garcia', 'Carlos', '1985-04-12', 'M', '09171234567', '45 Main St', 'Barangay 1', 'City A', 'Province 1', 'Fitness & Weight Loss', 'Active'),
     ('Tan', 'Maria', '1990-07-25', 'F', '09182345678', '12 Oak Lane', 'Barangay 2', 'City B', 'Province 2', 'Yoga & Pilates', 'Active'),
     ('Rodriguez', 'Miguel', '1982-11-02', 'M', '09193456789', '88 Palm St', 'Barangay 3', 'City C', 'Province 3', 'Strength Training', 'Inactive'),
@@ -410,6 +416,7 @@ VALUES
 -- Products
 INSERT INTO products (product_brand, product_name, product_description, product_price, available_quantity)
 VALUES
+    ('N/A', 'N/A', 'N/A', 0, 0),
     ('Nike', 'Pro Training Shoes', 'High-performance training shoes for all workout types', 120.99 * 60, 50),
     ('Adidas', 'PowerLift Barbell', 'Durable barbell for heavy lifting exercises', 149.95 * 60, 30),
     ('Under Armour', 'Flex Fit Resistance Bands', 'Set of resistance bands for varied intensity workouts', 29.99 * 60, 75),
