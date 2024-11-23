@@ -46,6 +46,7 @@ public class MemberController {
         this.view.goToUpdateButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                view.getUpdateMemberIDJComboBox().setModel(new DefaultComboBoxModel<>(dao.getComboBoxMemberIDs()));
                 view.getUpdateMemberIDFrame().setVisible(true);
                 view.getMemberFrame().dispose();
             }
@@ -94,6 +95,20 @@ public class MemberController {
         this.view.proceedUpdateButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int ID = view.getUpdateMemberID();
+                Member member = dao.selectMember(ID);
+
+                // TODO fix this
+                view.setUpdateFirstName(member.firstName());
+                view.setUpdateLastName(member.lastName());
+                view.setUpdateSex(String.valueOf(member.sex()));
+                view.setUpdateBirthDate(String.valueOf(member.birthdate()));
+                view.getUpdatePhoneNumber(member.phoneNumber());
+                view.getUpdateStreet(member.street());
+                view.getUpdateBarangay(member.barangay());
+                view.getUpdateCity(member.city());
+                view.getUpdateProvince(member.province());
+
                 view.getUpdateMemberFrame().setVisible(true);
                 view.getUpdateMemberIDFrame().dispose();
             }
@@ -102,21 +117,59 @@ public class MemberController {
         this.view.updateMemberButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //
+                int ID = view.getUpdateMemberID();
+                String firstName = view.getUpdatedFirstName();
+                String lastName = view.getUpdateLastName();
+                String sex = view.getUpdatedSex();
+                String birthDate = view.getUpdateBirthDate();
+                String phoneNumber = view.getUpdatePhoneNumber();
+                String street = view.getUpdateStreet();
+                String barangay = view.getUpdateBarangay();
+                String city = view.getUpdateCity();
+                String province = view.getUpdateProvince();
+
+                // TODO fix
+                /*
+                if (dao.updateMember(ID, member)){
+                    Message.success();
+                } else {
+                    Message.failure();
+                }
+                */
             }
         });
 
         this.view.addMemberButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //
+                String name = view.getFirstName();
+                String lastName = view.getLastName();
+                String sex = view.getSex();
+                String birthDate = view.getBirthDate();
+                String phoneNumber = view.getPhoneNumber();
+                String street = view.getStreet();
+                String barangay = view.getBarangay();
+                String city = view.getCity();
+                String province = view.getProvince();
+
+                // TODO fix
+                /*
+                if (dao.insertMember())
+                */
+
             }
         });
 
         this.view.deleteMemberButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //
+                int ID = view.getMemberID();
+
+                if (dao.deleteMember(ID)) {
+                    Message.success();
+                } else {
+                    Message.failure();
+                }
             }
         });
     }

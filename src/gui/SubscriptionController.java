@@ -1,115 +1,155 @@
-
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SubscriptionController {
-    private SubscriptionView mView = new SubscriptionView();
+    private SubscriptionView view = new SubscriptionView();
+    private MembersDAO membersDAO = new MembersDAO();
+    private SubscriptionTypesDAO subscriptionTypesDAO = new SubscriptionTypesDAO();
+    private SubscriptionsDAO subscriptionsDAO = new SubscriptionsDAO();
 
     public SubscriptionController() {
-        this.mView.memberBackButton(new ActionListener() {
+        this.view.memberBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mView.getSubscriptionFrame().dispose();
+                view.getSubscriptionFrame().dispose();
                 MainMenuController mainMenuController = new MainMenuController();
             }
         });
 
-        this.mView.goToAddButton(new ActionListener() {
+        this.view.goToAddButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mView.getAddSubscriptionFrame().setVisible(true);
-                mView.getSubscriptionFrame().dispose();
+                view.getMemberIDComboBox().setModel(new DefaultComboBoxModel<>(membersDAO.getComboBoxMemberIDs()));
+                view.getMembershipTypeComboBox().setModel(new DefaultComboBoxModel<>(subscriptionTypesDAO.getComboBoxSubscriptionTypeIDs()));
+
+                view.getAddSubscriptionFrame().setVisible(true);
+                view.getSubscriptionFrame().dispose();
             }
         });
 
-        this.mView.goToDeleteButton(new ActionListener() {
+        this.view.goToDeleteButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mView.getDeleteSubscriptionFrame().setVisible(true);
-                mView.getSubscriptionFrame().dispose();
+                view.getMembershipIDComboBox().setModel(new DefaultComboBoxModel<>(subscriptionsDAO.getComboBoxSubscriptionIDs()));
+
+                view.getDeleteSubscriptionFrame().setVisible(true);
+                view.getSubscriptionFrame().dispose();
             }
         });
 
-        this.mView.goToReadAllButton(new ActionListener() {
+        this.view.goToReadAllButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mView.getReadAllSubscriptionFrame().setVisible(true);
-                mView.getSubscriptionFrame().dispose();
-            }
-        });
-        this.mView.goToReadActiveButton(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mView.getReadActiveSubscriptionFrame().setVisible(true);
-                mView.getSubscriptionFrame().dispose();
-            }
-        });
-        this.mView.goToTerminateButton(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mView.getTerminateSubscriptionFrame().setVisible(true);
-                mView.getSubscriptionFrame().dispose();
+                view.setMemberTable(subscriptionsDAO.selectAllSubscriptions());
+
+                view.getReadAllSubscriptionFrame().setVisible(true);
+                view.getSubscriptionFrame().dispose();
             }
         });
 
-        this.mView.addBackButton(new ActionListener() {
+        this.view.goToReadActiveButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mView.getSubscriptionFrame().setVisible(true);
-                mView.getAddSubscriptionFrame().dispose();
+                view.setActiveTable(subscriptionsDAO.selectActiveSubscriptions());
+
+                view.getReadActiveSubscriptionFrame().setVisible(true);
+                view.getSubscriptionFrame().dispose();
             }
         });
 
-        this.mView.deleteBackButton(new ActionListener() {
+        this.view.goToTerminateButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mView.getSubscriptionFrame().setVisible(true);
-                mView.getDeleteSubscriptionFrame().dispose();
+                // TODO change to active subscription IDs
+                view.getTerminateMembershipIDComboBox().setModel(new DefaultComboBoxModel<>(subscriptionsDAO.getComboBoxSubscriptionIDs()));
+
+                view.getTerminateSubscriptionFrame().setVisible(true);
+                view.getSubscriptionFrame().dispose();
             }
         });
 
-        this.mView.readAllBackButton(new ActionListener() {
+        this.view.addBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mView.getSubscriptionFrame().setVisible(true);
-                mView.getReadAllSubscriptionFrame().dispose();
+                view.getSubscriptionFrame().setVisible(true);
+                view.getAddSubscriptionFrame().dispose();
             }
         });
 
-        this.mView.readActiveBackButton(new ActionListener() {
+        this.view.deleteBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mView.getSubscriptionFrame().setVisible(true);
-                mView.getReadActiveSubscriptionFrame().dispose();
+                view.getSubscriptionFrame().setVisible(true);
+                view.getDeleteSubscriptionFrame().dispose();
             }
         });
 
-        this.mView.terminateBackButton(new ActionListener() {
+        this.view.readAllBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mView.getSubscriptionFrame().setVisible(true);
-                mView.getTerminateSubscriptionFrame().dispose();
+                view.getSubscriptionFrame().setVisible(true);
+                view.getReadAllSubscriptionFrame().dispose();
             }
         });
 
-        this.mView.addSubscriptionButton(new ActionListener() {
+        this.view.readActiveBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //
+                view.getSubscriptionFrame().setVisible(true);
+                view.getReadActiveSubscriptionFrame().dispose();
             }
         });
 
-        this.mView.deleteSubscriptionButton(new ActionListener() {
+        this.view.terminateBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //
+                view.getSubscriptionFrame().setVisible(true);
+                view.getTerminateSubscriptionFrame().dispose();
             }
         });
 
-        this.mView.terminateSubscriptionButton(new ActionListener() {
+        this.view.addSubscriptionButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //
+                int memberID = view.getMemberIDComboBox().getSelectedIndex();
+                int subscriptionType = view.getMembershipTypeComboBox().getSelectedIndex();
+                String startDate = view.getStartDate();
+
+                // TODO FIX
+                /*
+                if (subscriptionsDAO.insertSubscription()) {
+                    Message.success();
+                } else {
+                    Message.failure();
+                }
+                */
+            }
+        });
+
+        this.view.deleteSubscriptionButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int ID = view.getMembershipIDComboBox().getSelectedIndex();
+
+                if (subscriptionsDAO.deleteSubscription(ID)) {
+                    Message.success();
+                } else {
+                    Message.failure();
+                }
+            }
+        });
+
+        this.view.terminateSubscriptionButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int ID = view.getTerminateMembershipIDComboBox().getSelectedIndex();
+
+                if (subscriptionsDAO.terminateSubscription(ID)) {
+                    Message.success();
+                } else {
+                    Message.failure();
+                }
             }
         });
     }
