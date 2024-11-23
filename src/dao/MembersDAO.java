@@ -178,6 +178,11 @@ public class MembersDAO {
 
     public static Member mapResultSetToMember(ResultSet rs) {
         try {
+            if (!rs.next()) {
+                System.out.println("No Member ResultSet data.\n");
+                return null;
+            }
+
             int memberID = rs.getInt("member_id");
             String lastName = rs.getString("last_name");
             String firstName = rs.getString("first_name");
@@ -268,6 +273,4 @@ public class MembersDAO {
     public void closeStatement() {
         DBUtils.closeStatement(statement);
     }
-
-
 }
