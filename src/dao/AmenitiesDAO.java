@@ -310,8 +310,8 @@ public class AmenitiesDAO {
                     rs.getInt("amenity_id"),
                     rs.getString("amenity_name"),
                     rs.getDouble("walk_in_price_per_hour"),
-                    rs.getTime("opening_time").toLocalTime(),
-                    rs.getTime("closing_time").toLocalTime(),
+                    rs.getTime("opening_time").toString(),
+                    rs.getTime("closing_time").toString(),
                     rs.getString("amenity_status")
             };
         } catch (SQLException e) {
