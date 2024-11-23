@@ -153,7 +153,7 @@ public class TrainerController {
                 String barangay = tView.getUpdateBarangay();
                 String province = tView.getUpdatePhoneNumber();
 
-                if (dao.updateTrainer(t.trainerID(), lastname, t.birthdate(), String.valueOf(t.sex()), pnum, street, barangay, city, province, speciality)) {
+                if (dao.updateTrainer(t.trainerID(), lastname, t.birthdate(), String.valueOf(String.valueOf(t.sex()).charAt(0)), pnum, street, barangay, city, province, speciality)) {
                     Message.success();
                 } else {
                     Message.failure();
@@ -182,6 +182,7 @@ public class TrainerController {
                 tView.setUpdateLastName(t.lastName());
                 tView.setBirthDate(String.valueOf(t.birthdate()));
                 tView.setPhoneNumber(t.phoneNumber());
+                tView.setSex(String.valueOf(t.sex()));
                 tView.setStreet(t.street());
                 tView.setBarangay(t.barangay());
                 tView.setCity(t.city());
