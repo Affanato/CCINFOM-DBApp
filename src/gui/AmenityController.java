@@ -57,7 +57,7 @@ public class AmenityController {
             public void actionPerformed(ActionEvent e) {
                 String name = view.getName();
                 String status = view.getSelectStatus();
-                int walkInPrice = Integer.parseInt(view.getWalkInPrice());
+                double walkInPrice = Double.parseDouble(view.getWalkInPrice());
                 String timeOpen = view.getTimeOpen();
                 String timeClose = view.getTimeClose();
 
@@ -139,7 +139,7 @@ public class AmenityController {
                 int ID = Integer.parseInt(view.getSelectUpdate());
                 String name = view.getName2();
                 String status = view.getSelectStatus2();
-                int walkInPrice = Integer.parseInt(view.getWalkInPrice2());
+                double walkInPrice = Double.parseDouble(view.getWalkInPrice2());
                 String timeOpen = view.getTimeOpen2();
                 String timeClose = view.getTimeClose2();
                 Amenity amenity = dao.selectAmenity(ID);
