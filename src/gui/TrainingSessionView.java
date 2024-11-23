@@ -13,6 +13,7 @@ import javax.swing.table.*;
  */
 public class TrainingSessionView {
 	public TrainingSessionView() {
+		DBUtils.getConnection();
 		initComponents();
 	}
 

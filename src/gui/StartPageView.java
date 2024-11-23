@@ -12,6 +12,7 @@ import javax.swing.*;
  */
 public class StartPageView extends JFrame {
     public StartPageView() {
+        DBUtils.getConnection();
         initComponents();
     }
 
