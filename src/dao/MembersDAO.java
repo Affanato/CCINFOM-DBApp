@@ -1,6 +1,7 @@
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class MembersDAO {
@@ -98,7 +99,7 @@ public class MembersDAO {
     public Object[][] selectAllMembers() {
         ResultSet rs = DBUtils.selectAllRecordsFromTable("members");
         assert rs != null;
-        return DBUtils.to2DObjectArray(Objects.requireNonNull(mapResultSetToMemberList(rs)));
+        return mapResultSetToMembersArr(rs);
     }
 
     // TRANSACTIIONS / REC MANAGEMENT
@@ -146,8 +147,7 @@ public class MembersDAO {
             String street,
             String barangay,
             String city,
-            String province,
-            String programSpecialty
+            String province
     ) {
         if (!DBUtils.primaryKeyExistsInATable("trainers", "trainer_id", memberID)) {
             return false;
@@ -156,15 +156,15 @@ public class MembersDAO {
         Member oldMember = selectMember(memberID);
         Member updatedMember = new Member(
             memberID,
-            lastName != null ? lastName : oldMember.lastName(),
+            lastName,
             oldMember.firstName(),
             oldMember.birthdate(),
-            sex != null ? Sex.valueOf(sex) : oldMember.sex(),
-            phoneNumber != null ? phoneNumber : oldMember.phoneNumber(),
-            street != null ? street : oldMember.street(),
-            barangay != null ? barangay : oldMember.barangay(),
-            city != null ? city : oldMember.city(),
-            province != null ? province : oldMember.province()
+            Sex.valueOf(sex),
+            phoneNumber,
+            street,
+            barangay,
+            city,
+            province
         );
         return updateMember(memberID, updatedMember);
     }
@@ -206,6 +206,41 @@ public class MembersDAO {
                 memberList.add(mapResultSetToMember(rs));
             }
             return memberList;
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
+    }
+
+    public static Object[] mapResultSetToMemberArr(ResultSet rs) {
+        try {
+            return new Object[] {
+                    rs.getInt("member_id"),
+                    rs.getString("last_name"),
+                    rs.getString("first_name"),
+                    rs.getDate("birthdate").toString(),
+                    rs.getString("sex"),
+                    rs.getString("phone_number"),
+                    rs.getString("street"),
+                    rs.getString("barangay"),
+                    rs.getString("city"),
+                    rs.getString("province"),
+                    rs.getString("trainer_status")
+            };
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
+    }
+
+    public static Object[][] mapResultSetToMembersArr(ResultSet rs) {
+        List<Object[]> amenitiesArr = new ArrayList<Object[]>();
+
+        try {
+            while (rs.next()) {
+                amenitiesArr.add(mapResultSetToMemberArr(rs));
+            }
+            return amenitiesArr.toArray(new Object[0][]);
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
             return null;
