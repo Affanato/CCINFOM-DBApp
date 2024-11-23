@@ -152,6 +152,11 @@ public class AmenityLogsDAO {
 
     public static AmenityLog mapResultSetToAmenityLog(ResultSet rs) {
         try {
+            if (!rs.next()) {
+                System.out.println("No AmenityLogs ResultSet data.\n");
+                return null;
+            }
+
             int amenityLogID = rs.getInt("amenity_log_id");
             int memberID = rs.getInt("member_id");
             int amenityID = rs.getInt("amenity_id");
