@@ -3,14 +3,10 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
-// TODO: DONE FOR NOW!!!
-// TODO: Verify if the methods are implemented correctly.
 public class AmenitiesDAO {
 
     private final Statement statement;
@@ -114,16 +110,9 @@ public class AmenitiesDAO {
     public boolean changeAmenityStatus(int amenityID, String status) {
         if (!Status.hasDescription(status)) return false;
         Amenity oldA = selectAmenity(amenityID);
-        Amenity newA = new Amenity(
-                oldA.amenityID(),
-                oldA.amenityName(),
-                oldA.walkInPricePerHour(),
-                oldA.openingTime(),
-                oldA.closingTime(),
-                Status.fromString(status)
-        );
-        updateAmenity(amenityID, newA);
-        return true;
+        return updateAmenity(
+                amenityID, oldA.amenityName(), oldA.walkInPricePerHour(), oldA.openingTime().toString(),
+                oldA.closingTime().toString(), status);
     }
 
     // REPORTS //
