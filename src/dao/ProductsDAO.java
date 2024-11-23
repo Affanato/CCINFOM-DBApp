@@ -275,8 +275,8 @@ public class ProductsDAO {
 
     // newest report!!
     public Object[][] reportMonthlyRevenueByProduct() {
-        String sql = "SELECT YEAR(pp.purchase_datetime) as year" +
-                    "    MONTH(pp.purchase_datetime) as month" +
+        String sql = "SELECT YEAR(pp.purchase_datetime) as year," +
+                    "    MONTH(pp.purchase_datetime) as month," +
                     "    p.product_brand, p.product_name, " +
                     "    SUM(pp.quantity_sold) AS totalQuantitySold " +
                     "FROM products p " +
@@ -309,7 +309,7 @@ public class ProductsDAO {
     }
 
     public Object[][] reportYearlyRevenueByProduct() {
-        String sql = "SELECT YEAR(pp.purchase_datetime) as year" +
+        String sql = "SELECT YEAR(pp.purchase_datetime) as year," +
                     "    p.product_brand, p.product_name, " +
                     "    SUM(pp.quantity_sold) AS totalQuantitySold " +
                     "FROM products p " +
