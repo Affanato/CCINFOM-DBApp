@@ -331,10 +331,11 @@ public class SubscriptionsDAO {
     public boolean canTerminateSubscription(int subscriptionID) {
         Subscription s = selectSubscription(subscriptionID);
         if (s == null) {
+            System.err.println("Subscription not found!");
             return false;
         }
-        return LocalDate.now().isAfter(s.subscriptionStartDate()) &&
-               LocalDate.now().isBefore(s.subscriptionEndDate());
+        return (LocalDate.now().isAfter(s.subscriptionStartDate()) || LocalDate.now().equals(s.subscriptionStartDate())) &&
+                (LocalDate.now().isBefore(s.subscriptionEndDate()) || LocalDate.now().equals(s.subscriptionEndDate()));
     }
 
     public void closeStatement() {
