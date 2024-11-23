@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+// TODO: DONE DONE DONE DONE AAAAAAAAAA
 public class AmenitiesDAO {
 
     private final Statement statement;
@@ -42,7 +43,6 @@ public class AmenitiesDAO {
         return true;
     }
 
-    // TODO: Debug.
     public boolean deleteAmenity(int amenityID) {
         if (!amenityExists(amenityID)) return false;
         DBUtils.invalidateTableForeignKey("amenity_logs", "amenity_id", amenityID);
