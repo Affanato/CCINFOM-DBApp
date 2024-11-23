@@ -316,7 +316,7 @@ public class ProductsDAO {
                     "    JOIN product_purchases pp ON pp.product_id = p.product_id " +
                     "GROUP BY year," +
                     "    p.product_id, p.product_brand, p.product_name " +
-                    "ORDER BY year DESC" +
+                    "ORDER BY year DESC," +
                     "    totalQuantitySold DESC, p.product_brand, p.product_name;";
 
 

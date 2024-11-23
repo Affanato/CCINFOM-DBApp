@@ -61,7 +61,7 @@ public class SalesReportView {
             salesReportView.setBounds(0, 0, 1200, 55);
 
             //---- goToBestSelling ----
-            goToBestSelling.setText("YEARLY SOLD");
+            goToBestSelling.setText("MONTHLY SOLD");
             goToBestSelling.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
             goToBestSelling.setForeground(Color.white);
             goToBestSelling.setBackground(new Color(0x3ca3cb));
@@ -69,7 +69,7 @@ public class SalesReportView {
             goToBestSelling.setBounds(470, 220, 250, 55);
 
             //---- goToSales ----
-            goToSales.setText("MONTHLY SOLD");
+            goToSales.setText("YEARLY SOLD");
             goToSales.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
             goToSales.setForeground(Color.white);
             goToSales.setBackground(new Color(0x3ca3cb));
