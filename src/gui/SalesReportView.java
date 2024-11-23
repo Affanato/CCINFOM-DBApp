@@ -61,7 +61,7 @@ public class SalesReportView {
             salesReportView.setBounds(0, 0, 1200, 55);
 
             //---- goToBestSelling ----
-            goToBestSelling.setText("BEST SELLING");
+            goToBestSelling.setText("YEARLY SOLD");
             goToBestSelling.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
             goToBestSelling.setForeground(Color.white);
             goToBestSelling.setBackground(new Color(0x3ca3cb));
@@ -69,7 +69,7 @@ public class SalesReportView {
             goToBestSelling.setBounds(470, 220, 250, 55);
 
             //---- goToSales ----
-            goToSales.setText("SALES");
+            goToSales.setText("MONTHLY SOLD");
             goToSales.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
             goToSales.setForeground(Color.white);
             goToSales.setBackground(new Color(0x3ca3cb));
@@ -123,7 +123,7 @@ public class SalesReportView {
                                 {null, null, null},
                         },
                         new String[] {
-                                "Product Brand", "Product Name", "Total Quantity Sold"
+                                "Year", "Product Brand", "Product Name", "Quantity Sold"
                         }
                 ));
                 {
@@ -131,6 +131,7 @@ public class SalesReportView {
                     cm.getColumn(0).setMinWidth(200);
                     cm.getColumn(1).setMinWidth(200);
                     cm.getColumn(2).setMinWidth(250);
+                    cm.getColumn(3).setMinWidth(250);
                 }
                 sessionTable.setFont(new Font("Tw Cen MT", Font.PLAIN, 18));
                 sessionTable.setEnabled(false);
@@ -140,7 +141,7 @@ public class SalesReportView {
             tablePane.setBounds(115, 145, 970, 435);
 
             //---- salesReportBestSelling ----
-            salesReportBestSelling.setText("Sales Report: Best Selling");
+            salesReportBestSelling.setText("Sales Report: Yearly Sold");
             salesReportBestSelling.setBackground(new Color(0xc80f2e));
             salesReportBestSelling.setHorizontalAlignment(SwingConstants.CENTER);
             salesReportBestSelling.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
@@ -194,14 +195,16 @@ public class SalesReportView {
                                 {null, null, null},
                         },
                         new String[] {
-                                "Product Brand", "Product Name", "Total Sales"
+                                "Year", "Month", "Product Brand", "Product Name", "Quantity Sold"
                         }
                 ));
                 {
                     TableColumnModel cm = sessionTable2.getColumnModel();
-                    cm.getColumn(0).setMinWidth(200);
-                    cm.getColumn(1).setMinWidth(200);
-                    cm.getColumn(2).setMinWidth(250);
+                    cm.getColumn(0).setMinWidth(100);
+                    cm.getColumn(1).setMinWidth(100);
+                    cm.getColumn(2).setMinWidth(200);
+                    cm.getColumn(3).setMinWidth(200);
+                    cm.getColumn(4).setMinWidth(200);
                 }
                 sessionTable2.setFont(new Font("Tw Cen MT", Font.PLAIN, 18));
                 sessionTable2.setEnabled(false);
@@ -211,7 +214,7 @@ public class SalesReportView {
             tablePane2.setBounds(115, 145, 970, 435);
 
             //---- salesReportSales ----
-            salesReportSales.setText("Sales Report: Sales");
+            salesReportSales.setText("Sales Report: Monthly Sold");
             salesReportSales.setBackground(new Color(0xc80f2e));
             salesReportSales.setHorizontalAlignment(SwingConstants.CENTER);
             salesReportSales.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
@@ -285,11 +288,11 @@ public class SalesReportView {
         this.salesReportBack.addActionListener(actionListener);
     }
 
-    public void goToBestSellingButton(ActionListener actionListener) {
+    public void goToYearlyButton(ActionListener actionListener) {
         this.goToBestSelling.addActionListener(actionListener);
     }
 
-    public void goToSalesButton(ActionListener actionListener){
+    public void goToMonthlyButton(ActionListener actionListener){
         this.goToSales.addActionListener(actionListener);
     }
 
@@ -302,9 +305,9 @@ public class SalesReportView {
     }
 
     // Table Setters
-    public void setBestSellingTable(Object[][] data) {
+    public void setYearlyTable(Object[][] data) {
         String[] columnNames = {
-                "Product Brand", "Product Name", "Total Quantity Sold"
+                "Year", "Product Brand", "Product Name", "Quantity Sold"
         };
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
         sessionTable.setModel(model);
@@ -313,19 +316,22 @@ public class SalesReportView {
         cm.getColumn(0).setMinWidth(200);
         cm.getColumn(1).setMinWidth(200);
         cm.getColumn(2).setMinWidth(250);
+        cm.getColumn(3).setMinWidth(250);
     };
 
-    public void setSalesTable(Object[][] data) {
+    public void setMonthlyTable(Object[][] data) {
         String[] columnNames = {
-                "Product Brand", "Product Name", "Total Sales"
+                "Year", "Month", "Product Brand", "Product Name", "Quantity Sold"
         };
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
         sessionTable2.setModel(model);
 
         TableColumnModel cm = sessionTable2.getColumnModel();
-        cm.getColumn(0).setMinWidth(200);
-        cm.getColumn(1).setMinWidth(200);
-        cm.getColumn(2).setMinWidth(250);
+        cm.getColumn(0).setMinWidth(100);
+        cm.getColumn(1).setMinWidth(100);
+        cm.getColumn(2).setMinWidth(200);
+        cm.getColumn(3).setMinWidth(200);
+        cm.getColumn(4).setMinWidth(200);
     };
 
 

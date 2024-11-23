@@ -14,22 +14,19 @@ public class SalesReportController {
             }
         });
 
-        this.sView.goToBestSellingButton(new ActionListener(){
+        this.sView.goToMonthlyButton(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                //sView.setBestSellingTable(pDAO.selectProductsByYearlyQuantitySold());
-
+                sView.setYearlyTable(pDAO.reportYearlyRevenueByProduct());
                 sView.getBestSellingFrame().setVisible(true);
                 sView.getSalesReportFrame().dispose();
             }
         });
 
-        this.sView.goToSalesButton(new ActionListener(){
+        this.sView.goToYearlyButton(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO maybe this isn't finalized yet
-                //sView.setSalesTable();
-
+                sView.setMonthlyTable(pDAO.reportMonthlyRevenueByProduct());
                 sView.getSalesFrame().setVisible(true);
                 sView.getSalesReportFrame().dispose();
             }
