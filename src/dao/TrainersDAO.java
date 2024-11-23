@@ -293,6 +293,45 @@ public class TrainersDAO {
         }
     }
 
+    public Object[][] reportMembersTrainedPerTrainerByYear() {
+        String sql = "SELECT YEAR(ts.session_start_datetime) AS year, " +
+                "    t.last_name, t.first_name, " +
+                "    t.program_specialty, " +
+                "    COUNT(ts.subscription_id) AS numOfMembersTrained " +
+                "FROM trainers t LEFT JOIN training_sessions ts " +
+                "                          ON  t.trainer_id = ts.trainer_id " +
+                "GROUP BY YEAR(ts.session_start_datetime), " +
+                "    t.trainer_id, " +
+                "    t.last_name, t.first_name, " +
+                "    t.program_specialty " +
+                "ORDER BY year DESC," +
+                "    numOfMembersTrained DESC, " +
+                "    t.program_specialty, " +
+                "    t.last_name, " +
+                "    t.first_name;";
+
+        try (ResultSet rs = Objects.requireNonNull(statement.executeQuery(sql))) {
+            List<Object[]> tempList = new ArrayList<>();
+
+            while (rs.next()) {
+                int year = rs.getInt("year");
+                int month = rs.getInt("month");
+                String lastName = rs.getString("last_name");
+                String firstName = rs.getString("first_name");
+                String programSpecialty = rs.getString("program_specialty");
+                int membersTrained = rs.getInt("numOfMembersTrained");
+
+                Object[] elem = {year, month, lastName, firstName, programSpecialty, membersTrained};
+                tempList.add(elem);
+            }
+
+            return tempList.toArray(new Object[0][]);
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
+    }
+
 
     // UTILITY METHODS
     public String[] getComboBoxTrainerIDs() {
