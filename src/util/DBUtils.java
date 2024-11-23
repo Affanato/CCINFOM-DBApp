@@ -328,4 +328,15 @@ public class DBUtils {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return LocalDate.parse(dateString, formatter);
     }
+
+    public Object[][] removeFirstRow(Object[][] originalArray) {
+        if (originalArray == null || originalArray.length <= 1) {
+            return new Object[0][0]; // Return an empty array if the original array is null or has only one row
+        }
+
+        Object[][] newArray = new Object[originalArray.length - 1][];
+        System.arraycopy(originalArray, 1, newArray, 0, originalArray.length - 1); // Copy rows except the first one
+
+        return newArray;
+    }
 }

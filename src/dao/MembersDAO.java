@@ -72,7 +72,7 @@ public class MembersDAO {
             ps.setString(1, m.lastName());
             ps.setString(2, m.firstName());
             ps.setDate(3, Date.valueOf(m.birthdate()));
-            ps.setString(4, m.sex().toString());
+            ps.setString(4, String.valueOf(m.sex().toString().charAt(0)));
             ps.setString(5, m.phoneNumber());
             ps.setString(6, m.street());
             ps.setString(7, m.barangay());
@@ -99,10 +99,11 @@ public class MembersDAO {
     public Object[][] selectAllMembers() {
         ResultSet rs = DBUtils.selectAllRecordsFromTable("members");
         assert rs != null;
+<<<<<<< Updated upstream
         return mapResultSetToMembersArr(rs);
     }
 
-    // TRANSACTIIONS / REC MANAGEMENT
+    // TRANSACTIONS / REC MANAGEMENT
     public boolean insertMember(
         String lastName,
         String firstName,
