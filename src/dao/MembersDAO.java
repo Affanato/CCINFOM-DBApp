@@ -99,7 +99,6 @@ public class MembersDAO {
     public Object[][] selectAllMembers() {
         ResultSet rs = DBUtils.selectAllRecordsFromTable("members");
         assert rs != null;
-<<<<<<< Updated upstream
         return mapResultSetToMembersArr(rs);
     }
 
