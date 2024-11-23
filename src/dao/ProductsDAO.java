@@ -357,6 +357,11 @@ public class ProductsDAO {
     // UTILITY METHODS
     public static Product mapResultSetToProduct(ResultSet rs) {
         try {
+            if (!rs.next()) {
+                System.out.println("No Product ResultSet data.\n");
+                return null;
+            }
+
             int productID = rs.getInt("product_id");
             String productBrand = rs.getString("product_brand");
             String productName = rs.getString("product_name");
