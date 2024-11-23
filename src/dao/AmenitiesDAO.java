@@ -272,7 +272,7 @@ public class AmenitiesDAO {
         try {
             int amenityID = rs.getInt("amenity_id");
             String amenityName = rs.getString("amenity_name");
-            double walkInPrice = rs.getDouble("walk_in_price");
+            double walkInPrice = rs.getDouble("walk_in_price_per_hour");
             LocalTime openingTime = rs.getTime("opening_time").toLocalTime();
             LocalTime closingTime = rs.getTime("closing_time").toLocalTime();
             Status amenityStatus = Status.valueOf(rs.getString("amenity_status"));
