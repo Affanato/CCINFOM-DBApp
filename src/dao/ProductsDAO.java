@@ -276,14 +276,15 @@ public class ProductsDAO {
     // newest report!!
     public Object[][] reportMonthlyRevenueByProduct() {
         String sql = "SELECT YEAR(pp.purchase_datetime) as year" +
-                    " MONTH(pp.purchase_datetime) as month" +
-                    "p.product_brand, p.product_name, " +
-                    "       SUM(pp.quantity_sold) AS totalQuantitySold " +
+                    "    MONTH(pp.purchase_datetime) as month" +
+                    "    p.product_brand, p.product_name, " +
+                    "    SUM(pp.quantity_sold) AS totalQuantitySold " +
                     "FROM products p " +
-                    "JOIN product_purchases pp ON pp.product_id = p.product_id " +
-                    "WHERE YEAR(pp.purchase_datetime) = ? " +
-                    "GROUP BY p.product_id " +
-                    "ORDER BY totalQuantitySold DESC, p.product_brand, p.product_name;";
+                    "    JOIN product_purchases pp ON pp.product_id = p.product_id " +
+                    "GROUP BY year, month," +
+                    "    p.product_id, p.product_brand, p.product_name " +
+                    "ORDER BY year DESC, month DESC," +
+                    "    totalQuantitySold DESC, p.product_brand, p.product_name;";
 
 
         try (ResultSet rs = Objects.requireNonNull(statement.executeQuery(sql))) {
@@ -297,6 +298,38 @@ public class ProductsDAO {
                 double totalQuantitySold = rs.getDouble("totalQuantitySold");
 
                 Object[] elem = {year, month, productBrand, productBrand, totalQuantitySold};
+                tempList.add(elem);
+            }
+
+            return tempList.toArray(new Object[0][]);
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
+    }
+
+    public Object[][] reportYearlyRevenueByProduct() {
+        String sql = "SELECT YEAR(pp.purchase_datetime) as year" +
+                    "    p.product_brand, p.product_name, " +
+                    "    SUM(pp.quantity_sold) AS totalQuantitySold " +
+                    "FROM products p " +
+                    "    JOIN product_purchases pp ON pp.product_id = p.product_id " +
+                    "GROUP BY year," +
+                    "    p.product_id, p.product_brand, p.product_name " +
+                    "ORDER BY year DESC" +
+                    "    totalQuantitySold DESC, p.product_brand, p.product_name;";
+
+
+        try (ResultSet rs = Objects.requireNonNull(statement.executeQuery(sql))) {
+            List<Object[]> tempList = new ArrayList<>();
+
+            while (rs.next()) {
+                int year = rs.getInt("year");
+                String productBrand = rs.getString("product_brand");
+                String productName = rs.getString("product_name");
+                double totalQuantitySold = rs.getDouble("totalQuantitySold");
+
+                Object[] elem = {year, productBrand, productBrand, totalQuantitySold};
                 tempList.add(elem);
             }
 
