@@ -101,6 +101,76 @@ public class MembersDAO {
         return DBUtils.to2DObjectArray(Objects.requireNonNull(mapResultSetToMemberList(rs)));
     }
 
+    // TRANSACTIIONS / REC MANAGEMENT
+    public boolean insertMember(
+        int memberID,
+        String lastName,
+        String firstName,
+        LocalDate birthdate,
+        String sex,
+        String phoneNumber,
+        String street,
+        String barangay,
+        String city,
+        String province
+    ) {
+        String sql = "INSERT INTO members (last_name, first_name, birthdate, sex, phone_number, street, barangay, city, province) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
+            assert ps != null;
+            ps.setString(1, lastName);
+            ps.setString(2, firstName);
+            ps.setDate(3, Date.valueOf(birthdate));
+            ps.setString(4, sex);
+            ps.setString(5, phoneNumber);
+            ps.setString(6, street);
+            ps.setString(7, barangay);
+            ps.setString(8, city);
+            ps.setString(9, province);
+            ps.setString(10, "Active");
+
+            ps.executeUpdate();
+            System.out.println("Trainer record inserted successfully.");
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean updateMember(
+            int memberID,
+            String lastName,
+            LocalDate birthdate,
+            String sex,
+            String phoneNumber,
+            String street,
+            String barangay,
+            String city,
+            String province,
+            String programSpecialty
+    ) {
+        if (!DBUtils.primaryKeyExistsInATable("trainers", "trainer_id", memberID)) {
+            return false;
+        }
+
+        Member oldMember = selectMember(memberID);
+        Member updatedMember = new Member(
+            memberID,
+            lastName != null ? lastName : oldMember.lastName(),
+            oldMember.firstName(),
+            birthdate != null ? birthdate : oldMember.birthdate(),
+            sex != null ? Sex.valueOf(sex) : oldMember.sex(),
+            phoneNumber != null ? phoneNumber : oldMember.phoneNumber(),
+            street != null ? street : oldMember.street(),
+            barangay != null ? barangay : oldMember.barangay(),
+            city != null ? city : oldMember.city(),
+            province != null ? province : oldMember.province()
+        );
+        return updateMember(memberID, updatedMember);
+    }
+
     // UTIL METHODS
     public static boolean memberExists(int memberID) {
         return selectMember(memberID) != null;
