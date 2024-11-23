@@ -3,6 +3,7 @@ import java.awt.event.ActionListener;
 
 public class TrainersReportController {
     private final TrainersReportView view = new TrainersReportView();
+    private final TrainersDAO dao = new TrainersDAO();
 
     public TrainersReportController() {
         this.view.trainersReportBackButton(new ActionListener() {
@@ -16,6 +17,7 @@ public class TrainersReportController {
         this.view.goToMonthlySessionsButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                view.setMonthlyTable(dao.reportMembersTrainedPerTrainerByMonth());
                 view.getTrainersReportFrame().dispose();
                 view.getMonthlySessionsFrame().setVisible(true);
             }
@@ -24,17 +26,18 @@ public class TrainersReportController {
         this.view.goToYearlySessionsButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                view.setYearlyTable(dao.reportMembersTrainedPerTrainerByYear());
                 view.getTrainersReportFrame().dispose();
                 view.getYearlySessionsFrame().setVisible(true);
             }
         });
 
         this.view.monthlySessionBackButton(new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e) {
-               view.getMonthlySessionsFrame().dispose();
-               view.getTrainersReportFrame().setVisible(true);
-           }
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                view.getMonthlySessionsFrame().dispose();
+                view.getTrainersReportFrame().setVisible(true);
+            }
         });
 
         this.view.yearlySessionsBackButton(new ActionListener() {
