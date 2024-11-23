@@ -42,6 +42,7 @@ public class AmenitiesDAO {
         return true;
     }
 
+    // TODO: Debug.
     public boolean deleteAmenity(int amenityID) {
         if (!amenityExists(amenityID)) return false;
         DBUtils.invalidateTableForeignKey("amenity_logs", "amenity_id", amenityID);
@@ -50,6 +51,7 @@ public class AmenitiesDAO {
         return true;
     }
 
+    // TODO: Debug.
     public boolean updateAmenity(int amenityID, String amenityName, double walkInPricePerHour, String openingTime, String closingTime, String amenityStatus) {
         if (!isValidAmenityInsertion(walkInPricePerHour, openingTime, closingTime, amenityStatus)) {
             return false;

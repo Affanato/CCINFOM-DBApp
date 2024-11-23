@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public enum Sex {
 
     M("Male"),
@@ -36,5 +39,14 @@ public enum Sex {
             }
         }
         throw new IllegalArgumentException("No enum constant with display name: " + description);
+    }
+
+    public static String[] getPossibleValues() {
+        return new String[] {
+                M.toString(),
+                F.toString(),
+                N.toString(),
+                U.toString()
+        };
     }
 }

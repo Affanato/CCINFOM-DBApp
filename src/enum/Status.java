@@ -48,4 +48,11 @@ public enum Status {
         }
         throw new IllegalArgumentException("No enum constant with display name: " + description);
     }
+
+    public static String[] getPossibleValues() {
+        return new String[] {
+                ACTIVE.toString(),
+                INACTIVE.toString()
+        };
+    }
 }
