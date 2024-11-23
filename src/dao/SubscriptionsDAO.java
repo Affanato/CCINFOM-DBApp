@@ -13,20 +13,22 @@ public class SubscriptionsDAO {
     }
 
     // SINGLE UPDATE QUERIES //
-    // TODO: Validate start date.
-    public void insertSubscription(Subscription s) {
+    public void insertSubscription(int memberID, int subscriptionTypeID, String startDate) {
+        LocalDate subscriptionStartDate = DBUtils.convertStringToLocalDate(startDate);
+        LocalDate subscriptionEndDate = subscriptionStartDate.plusDays(30);
+
         String sql = "INSERT INTO subscriptions (member_id, subscription_type_id, subscription_start_date, subscription_end_date) " +
                      "VALUES (?, ?, ?, ?) ";
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
-            ps.setInt(1, s.memberID());
-            ps.setInt(2, s.subscriptionTypeID());
-            ps.setDate(3, Date.valueOf(s.subscriptionStartDate()));
-            ps.setDate(4, Date.valueOf(s.subscriptionEndDate()));
+            ps.setInt(1, memberID);
+            ps.setInt(2, subscriptionTypeID);
+            ps.setDate(3, Date.valueOf(subscriptionStartDate));
+            ps.setDate(4, Date.valueOf(subscriptionEndDate));
 
             ps.executeUpdate();
-            System.out.println("Subscription record inserted successfully.");
+            System.out.println("'subscriptions' record inserted successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
         }
@@ -39,38 +41,10 @@ public class SubscriptionsDAO {
         return true;
     }
 
-    // TODO: Validate this too.
-    public void updateSubscription(int subscriptionID, Subscription s) {
-        if (!DBUtils.primaryKeyExistsInATable("subscriptions", "subscription_id", subscriptionID)) {
-            return;
-        }
-
-        String sql = "UPDATE subscriptions " +
-                     "SET member_id = ?, " +
-                     "    subscription_type_id = ?, " +
-                     "    subscription_start_date = ?, " +
-                     "    subscription_end_date = ?, " +
-                     "WHERE subscription_id = ? ";
-
-        try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
-            assert ps != null;
-            ps.setInt(1, s.memberID());
-            ps.setInt(2, s.subscriptionTypeID());
-            ps.setDate(3, Date.valueOf(s.subscriptionStartDate()));
-            ps.setDate(4, Date.valueOf(s.subscriptionEndDate()));
-            ps.setInt(5, s.subscriptionID());
-
-            ps.executeUpdate();
-            System.out.println("Subscription record updated successfully.");
-        } catch (SQLException e) {
-            ExceptionHandler.handleException(e);
-        }
-    }
-
     public boolean terminateSubscription(int subscriptionID) {
         // Validate the subscription's eligibility for termination.
         if (!canTerminateSubscription(subscriptionID)) {
-            System.out.println("Subscription must be ongoing to be eligible for termination.");
+            System.out.println("Subscription must be active to be eligible for termination.");
             return false;
         }
 
@@ -114,6 +88,11 @@ public class SubscriptionsDAO {
     // SELECT QUERIES //
     public String[] getComboBoxSubscriptionIDs() {
         return DBUtils.selectAllKeysFromTable("subscriptions", "subscription_id");
+    }
+
+    public String[] getComboBoxActiveSubscriptionIDs() {
+        String condition = "WHERE CURRENT_DATE BETWEEN subscription_start_date AND subscription_end_date";
+        return DBUtils.selectAllKeysFromTable("subscriptions", "subscription_id", condition);
     }
 
     public static Subscription selectSubscription(int subscriptionID) {
@@ -289,6 +268,11 @@ public class SubscriptionsDAO {
 
     public static Subscription mapResultSetToSubscription(ResultSet rs) {
         try {
+            if (!rs.next()) {
+                System.out.println("No Subscription ResultSet data.\n");
+                return null;
+            }
+
             int subscriptionID = rs.getInt("subscription_id");
             int memberID = rs.getInt("member_id");
             int subscriptionTypeID = rs.getInt("subscription_type_id");

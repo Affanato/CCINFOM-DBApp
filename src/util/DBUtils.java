@@ -288,6 +288,28 @@ public class DBUtils {
         return sList.toArray(new String[0]);
     }
 
+    public static String[] selectAllKeysFromTable(String table, String key, String condition) {
+        ResultSet rs = DBUtils.selectAllRecordsFromTable(table, condition);
+        assert rs != null;
+        List<String> sList = new ArrayList<String>();
+
+        try {
+            while (rs.next()) {
+                sList.add(rs.getString(key));
+            }
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+        }
+
+        try {
+            rs.close();
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+        }
+
+        return sList.toArray(new String[0]);
+    }
+
     // CONVERTER METHODS //
     public static Object[][] to2DObjectArray(ArrayList<? extends ConvertibleToObjectArray> list) {
         Object[][] result = new Object[list.size()][];
