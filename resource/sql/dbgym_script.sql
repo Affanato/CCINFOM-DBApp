@@ -60,12 +60,12 @@ CREATE TABLE IF NOT EXISTS `dbgym`.`subscriptions` (
     FOREIGN KEY (`subscription_type_id`)
     REFERENCES `dbgym`.`subscription_types` (`subscription_type_id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_subscriptions_members1`
     FOREIGN KEY (`member_id`)
     REFERENCES `dbgym`.`members` (`member_id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -120,12 +120,12 @@ CREATE TABLE IF NOT EXISTS `dbgym`.`product_purchases` (
     FOREIGN KEY (`product_id`)
     REFERENCES `dbgym`.`products` (`product_id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_product_purchases_members1`
     FOREIGN KEY (`member_id`)
     REFERENCES `dbgym`.`members` (`member_id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -156,12 +156,12 @@ CREATE TABLE IF NOT EXISTS `dbgym`.`subscription_type_amenities` (
     FOREIGN KEY (`subscription_type_id`)
     REFERENCES `dbgym`.`subscription_types` (`subscription_type_id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_subscription_type_amenities_amenities1`
     FOREIGN KEY (`amenity_id`)
     REFERENCES `dbgym`.`amenities` (`amenity_id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -182,12 +182,12 @@ CREATE TABLE IF NOT EXISTS `dbgym`.`amenity_logs` (
     FOREIGN KEY (`member_id`)
     REFERENCES `dbgym`.`members` (`member_id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_amenity_logs_amenities1`
     FOREIGN KEY (`amenity_id`)
     REFERENCES `dbgym`.`amenities` (`amenity_id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -207,12 +207,12 @@ CREATE TABLE IF NOT EXISTS `dbgym`.`training_sessions` (
     FOREIGN KEY (`trainer_id`)
     REFERENCES `dbgym`.`trainers` (`trainer_id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_training_sessions_subscriptions1`
     FOREIGN KEY (`subscription_id`)
     REFERENCES `dbgym`.`subscriptions` (`subscription_id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
