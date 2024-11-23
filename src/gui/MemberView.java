@@ -895,10 +895,13 @@ public class MemberView {
 	}
 
 	public int getMemberID() {
-		return this.memberid.getSelectedIndex() + 1;
+		return this.memberid.getSelectedIndex();
 	}
 
 	// get from update members
+	public String getUpdatedFirstName() {
+		return this.updateFirstName.getText();
+	}
 	public String getUpdateLastName() {
 		return this.updateLastName.getText();
 	}
@@ -907,12 +910,20 @@ public class MemberView {
 		return this.updatePhoneNumber.getText();
 	}
 
+	public String getUpdatedSex() {
+		return this.updateSex.getSelectedItem().toString();
+	}
+
 	public String getUpdateStreet() {
 		return this.updateStreet.getText();
 	}
 
 	public String getUpdateBarangay() {
 		return this.updateBarangay.getText();
+	}
+
+	public String getUpdateBirthDate() {
+		return this.updateBirthDate.getText();
 	}
 
 	public String getUpdateCity() {
@@ -924,7 +935,7 @@ public class MemberView {
 	}
 
 	public int getUpdateMemberID() {
-		return this.updateMemberID.getSelectedIndex() + 1;
+		return this.updateMemberID.getSelectedIndex();
 	}
 
 	// set fixed fields

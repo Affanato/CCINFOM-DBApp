@@ -67,7 +67,7 @@ public class TrainersDAO {
 
         String sql = "UPDATE trainers " +
                      "SET last_name = ?, " +
-                     "    program_specialty = ?, " +
+                     "    program_specialty = ? " +
                      "WHERE trainer_id = ?";
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {

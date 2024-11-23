@@ -951,6 +951,7 @@ public class ProductView {
 					TableColumnModel cm = table1.getColumnModel();
 					cm.getColumn(4).setMinWidth(200);
 				}
+				table1.setFont(new Font("Tw Cen MT", Font.PLAIN, 18));
 				scrollPane2.setViewportView(table1);
 			}
 			readProductPurchasesFrameContentPane.add(scrollPane2);
@@ -1549,6 +1550,24 @@ public class ProductView {
 	public JComboBox<String> getProductIDJComboBox() {
 		return this.deleteProductID;
 	}
+	public JComboBox<String> getUpdateProductPurchaseID() {
+		return this.updateProductPurchaseID;
+	}
+	public JComboBox<String> getMemberPurchaseID() {
+		return this.memberPurchaseID;
+	}
+	public JComboBox<String> getProductPurchaseID() {
+		return this.productPurchaseID;
+	}
+	public JComboBox<String> getDeleteProductPurchaseID() {
+		return this.deleteProductPurchaseID;
+	}
+	public JComboBox<String> getCancelProductPurchaseID() {
+		return this.cancelProductPurchaseID;
+	}
+	public String getQuantityPurchase() {
+		return this.quantityPurchase.getText();
+	}
 
 	// getters
 	public JFrame getProductFrame() {
@@ -1616,13 +1635,16 @@ public class ProductView {
 	}
 
 	// delete
-	public int getDeleteProductID() {
-		return this.deleteProductID.getSelectedIndex();
+	public String getDeleteProductID() {
+		return (String) this.deleteProductID.getSelectedItem();
 	}
 
 	// update
-	public int getUpdateProductID() {
-		return this.updateProductID1.getSelectedIndex();
+	public String getUpdateProductID() {
+		return (String) this.updateProductID1.getSelectedItem();
+	}
+	public JComboBox getUpdateProductIDComboBox() {
+		return this.updateProductID1;
 	}
 	public String getUpdateProductPrice() {
 		return this.updateProductPrice.getText();
@@ -1647,19 +1669,28 @@ public class ProductView {
 	}
 
 	// sell
-	public int getSellProductID() {
-		return this.sellproductid.getSelectedIndex();
+	public String getSellProductID() {
+		return (String) this.sellproductid.getSelectedItem();
 	}
-	public int getSellMemberID() {
-		return this.memberid.getSelectedIndex();
+	public JComboBox getSellProductIDComboBox() {
+		return this.sellproductid;
+	}
+	public String getSellMemberID() {
+		return (String) this.memberid.getSelectedItem();
+	}
+	public JComboBox getSellMemberIDComboBox() {
+		return this.memberid;
 	}
 	public String getSellQuantity() {
 		return this.sellquantity.getText();
 	}
 
 	// restock
-	public int getRestockProductID() {
-		return this.restockproductid.getSelectedIndex();
+	public String getRestockProductID() {
+		return (String) this.restockproductid.getSelectedItem();
+	}
+	public JComboBox getRestockProductIDComboBox() {
+		return this.restockproductid;
 	}
 	public String getRestockQuantity() {
 		return this.restockquantity.getText();
@@ -1782,5 +1813,17 @@ public class ProductView {
 	}
 	public void proceedButton(ActionListener actionListener) {
 		this.proceed.addActionListener(actionListener);
+	}
+
+	public void setProductTable(Object[][] data) { 
+		String[] columnNames = {"Product ID", "Product Brand", "Product Name", "Product Description", "Product Price", "Available Quantity"};
+		DefaultTableModel model = new DefaultTableModel(data, columnNames);
+		productTable.setModel(model);
+	}
+
+	public void setPurchasesTable(Object[][] data) { 
+		String[] columnNames = {"Product Purchase ID", "Member ID", "Product ID", "Quantity Sold", "Purchase Date and Time"};
+		DefaultTableModel model = new DefaultTableModel(data, columnNames);
+		table1.setModel(model);
 	}
 }

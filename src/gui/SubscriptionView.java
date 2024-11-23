@@ -93,7 +93,7 @@ public class SubscriptionView  {
 
 			//---- goToAdd ----
 			goToAdd.setText("ADD SUBSCRIPTION");
-			goToAdd.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+			goToAdd.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 19));
 			goToAdd.setForeground(Color.white);
 			goToAdd.setBackground(new Color(0x3ca3cb));
 			membershipFrameContentPane.add(goToAdd);
@@ -101,7 +101,7 @@ public class SubscriptionView  {
 
 			//---- goToReadAll ----
 			goToReadAll.setText("READ ALL SUBSCRIPTIONS");
-			goToReadAll.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+			goToReadAll.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 19));
 			goToReadAll.setForeground(Color.white);
 			goToReadAll.setBackground(new Color(0x3ca3cb));
 			membershipFrameContentPane.add(goToReadAll);
@@ -109,7 +109,7 @@ public class SubscriptionView  {
 
 			//---- goToDelete ----
 			goToDelete.setText("DELETE SUBSCRIPTION");
-			goToDelete.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+			goToDelete.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 19));
 			goToDelete.setForeground(Color.white);
 			goToDelete.setBackground(new Color(0x3ca3cb));
 			membershipFrameContentPane.add(goToDelete);
@@ -117,7 +117,7 @@ public class SubscriptionView  {
 
 			//---- goToTerminate ----
 			goToTerminate.setText("TERMINATE SUBSCRIPTION");
-			goToTerminate.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+			goToTerminate.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 19));
 			goToTerminate.setForeground(Color.white);
 			goToTerminate.setBackground(new Color(0x3ca3cb));
 			membershipFrameContentPane.add(goToTerminate);
@@ -125,7 +125,7 @@ public class SubscriptionView  {
 
 			//---- goToReadActive ----
 			goToReadActive.setText("READ ACTIVE SUBSCRIPTIONS");
-			goToReadActive.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
+			goToReadActive.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 19));
 			goToReadActive.setForeground(Color.white);
 			goToReadActive.setBackground(new Color(0x3ca3cb));
 			membershipFrameContentPane.add(goToReadActive);
@@ -618,16 +618,16 @@ public class SubscriptionView  {
 	// jcombobox getters
 	public JComboBox<String> getMemberIDComboBox() {
 		return this.memberID;
-	}
+	} //add
 	public JComboBox<String> getMembershipTypeComboBox() {
 		return this.membershiptype;
-	}
+	} //add
 	public JComboBox<String> getMembershipIDComboBox() {
 		return this.membershipID;
-	}
+	} // delete
 	public JComboBox<String> getTerminateMembershipIDComboBox() {
 		return this.terminateMembershipID;
-	}
+	} // terminate
 
 	// getters
 	public JFrame getSubscriptionFrame() {
@@ -650,7 +650,7 @@ public class SubscriptionView  {
 	}
 
 	public int getMemberID() {
-		return this.memberID.getSelectedIndex() + 1;
+		return this.memberID.getSelectedIndex();
 	}
 	public String getSubscriptionType() {
 		return (String) this.membershiptype.getSelectedItem();
@@ -718,11 +718,30 @@ public class SubscriptionView  {
 		membershipTable.setModel(model);
 		{
 			TableColumnModel cm = membershipTable.getColumnModel();
-			cm.getColumn(0).setMaxWidth(100);
-			cm.getColumn(1).setMaxWidth(80);
-			cm.getColumn(2).setMaxWidth(300);
-			cm.getColumn(3).setMaxWidth(220);
-			cm.getColumn(4).setMaxWidth(220);
+			cm.getColumn(0).setMinWidth(100);
+			cm.getColumn(1).setMinWidth(80);
+			cm.getColumn(2).setMinWidth(300);
+			cm.getColumn(3).setMinWidth(220);
+			cm.getColumn(4).setMinWidth(220);
 		}
 	}
+
+	public void setActiveTable(Object[][] data) {
+		String[] columnNames = {
+				"Subscription ID", "Member ID", "Trainer ID", "Subscription Type ID", "Start Date", "End Date"
+		};
+		DefaultTableModel model = new DefaultTableModel(data, columnNames);
+		membershipTable2.setModel(model);
+
+		{
+			TableColumnModel cm = membershipTable2.getColumnModel();
+			cm.getColumn(0).setMinWidth(100);
+			cm.getColumn(1).setMinWidth(100);
+			cm.getColumn(2).setMinWidth(100);
+			cm.getColumn(3).setMinWidth(100);
+			cm.getColumn(4).setMinWidth(220);
+			cm.getColumn(5).setMinWidth(220);
+		}
+	}
+
 }

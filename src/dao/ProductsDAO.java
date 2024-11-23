@@ -1,6 +1,7 @@
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ProductsDAO {
 
@@ -272,6 +273,40 @@ public class ProductsDAO {
         }
     }
 
+    // newest report!!
+    public Object[][] reportMonthlyRevenueByProduct() {
+        String sql = "SELECT YEAR(pp.purchase_datetime) as year" +
+                    " MONTH(pp.purchase_datetime) as month" +
+                    "p.product_brand, p.product_name, " +
+                    "       SUM(pp.quantity_sold) AS totalQuantitySold " +
+                    "FROM products p " +
+                    "JOIN product_purchases pp ON pp.product_id = p.product_id " +
+                    "WHERE YEAR(pp.purchase_datetime) = ? " +
+                    "GROUP BY p.product_id " +
+                    "ORDER BY totalQuantitySold DESC, p.product_brand, p.product_name;";
+
+
+        try (ResultSet rs = Objects.requireNonNull(statement.executeQuery(sql))) {
+            List<Object[]> tempList = new ArrayList<>();
+
+            while (rs.next()) {
+                int year = rs.getInt("year");
+                int month = rs.getInt("month");
+                String productBrand = rs.getString("product_brand");
+                String productName = rs.getString("product_name");
+                double totalQuantitySold = rs.getDouble("totalQuantitySold");
+
+                Object[] elem = {year, month, productBrand, productBrand, totalQuantitySold};
+                tempList.add(elem);
+            }
+
+            return tempList.toArray(new Object[0][]);
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
+    }
+
     // SELECT QUERIES
     public static Product selectProduct(int productID) {
         String condition = "WHERE product_id = " + productID;
@@ -314,6 +349,10 @@ public class ProductsDAO {
             ExceptionHandler.handleException(e);
             return null;
         }
+    }
+
+    public String[] getComboBoxProductIDs() {
+        return DBUtils.selectAllKeysFromTable("products", "product_id");
     }
 
     // PRODUCT PURCHASE <-> PRODUCT CROSS-TABLE UTILITY METHODS
