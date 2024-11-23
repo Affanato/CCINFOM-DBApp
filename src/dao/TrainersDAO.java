@@ -266,7 +266,7 @@ public class TrainersDAO {
             String lastName = rs.getString("last_name");
             String firstName = rs.getString("first_name");
             LocalDate birthdate = rs.getDate("birthdate").toLocalDate();
-            Sex sex = Sex.valueOf(Status.obtainStatus(rs.getString("sex")));
+            Sex sex = Sex.valueOf(rs.getString("sex"));
             String phoneNumber = rs.getString("phone_number");
             String street = rs.getString("street");
             String barangay = rs.getString("barangay");

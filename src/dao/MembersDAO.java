@@ -191,6 +191,10 @@ public class MembersDAO {
         return -1;
     }
 
+    public String[] getComboBoxMemberIDs() {
+        return DBUtils.selectAllKeysFromTable("members", "member_id");
+    }
+
     public void closeStatement() {
         DBUtils.closeStatement(statement);
     }

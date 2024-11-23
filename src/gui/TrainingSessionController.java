@@ -2,8 +2,11 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultComboBoxModel;
+
 public class TrainingSessionController {
     private TrainingSessionView tsView = new TrainingSessionView();
+    private TrainingSessionsDAO dao = new TrainingSessionsDAO();
 
     public TrainingSessionController() {
         this.tsView.trainingSessionBackButton(new ActionListener() {
@@ -17,6 +20,12 @@ public class TrainingSessionController {
         this.tsView.goToAddButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                TrainersDAO td = new TrainersDAO();
+                MembersDAO md = new MembersDAO();
+
+                tsView.getMemberIDBox().setModel(new DefaultComboBoxModel<>(md.getComboBoxMemberIDs())); 
+                tsView.getTrainerIDBox().setModel(new DefaultComboBoxModel<>(td.getComboBoxTrainerIDs())); 
+
                 tsView.getScheduleSessionFrame().setVisible(true);
                 tsView.getTrainingSessionFrame().dispose();
             }
@@ -25,6 +34,7 @@ public class TrainingSessionController {
         this.tsView.goToReadAllButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                tsView.setTrainerSessionTable(dao.selectAllTrainingSessions());
                 tsView.getReadSessionFrame().setVisible(true);
                 tsView.getTrainingSessionFrame().dispose();
             }
@@ -33,6 +43,7 @@ public class TrainingSessionController {
         this.tsView.goToReadUpcomingButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                tsView.setTrainerSessionTable(dao.selectAllUpcomingTrainingSessions());
                 tsView.getReadUpcomingSessionFrame().setVisible(true);
                 tsView.getTrainingSessionFrame().dispose();
             }
@@ -41,6 +52,7 @@ public class TrainingSessionController {
         this.tsView.goToDeleteButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                tsView.getTrainingSessionIDComboBox().setModel(new DefaultComboBoxModel<>(dao.getComboBoxTrainingSessionIDs())); 
                 tsView.getCancelSessionFrame().setVisible(true);
                 tsView.getTrainingSessionFrame().dispose();
             }
@@ -49,9 +61,9 @@ public class TrainingSessionController {
         this.tsView.goToUpdateButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                tsView.getUpdateTrainingSessionIDComboBox().setModel(new DefaultComboBoxModel<>(dao.getComboBoxTrainingSessionIDs())); 
                 tsView.getUpdateSessionFrame1().setVisible(true);
                 tsView.getTrainingSessionFrame().dispose();
-                tsView.getUpdateTrainingSessionIDComboBox(); // set here
             }
         });
 
@@ -104,18 +116,43 @@ public class TrainingSessionController {
         this.tsView.scheduleSessionButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //
+                int memberID = Integer.parseInt(tsView.getMemberID());
+                int trainerID = Integer.parseInt(tsView.getTrainerID());
+                String startDate = tsView.getStartDate();
+                String endDate = tsView.getEndDate();
+
+                if (dao.insertTrainingSession(memberID, trainerID, startDate, endDate)) {
+                    Message.success();
+                } else {
+                    Message.failure();
+                }
             }
         });
         this.tsView.cancelSessionButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //
+                int sessionid = Integer.parseInt(tsView.getTrainingSessionID());
+                if (dao.deleteTrainingSession(sessionid)) {
+                    Message.success();
+                } else {
+                    Message.failure();
+                }
             }
         });
         this.tsView.proceedUpdateButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int sessionid = Integer.parseInt(tsView.getUpdateTrainingSessionID());
+                TrainingSession ts = dao.selectTrainingSession(sessionid);
+                TrainersDAO t = new TrainersDAO();
+
+                tsView.setUpdateSubscriptionID(String.valueOf(ts.subscriptionID()));
+                tsView.getUpdateTrainerIDComboBox().setModel(new DefaultComboBoxModel<>(t.getComboBoxTrainerIDs())); 
+                tsView.getUpdateTrainerIDComboBox().setSelectedItem((Object) ts.trainerID());
+                tsView.setUpdateStartDate(String.valueOf(ts.sessionStartDateTime()));
+                tsView.setUpdateEndDate(String.valueOf(ts.sessionEndDateTime()));
+
+
                 tsView.getUpdateSessionFrame1().dispose();
                 tsView.getUpdateSessionFrame2().setVisible(true);
             }
@@ -123,7 +160,16 @@ public class TrainingSessionController {
         this.tsView.updateTrainingSessionButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //
+                int sessionid = Integer.parseInt(tsView.getUpdateTrainingSessionID());
+                int trainerID = Integer.parseInt(tsView.getUpdateTrainerID());
+                String startDate = tsView.getUpdateStartDate();
+                String endDate = tsView.getUpdateEndDate();
+
+                if (dao.updateTrainingSession(sessionid, trainerID, startDate, endDate)) {
+                    Message.success();
+                } else {
+                    Message.failure();
+                }
             }
         });
     }
