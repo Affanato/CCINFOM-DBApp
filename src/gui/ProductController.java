@@ -141,9 +141,9 @@ public class ProductController {
                 Product p = ProductsDAO.selectProduct(productid);
     
 
-                int id = Integer.parseInt(pView.getUpdateProductPrice());
+                double price = Double.parseDouble(pView.getUpdateProductPrice());
                 String description = pView.getUpdateProductDescription();
-                Product newP = new Product(productid, p.productBrand(), p.productName(), description, p.productPrice(), p.availableQuantity());
+                Product newP = new Product(productid, p.productBrand(), p.productName(), p.productDescription(), price, p.availableQuantity());
 
                 if (dao.updateProduct(productid, newP)) {
                     Message.success();

@@ -1653,19 +1653,19 @@ public class ProductView {
 		return this.updateProductDescription.getText();
 	}
 	public void setProductName(String name) {
-		this.productName.setText(name);
+		this.updateProductName.setText(name);
 	}
 	public void setProductBrand(String name) {
-		this.productBrand.setText(name);
+		this.updateProductBrand.setText(name);
 	}
 	public void setProductPrice(String name) {
-		this.productPrice.setText(name);
+		this.updateProductPrice.setText(name);
 	}
 	public void setAvailableQuantity(String name) {
-		this.availableQuantity.setText(name);
+		this.updateAvailableQuantity.setText(name);
 	}
 	public void setProductDescription(String name) {
-		this.productDescription.setText(name);
+		this.updateProductDescription.setText(name);
 	}
 
 	// sell

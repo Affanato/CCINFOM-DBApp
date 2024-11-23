@@ -33,7 +33,7 @@ public class SubscriptionTypeAmenitiesDAO {
 
     public boolean deleteSubscriptionTypeAmenity(SubscriptionTypeAmenity s) {
         String sql = "DELETE FROM subscription_type_amenities " +
-                     "WHERE subscription_type_id = ?, " +
+                     "WHERE subscription_type_id = ? AND " +
                      "      amenity_id = ? ";
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
