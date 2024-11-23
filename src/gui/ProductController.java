@@ -179,9 +179,9 @@ public class ProductController {
             public void actionPerformed(ActionEvent e) {
                 String name = pView.getProductName();
                 double price = Double.parseDouble(pView.getProductPrice());
-                String brand = pView.getProductName();
-                int quantity = Integer.parseInt(pView.getProductName());
-                String description = pView.getProductName();
+                String brand = pView.getProductBrand();
+                int quantity = Integer.parseInt(pView.getAvailableQuantity());
+                String description = pView.getProductDescription();
 
                 if (dao.insertProduct(brand, name, description, price, quantity)) {
                     Message.success();
@@ -247,6 +247,9 @@ public class ProductController {
         this.pView.goToDeleteButton2(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pView.getDeleteProductPurchaseID().setModel(new DefaultComboBoxModel<>(purch.getComboBoxProductPurchaseIDs()));
+
+                
                 pView.getDeleteProductPurchaseFrame().setVisible(true);
                 pView.getProductPurchasesFrame().dispose();
             }
@@ -254,6 +257,9 @@ public class ProductController {
         this.pView.goToCancelButton2(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pView.getCancelProducturchaseID().setModel(new DefaultComboBoxModel<>(purch.getComboBoxProductPurchaseIDs()));
+
+                
                 pView.getCancelProductPurchaseFrame().setVisible(true);
                 pView.getProductPurchasesFrame().dispose();
             }
@@ -294,7 +300,8 @@ public class ProductController {
             public void actionPerformed(ActionEvent e) {
                 int id = Integer.parseInt(String.valueOf(pView.getUpdateProductPurchaseID().getSelectedItem()));
                 ProductPurchase pp = purch.selectProductPurchase(id);
-
+                pView.getMemberPurchaseID().setModel(new DefaultComboBoxModel<>(mem.getComboBoxMemberIDs()));
+                pView.getProductPurchaseID().setModel(new DefaultComboBoxModel<>(dao.getComboBoxProductIDs()));
                 
 
                 pView.getUpdateProductPurchaseFrame1().setVisible(true);
@@ -332,6 +339,49 @@ public class ProductController {
                 int quantity = Integer.parseInt(pView.getSellQuantity());
 
                 if (purch.insertProductPurchase(memberid, productid, quantity)) {
+                    Message.success();
+                } else {
+                    Message.failure();
+                }
+            }
+        });
+
+        this.pView.updatePurchaseProductButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int id = Integer.parseInt(String.valueOf(pView.getUpdateProductPurchaseID().getSelectedItem()));
+
+                int memberid = Integer.parseInt(String.valueOf(pView.getMemberPurchaseID().getSelectedItem()));
+                int productid = Integer.parseInt(String.valueOf(pView.getProductPurchaseID().getSelectedItem()));
+                int quantity = Integer.parseInt(pView.getQuantityPurchase());
+
+                if (purch.updateProductPurchase(id, productid, quantity, memberid)) {
+                    Message.success();
+                } else {
+                    Message.failure();
+                }
+            }
+        });
+
+        this.pView.deletePurchaseProductButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int id = Integer.parseInt(String.valueOf(pView.getDeleteProductPurchaseID().getSelectedItem()));
+
+                if (purch.deleteProductPurchase(id)) {
+                    Message.success();
+                } else {
+                    Message.failure();
+                }
+            }
+        });
+
+        this.pView.cancelPurchaseProductButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int id = Integer.parseInt(String.valueOf(pView.getCancelProductPurchaseID().getSelectedItem()));
+
+                if (purch.cancelProductPurchase(id)) {
                     Message.success();
                 } else {
                     Message.failure();

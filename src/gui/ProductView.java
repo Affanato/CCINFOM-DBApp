@@ -1550,6 +1550,24 @@ public class ProductView {
 	public JComboBox<String> getProductIDJComboBox() {
 		return this.deleteProductID;
 	}
+	public JComboBox<String> getUpdateProductPurchaseID() {
+		return this.updateProductPurchaseID;
+	}
+	public JComboBox<String> getMemberPurchaseID() {
+		return this.memberPurchaseID;
+	}
+	public JComboBox<String> getProductPurchaseID() {
+		return this.productPurchaseID;
+	}
+	public JComboBox<String> getDeleteProductPurchaseID() {
+		return this.deleteProductPurchaseID;
+	}
+	public JComboBox<String> getCancelProductPurchaseID() {
+		return this.cancelProductPurchaseID;
+	}
+	public String getQuantityPurchase() {
+		return this.quantityPurchase.getText();
+	}
 
 	// getters
 	public JFrame getProductFrame() {
