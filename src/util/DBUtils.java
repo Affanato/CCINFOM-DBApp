@@ -4,6 +4,7 @@ import java.nio.file.Paths;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -18,7 +19,7 @@ public class DBUtils {
     //       Please replace with your own in a separate branch. - CJ
     private static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/dbgym";
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "Mathmathh8";
+    private static final String DB_PASSWORD = "Buny!020605";
     private static final String SQL_FILEPATH = "dbgym_script.sql";
 
     private static Connection connection = null;
@@ -329,13 +330,29 @@ public class DBUtils {
         return LocalDate.parse(dateString, formatter);
     }
 
-    public Object[][] removeFirstRow(Object[][] originalArray) {
+    public static LocalTime normalizeTime(LocalTime time) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        return LocalTime.parse(time.format(formatter), formatter);
+    }
+
+    public static Object[][] removeFirstElement(Object[][] originalArray) {
         if (originalArray == null || originalArray.length <= 1) {
             return new Object[0][0]; // Return an empty array if the original array is null or has only one row
         }
 
         Object[][] newArray = new Object[originalArray.length - 1][];
         System.arraycopy(originalArray, 1, newArray, 0, originalArray.length - 1); // Copy rows except the first one
+
+        return newArray;
+    }
+
+    public static String[] removeFirstElement(String[] originalArray) {
+        if (originalArray == null || originalArray.length <= 1) {
+            return new String[0]; // Return an empty array if the original array is null or has only one element
+        }
+
+        String[] newArray = new String[originalArray.length - 1];
+        System.arraycopy(originalArray, 1, newArray, 0, originalArray.length - 1); // Copy elements except the first one
 
         return newArray;
     }

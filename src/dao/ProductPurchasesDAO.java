@@ -102,7 +102,18 @@ public class ProductPurchasesDAO {
         String condition = "WHERE product_purchase_id = " + productPurchaseID;
         ResultSet rs = DBUtils.selectAllRecordsFromTable("product_purchases", condition);
         assert rs != null;
-        return mapResultSetToProductPurchase(rs);
+
+        try {
+            if (rs.next()) {
+                return mapResultSetToProductPurchase(rs);
+            } else {
+                System.out.println("No product purchase found with ID: " + productPurchaseID);
+                return null;
+            }
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
     }
 
     public Object[][] selectAllProductPurchases() {
@@ -160,11 +171,6 @@ public class ProductPurchasesDAO {
     // UTILITY FUNCTIONS
     public static ProductPurchase mapResultSetToProductPurchase(ResultSet rs) {
         try {
-            if (!rs.next()) {
-                System.out.println("No ProductPurchase ResultSet data.\n");
-                return null;
-            }
-
             int productPurchaseID = rs.getInt("product_purchase_id");
             int memberID = rs.getInt("member_id");
             int productID = rs.getInt("product_id");

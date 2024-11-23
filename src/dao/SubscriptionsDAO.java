@@ -102,7 +102,18 @@ public class SubscriptionsDAO {
         String condition = "WHERE subscription_id = " + subscriptionID;
         ResultSet rs = DBUtils.selectAllRecordsFromTable("subscriptions", condition);
         assert rs != null;
-        return mapResultSetToSubscription(rs);
+
+        try {
+            if (rs.next()) {
+                return mapResultSetToSubscription(rs);
+            } else {
+                System.out.println("No subscription found with ID: " + subscriptionID);
+                return null;
+            }
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
     }
 
     public Object[][] selectAllSubscriptions() {
@@ -297,11 +308,6 @@ public class SubscriptionsDAO {
 
     public static Subscription mapResultSetToSubscription(ResultSet rs) {
         try {
-            if (!rs.next()) {
-                System.out.println("No Subscription ResultSet data.\n");
-                return null;
-            }
-
             int subscriptionID = rs.getInt("subscription_id");
             int memberID = rs.getInt("member_id");
             int subscriptionTypeID = rs.getInt("subscription_type_id");
