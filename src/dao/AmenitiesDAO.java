@@ -270,15 +270,19 @@ public class AmenitiesDAO {
         return (target.equals(start) || target.isAfter(start)) && (target.isBefore(end) || target.equals(end));
     }
 
-    // TODO: Debug.
     public static Amenity mapResultSetToAmenity(ResultSet rs) {
         try {
+            if (!rs.next()) {
+                System.out.println("No Amenity ResultSet data.\n");
+                return null;
+            }
+
             int amenityID = rs.getInt(1);
             String amenityName = rs.getString(2);
             double walkInPrice = rs.getDouble(3);
             LocalTime openingTime = rs.getTime(4).toLocalTime();
             LocalTime closingTime = rs.getTime(5).toLocalTime();
-            Status amenityStatus = Status.valueOf(rs.getString(6));
+            Status amenityStatus = Status.fromString(rs.getString(6));
 
             return new Amenity(amenityID, amenityName, walkInPrice, openingTime, closingTime, amenityStatus);
         } catch(SQLException e) {

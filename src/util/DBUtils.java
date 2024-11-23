@@ -18,7 +18,7 @@ public class DBUtils {
     //       Please replace with your own in a separate branch. - CJ
     private static final String DB_URL = "jdbc:mysql://localhost:3306/dbgym";
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "hiahkjhs";
+    private static final String DB_PASSWORD = "Buny!020605";
     private static final String SQL_FILEPATH = "dbgym_script.sql";
 
     private static Connection connection = null;
@@ -212,7 +212,7 @@ public class DBUtils {
 
         try {
             ResultSet rs = Objects.requireNonNull(getNewStatement()).executeQuery(sql);
-            System.out.printf("All '%s' records retrieved successfully.", table);
+            System.out.printf("All '%s' records retrieved successfully.\n", table);
             return rs;
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
@@ -227,7 +227,7 @@ public class DBUtils {
 
         try {
             ResultSet rs = Objects.requireNonNull(getNewStatement()).executeQuery(sql);
-            System.out.printf("All records from '%s' with condition retrieved successfully.", table);
+            System.out.printf("All records from '%s' with condition retrieved successfully.\n", table);
             return rs;
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
