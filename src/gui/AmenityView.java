@@ -843,4 +843,20 @@ public class AmenityView  {
         this.updateDetailsAmenityBack.addActionListener(actionListener);
     }
 
+    // Table Setters
+    public void setReadAmenityTable(Object[][] data) {
+        String[] columnNames = {
+                "Amenity ID", "Name", "Walk-in Price Per Hour", "Time Open", "Time Close", "Status"
+        };
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        sessionTable.setModel(model);
+
+        TableColumnModel cm = sessionTable.getColumnModel();
+        cm.getColumn(0).setMinWidth(100);
+        cm.getColumn(1).setMinWidth(200);
+        cm.getColumn(2).setMinWidth(200);
+        cm.getColumn(3).setMinWidth(150);
+        cm.getColumn(4).setMinWidth(150);
+        cm.getColumn(5).setMinWidth(100);
+    }
 }

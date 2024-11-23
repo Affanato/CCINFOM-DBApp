@@ -1,7 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
-import java.awt.event.ActionListener;
 import javax.swing.table.*;
+import java.awt.event.ActionListener;
 /*
  * Created by JFormDesigner on Wed Nov 20 13:32:08 PST 2024
  */
@@ -21,22 +21,36 @@ public class AmenitiesReportView extends JFrame {
         // Generated using JFormDesigner Evaluation license - Lucas Antonio V F. Tujan
         amenitiesReportFrame = new JFrame();
         amenitiesReportBack = new JButton();
+        goToMonthlyAmenities = new JButton();
+        gotoTotalAmenities = new JButton();
+        goToMonthlyRevenue = new JButton();
+        goToTotaleRevenue = new JButton();
         titleBar = new JFormattedTextField();
-        goToMostPopular = new JButton();
-        goToAmenitiesRevenue = new JButton();
         label1 = new JLabel();
-        mostPopularFrame = new JFrame();
-        mostPopularBack = new JButton();
+        monthlyUseFrame = new JFrame();
+        monthlyBack = new JButton();
         tablePane = new JScrollPane();
         mostPopularTable = new JTable();
         mostPopular = new JFormattedTextField();
         backgroundPicture = new JLabel();
-        amenitiesRevenueFrame = new JFrame();
-        amenitiesRevenueBack = new JButton();
-        tablePane2 = new JScrollPane();
-        revenueTable = new JTable();
-        amenitiesRevenue = new JFormattedTextField();
-        backgroundPicture2 = new JLabel();
+        totalUseFrame = new JFrame();
+        totalUseBack = new JButton();
+        tablePane3 = new JScrollPane();
+        mostPopularTable2 = new JTable();
+        mostPopular2 = new JFormattedTextField();
+        backgroundPicture3 = new JLabel();
+        monthlyRevenueFrame = new JFrame();
+        monthlyRevenueBack = new JButton();
+        tablePane4 = new JScrollPane();
+        mostPopularTable3 = new JTable();
+        mostPopular3 = new JFormattedTextField();
+        backgroundPicture4 = new JLabel();
+        totalRevenueFrame = new JFrame();
+        totalRevenueBack = new JButton();
+        tablePane5 = new JScrollPane();
+        mostPopularTable4 = new JTable();
+        mostPopular4 = new JFormattedTextField();
+        backgroundPicture5 = new JLabel();
 
         //======== amenitiesReportFrame ========
         {
@@ -50,6 +64,38 @@ public class AmenitiesReportView extends JFrame {
             amenitiesReportFrameContentPane.add(amenitiesReportBack);
             amenitiesReportBack.setBounds(5, 5, 95, 45);
 
+            //---- goToMonthlyAmenities ----
+            goToMonthlyAmenities.setText("MONTHLY AMENITIES USE");
+            goToMonthlyAmenities.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 17));
+            goToMonthlyAmenities.setForeground(Color.white);
+            goToMonthlyAmenities.setBackground(new Color(0x3ca3cb));
+            amenitiesReportFrameContentPane.add(goToMonthlyAmenities);
+            goToMonthlyAmenities.setBounds(475, 135, 250, 55);
+
+            //---- gotoTotalAmenities ----
+            gotoTotalAmenities.setText("TOTAL AMENITIES USE");
+            gotoTotalAmenities.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 17));
+            gotoTotalAmenities.setForeground(Color.white);
+            gotoTotalAmenities.setBackground(new Color(0x3ca3cb));
+            amenitiesReportFrameContentPane.add(gotoTotalAmenities);
+            gotoTotalAmenities.setBounds(475, 270, 250, 55);
+
+            //---- goToMonthlyRevenue ----
+            goToMonthlyRevenue.setText("MONTHLY AMENITIES REVENUE");
+            goToMonthlyRevenue.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 17));
+            goToMonthlyRevenue.setForeground(Color.white);
+            goToMonthlyRevenue.setBackground(new Color(0x3ca3cb));
+            amenitiesReportFrameContentPane.add(goToMonthlyRevenue);
+            goToMonthlyRevenue.setBounds(475, 405, 250, 55);
+
+            //---- goToTotaleRevenue ----
+            goToTotaleRevenue.setText("TOTAL AMENITIES REVENUE");
+            goToTotaleRevenue.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 17));
+            goToTotaleRevenue.setForeground(Color.white);
+            goToTotaleRevenue.setBackground(new Color(0x3ca3cb));
+            amenitiesReportFrameContentPane.add(goToTotaleRevenue);
+            goToTotaleRevenue.setBounds(475, 545, 250, 55);
+
             //---- titleBar ----
             titleBar.setText("Amenities Report");
             titleBar.setBackground(new Color(0xc80f2e));
@@ -59,22 +105,6 @@ public class AmenitiesReportView extends JFrame {
             titleBar.setEditable(false);
             amenitiesReportFrameContentPane.add(titleBar);
             titleBar.setBounds(0, 0, 1200, 55);
-
-            //---- goToMostPopular ----
-            goToMostPopular.setText("MOST POPULAR");
-            goToMostPopular.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
-            goToMostPopular.setForeground(Color.white);
-            goToMostPopular.setBackground(new Color(0x3ca3cb));
-            amenitiesReportFrameContentPane.add(goToMostPopular);
-            goToMostPopular.setBounds(485, 210, 250, 55);
-
-            //---- goToAmenitiesRevenue ----
-            goToAmenitiesRevenue.setText("AMENITIES REVENUE");
-            goToAmenitiesRevenue.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 20));
-            goToAmenitiesRevenue.setForeground(Color.white);
-            goToAmenitiesRevenue.setBackground(new Color(0x3ca3cb));
-            amenitiesReportFrameContentPane.add(goToAmenitiesRevenue);
-            goToAmenitiesRevenue.setBounds(485, 425, 250, 55);
 
             //---- label1 ----
             label1.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
@@ -99,19 +129,20 @@ public class AmenitiesReportView extends JFrame {
             amenitiesReportFrame.setSize(1200, 700);
             amenitiesReportFrame.setLocationRelativeTo(amenitiesReportFrame.getOwner());
             amenitiesReportFrame.setVisible(true);
+
         }
 
-        //======== mostPopularFrame ========
+        //======== monthlyUseFrame ========
         {
-            Container mostPopularFrameContentPane = mostPopularFrame.getContentPane();
-            mostPopularFrameContentPane.setLayout(null);
+            Container monthlyUseFrameContentPane = monthlyUseFrame.getContentPane();
+            monthlyUseFrameContentPane.setLayout(null);
 
-            //---- mostPopularBack ----
-            mostPopularBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
-            mostPopularBack.setIcon(new ImageIcon("resource/backButton.jpg"));
-            mostPopularBack.setBackground(new Color(0xc80f2e));
-            mostPopularFrameContentPane.add(mostPopularBack);
-            mostPopularBack.setBounds(5, 5, 95, 45);
+            //---- monthlyBack ----
+            monthlyBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
+            monthlyBack.setIcon(new ImageIcon("resource/backButton.jpg"));
+            monthlyBack.setBackground(new Color(0xc80f2e));
+            monthlyUseFrameContentPane.add(monthlyBack);
+            monthlyBack.setBounds(5, 5, 95, 45);
 
             //======== tablePane ========
             {
@@ -119,128 +150,268 @@ public class AmenitiesReportView extends JFrame {
                 //---- mostPopularTable ----
                 mostPopularTable.setModel(new DefaultTableModel(
                         new Object[][] {
-                                {null, null, null},
-                                {null, null, null},
+                                {null, null, null, null},
+                                {null, null, null, null},
                         },
                         new String[] {
-                                "Ranking", "Amenity Name", "Number of Uses"
+                                "Year", "Month", "Amenity Name", "Total Usages"
                         }
                 ));
                 {
                     TableColumnModel cm = mostPopularTable.getColumnModel();
-                    cm.getColumn(0).setMinWidth(120);
-                    cm.getColumn(1).setMinWidth(200);
-                    cm.getColumn(2).setMinWidth(150);
+                    cm.getColumn(0).setMinWidth(100);
+                    cm.getColumn(1).setMinWidth(100);
+                    cm.getColumn(2).setMinWidth(200);
+                    cm.getColumn(3).setMinWidth(150);
                 }
                 mostPopularTable.setFont(new Font("Tw Cen MT", Font.PLAIN, 18));
                 mostPopularTable.setEnabled(false);
                 tablePane.setViewportView(mostPopularTable);
             }
-            mostPopularFrameContentPane.add(tablePane);
+            monthlyUseFrameContentPane.add(tablePane);
             tablePane.setBounds(115, 145, 970, 435);
 
             //---- mostPopular ----
-            mostPopular.setText("Amenities Report: Most Popular ");
+            mostPopular.setText("Amenities Report: Monthly Amenities Use");
             mostPopular.setBackground(new Color(0xc80f2e));
             mostPopular.setHorizontalAlignment(SwingConstants.CENTER);
             mostPopular.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
             mostPopular.setForeground(Color.white);
             mostPopular.setEditable(false);
-            mostPopularFrameContentPane.add(mostPopular);
+            monthlyUseFrameContentPane.add(mostPopular);
             mostPopular.setBounds(0, 0, 1200, 55);
 
             //---- backgroundPicture ----
             backgroundPicture.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
-            mostPopularFrameContentPane.add(backgroundPicture);
+            monthlyUseFrameContentPane.add(backgroundPicture);
             backgroundPicture.setBounds(0, 55, 1200, 620);
 
             {
                 // compute preferred size
                 Dimension preferredSize = new Dimension();
-                for(int i = 0; i < mostPopularFrameContentPane.getComponentCount(); i++) {
-                    Rectangle bounds = mostPopularFrameContentPane.getComponent(i).getBounds();
+                for(int i = 0; i < monthlyUseFrameContentPane.getComponentCount(); i++) {
+                    Rectangle bounds = monthlyUseFrameContentPane.getComponent(i).getBounds();
                     preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
                     preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
                 }
-                Insets insets = mostPopularFrameContentPane.getInsets();
+                Insets insets = monthlyUseFrameContentPane.getInsets();
                 preferredSize.width += insets.right;
                 preferredSize.height += insets.bottom;
-                mostPopularFrameContentPane.setMinimumSize(preferredSize);
-                mostPopularFrameContentPane.setPreferredSize(preferredSize);
+                monthlyUseFrameContentPane.setMinimumSize(preferredSize);
+                monthlyUseFrameContentPane.setPreferredSize(preferredSize);
             }
-            mostPopularFrame.pack();
-            mostPopularFrame.setLocationRelativeTo(mostPopularFrame.getOwner());
+            monthlyUseFrame.pack();
+            monthlyUseFrame.setLocationRelativeTo(monthlyUseFrame.getOwner());
         }
 
-        //======== amenitiesRevenueFrame ========
+        //======== totalUseFrame ========
         {
-            Container amenitiesRevenueFrameContentPane = amenitiesRevenueFrame.getContentPane();
-            amenitiesRevenueFrameContentPane.setLayout(null);
+            Container totalUseFrameContentPane = totalUseFrame.getContentPane();
+            totalUseFrameContentPane.setLayout(null);
 
-            //---- amenitiesRevenueBack ----
-            amenitiesRevenueBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
-            amenitiesRevenueBack.setIcon(new ImageIcon("resource/backButton.jpg"));
-            amenitiesRevenueBack.setBackground(new Color(0xc80f2e));
-            amenitiesRevenueFrameContentPane.add(amenitiesRevenueBack);
-            amenitiesRevenueBack.setBounds(5, 5, 95, 45);
+            //---- totalUseBack ----
+            totalUseBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
+            totalUseBack.setIcon(new ImageIcon("resource/backButton.jpg"));
+            totalUseBack.setBackground(new Color(0xc80f2e));
+            totalUseFrameContentPane.add(totalUseBack);
+            totalUseBack.setBounds(5, 5, 95, 45);
 
-            //======== tablePane2 ========
+            //======== tablePane3 ========
             {
 
-                //---- revenueTable ----
-                revenueTable.setModel(new DefaultTableModel(
+                //---- mostPopularTable2 ----
+                mostPopularTable2.setModel(new DefaultTableModel(
                         new Object[][] {
-                                {null, null, null},
-                                {null, null, null},
+                                {null, null},
                         },
                         new String[] {
-                                "Ranking", "Amenity Name", "Revenue"
+                                "Amenity Name", "Number of Uses"
                         }
                 ));
                 {
-                    TableColumnModel cm = revenueTable.getColumnModel();
+                    TableColumnModel cm = mostPopularTable2.getColumnModel();
                     cm.getColumn(0).setMinWidth(120);
-                    cm.getColumn(1).setMinWidth(200);
-                    cm.getColumn(2).setMinWidth(150);
+                    cm.getColumn(1).setMinWidth(150);
                 }
-                revenueTable.setFont(new Font("Tw Cen MT", Font.PLAIN, 18));
-                revenueTable.setEnabled(false);
-                tablePane2.setViewportView(revenueTable);
+                mostPopularTable2.setFont(new Font("Tw Cen MT", Font.PLAIN, 18));
+                mostPopularTable2.setEnabled(false);
+                tablePane3.setViewportView(mostPopularTable2);
             }
-            amenitiesRevenueFrameContentPane.add(tablePane2);
-            tablePane2.setBounds(115, 145, 970, 435);
+            totalUseFrameContentPane.add(tablePane3);
+            tablePane3.setBounds(115, 145, 970, 435);
 
-            //---- amenitiesRevenue ----
-            amenitiesRevenue.setText("Amenities Report: Amenities Revenue");
-            amenitiesRevenue.setBackground(new Color(0xc80f2e));
-            amenitiesRevenue.setHorizontalAlignment(SwingConstants.CENTER);
-            amenitiesRevenue.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
-            amenitiesRevenue.setForeground(Color.white);
-            amenitiesRevenue.setEditable(false);
-            amenitiesRevenueFrameContentPane.add(amenitiesRevenue);
-            amenitiesRevenue.setBounds(0, 0, 1200, 55);
+            //---- mostPopular2 ----
+            mostPopular2.setText("Amenities Report: Total Amenities Use");
+            mostPopular2.setBackground(new Color(0xc80f2e));
+            mostPopular2.setHorizontalAlignment(SwingConstants.CENTER);
+            mostPopular2.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
+            mostPopular2.setForeground(Color.white);
+            mostPopular2.setEditable(false);
+            totalUseFrameContentPane.add(mostPopular2);
+            mostPopular2.setBounds(0, 0, 1200, 55);
 
-            //---- backgroundPicture2 ----
-            backgroundPicture2.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
-            amenitiesRevenueFrameContentPane.add(backgroundPicture2);
-            backgroundPicture2.setBounds(0, 55, 1200, 620);
+            //---- backgroundPicture3 ----
+            backgroundPicture3.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
+            totalUseFrameContentPane.add(backgroundPicture3);
+            backgroundPicture3.setBounds(0, 55, 1200, 620);
 
             {
                 // compute preferred size
                 Dimension preferredSize = new Dimension();
-                for(int i = 0; i < amenitiesRevenueFrameContentPane.getComponentCount(); i++) {
-                    Rectangle bounds = amenitiesRevenueFrameContentPane.getComponent(i).getBounds();
+                for(int i = 0; i < totalUseFrameContentPane.getComponentCount(); i++) {
+                    Rectangle bounds = totalUseFrameContentPane.getComponent(i).getBounds();
                     preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
                     preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
                 }
-                Insets insets = amenitiesRevenueFrameContentPane.getInsets();
+                Insets insets = totalUseFrameContentPane.getInsets();
                 preferredSize.width += insets.right;
                 preferredSize.height += insets.bottom;
-                amenitiesRevenueFrameContentPane.setMinimumSize(preferredSize);
-                amenitiesRevenueFrameContentPane.setPreferredSize(preferredSize);
+                totalUseFrameContentPane.setMinimumSize(preferredSize);
+                totalUseFrameContentPane.setPreferredSize(preferredSize);
             }
-            amenitiesRevenueFrame.pack();
-            amenitiesRevenueFrame.setLocationRelativeTo(amenitiesRevenueFrame.getOwner());
+            totalUseFrame.pack();
+            totalUseFrame.setLocationRelativeTo(totalUseFrame.getOwner());
+        }
+
+        //======== monthlyRevenueFrame ========
+        {
+            Container monthlyRevenueFrameContentPane = monthlyRevenueFrame.getContentPane();
+            monthlyRevenueFrameContentPane.setLayout(null);
+
+            //---- monthlyRevenueBack ----
+            monthlyRevenueBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
+            monthlyRevenueBack.setIcon(new ImageIcon("resource/backButton.jpg"));
+            monthlyRevenueBack.setBackground(new Color(0xc80f2e));
+            monthlyRevenueFrameContentPane.add(monthlyRevenueBack);
+            monthlyRevenueBack.setBounds(5, 5, 95, 45);
+
+            //======== tablePane4 ========
+            {
+
+                //---- mostPopularTable3 ----
+                mostPopularTable3.setModel(new DefaultTableModel(
+                        new Object[][] {
+                                {null, null, null, null},
+                                {null, null, null, null},
+                        },
+                        new String[] {
+                                "Year", "Month", "Amenity Name", "Total Revenue"
+                        }
+                ));
+                {
+                    TableColumnModel cm = mostPopularTable3.getColumnModel();
+                    cm.getColumn(0).setMinWidth(100);
+                    cm.getColumn(1).setMinWidth(100);
+                    cm.getColumn(2).setMinWidth(200);
+                    cm.getColumn(3).setMinWidth(150);
+                }
+                mostPopularTable3.setFont(new Font("Tw Cen MT", Font.PLAIN, 18));
+                mostPopularTable3.setEnabled(false);
+                tablePane4.setViewportView(mostPopularTable3);
+            }
+            monthlyRevenueFrameContentPane.add(tablePane4);
+            tablePane4.setBounds(115, 145, 970, 435);
+
+            //---- mostPopular3 ----
+            mostPopular3.setText("Amenities Report: Monthly Amenities Revenue");
+            mostPopular3.setBackground(new Color(0xc80f2e));
+            mostPopular3.setHorizontalAlignment(SwingConstants.CENTER);
+            mostPopular3.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
+            mostPopular3.setForeground(Color.white);
+            mostPopular3.setEditable(false);
+            monthlyRevenueFrameContentPane.add(mostPopular3);
+            mostPopular3.setBounds(0, 0, 1200, 55);
+
+            //---- backgroundPicture4 ----
+            backgroundPicture4.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
+            monthlyRevenueFrameContentPane.add(backgroundPicture4);
+            backgroundPicture4.setBounds(0, 55, 1200, 620);
+
+            {
+                // compute preferred size
+                Dimension preferredSize = new Dimension();
+                for(int i = 0; i < monthlyRevenueFrameContentPane.getComponentCount(); i++) {
+                    Rectangle bounds = monthlyRevenueFrameContentPane.getComponent(i).getBounds();
+                    preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+                    preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+                }
+                Insets insets = monthlyRevenueFrameContentPane.getInsets();
+                preferredSize.width += insets.right;
+                preferredSize.height += insets.bottom;
+                monthlyRevenueFrameContentPane.setMinimumSize(preferredSize);
+                monthlyRevenueFrameContentPane.setPreferredSize(preferredSize);
+            }
+            monthlyRevenueFrame.pack();
+            monthlyRevenueFrame.setLocationRelativeTo(monthlyRevenueFrame.getOwner());
+        }
+
+        //======== totalRevenueFrame ========
+        {
+            Container totalRevenueFrameContentPane = totalRevenueFrame.getContentPane();
+            totalRevenueFrameContentPane.setLayout(null);
+
+            //---- totalRevenueBack ----
+            totalRevenueBack.setSelectedIcon(new ImageIcon("resource/backButton.jpg"));
+            totalRevenueBack.setIcon(new ImageIcon("resource/backButton.jpg"));
+            totalRevenueBack.setBackground(new Color(0xc80f2e));
+            totalRevenueFrameContentPane.add(totalRevenueBack);
+            totalRevenueBack.setBounds(5, 5, 95, 45);
+
+            //======== tablePane5 ========
+            {
+
+                //---- mostPopularTable4 ----
+                mostPopularTable4.setModel(new DefaultTableModel(
+                        new Object[][] {
+                                {null, null},
+                        },
+                        new String[] {
+                                "Amenity Name", "Total Revenue"
+                        }
+                ));
+                {
+                    TableColumnModel cm = mostPopularTable4.getColumnModel();
+                    cm.getColumn(0).setMinWidth(120);
+                    cm.getColumn(1).setMinWidth(150);
+                }
+                mostPopularTable4.setFont(new Font("Tw Cen MT", Font.PLAIN, 18));
+                mostPopularTable4.setEnabled(false);
+                tablePane5.setViewportView(mostPopularTable4);
+            }
+            totalRevenueFrameContentPane.add(tablePane5);
+            tablePane5.setBounds(115, 145, 970, 435);
+
+            //---- mostPopular4 ----
+            mostPopular4.setText("Amenities Report: Total Amenities Revenue");
+            mostPopular4.setBackground(new Color(0xc80f2e));
+            mostPopular4.setHorizontalAlignment(SwingConstants.CENTER);
+            mostPopular4.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
+            mostPopular4.setForeground(Color.white);
+            mostPopular4.setEditable(false);
+            totalRevenueFrameContentPane.add(mostPopular4);
+            mostPopular4.setBounds(0, 0, 1200, 55);
+
+            //---- backgroundPicture5 ----
+            backgroundPicture5.setIcon(new ImageIcon("resource/AmenitiesViewBG.png"));
+            totalRevenueFrameContentPane.add(backgroundPicture5);
+            backgroundPicture5.setBounds(0, 55, 1200, 620);
+
+            {
+                // compute preferred size
+                Dimension preferredSize = new Dimension();
+                for(int i = 0; i < totalRevenueFrameContentPane.getComponentCount(); i++) {
+                    Rectangle bounds = totalRevenueFrameContentPane.getComponent(i).getBounds();
+                    preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+                    preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+                }
+                Insets insets = totalRevenueFrameContentPane.getInsets();
+                preferredSize.width += insets.right;
+                preferredSize.height += insets.bottom;
+                totalRevenueFrameContentPane.setMinimumSize(preferredSize);
+                totalRevenueFrameContentPane.setPreferredSize(preferredSize);
+            }
+            totalRevenueFrame.pack();
+            totalRevenueFrame.setLocationRelativeTo(totalRevenueFrame.getOwner());
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
@@ -249,55 +420,146 @@ public class AmenitiesReportView extends JFrame {
     // Generated using JFormDesigner Evaluation license - Lucas Antonio V F. Tujan
     private JFrame amenitiesReportFrame;
     private JButton amenitiesReportBack;
+    private JButton goToMonthlyAmenities;
+    private JButton gotoTotalAmenities;
+    private JButton goToMonthlyRevenue;
+    private JButton goToTotaleRevenue;
     private JFormattedTextField titleBar;
-    private JButton goToMostPopular;
-    private JButton goToAmenitiesRevenue;
     private JLabel label1;
-    private JFrame mostPopularFrame;
-    private JButton mostPopularBack;
+    private JFrame monthlyUseFrame;
+    private JButton monthlyBack;
     private JScrollPane tablePane;
     private JTable mostPopularTable;
     private JFormattedTextField mostPopular;
     private JLabel backgroundPicture;
-    private JFrame amenitiesRevenueFrame;
-    private JButton amenitiesRevenueBack;
-    private JScrollPane tablePane2;
-    private JTable revenueTable;
-    private JFormattedTextField amenitiesRevenue;
-    private JLabel backgroundPicture2;
+    private JFrame totalUseFrame;
+    private JButton totalUseBack;
+    private JScrollPane tablePane3;
+    private JTable mostPopularTable2;
+    private JFormattedTextField mostPopular2;
+    private JLabel backgroundPicture3;
+    private JFrame monthlyRevenueFrame;
+    private JButton monthlyRevenueBack;
+    private JScrollPane tablePane4;
+    private JTable mostPopularTable3;
+    private JFormattedTextField mostPopular3;
+    private JLabel backgroundPicture4;
+    private JFrame totalRevenueFrame;
+    private JButton totalRevenueBack;
+    private JScrollPane tablePane5;
+    private JTable mostPopularTable4;
+    private JFormattedTextField mostPopular4;
+    private JLabel backgroundPicture5;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     // Getters
-    public JFrame getAmenitiesReportFrame(){
+    public JFrame getAmenitiesReportFrame() {
         return this.amenitiesReportFrame;
     }
 
-    public JFrame getMostPopularFrame(){
-        return this.mostPopularFrame;
+    public JFrame getMonthlyUseFrame() {
+        return this.monthlyUseFrame;
     }
 
-    public JFrame getAmenitiesRevenueFrame(){
-        return this.amenitiesRevenueFrame;
+    public JFrame getTotalUseFrame() {
+        return this.totalUseFrame;
+    }
+
+    public JFrame getMonthlyRevenueFrame() {
+        return this.monthlyRevenueFrame;
+    }
+
+    public JFrame getTotalRevenueFrame() {
+        return this.totalRevenueFrame;
     }
 
     // Button Action Listeners
-    public void amenitiesReportBackButton(ActionListener actionListener){
+    public void amenitiesReportBackButton(ActionListener actionListener) {
         this.amenitiesReportBack.addActionListener(actionListener);
     }
 
-    public void goToMostPopularButton(ActionListener actionListener){
-        this.goToMostPopular.addActionListener(actionListener);
+    public void goToMonthlyAmenitiesButton(ActionListener actionListener) {
+        this.goToMonthlyAmenities.addActionListener(actionListener);
     }
 
-    public void goToAmenitiesRevenueButton(ActionListener actionListener){
-        this.goToAmenitiesRevenue.addActionListener(actionListener);
+    public void goToTotalAmenitiesButton(ActionListener actionListener) {
+        this.gotoTotalAmenities.addActionListener(actionListener);
     }
 
-    public void mostPopularBackButton(ActionListener actionListener){
-        this.mostPopularBack.addActionListener(actionListener);
+    public void goToMonthlyRevenueButton(ActionListener actionListener) {
+        this.goToMonthlyRevenue.addActionListener(actionListener);
     }
 
-    public void amenitiesRevenueBack(ActionListener actionListener){
-        this.amenitiesRevenueBack.addActionListener(actionListener);
+    public void goToTotalRevenueButton(ActionListener actionListener) {
+        this.goToTotaleRevenue.addActionListener(actionListener);
+    }
+
+    public void monthlyBackButton(ActionListener actionListener) {
+        this.monthlyBack.addActionListener(actionListener);
+    }
+
+    public void totalUseBackButton(ActionListener actionListener) {
+        this.totalUseBack.addActionListener(actionListener);
+    }
+
+    public void monthlyRevenueBackButton(ActionListener actionListener) {
+        this.monthlyRevenueBack.addActionListener(actionListener);
+    }
+
+    public void totalRevenueBackButton(ActionListener actionListener) {
+        this.totalRevenueBack.addActionListener(actionListener);
+    }
+
+    // Table Setters
+    public void setMonthlyUseTable(Object[][] data) {
+        String[] columnNames = {
+                "Year", "Month", "Amenity Name", "Total Usages"
+        };
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        mostPopularTable.setModel(model);
+
+        TableColumnModel cm = mostPopularTable.getColumnModel();
+        cm.getColumn(0).setMinWidth(100);
+        cm.getColumn(1).setMinWidth(100);
+        cm.getColumn(2).setMinWidth(200);
+        cm.getColumn(3).setMinWidth(150);
+    }
+
+    public void setTotalUseTable(Object[][] data) {
+        String[] columnNames = {
+                "Amenity Name", "Number of Uses"
+        };
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        mostPopularTable2.setModel(model);
+
+        TableColumnModel cm = mostPopularTable2.getColumnModel();
+        cm.getColumn(0).setMinWidth(120);
+        cm.getColumn(1).setMinWidth(150);
+    }
+
+    public void setMonthlyRevenueTable(Object[][] data) {
+        String[] columnNames = {
+                "Year", "Month", "Amenity Name", "Total Revenue"
+        };
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        mostPopularTable3.setModel(model);
+
+        TableColumnModel cm = mostPopularTable3.getColumnModel();
+        cm.getColumn(0).setMinWidth(100);
+        cm.getColumn(1).setMinWidth(100);
+        cm.getColumn(2).setMinWidth(200);
+        cm.getColumn(3).setMinWidth(150);
+    }
+
+    public void setTotalRevenueTable(Object[][] data) {
+        String[] columnNames = {
+                "Amenity Name", "Total Revenue"
+        };
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        mostPopularTable4.setModel(model);
+
+        TableColumnModel cm = mostPopularTable4.getColumnModel();
+        cm.getColumn(0).setMinWidth(120);
+        cm.getColumn(1).setMinWidth(150);
     }
 }

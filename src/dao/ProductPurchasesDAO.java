@@ -12,10 +12,20 @@ public class ProductPurchasesDAO {
 
     // TODO: Code related methods. Refer to any implemented DAO.
     // SINGLE QUERY UPDATE
-    public void insertProductPurchase(int memberID, int productID, int quantitySold) {
+    public boolean insertProductPurchase(int memberID, int productID, int quantitySold) {
         if (quantitySold <= 0) {
             System.out.println("Product purchase quantity sold is invalid.");
-            return;
+            return false;
+        }
+
+        if (MembersDAO.selectMember(memberID) == null) {
+            System.out.println("Member does not exist.");
+            return false;
+        }
+
+        if (ProductsDAO.selectProduct(productID) == null) {
+            System.out.println("Product does not exist.");
+            return false;
         }
 
         String sql = "INSERT INTO product_purchases (member_id, product_id, quantity_sold, purchase_date_time) " +
@@ -32,11 +42,15 @@ public class ProductPurchasesDAO {
             System.out.println("Product purchase record inserted successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
+            return false;
         }
+        return true;
     }
 
-    public void deleteProductPurchase(int productPurchaseID) {
+    public boolean deleteProductPurchase(int productPurchaseID) {
+        if (selectProductPurchase(productPurchaseID) == null) return false;
         DBUtils.deleteTableRecordsByKey("product_purchases", "product_purchase_id", productPurchaseID);
+        return true;
     }
 
     public void updateProductPurchase(int productPurchaseID, ProductPurchase pp) {
@@ -114,15 +128,23 @@ public class ProductPurchasesDAO {
     // TRANSACIONS
     // sell is insert
     // delete is delete
-    public void cancelProductPurchase(int productPurchaseID) {
+    public boolean cancelProductPurchase(int productPurchaseID) {
+        if (selectProductPurchase(productPurchaseID) == null) return false;
+
         ProductPurchase pp = selectProductPurchase(productPurchaseID);
         int quantity = pp.quantitySold();
         ProductsDAO.undoPurchase(productPurchaseID, quantity);
         deleteProductPurchase(productPurchaseID);
+        return true;
     }
 
-    public void updateProductPurchase(int oldProductID, int newProductID, int quantitySold, int memberID) {
-        ProductPurchase oldPP = selectProductPurchase(oldProductID);
+    public boolean updateProductPurchase(int productPurchaseID, int newProductID, int quantitySold, int memberID) {
+        if (selectProductPurchase(productPurchaseID) == null) return false;
+        if (ProductsDAO.selectProduct(newProductID) == null) return false;
+        if (MembersDAO.selectMember(memberID) == null) return false;
+
+        ProductPurchase oldPP = selectProductPurchase(productPurchaseID);
+        int oldProductID = oldPP.productID();
         ProductPurchase newPP = new ProductPurchase(
             oldPP.productPurchaseID(),
             memberID,
@@ -132,6 +154,7 @@ public class ProductPurchasesDAO {
         );
         ProductsDAO.undoPurchase(oldProductID, quantitySold);
         ProductsDAO.removeStock(newProductID, quantitySold);
+        return true;
     }
 
     // UTILITY FUNCTIONS
@@ -163,6 +186,13 @@ public class ProductPurchasesDAO {
         }
     }
 
+    public String[] getComboBoxProductIDs() {
+        return DBUtils.selectAllKeysFromTable("product_purchases", "productID");
+    }
+
+    public String[] getComboBoxMemberIDs() {
+        return DBUtils.selectAllKeysFromTable("product_purchases", "memberID");
+    }
 
     public void closeStatement() {
         DBUtils.closeStatement(statement);

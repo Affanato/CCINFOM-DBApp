@@ -370,15 +370,15 @@ public class SubscriptionsReportView extends JFrame {
         return this.subscriptionsReportFrame;
     }
 
-    public JFrame getNewMonthlyFrame(){
+    public JFrame getNewMonthlyFrame() {
         return this.newMonthlyFrame;
     }
 
-    public JFrame getNewYearlyFrame(){
+    public JFrame getNewYearlyFrame() {
         return this.newYearlyFrame;
     }
 
-    public JFrame getTotalSubscriptionsFrame(){
+    public JFrame getTotalSubscriptionsFrame() {
         return this.totalSubscriptionsFrame;
     }
 
@@ -387,27 +387,71 @@ public class SubscriptionsReportView extends JFrame {
         this.subscriptionsReportBack.addActionListener(actionListener);
     }
 
-    public void goToNewMonthlySubscriptionsButton(ActionListener actionListener){
+    public void goToNewMonthlySubscriptionsButton(ActionListener actionListener) {
         this.goToNewMonthlySubscriptions.addActionListener(actionListener);
     }
 
-    public void goToNewYearlySubscriptionsButton(ActionListener actionListener){
+    public void goToNewYearlySubscriptionsButton(ActionListener actionListener) {
         this.goToNewYearlySubscriptions.addActionListener(actionListener);
     }
 
-    public void goToTotalSubscriptionsButton(ActionListener actionListener){
+    public void goToTotalSubscriptionsButton(ActionListener actionListener) {
         this.goToTotalSubscriptions.addActionListener(actionListener);
     }
 
-    public void newMonthlyBackButton(ActionListener actionListener){
+    public void newMonthlyBackButton(ActionListener actionListener) {
         this.newMonthlyBack.addActionListener(actionListener);
     }
 
-    public void newYearlyBackButton(ActionListener actionListener){
+    public void newYearlyBackButton(ActionListener actionListener) {
         this.newYearlyBack.addActionListener(actionListener);
     }
 
-    public void totalSubscriptionsBackButton(ActionListener actionListener){
+    public void totalSubscriptionsBackButton(ActionListener actionListener) {
         this.totalSubscriptionsBack.addActionListener(actionListener);
     }
+
+    // Table Setters
+    public void setNewMonthlySubscriptionsTable(Object[][] data) {
+        String[] columnNames = {
+                "Year", "Month", "Subscription Type", "Total Subscriptions", "Total Revenue"
+        };
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        sessionTable.setModel(model);
+
+        TableColumnModel cm = sessionTable.getColumnModel();
+        cm.getColumn(0).setMinWidth(100);
+        cm.getColumn(1).setMinWidth(100);
+        cm.getColumn(2).setMinWidth(200);
+        cm.getColumn(3).setMinWidth(200);
+        cm.getColumn(4).setMinWidth(200);
+    }
+
+    public void setNewYearlySubscriptionsTable(Object[][] data) {
+        String[] columnNames = {
+                "Year", "Subscription Type", "Total Subscriptions", "Total Revenue"
+        };
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        sessionTable3.setModel(model);
+
+        TableColumnModel cm = sessionTable3.getColumnModel();
+        cm.getColumn(0).setMinWidth(100);
+        cm.getColumn(1).setMinWidth(200);
+        cm.getColumn(2).setMinWidth(200);
+        cm.getColumn(3).setMinWidth(200);
+    }
+
+    public void setTotalSubscriptionsTable(Object[][] data) {
+        String[] columnNames = {
+                "Subscription Type", "Total Subscriptions", "Total Revenue"
+        };
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        sessionTable2.setModel(model);
+
+        TableColumnModel cm = sessionTable2.getColumnModel();
+        cm.getColumn(0).setMinWidth(200);
+        cm.getColumn(1).setMinWidth(200);
+        cm.getColumn(2).setMinWidth(200);
+    };
+
 }

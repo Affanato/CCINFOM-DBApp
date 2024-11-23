@@ -12,10 +12,10 @@ public class ProductsDAO {
 
     // TODO: Code related methods. Refer to any implemented DAO.
     // SINGLE UPDATE QUERIES
-    public void insertProduct(String productBrand, String productName, String productDescription, double productPrice, int availableQuantity) {
+    public boolean insertProduct(String productBrand, String productName, String productDescription, double productPrice, int availableQuantity) {
         if (productPrice <= 0 || availableQuantity < 0) {
             System.out.println("Invalid price or quantity");
-            return;
+            return false;
         }
 
         String sql = "INSERT INTO products (product_brand, product_name, product_description, product_price, available_quantity) " +
@@ -33,16 +33,21 @@ public class ProductsDAO {
             System.out.println("Product record inserted successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
+            return false;
         }
+        return true;
     }
 
-    public void deleteProduct(int productID) {
+    public boolean deleteProduct(int productID) {
+        if (selectProduct(productID) == null) return false;
+        DBUtils.invalidateTableForeignKey("product_purchases", "product_id", productID);
         DBUtils.deleteTableRecordsByKey("products", "product_id", productID);
+        return true;
     }
 
-    public void updateProduct(int productID, Product product) {
+    public boolean updateProduct(int productID, Product product) {
         if (!DBUtils.primaryKeyExistsInATable("products", "product_id", productID)) {
-            return;
+            return false;
         }
 
         String sql = "UPDATE products " +
@@ -66,22 +71,24 @@ public class ProductsDAO {
             System.out.println("Product record updated successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
+            return false;
         }
+        return true;
     }
 
     // TRANSACTIONS
     // NOTE: addProduct is just insertProduct
-    public void sellProduct(int productID, int quantitySold) {
+    public boolean sellProduct(int productID, int quantitySold) {
         // EDGE/INVALID CASES (invalid product id, insufficient stock)
         if (!DBUtils.primaryKeyExistsInATable("products", "product_id", productID)) {
             System.out.println("The Product ID " + productID + " does not exist.");
-            return;
+            return false;
         }
 
         Product product = selectProduct(productID);
         if (product.availableQuantity() < quantitySold) {
             System.out.println("Insufficient stock for Product ID: " + productID + ".");
-            return;
+            return false;
         }
 
         // Calculate the new available quantity
@@ -99,11 +106,13 @@ public class ProductsDAO {
 
         // Update the product in the database
         updateProduct(productID, updatedProduct);
+
+        return true;
     }
 
-    public void restockProduct(int productID, int quantityAdded) {
+    public boolean restockProduct(int productID, int quantityAdded) {
         if (!DBUtils.primaryKeyExistsInATable("products", "product_id", productID)) {
-            return;
+            return false;
         }
 
         Product product = selectProduct(productID);
@@ -117,6 +126,7 @@ public class ProductsDAO {
         );
 
         updateProduct(productID, updatedProduct);
+        return true;
     }
 
     // REPORTS

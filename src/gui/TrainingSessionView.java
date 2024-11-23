@@ -243,6 +243,7 @@ public class TrainingSessionView {
 			editorPane1.setBackground(new Color(0xb5b9b8));
 			schedulSessionFrameContentPane.add(editorPane1);
 			editorPane1.setBounds(295, 145, 640, 350);
+			editorPane1.setEditable(false);
 
 			//---- scheduleBack ----
 			scheduleBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
@@ -314,6 +315,7 @@ public class TrainingSessionView {
 			editorPane2.setBackground(new Color(0xb5b9b8));
 			cancelSessionFrameContentPane.add(editorPane2);
 			editorPane2.setBounds(360, 215, 470, 220);
+			editorPane2.setEditable(false);
 
 			//---- cancelBack ----
 			cancelBack.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
@@ -459,6 +461,7 @@ public class TrainingSessionView {
 			editorPane3.setBackground(new Color(0xb5b9b8));
 			updateSessionFrame1ContentPane.add(editorPane3);
 			editorPane3.setBounds(360, 215, 470, 220);
+			editorPane3.setEditable(false);
 
 			//---- updateBack1 ----
 			updateBack1.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
@@ -566,11 +569,13 @@ public class TrainingSessionView {
 			updateSubscriptionID.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			updateSessionFrame2ContentPane.add(updateSubscriptionID);
 			updateSubscriptionID.setBounds(505, 175, 390, 40);
+			updateSubscriptionID.setEditable(false);
 
 			//---- editorPane4 ----
 			editorPane4.setBackground(new Color(0xb5b9b8));
 			updateSessionFrame2ContentPane.add(editorPane4);
 			editorPane4.setBounds(295, 145, 640, 350);
+			editorPane4.setEditable(false);
 
 			//---- updateBack2 ----
 			updateBack2.setSelectedIcon(new ImageIcon("resource\\backButton.jpg"));
@@ -765,6 +770,11 @@ public class TrainingSessionView {
 	public JComboBox<String> getTrainerIDComboBox() {
 		return this.trainerID;
 	}
+
+	public JComboBox<String> getUpdateTrainerIDComboBox() {
+		return this.updateTrainerID;
+	}
+
 	public JComboBox<String> getTrainingSessionIDComboBox() {
 		return this.trainingSessionID;
 	}
@@ -795,11 +805,12 @@ public class TrainingSessionView {
 		return this.updateSessionFrame2;
 	}
 
-	public int getSubscriptionID() {
-		return this.subscriptionID.getSelectedIndex(); // might have to edit if list is only for active suusbcriptions
+	// sched session
+	public String getMemberID() {
+		return (String) this.subscriptionID.getSelectedItem(); // might have to edit if list is only for active suusbcriptions
 	}
-	public int getTrainerID() {
-		return this.trainerID.getSelectedIndex();
+	public String getTrainerID() {
+		return (String) this.trainerID.getSelectedItem();
 	}
 	public String getStartDate() {
 		return this.startdatetime.getText();
@@ -808,16 +819,36 @@ public class TrainingSessionView {
 		return this.enddatetime.getText();
 	}
 
-	public int getTrainingSessionID() {
-		return this.trainingSessionID.getSelectedIndex();
+	public String getTrainingSessionID() {
+		return (String) this.trainingSessionID.getSelectedItem();
+	}
+	public JComboBox getMemberIDBox() {
+		return this.subscriptionID; // might have to edit if list is only for active suusbcriptions
+	}
+	public JComboBox getTrainerIDBox() {
+		return this.trainerID;
 	}
 
 	// update
+	public String getUpdateTrainingSessionID() {
+		return (String) this.updateTrainingSessionID.getSelectedItem();
+	}
+
 	public void setUpdateSubscriptionID(String text) {
 		updateSubscriptionID.setText(text); // might have to edit if list is only for active suusbcriptions
 	}
-	public int getUpdateTrainerID() {
-		return this.updateTrainerID.getSelectedIndex();
+	public void setUpdateTrainerID(String text) {
+		this.updateTrainerID.setSelectedItem(text);
+	}
+	public void setUpdateStartDate(String text) {
+		this.updateStartdatetime.setText(text);
+	}
+	public void setUpdateEndDate(String text) {
+		this.updateStartdatetime.setText(text);
+	}
+
+	public String getUpdateTrainerID() {
+		return (String) this.updateTrainerID.getSelectedItem();
 	}
 	public String getUpdateStartDate() {
 		return this.updateStartdatetime.getText();
@@ -883,6 +914,23 @@ public class TrainingSessionView {
 
 	// set table model
 	public void setTrainerSessionTable(Object[][] data) { 
+		String[] columnNames = {"Training Session ID", "Subscription ID", "Trainer ID", "Start Date and Time", "End Date and Time"};
+		DefaultTableModel model = new DefaultTableModel(data, columnNames);
+		trainingSessionTable.setModel(model);
+
+		{
+			TableColumnModel cm = trainingSessionTable.getColumnModel();
+			cm.getColumn(0).setMinWidth(150);
+			cm.getColumn(0).setMaxWidth(150);
+			cm.getColumn(1).setMinWidth(150);
+			cm.getColumn(1).setMaxWidth(150);
+			cm.getColumn(2).setMinWidth(150);
+			cm.getColumn(2).setMaxWidth(150);
+		}
+	}
+
+	// set table model
+	public void setTrainerSessionTable2(Object[][] data) { 
 		String[] columnNames = {"Training Session ID", "Subscription ID", "Trainer ID", "Start Date and Time", "End Date and Time"};
 		DefaultTableModel model = new DefaultTableModel(data, columnNames);
 		trainingSessionTable.setModel(model);

@@ -28,4 +28,13 @@ public enum Sex {
         }
         return false;
     }
+
+    public static Status fromDisplayName(String description) {
+        for (Status status : Status.values()) {
+            if (status.getDescription().equalsIgnoreCase(description)) {
+                return status; // Return the enum constant (e.g., Status.ACTIVE)
+            }
+        }
+        throw new IllegalArgumentException("No enum constant with display name: " + description);
+    }
 }

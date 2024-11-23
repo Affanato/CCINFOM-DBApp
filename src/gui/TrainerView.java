@@ -484,7 +484,7 @@ public class TrainerView {
 						{null, null, null, null, null, null, null, null, null, null, null},
 					},
 					new String[] {
-						"Trainer ID", "Last Name", "First Name", "Sex", "Phone Number", "Street", "Barangay", "City", "Province", "Specialty", "Status"
+						"Trainer ID", "Last Name", "First Name", "Birth date", "Sex", "Phone Number", "Street", "Barangay", "City", "Province", "Specialty", "Status"
 					}
 				));
 				{
@@ -594,7 +594,8 @@ public class TrainerView {
 			//---- updateTrainerStatus ----
 			updateTrainerStatus.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
 			updateTrainerStatus.setModel(new DefaultComboBoxModel<>(new String[] {
-				"item"
+				"ACTIVE",
+				"INACTIVE"
 			}));
 			updateStatusFrameContentPane.add(updateTrainerStatus);
 			updateTrainerStatus.setBounds(525, 310, 295, 35);
@@ -998,6 +999,9 @@ public class TrainerView {
 	public JComboBox<String> getTrainerIDJComboBox() {
 		return this.trainerID;
 	}
+	public JComboBox<String> getUpdateTrainerIDJComboBox() {
+		return this.trainerID2;
+	}
 	public JComboBox<String> getUpdateStatusTrainerIDJComboBox() {
 		return this.updateStatusTrainerID;
 	}
@@ -1058,8 +1062,8 @@ public class TrainerView {
 	}
 
 	// update
-	public String getUpdateFirstName() {
-		return this.updateFirstname.getText();
+	public String getUpdateLastName() {
+		return this.updateLastName.getText();
 	}
 	public String getUpdatePhoneNumber() {
 		return this.updatePhoneNumber.getText();
@@ -1079,8 +1083,8 @@ public class TrainerView {
 	public String getUpdateSpeciality() {
 		return this.updateSpeciality.getText();
 	}
-	public int getTrainerID2() {
-		return this.trainerID.getSelectedIndex() + 1;
+	public String getTrainerID2() {
+		return (String) this.trainerID.getSelectedItem();
 	}
 
 	public void setUpdateFirstName(String name) {
@@ -1112,8 +1116,8 @@ public class TrainerView {
 	}
 
 	// delete
-	public int getTrainerID() {
-		return this.trainerID.getSelectedIndex() + 1;
+	public String getTrainerID() {
+		return (String) this.trainerID.getSelectedItem();
 	}
 
 	// update status
@@ -1183,7 +1187,7 @@ public class TrainerView {
 
 	// set table model
 	public void setTrainerTable(Object[][] data) { 
-		String[] columnNames = {"Trainer ID", "Last Name", "First Name", "Sex", "Phone Number", "Street", "Barangay", "City", "Province", "Specialty", "Status"};
+		String[] columnNames = {"Trainer ID", "Last Name", "First Name", "Birth Date", "Sex", "Phone Number", "Street", "Barangay", "City", "Province", "Specialty", "Status"};
 		DefaultTableModel model = new DefaultTableModel(data, columnNames);
 		trainerTable.setModel(model);
 		{
@@ -1192,16 +1196,17 @@ public class TrainerView {
 			cm.getColumn(0).setMinWidth(80);
 			cm.getColumn(1).setMinWidth(150);
 			cm.getColumn(2).setMinWidth(150);
-			cm.getColumn(3).setMinWidth(80);
-			cm.getColumn(4).setMinWidth(120);
-			cm.getColumn(4).setPreferredWidth(120);
-			cm.getColumn(5).setMinWidth(150);
+			cm.getColumn(3).setMinWidth(150);
+			cm.getColumn(4).setMinWidth(80);
+			cm.getColumn(5).setMinWidth(120);
+			cm.getColumn(5).setPreferredWidth(120);
 			cm.getColumn(6).setMinWidth(150);
 			cm.getColumn(7).setMinWidth(150);
 			cm.getColumn(8).setMinWidth(150);
 			cm.getColumn(9).setMinWidth(150);
 			cm.getColumn(10).setMinWidth(150);
-			cm.getColumn(10).setMaxWidth(150);
+			cm.getColumn(11).setMinWidth(150);
+			cm.getColumn(11).setMaxWidth(150);
 		}
 	}
 }

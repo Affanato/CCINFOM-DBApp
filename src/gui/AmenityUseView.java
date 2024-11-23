@@ -835,13 +835,13 @@ public class AmenityUseView extends JFrame {
         this.updateSessionDetailsBack.addActionListener(actionListener);
     }
 
+    // Table Setters
     public void setSessionTable(Object[][] data) {
         String[] columnNames = {
             "Amenity Log ID", "Member ID", "Amenity ID", "Start Date & Time", "Usage Hours", "Total Price"
-    };
-
-    DefaultTableModel model = new DefaultTableModel(data, columnNames);
-    sessionTable.setModel(model);
+        };
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        sessionTable.setModel(model);
     
         TableColumnModel cm = sessionTable.getColumnModel();
         cm.getColumn(0).setMinWidth(100);

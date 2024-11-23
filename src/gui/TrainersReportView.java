@@ -61,7 +61,7 @@ public class TrainersReportView extends JFrame {
             trainersReport.setBounds(0, 0, 1200, 55);
 
             //---- goToMonthlySessions ----
-            goToMonthlySessions.setText("MONTHLY TRAINER SESSIONS");
+            goToMonthlySessions.setText("MONTHLY TRAINERS SESSIONS");
             goToMonthlySessions.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
             goToMonthlySessions.setForeground(Color.white);
             goToMonthlySessions.setBackground(new Color(0x3ca3cb));
@@ -69,7 +69,7 @@ public class TrainersReportView extends JFrame {
             goToMonthlySessions.setBounds(485, 265, 250, 55);
 
             //---- goToYearlySessions ----
-            goToYearlySessions.setText("YEARLY TRAINER SESSIONS");
+            goToYearlySessions.setText("YEARLY TRAINERS SESSIONS");
             goToYearlySessions.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
             goToYearlySessions.setForeground(Color.white);
             goToYearlySessions.setBackground(new Color(0x3ca3cb));
@@ -143,7 +143,7 @@ public class TrainersReportView extends JFrame {
             tablePane.setBounds(115, 145, 970, 435);
 
             //---- mostPopular ----
-            mostPopular.setText("Trainers Report: Monthly Trainer Sessions");
+            mostPopular.setText("Trainers Report: Monthly Trainers Sessions");
             mostPopular.setBackground(new Color(0xc80f2e));
             mostPopular.setHorizontalAlignment(SwingConstants.CENTER);
             mostPopular.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
@@ -197,7 +197,7 @@ public class TrainersReportView extends JFrame {
                                 {null, null, null, null, null},
                         },
                         new String[] {
-                                "Month", "Last Name", "First Name", "Program Specialty", "Total Sessions"
+                                "Year", "Last Name", "First Name", "Program Specialty", "Total Sessions"
                         }
                 ));
                 {
@@ -216,7 +216,7 @@ public class TrainersReportView extends JFrame {
             tablePane2.setBounds(115, 145, 970, 435);
 
             //---- mostPopular2 ----
-            mostPopular2.setText("Trainers Report: Yearly Trainer Sessions");
+            mostPopular2.setText("Trainers Report: Yearly Trainers Sessions");
             mostPopular2.setBackground(new Color(0xc80f2e));
             mostPopular2.setHorizontalAlignment(SwingConstants.CENTER);
             mostPopular2.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
@@ -305,4 +305,38 @@ public class TrainersReportView extends JFrame {
     public void yearlySessionsBackButton(ActionListener actionListener) {
         this.yearlySessionsBack.addActionListener(actionListener);
     }
+
+    // Table Setters
+    public void setMonthlyTable(Object[][] data) {
+        String[] columnNames = {
+                "Year", "Month", "Last Name", "First Name", "Program Specialty", "Total Sessions"
+        };
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        monthlyTable.setModel(model);
+
+        TableColumnModel cm = monthlyTable.getColumnModel();
+        cm.getColumn(0).setMinWidth(100);
+        cm.getColumn(1).setMinWidth(100);
+        cm.getColumn(2).setMinWidth(150);
+        cm.getColumn(3).setMinWidth(150);
+        cm.getColumn(4).setMinWidth(200);
+        cm.getColumn(5).setMinWidth(150);
+    }
+
+    public void setYearlyTable(Object[][] data) {
+        String[] columnNames = {
+                "Year", "Last Name", "First Name", "Program Specialty", "Total Sessions"
+        };
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        yearlyTable.setModel(model);
+
+        TableColumnModel cm = yearlyTable.getColumnModel();
+        cm.getColumn(0).setMinWidth(100);
+        cm.getColumn(1).setMinWidth(150);
+        cm.getColumn(2).setMinWidth(150);
+        cm.getColumn(3).setMinWidth(200);
+        cm.getColumn(4).setMinWidth(150);
+    }
+
 }
+

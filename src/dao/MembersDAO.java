@@ -12,7 +12,7 @@ public class MembersDAO {
     }
 
     // SINGLE UPDATE QUERIES
-    public void insertMember(Member m) {
+    public boolean insertMember(Member m) {
         String sql = "INSERT INTO members (last_name, first_name, birthdate, sex, phone_number, street, barangay, city, province) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -32,7 +32,10 @@ public class MembersDAO {
             System.out.println("Member record inserted successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
+            return false;
         }
+
+        return true;
     }
 
     // TODO: Please update product_purchases and training_sessions corresponding delete methods (not functions HAHAHA)
@@ -46,9 +49,9 @@ public class MembersDAO {
         return true;
     }
 
-    public void updateMember(int memberID, Member m) {
+    public boolean updateMember(int memberID, Member m) {
         if (!DBUtils.primaryKeyExistsInATable("members", "member_id", memberID)) {
-            return;
+            return false;
         }
 
         String sql = "UPDATE members " +
@@ -81,6 +84,7 @@ public class MembersDAO {
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
         }
+        return true;
     }
 
     // SELECT QUERIES
@@ -187,7 +191,13 @@ public class MembersDAO {
         return -1;
     }
 
+    public String[] getComboBoxMemberIDs() {
+        return DBUtils.selectAllKeysFromTable("members", "member_id");
+    }
+
     public void closeStatement() {
         DBUtils.closeStatement(statement);
     }
+
+
 }

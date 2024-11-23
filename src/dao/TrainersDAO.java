@@ -15,7 +15,7 @@ public class TrainersDAO {
     // TODO: In Progress
     // TODO: Code related methods. Refer to any implemented DAO.
     // SINGLE UPDATE QUERIES
-    public void insertTrainer(
+    public boolean insertTrainer(
             String lastName,
             String firstName,
             LocalDate birthdate,
@@ -48,16 +48,21 @@ public class TrainersDAO {
             System.out.println("Trainer record inserted successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
+            return false;
         }
+        return true;
     }
 
-    public void deleteTrainer(int trainerID) {
+    public boolean deleteTrainer(int trainerID) {
+        if (!trainerExists(trainerID)) return false;
+        DBUtils.invalidateTableForeignKey("training_sessions", "trainer_id", trainerID);
         DBUtils.deleteTableRecordsByKey("trainers", "trainer_id", trainerID);
+        return true;
     }
 
-    public void updateTrainer(int trainerID, Trainer t) {
+    public boolean updateTrainer(int trainerID, Trainer t) {
         if (!DBUtils.primaryKeyExistsInATable("trainers", "trainer_id", trainerID)) {
-            return;
+            return false;
         }
 
         String sql = "UPDATE trainers " +
@@ -75,12 +80,28 @@ public class TrainersDAO {
             System.out.println("Trainer record updated successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
+            return false;
         }
+        return true;
     }
 
     // SELECT QUERIES
     public static Trainer selectTrainer(int trainerID) {
         String condition = "WHERE trainer_id = " + trainerID;
+        ResultSet rs = DBUtils.selectAllRecordsFromTable("trainers", condition);
+        assert rs != null;
+        return mapResultSetToTrainer(rs);
+    }
+
+    public static Trainer selectTrainer(String lastName, String firstName) {
+        String condition = "WHERE last_name = '" + lastName + "' && first_name = '" + firstName + "'";
+        ResultSet rs = DBUtils.selectAllRecordsFromTable("trainers", condition);
+        assert rs != null;
+        return mapResultSetToTrainer(rs);
+    }
+
+    public static Trainer selectTrainer(String lastName) {
+        String condition = "WHERE last_name = '" + lastName + "'";
         ResultSet rs = DBUtils.selectAllRecordsFromTable("trainers", condition);
         assert rs != null;
         return mapResultSetToTrainer(rs);
@@ -100,8 +121,9 @@ public class TrainersDAO {
     }
 
     // REC MANAGEMENT & TRANSACTIONS
-    // TODO: turn into one functiom
-    public void updateTrainer(
+    // create is insertTrainer
+    // delete is deletetrainer
+    public boolean updateTrainer(
             int trainerID,
             String lastName,
             LocalDate birthdate,
@@ -113,6 +135,9 @@ public class TrainersDAO {
             String province,
             String programSpecialty
     ) {
+        if (!DBUtils.primaryKeyExistsInATable("trainers", "trainer_id", trainerID)) {
+            return false;
+        }
 
         Trainer oldT = selectTrainer(trainerID);
         Trainer updatedTrainer = new Trainer(
@@ -129,13 +154,12 @@ public class TrainersDAO {
                 programSpecialty != null ? programSpecialty : oldT.programSpecialty(),
                 oldT.trainerStatus()
         );
-        updateTrainer(trainerID, updatedTrainer);
+        return updateTrainer(trainerID, updatedTrainer);
     }
 
-
-    public void fireTrainer(int trainerID) {
+    public boolean setTrainerStatus(int trainerID, String status) {
         if (!DBUtils.primaryKeyExistsInATable("trainers", "trainer_id", trainerID)) {
-            return;
+            return false;
         }
 
         String sql = "UPDATE trainers " +
@@ -144,14 +168,16 @@ public class TrainersDAO {
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
-            ps.setString(1, "inactive");
+            ps.setString(1, status);
             ps.setInt(2, trainerID);
 
             System.out.println("Trainer record set to inactive successfully.");
             ps.executeUpdate();
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
+            return false;
         }
+        return true;
     }
 
     // REPORTS
@@ -193,12 +219,12 @@ public class TrainersDAO {
 
     public Object[][] selectYearlyMembersTrained(int year) {
         String sql = "SELECT t.trainer_id, t.last_name, t.first_name, t.program_specialty, " +
-                "       COUNT(ts.subscription_id) AS numOfMembersTrained " +
-                "FROM trainers t " +
-                "LEFT JOIN training_sessions ts ON (t.trainer_id = ts.trainer_id) " +
-                "                                  AND (YEAR(ts.session_start_datetime) = ?) " +
-                "GROUP BY t.trainer_id " +
-                "ORDER BY numOfMembersTrained DESC, t.program_specialty, t.last_name, t.first_name;";
+                    "       COUNT(ts.subscription_id) AS numOfMembersTrained " +
+                    "FROM trainers t " +
+                    "LEFT JOIN training_sessions ts ON (t.trainer_id = ts.trainer_id) " +
+                    "                                  AND (YEAR(ts.session_start_datetime) = ?) " +
+                    "GROUP BY t.trainer_id " +
+                    "ORDER BY numOfMembersTrained DESC, t.program_specialty, t.last_name, t.first_name;";
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             ps.setInt(1, year);
@@ -226,6 +252,14 @@ public class TrainersDAO {
     }
 
     // UTILITY METHODS
+    public String[] getComboBoxTrainerIDs() {
+        return DBUtils.selectAllKeysFromTable("trainers", "trainer_id");
+    }
+
+    public static boolean trainerExists(int trainerID) {
+        return selectTrainer(trainerID) != null;
+    }
+
     public static Trainer mapResultSetToTrainer(ResultSet rs) {
         try {
             int trainerID = rs.getInt("trainer_id");
@@ -239,7 +273,7 @@ public class TrainersDAO {
             String city = rs.getString("city");
             String province = rs.getString("province");
             String programSpecialty = rs.getString("program_specialty");
-            Status trainerStatus = Status.valueOf(rs.getString("trainer_status"));
+            Status trainerStatus = Status.valueOf(Status.obtainStatus(rs.getString("trainer_status")));
 
             return new Trainer(trainerID, lastName, firstName, birthdate, sex, phoneNumber, street, barangay, city, province, programSpecialty, trainerStatus);
         } catch (SQLException e) {
