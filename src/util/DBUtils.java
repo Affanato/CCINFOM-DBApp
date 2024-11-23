@@ -18,7 +18,7 @@ public class DBUtils {
     //       Please replace with your own in a separate branch. - CJ
     private static final String DB_URL = "jdbc:mysql://localhost:3306/dbgym";
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "hiahkjhs";
+    private static final String DB_PASSWORD = "Buny!020605";
     private static final String SQL_FILEPATH = "dbgym_script.sql";
 
     private static Connection connection = null;
@@ -149,7 +149,7 @@ public class DBUtils {
     }
 
     public static void invalidateTableForeignKey(String table, String foreignKey, int oldID) {
-        updateTableForeignKey(table, foreignKey, oldID, 0);
+        updateTableForeignKey(table, foreignKey, oldID, 1);
     }
 
     /**
@@ -212,7 +212,7 @@ public class DBUtils {
 
         try {
             ResultSet rs = Objects.requireNonNull(getNewStatement()).executeQuery(sql);
-            System.out.printf("All '%s' records retrieved successfully.", table);
+            System.out.printf("All '%s' records retrieved successfully.\n", table);
             return rs;
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
@@ -223,11 +223,11 @@ public class DBUtils {
     public static ResultSet selectAllRecordsFromTable(String table, String condition) {
         String sql = "SELECT * " +
                      "FROM " + table + " " +
-                     condition + " ";
+                     condition + "; ";
 
         try {
             ResultSet rs = Objects.requireNonNull(getNewStatement()).executeQuery(sql);
-            System.out.printf("All records from '%s' with condition retrieved successfully.", table);
+            System.out.printf("All records from '%s' with condition retrieved successfully.\n", table);
             return rs;
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
@@ -268,6 +268,28 @@ public class DBUtils {
 
     public static String[] selectAllKeysFromTable(String table, String key) {
         ResultSet rs = DBUtils.selectAllRecordsFromTable(table);
+        assert rs != null;
+        List<String> sList = new ArrayList<String>();
+
+        try {
+            while (rs.next()) {
+                sList.add(rs.getString(key));
+            }
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+        }
+
+        try {
+            rs.close();
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+        }
+
+        return sList.toArray(new String[0]);
+    }
+
+    public static String[] selectAllKeysFromTable(String table, String key, String condition) {
+        ResultSet rs = DBUtils.selectAllRecordsFromTable(table, condition);
         assert rs != null;
         List<String> sList = new ArrayList<String>();
 

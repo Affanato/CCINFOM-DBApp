@@ -3,6 +3,7 @@ import java.awt.event.ActionListener;
 
 public class AmenitiesReportController {
     private final AmenitiesReportView view = new AmenitiesReportView();
+    private final AmenitiesDAO aDAO = new AmenitiesDAO();
 
     AmenitiesReportController() {
         this.view.amenitiesReportBackButton(new ActionListener() {
@@ -16,6 +17,8 @@ public class AmenitiesReportController {
         this.view.goToMonthlyAmenitiesButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                view.setMonthlyUseTable(aDAO.queryAmenitiesUsagePerMonthPerYear());
+
                 view.getAmenitiesReportFrame().dispose();
                 view.getMonthlyUseFrame().setVisible(true);
             }
@@ -24,6 +27,8 @@ public class AmenitiesReportController {
         this.view.goToTotalAmenitiesButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                view.setTotalUseTable(aDAO.queryAmenitiesUsageLifetime());
+
                 view.getAmenitiesReportFrame().dispose();
                 view.getTotalUseFrame().setVisible(true);
             }
@@ -32,6 +37,8 @@ public class AmenitiesReportController {
         this.view.goToMonthlyRevenueButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                view.setMonthlyRevenueTable(aDAO.queryAmenitiesRevenuePerMonthPerYear());
+
                 view.getAmenitiesReportFrame().dispose();
                 view.getMonthlyRevenueFrame().setVisible(true);
             }
@@ -40,6 +47,8 @@ public class AmenitiesReportController {
         this.view.goToTotalRevenueButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                view.setTotalRevenueTable(aDAO.queryAmenitiesRevenueLifetime());
+
                 view.getAmenitiesReportFrame().dispose();
                 view.getTotalRevenueFrame().setVisible(true);
             }

@@ -351,6 +351,10 @@ public class ProductsDAO {
         }
     }
 
+    public String[] getComboBoxProductIDs() {
+        return DBUtils.selectAllKeysFromTable("products", "product_id");
+    }
+
     // PRODUCT PURCHASE <-> PRODUCT CROSS-TABLE UTILITY METHODS
     public static void staticUpdateProduct(int productID, Product product) {
         if (!DBUtils.primaryKeyExistsInATable("products", "product_id", productID)) {
