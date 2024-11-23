@@ -1084,7 +1084,7 @@ public class TrainerView {
 		return this.updateSpeciality.getText();
 	}
 	public String getTrainerID2() {
-		return (String) this.trainerID.getSelectedItem();
+		return (String) this.trainerID2.getSelectedItem();
 	}
 
 	public void setUpdateFirstName(String name) {
@@ -1108,6 +1108,9 @@ public class TrainerView {
 	public void setCity(String name) {
 		updateCity.setText(name);
 	}
+	public void setSex(String name) {
+		updateSex.setText(name);
+	}
 	public void setProvince(String name) {
 		updateProvince.setText(name);
 	}
@@ -1121,8 +1124,8 @@ public class TrainerView {
 	}
 
 	// update status
-	public int getUpdateStatusTrainerID() {
-		return this.updateStatusTrainerID.getSelectedIndex();
+	public String getUpdateStatusTrainerID() {
+		return (String) this.updateStatusTrainerID.getSelectedItem();
 	}
 
 	public String getUpdateTrainerStatus() {

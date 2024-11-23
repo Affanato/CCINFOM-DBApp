@@ -61,8 +61,7 @@ public class SubscriptionController {
         this.view.goToTerminateButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO change to active subscription IDs
-                view.getTerminateMembershipIDComboBox().setModel(new DefaultComboBoxModel<>(subscriptionsDAO.getComboBoxSubscriptionIDs()));
+                view.getTerminateMembershipIDComboBox().setModel(new DefaultComboBoxModel<>(subscriptionsDAO.getComboBoxActiveSubscriptionIDs()));
 
                 view.getTerminateSubscriptionFrame().setVisible(true);
                 view.getSubscriptionFrame().dispose();
@@ -116,14 +115,11 @@ public class SubscriptionController {
                 int subscriptionType = view.getMembershipTypeComboBox().getSelectedIndex();
                 String startDate = view.getStartDate();
 
-                // TODO FIX
-                /*
-                if (subscriptionsDAO.insertSubscription()) {
+                if (subscriptionsDAO.insertSubscription(memberID, subscriptionType, startDate)) {
                     Message.success();
                 } else {
                     Message.failure();
                 }
-                */
             }
         });
 
