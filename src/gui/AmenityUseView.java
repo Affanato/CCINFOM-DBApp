@@ -753,10 +753,15 @@ public class AmenityUseView extends JFrame {
     }
 
     // Update Details
+    public JComboBox<String> getMemberBar2() {
+        return this.selectMemberBar2;
+    }
+    public JComboBox<String> getAmenityBar2() {
+        return this.selectAmenityBar2;
+    }
     public String getStartTime2() {
         return this.startTime2.getText();
     }
-
     public String getUsageHours2() {
         return this.usageHours2.getText();
     }

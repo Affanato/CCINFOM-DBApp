@@ -118,9 +118,11 @@ public class AmenityUseController {
             public void actionPerformed(ActionEvent e) {
                 int sessionID = Integer.parseInt(view.getSelectUpdate());
                 AmenityLog am = dao.selectAmenityLog(sessionID);
+                MembersDAO mem = new MembersDAO();
+    
 
-                view.setSelectMemberBar2(am.memberID());
-                view.setSelectAmenityBar2(am.amenityID());
+                view.getMemberBar2().setModel(new DefaultComboBoxModel<>(mem.getComboBoxMemberIDs()));
+                view.getAmenityBar2().setModel(new DefaultComboBoxModel<>((amenityDAO.getComboBoxAmenityIDs())));
                 view.setStartTime2(String.valueOf(am.usageStartDateTime()));
                 view.setUsageHours2(String.valueOf(am.usageDurationHours()));
                 
@@ -141,12 +143,13 @@ public class AmenityUseController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Display Success or Fail Message
+                int sessionID = Integer.parseInt(view.getSelectUpdate());
+                int memberid = Integer.parseInt(String.valueOf(view.getMemberBar2().getSelectedItem()));
+                int amenityid = Integer.parseInt(String.valueOf(view.getAmenityBar2().getSelectedItem()));
                 String startDateTime = view.getStartTime2();
                 int usageHours = Integer.parseInt(view.getUsageHours2());
-                int sessionID = Integer.parseInt(view.getSelectUpdate());
-                AmenityLog am = dao.selectAmenityLog(sessionID);
 
-                if (dao.updateAmenityLog(am.amenityLogID(), am.memberID(), am.amenityID(), startDateTime, usageHours)) {
+                if (dao.updateAmenityLog(sessionID, memberid, amenityid, startDateTime, usageHours)) {
                     Message.success();
                 } else {
                     Message.failure();
