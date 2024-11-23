@@ -208,7 +208,7 @@ public class DBUtils {
 
     public static ResultSet selectAllRecordsFromTable(String table) {
         String sql = "SELECT * " +
-                     "FROM " + table + " ";
+                     "FROM " + table + "; ";
 
         try {
             ResultSet rs = Objects.requireNonNull(getNewStatement()).executeQuery(sql);
