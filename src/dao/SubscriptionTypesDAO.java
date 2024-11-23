@@ -11,17 +11,17 @@ public class SubscriptionTypesDAO {
     }
 
     // SINGLE UPDATE QUERIES //
-    public boolean insertSubscriptionType(SubscriptionType s) {
+    public boolean insertSubscriptionType(String name, double price) {
         String sql = "INSERT INTO subscription_types (subscription_type_name, subscription_type_price) " +
                      "VALUES (?, ?) ";
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
-            ps.setString(1, s.subscriptionTypeName());
-            ps.setDouble(2, s.subscriptionTypePrice());
+            ps.setString(1, name);
+            ps.setDouble(2, price);
 
             ps.executeUpdate();
-            System.out.println("subscription_types record inserted successfully.");
+            System.out.println("'subscription_types' record inserted successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
             return false;
@@ -38,7 +38,7 @@ public class SubscriptionTypesDAO {
         return true;
     }
 
-    public boolean updateSubscriptionType(int subscriptionTypeID, SubscriptionType s) {
+    public boolean updateSubscriptionType(int subscriptionTypeID, String name, double price) {
         String sql = "UPDATE subscription_types " +
                      "SET subscription_type_name = ?, " +
                      "    subscription_type_price = ? " +
@@ -46,12 +46,12 @@ public class SubscriptionTypesDAO {
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
-            ps.setString(1, s.subscriptionTypeName());
-            ps.setDouble(2, s.subscriptionTypePrice());
+            ps.setString(1, name);
+            ps.setDouble(2, price);
             ps.setInt(3, subscriptionTypeID);
 
             ps.executeUpdate();
-            System.out.println("subscription_types record updated successfully.");
+            System.out.println("'subscription_types' record updated successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
             return false;
@@ -85,6 +85,11 @@ public class SubscriptionTypesDAO {
 
     public static SubscriptionType mapResultSetToSubscriptionType(ResultSet rs) {
         try {
+            if (!rs.next()) {
+                System.out.println("No SubscriptionType ResultSet data.\n");
+                return null;
+            }
+
             int subscriptionTypeID = rs.getInt("subscription_type_id");
             String subscriptionTypeName = rs.getString("subscription_type_name");
             double subscriptionTypePrice = rs.getDouble("subscription_type_price");

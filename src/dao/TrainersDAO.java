@@ -110,14 +110,14 @@ public class TrainersDAO {
     public Object[][] selectAllTrainers() {
         ResultSet rs = DBUtils.selectAllRecordsFromTable("trainers");
         assert rs != null;
-        return DBUtils.to2DObjectArray(mapResultSetToTrainerList(rs));
+        return mapResultSetToTrainersArr(rs);
     }
 
     public Object[][] selectAllActiveTrainers() {
         String condition = "WHERE trainer_status = 'Active'";
         ResultSet rs = DBUtils.selectAllRecordsFromTable("trainers", condition);
         assert rs != null;
-        return DBUtils.to2DObjectArray(mapResultSetToTrainerList(rs));
+        return mapResultSetToTrainersArr(rs);
     }
 
     // REC MANAGEMENT & TRANSACTIONS
@@ -262,6 +262,11 @@ public class TrainersDAO {
 
     public static Trainer mapResultSetToTrainer(ResultSet rs) {
         try {
+            if (!rs.next()) {
+                System.out.println("No Trainer ResultSet data.\n");
+                return null;
+            }
+
             int trainerID = rs.getInt("trainer_id");
             String lastName = rs.getString("last_name");
             String firstName = rs.getString("first_name");
@@ -289,6 +294,42 @@ public class TrainersDAO {
                 trainerList.add(mapResultSetToTrainer(rs));
             }
             return trainerList;
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
+    }
+
+    public static Object[] mapResultSetToTrainerArr(ResultSet rs) {
+        try {
+            return new Object[] {
+                    rs.getInt("trainer_id"),
+                    rs.getString("last_name"),
+                    rs.getString("first_name"),
+                    rs.getDate("birthdate").toString(),
+                    rs.getString("sex"),
+                    rs.getString("phone_number"),
+                    rs.getString("street"),
+                    rs.getString("barangay"),
+                    rs.getString("city"),
+                    rs.getString("province"),
+                    rs.getString("program_specialty"),
+                    rs.getString("trainer_status")
+            };
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
+    }
+
+    public static Object[][] mapResultSetToTrainersArr(ResultSet rs) {
+        List<Object[]> amenitiesArr = new ArrayList<Object[]>();
+
+        try {
+            while (rs.next()) {
+                amenitiesArr.add(mapResultSetToTrainerArr(rs));
+            }
+            return amenitiesArr.toArray(new Object[0][]);
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
             return null;
