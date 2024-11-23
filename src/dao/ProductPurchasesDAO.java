@@ -160,6 +160,11 @@ public class ProductPurchasesDAO {
     // UTILITY FUNCTIONS
     public static ProductPurchase mapResultSetToProductPurchase(ResultSet rs) {
         try {
+            if (!rs.next()) {
+                System.out.println("No ProductPurchase ResultSet data.\n");
+                return null;
+            }
+
             int productPurchaseID = rs.getInt("product_purchase_id");
             int memberID = rs.getInt("member_id");
             int productID = rs.getInt("product_id");

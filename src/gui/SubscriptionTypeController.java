@@ -7,6 +7,8 @@ import javax.swing.DefaultComboBoxModel;
 public class SubscriptionTypeController {
     private SubscriptionTypeView mtView = new SubscriptionTypeView();
     private SubscriptionTypesDAO dao = new SubscriptionTypesDAO();
+    private AmenitiesDAO daoAm = new AmenitiesDAO();
+    private SubscriptionTypeAmenitiesDAO sdao = new SubscriptionTypeAmenitiesDAO();
 
     public SubscriptionTypeController() {
         this.mtView.memberBackButton(new ActionListener() {
@@ -146,6 +148,8 @@ public class SubscriptionTypeController {
         this.mtView.goToAddAmenityButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                mtView.getAddAmenityIDJComboBox().setModel(new DefaultComboBoxModel<>(daoAm.getComboBoxAmenityIDs()));
+                
                 mtView.getAddAmenityFrame().setVisible(true);
                 mtView.getUpdateSubscriptionTypeFrame2().dispose();
             }
@@ -154,6 +158,8 @@ public class SubscriptionTypeController {
         this.mtView.goToRemoveAmenityButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int id = Integer.parseInt(mtView.getUpdateSubscriptionName());
+                mtView.getRemoveAmenityIDJComboBox().setModel(new DefaultComboBoxModel<>(SubscriptionTypeAmenitiesDAO.selectAllAmenityIDsOfASubscriptionType(id)));  
                 mtView.getRemoveAmenityFrame().setVisible(true);
                 mtView.getUpdateSubscriptionTypeFrame2().dispose();
             }
@@ -162,6 +168,8 @@ public class SubscriptionTypeController {
         this.mtView.goToReadAmenityButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int id = Integer.parseInt(mtView.getUpdateSubscriptionName());
+                mtView.setAmenityTable(sdao.selectAllAmenityNamesOfASubscriptionType(id));
                 mtView.getReadAmenityFrame().setVisible(true);
                 mtView.getUpdateSubscriptionTypeFrame2().dispose();
             }
@@ -178,7 +186,15 @@ public class SubscriptionTypeController {
         this.mtView.addAmenityButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //
+                int id = Integer.parseInt(mtView.getUpdateSubscriptionName());
+                int amenityid = Integer.parseInt(String.valueOf(mtView.getAddAmenityIDJComboBox().getSelectedItem()));
+                SubscriptionTypeAmenity snew = new SubscriptionTypeAmenity(id, amenityid);
+
+                if (sdao.insertSubscriptionTypeAmenity(snew)) {
+                    Message.success();
+                } else {
+                    Message.failure();
+                }
             }
         });
 
@@ -193,7 +209,15 @@ public class SubscriptionTypeController {
         this.mtView.removeAmenityButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //
+                int id = Integer.parseInt(mtView.getUpdateSubscriptionName());
+                int amenityid = Integer.parseInt(String.valueOf(mtView.getRemoveAmenityIDJComboBox().getSelectedItem()));
+                SubscriptionTypeAmenity snew = new SubscriptionTypeAmenity(id, amenityid);
+
+                if (sdao.deleteSubscriptionTypeAmenity(snew)) {
+                    Message.success();
+                } else {
+                    Message.failure();
+                }
             }
         });
 

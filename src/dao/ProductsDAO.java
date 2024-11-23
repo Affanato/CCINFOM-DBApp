@@ -316,7 +316,7 @@ public class ProductsDAO {
                     "    JOIN product_purchases pp ON pp.product_id = p.product_id " +
                     "GROUP BY year," +
                     "    p.product_id, p.product_brand, p.product_name " +
-                    "ORDER BY year DESC" +
+                    "ORDER BY year DESC," +
                     "    totalQuantitySold DESC, p.product_brand, p.product_name;";
 
 
@@ -357,6 +357,11 @@ public class ProductsDAO {
     // UTILITY METHODS
     public static Product mapResultSetToProduct(ResultSet rs) {
         try {
+            if (!rs.next()) {
+                System.out.println("No Product ResultSet data.\n");
+                return null;
+            }
+
             int productID = rs.getInt("product_id");
             String productBrand = rs.getString("product_brand");
             String productName = rs.getString("product_name");

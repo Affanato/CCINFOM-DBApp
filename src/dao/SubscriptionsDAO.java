@@ -108,14 +108,40 @@ public class SubscriptionsDAO {
     public Object[][] selectAllSubscriptions() {
         ResultSet rs = DBUtils.selectAllRecordsFromTable("subscriptions");
         assert rs != null;
-        return DBUtils.to2DObjectArray(Objects.requireNonNull(mapResultSetToSubscriptionList(rs)));
+
+        ArrayList<Subscription> subscriptions = mapResultSetToSubscriptionList(rs);
+
+        if (subscriptions == null) { // no subscriptions found
+            System.err.println("subscriptions equals null.");
+            return new Object[0][0];
+        }
+
+        if (subscriptions.contains(null)) {
+            System.err.println("subscriptions contains null.");
+            return new Object[0][0];
+        }
+
+        return DBUtils.to2DObjectArray(subscriptions);
     }
 
     public Object[][] selectActiveSubscriptions() {
         String condition = "WHERE CURRENT_DATE BETWEEN subscription_start_date AND subscription_end_date ";
         ResultSet rs = DBUtils.selectAllRecordsFromTable("subscriptions", condition);
         assert rs != null;
-        return DBUtils.to2DObjectArray(Objects.requireNonNull(mapResultSetToSubscriptionList(rs)));
+
+        ArrayList<Subscription> subscriptions = mapResultSetToSubscriptionList(rs);
+
+        if (subscriptions == null) { // no subscriptions found
+            System.err.println("subscriptions equals null.");
+            return new Object[0][0];
+        }
+
+        if (subscriptions.contains(null)) {
+            System.err.println("subscriptions contains null.");
+            return new Object[0][0];
+        }
+
+        return DBUtils.to2DObjectArray(subscriptions);
     }
 
     // REPORTS
@@ -298,7 +324,7 @@ public class SubscriptionsDAO {
             return subscriptionList;
         } catch(SQLException e) {
             ExceptionHandler.handleException(e);
-            return null;
+            return new ArrayList<>();
         }
     }
 
