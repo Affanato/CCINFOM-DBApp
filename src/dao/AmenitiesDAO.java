@@ -98,14 +98,14 @@ public class AmenitiesDAO {
     public Object[][] selectAllAmenities() {
         ResultSet rs = DBUtils.selectAllRecordsFromTable("amenities");
         assert rs != null;
-        return DBUtils.to2DObjectArray(Objects.requireNonNull(mapResultSetToAmenityList(rs)));
+        return mapResultSetToAmenitiesArr(rs);
     }
 
     public Object[][] selectAllActiveAmenities() {
         String condition = "WHERE amenity_status = 'Active'";
         ResultSet rs = DBUtils.selectAllRecordsFromTable("amenities", condition);
         assert rs != null;
-        return DBUtils.to2DObjectArray(Objects.requireNonNull(mapResultSetToAmenityList(rs)));
+        return mapResultSetToAmenitiesArr(rs);
     }
 
     // TRANSACTIONS //
@@ -294,6 +294,36 @@ public class AmenitiesDAO {
             }
             return amenityList;
         } catch(SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
+    }
+
+    public static Object[] mapResultSetToAmenityArr(ResultSet rs) {
+        try {
+            return new Object[] {
+                    rs.getInt("amenity_id"),
+                    rs.getString("amenity_name"),
+                    rs.getDouble("walk_in_price_per_hour"),
+                    rs.getTime("opening_time").toLocalTime(),
+                    rs.getTime("closing_time").toLocalTime(),
+                    rs.getString("amenity_status")
+            };
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
+    }
+
+    public static Object[][] mapResultSetToAmenitiesArr(ResultSet rs) {
+        List<Object[]> amenitiesArr = new ArrayList<Object[]>();
+
+        try {
+            while (rs.next()) {
+                amenitiesArr.add(mapResultSetToAmenityArr(rs));
+            }
+            return amenitiesArr.toArray(new Object[0][]);
+        } catch (SQLException e) {
             ExceptionHandler.handleException(e);
             return null;
         }
