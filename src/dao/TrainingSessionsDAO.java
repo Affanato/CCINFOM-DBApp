@@ -35,7 +35,7 @@ public class TrainingSessionsDAO {
             return false;
         }
 
-        String sql = "INSERT INTO training_sessions (subscription_id, trainer_id, session_start_datetime, session_start_datetime) " +
+        String sql = "INSERT INTO training_sessions (subscription_id, trainer_id, session_start_datetime, session_end_datetime) " +
                 "VALUES (?, ?, ?, ?)";
 
         if (MembersDAO.getCurrentSubscriptionID(memberID) == -1) {

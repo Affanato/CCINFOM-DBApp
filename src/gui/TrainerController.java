@@ -164,7 +164,7 @@ public class TrainerController {
         this.tView.updateStatusButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int id = Integer.parseInt(tView.getTrainerID());
+                int id = Integer.parseInt(tView.getUpdateStatusTrainerID());
                 String status = tView.getUpdateTrainerStatus();
                 if (dao.setTrainerStatus(id, status)) {
                     Message.success();
