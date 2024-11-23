@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public record AmenityLog(
         int amenityLogID,
@@ -10,11 +11,13 @@ public record AmenityLog(
 ) implements ConvertibleToObjectArray {
     @Override
     public Object[] toObjectArray() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        
         return new Object[] {
                 amenityLogID,
                 memberID,
                 amenityID,
-                usageStartDateTime,
+                usageStartDateTime.format(formatter),
                 usageDurationHours,
                 usageTotalPrice
         };
