@@ -13,7 +13,7 @@ public class SubscriptionsDAO {
     }
 
     // SINGLE UPDATE QUERIES //
-    public void insertSubscription(int memberID, int subscriptionTypeID, String startDate) {
+    public boolean insertSubscription(int memberID, int subscriptionTypeID, String startDate) {
         LocalDate subscriptionStartDate = DBUtils.convertStringToLocalDate(startDate);
         LocalDate subscriptionEndDate = subscriptionStartDate.plusDays(30);
 
@@ -31,7 +31,10 @@ public class SubscriptionsDAO {
             System.out.println("'subscriptions' record inserted successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
+            return false;
         }
+
+        return true;
     }
 
     public boolean deleteSubscription(int subscriptionID) {
