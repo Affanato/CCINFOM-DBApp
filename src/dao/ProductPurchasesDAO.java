@@ -28,7 +28,7 @@ public class ProductPurchasesDAO {
             return false;
         }
 
-        String sql = "INSERT INTO product_purchases (member_id, product_id, quantity_sold, purchase_date_time) " +
+        String sql = "INSERT INTO product_purchases (member_id, product_id, quantity_sold, purchase_datetime) " +
                 "VALUES (?, ?, ?, ?)";
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
@@ -36,7 +36,7 @@ public class ProductPurchasesDAO {
             ps.setInt(1, memberID);              // member_id
             ps.setInt(2, productID);             // product_id
             ps.setInt(3, quantitySold);          // quantity_sold
-            ps.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));  // purchase_date_time
+            ps.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));  // purchase_datetime
 
             ps.executeUpdate();
             System.out.println("Product purchase record inserted successfully.");
@@ -62,7 +62,7 @@ public class ProductPurchasesDAO {
                     "SET member_id = ?, " +
                     "    product_id = ?, " +
                     "    quantity_sold = ?, " +
-                    "    purchase_date_time = ? " +
+                    "    purchase_datetime = ? " +
                     "WHERE product_purchase_id = ?";
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
@@ -70,7 +70,7 @@ public class ProductPurchasesDAO {
             ps.setInt(1, pp.memberID());              // member_id
             ps.setInt(2, pp.productID());             // product_id
             ps.setInt(3, pp.quantitySold());          // quantity_sold
-            ps.setTimestamp(4, Timestamp.valueOf(pp.purchaseDateTime()));  // purchase_date_time
+            ps.setTimestamp(4, Timestamp.valueOf(pp.purchaseDateTime()));  // purchase_datetime
             ps.setInt(5, productPurchaseID);        // product_purchase_id
 
             ps.executeUpdate();
@@ -164,7 +164,7 @@ public class ProductPurchasesDAO {
             int memberID = rs.getInt("member_id");
             int productID = rs.getInt("product_id");
             int quantitySold = rs.getInt("quantity_sold");
-            LocalDateTime purchaseDateTime = rs.getTimestamp("purchase_date_time").toLocalDateTime();
+            LocalDateTime purchaseDateTime = rs.getTimestamp("purchase_datetime").toLocalDateTime();
 
             return new ProductPurchase(productPurchaseID, memberID, productID, quantitySold, purchaseDateTime);
         } catch(SQLException e) {
@@ -192,6 +192,10 @@ public class ProductPurchasesDAO {
 
     public String[] getComboBoxMemberIDs() {
         return DBUtils.selectAllKeysFromTable("product_purchases", "memberID");
+    }
+
+    public String[] getComboBoxProductPurchaseIDs() {
+        return DBUtils.selectAllKeysFromTable("product_purchases", "product_purchase_id");
     }
 
     public void closeStatement() {

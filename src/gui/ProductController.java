@@ -1,9 +1,16 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Member;
+
+import javax.swing.DefaultComboBoxModel;
+import jdk.net.NetworkPermission;
 
 public class ProductController {
     private ProductView pView = new ProductView();
+    private ProductsDAO dao = new ProductsDAO();
+    private MembersDAO mem = new MembersDAO();
+    private ProductPurchasesDAO purch = new ProductPurchasesDAO();
 
     public ProductController() {
         this.pView.productBackButton(new ActionListener() {
@@ -25,6 +32,7 @@ public class ProductController {
         this.pView.goToDeleteButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pView.getProductIDJComboBox().setModel((new DefaultComboBoxModel<>(dao.getComboBoxProductIDs())));
                 pView.getDeleteProductFrame().setVisible(true);
                 pView.getProductFrame().dispose();
             }
@@ -33,6 +41,7 @@ public class ProductController {
         this.pView.goToReadButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pView.setProductTable(dao.selectAllProducts());
                 pView.getReadProductFrame().setVisible(true);
                 pView.getProductFrame().dispose();
             }
@@ -41,6 +50,7 @@ public class ProductController {
         this.pView.goToUpdateButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pView.getUpdateProductIDComboBox().setModel((new DefaultComboBoxModel<>(dao.getComboBoxProductIDs())));
                 pView.getUpdateProductFrame1().setVisible(true);
                 pView.getProductFrame().dispose();
             }
@@ -57,6 +67,7 @@ public class ProductController {
         this.pView.goToRestockButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pView.getRestockProductIDComboBox().setModel((new DefaultComboBoxModel<>(dao.getComboBoxProductIDs())));
                 pView.getRestockProductFrame().setVisible(true);
                 pView.getProductFrame().dispose();
             }
@@ -113,21 +124,46 @@ public class ProductController {
         this.pView.deleteProductButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //
+                int id = Integer.parseInt(pView.getDeleteProductID());
+
+                if (dao.deleteProduct(id)) {
+                    Message.success();
+                } else {
+                    Message.failure();
+                }
             }
         });
 
         this.pView.updateProductButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //
+                int productid = Integer.parseInt(pView.getUpdateProductID());
+                Product p = ProductsDAO.selectProduct(productid);
+    
+
+                int id = Integer.parseInt(pView.getUpdateProductPrice());
+                String description = pView.getUpdateProductDescription();
+                Product newP = new Product(productid, p.productBrand(), p.productName(), description, p.productPrice(), p.availableQuantity());
+
+                if (dao.updateProduct(productid, newP)) {
+                    Message.success();
+                } else {
+                    Message.failure();
+                }
             }
         });
 
         this.pView.restockProductButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //
+                int id = Integer.parseInt(pView.getRestockProductID());
+                int quantity = Integer.parseInt(pView.getRestockQuantity());
+
+                if (dao.restockProduct(id, quantity)) {
+                    Message.success();
+                } else {
+                    Message.failure();
+                }
             }
         });
 
@@ -141,13 +177,33 @@ public class ProductController {
         this.pView.addProductButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //
+                String name = pView.getProductName();
+                double price = Double.parseDouble(pView.getProductPrice());
+                String brand = pView.getProductName();
+                int quantity = Integer.parseInt(pView.getProductName());
+                String description = pView.getProductName();
+
+                if (dao.insertProduct(brand, name, description, price, quantity)) {
+                    Message.success();
+                } else {
+                    Message.failure();
+                }
+
             }
         });
 
         this.pView.proceedButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int productid = Integer.parseInt(pView.getUpdateProductID());
+                Product p = ProductsDAO.selectProduct(productid);
+
+                pView.setProductName(p.productName());
+                pView.setProductBrand(p.productBrand());
+                pView.setProductDescription(p.productDescription());
+                pView.setAvailableQuantity(String.valueOf(p.availableQuantity()));
+                pView.setProductPrice(String.valueOf(p.productPrice()));
+
                 pView.getUpdateProductFrame().setVisible(true);
                 pView.getUpdateProductFrame1().dispose();
             }
@@ -174,6 +230,8 @@ public class ProductController {
         this.pView.goToAddButton2(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pView.getSellMemberIDComboBox().setModel(new DefaultComboBoxModel<>(mem.getComboBoxMemberIDs()));
+                pView.getSellProductIDComboBox().setModel(new DefaultComboBoxModel<>(dao.getComboBoxProductIDs()));
                 pView.getAddProductPurchaseFrame().setVisible(true);
                 pView.getProductPurchasesFrame().dispose();
             }
@@ -181,6 +239,7 @@ public class ProductController {
         this.pView.goToReadButton2(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pView.setPurchasesTable(purch.selectAllProductPurchases());
                 pView.getReadProductPurchasesFrame().setVisible(true);
                 pView.getProductPurchasesFrame().dispose();
             }
@@ -202,6 +261,8 @@ public class ProductController {
         this.pView.goToUpdateButton2(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pView.getUpdateProductPurchaseID().setModel(new DefaultComboBoxModel<>(purch.getComboBoxProductPurchaseIDs()));
+
                 pView.getUpdateProductPurchaseFrame().setVisible(true);
                 pView.getProductPurchasesFrame().dispose();
             }
@@ -231,6 +292,11 @@ public class ProductController {
         this.pView.proceedUpdatePurchaseProductButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int id = Integer.parseInt(String.valueOf(pView.getUpdateProductPurchaseID().getSelectedItem()));
+                ProductPurchase pp = purch.selectProductPurchase(id);
+
+                
+
                 pView.getUpdateProductPurchaseFrame1().setVisible(true);
                 pView.getUpdateProductPurchaseFrame().dispose();
             }
@@ -254,6 +320,22 @@ public class ProductController {
             public void actionPerformed(ActionEvent e) {
                 pView.getProductPurchasesFrame().setVisible(true);
                 pView.getReadProductPurchasesFrame().dispose();
+            }
+        });
+
+
+        this.pView.addPurchaseProductButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int memberid = Integer.parseInt(pView.getSellMemberID());
+                int productid = Integer.parseInt(pView.getSellProductID());
+                int quantity = Integer.parseInt(pView.getSellQuantity());
+
+                if (purch.insertProductPurchase(memberid, productid, quantity)) {
+                    Message.success();
+                } else {
+                    Message.failure();
+                }
             }
         });
     }
