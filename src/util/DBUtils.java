@@ -16,7 +16,7 @@ public class DBUtils {
 
     // TODO: Yep, these are actual credentials to my testing connection.
     //       Please replace with your own in a separate branch. - CJ
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/dbgym";
+    private static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/dbgym";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "gagokaba3696";
     private static final String SQL_FILEPATH = "dbgym_script.sql";

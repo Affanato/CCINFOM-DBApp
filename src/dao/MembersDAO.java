@@ -103,10 +103,9 @@ public class MembersDAO {
 
     // TRANSACTIIONS / REC MANAGEMENT
     public boolean insertMember(
-        int memberID,
         String lastName,
         String firstName,
-        LocalDate birthdate,
+        String birthdate,
         String sex,
         String phoneNumber,
         String street,
@@ -142,7 +141,6 @@ public class MembersDAO {
     public boolean updateMember(
             int memberID,
             String lastName,
-            LocalDate birthdate,
             String sex,
             String phoneNumber,
             String street,
@@ -160,7 +158,7 @@ public class MembersDAO {
             memberID,
             lastName != null ? lastName : oldMember.lastName(),
             oldMember.firstName(),
-            birthdate != null ? birthdate : oldMember.birthdate(),
+            oldMember.birthdate(),
             sex != null ? Sex.valueOf(sex) : oldMember.sex(),
             phoneNumber != null ? phoneNumber : oldMember.phoneNumber(),
             street != null ? street : oldMember.street(),
