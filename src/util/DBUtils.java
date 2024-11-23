@@ -18,7 +18,7 @@ public class DBUtils {
     //       Please replace with your own in a separate branch. - CJ
     private static final String DB_URL = "jdbc:mysql://localhost:3306/dbgym";
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "gagokaba3696";
+    private static final String DB_PASSWORD = "Mathmathh8";
     private static final String SQL_FILEPATH = "dbgym_script.sql";
 
     private static Connection connection = null;
