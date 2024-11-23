@@ -215,9 +215,9 @@ public class AmenitiesDAO {
                 int year = rs.getInt("year");
                 int month = rs.getInt("month");
                 String amenityName = rs.getString("amenity_name");
-                int totalUsages = rs.getInt("total_usages");
+                int totalRevenue = rs.getInt("total_revenue");
 
-                Object[] elem = {year, month, amenityName, totalUsages};
+                Object[] elem = {year, month, amenityName, totalRevenue};
                 tempList.add(elem);
             }
 
