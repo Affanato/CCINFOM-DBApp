@@ -35,7 +35,7 @@ public class TrainingSessionsDAO {
             return false;
         }
 
-        String sql = "INSERT INTO training_sessions (subscription_id, trainer_id, session_start_date_time, session_end_date_time) " +
+        String sql = "INSERT INTO training_sessions (subscription_id, trainer_id, session_start_datetime, session_start_datetime) " +
                 "VALUES (?, ?, ?, ?)";
 
         if (MembersDAO.getCurrentSubscriptionID(memberID) == -1) {
@@ -73,8 +73,8 @@ public class TrainingSessionsDAO {
         String sql = "UPDATE training_sessions " +
                     "SET subscription_id = ?, " +
                     "    trainer_id = ?, " +
-                    "    session_start_date_time = ?, " +
-                    "    session_end_date_time = ? " +
+                    "    session_start_datetime = ?, " +
+                    "    session_start_datetime = ? " +
                     "WHERE training_session_id = ?";
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
@@ -150,14 +150,14 @@ public class TrainingSessionsDAO {
     }
 
     public Object[][] selectAllActiveTrainingSessions() {
-        String condition = "WHERE session_start_date_time <= NOW() AND session_end_date_time >= NOW()";
+        String condition = "WHERE session_start_datetime <= NOW() AND session_end_datetime >= NOW()";
         ResultSet rs = DBUtils.selectAllRecordsFromTable("training_sessions", condition);
         assert rs != null;
         return DBUtils.to2DObjectArray(mapResultSetToTrainingSessionList(rs));
     }
 
     public Object[][] selectAllUpcomingTrainingSessions() {
-        String condition = "WHERE session_end_date_time > NOW()";  // Active sessions are those that have not ended yet
+        String condition = "WHERE session_end_datetime > NOW()";  // Active sessions are those that have not ended yet
         ResultSet rs = DBUtils.selectAllRecordsFromTable("training_sessions", condition);
         assert rs != null;
         return DBUtils.to2DObjectArray(mapResultSetToTrainingSessionList(rs));
@@ -178,8 +178,8 @@ public class TrainingSessionsDAO {
                 int trainingSessionID = rs.getInt("training_session_id");
                 int subscriptionID = rs.getInt("subscription_id");
                 int trainerID = rs.getInt("trainer_id");
-                LocalDateTime sessionStartDateTime = rs.getTimestamp("session_start_date_time").toLocalDateTime();
-                LocalDateTime sessionEndDateTime = rs.getTimestamp("session_end_date_time").toLocalDateTime();
+                LocalDateTime sessionStartDateTime = rs.getTimestamp("session_start_datetime").toLocalDateTime();
+                LocalDateTime sessionEndDateTime = rs.getTimestamp("session_start_datetime").toLocalDateTime();
 
                 return new TrainingSession(trainingSessionID, subscriptionID, trainerID, sessionStartDateTime, sessionEndDateTime);
             }
@@ -196,8 +196,8 @@ public class TrainingSessionsDAO {
                 int trainingSessionID = rs.getInt("training_session_id");
                 int subscriptionID = rs.getInt("subscription_id");
                 int trainerID = rs.getInt("trainer_id");
-                LocalDateTime sessionStartDateTime = rs.getTimestamp("session_start_date_time").toLocalDateTime();
-                LocalDateTime sessionEndDateTime = rs.getTimestamp("session_end_date_time").toLocalDateTime();
+                LocalDateTime sessionStartDateTime = rs.getTimestamp("session_start_datetime").toLocalDateTime();
+                LocalDateTime sessionEndDateTime = rs.getTimestamp("session_start_datetime").toLocalDateTime();
 
                 trainingSessionList.add(new TrainingSession(trainingSessionID, subscriptionID, trainerID, sessionStartDateTime, sessionEndDateTime));
             }
