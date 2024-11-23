@@ -82,16 +82,16 @@ public class SubscriptionTypeAmenitiesDAO {
         return DBUtils.to2DObjectArray(Objects.requireNonNull(mapResultSetToSubscriptionTypeAmenityList(rs)));
     }
 
-    public static String[] selectAllAmenitiesOfASubscriptionType(int subscriptionTypeID) {
+    public static Object[][] selectAllAmenitiesOfASubscriptionType(int subscriptionTypeID) {
         String sql = "SELECT a.amenity_name " +
                      "FROM subscription_types st " +
                      "JOIN subscription_type_amenities sta " +
                      "ON st.subscription_type_id = sta.subscription_type_id " +
                      "JOIN amenities a " +
-                     "ON a.amenity_id = st.amenity_id " +
+                     "ON a.amenity_id = sta.amenity_id " +
                      "WHERE subscription_type_id = ? ";
 
-        List<String> amenityNames = new ArrayList<>();
+        List<Object[]> amenityNames = new ArrayList<>();
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
@@ -99,7 +99,7 @@ public class SubscriptionTypeAmenitiesDAO {
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    amenityNames.add(rs.getString("amenity_name"));
+                    amenityNames.add(new Object[] {rs.getString("amenity_name")});
                 }
             } catch (SQLException e) {
                 ExceptionHandler.handleException(e);
@@ -108,8 +108,7 @@ public class SubscriptionTypeAmenitiesDAO {
             ExceptionHandler.handleException(e);
         }
 
-        // Convert List<String> to String[] and return
-        return amenityNames.toArray(new String[0]);
+        return amenityNames.toArray(new Object[0][]);
     }
 
     // UTILITY METHODS //
