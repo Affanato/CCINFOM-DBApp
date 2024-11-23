@@ -351,7 +351,7 @@ public class ProductsDAO {
     public Object[][] selectAllProducts() {
         ResultSet rs = DBUtils.selectAllRecordsFromTable("products");
         assert rs != null;
-        return DBUtils.to2DObjectArray(mapResultSetToProductList(rs));
+        return mapResultSetToProductsArr(rs);
     }
 
     // UTILITY METHODS
@@ -378,6 +378,36 @@ public class ProductsDAO {
                 productList.add(mapResultSetToProduct(rs));
             }
             return productList;
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
+    }
+
+    public static Object[] mapResultSetToProductArr(ResultSet rs) {
+        try {
+            return new Object[] {
+                    rs.getInt("product_id"),
+                    rs.getString("product_brand"),
+                    rs.getString("product_name"),
+                    rs.getString("product_description"),
+                    rs.getDouble("product_price"),
+                    rs.getInt("available_quantity"),
+            };
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+            return null;
+        }
+    }
+
+    public static Object[][] mapResultSetToProductsArr(ResultSet rs) {
+        List<Object[]> amenitiesArr = new ArrayList<Object[]>();
+
+        try {
+            while (rs.next()) {
+                amenitiesArr.add(mapResultSetToProductArr(rs));
+            }
+            return amenitiesArr.toArray(new Object[0][]);
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
             return null;
