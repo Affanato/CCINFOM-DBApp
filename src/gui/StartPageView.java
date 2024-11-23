@@ -83,6 +83,7 @@ public class StartPageView extends JFrame {
 
     public void startButton(ActionListener actionListener){
         button1.addActionListener(actionListener);
+        DBUtils.getConnection();
     }
 
     public static void main(String[] args) {

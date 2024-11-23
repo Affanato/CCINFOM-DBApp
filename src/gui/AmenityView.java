@@ -1,7 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 /*
  * Created by JFormDesigner on Thu Nov 21 22:09:11 PST 2024
@@ -12,7 +11,7 @@ import java.awt.event.ActionListener;
 /**
  * @author USER
  */
-public class AmenityView  {
+public class AmenityView {
     public AmenityView() {
         initComponents();
     }
@@ -206,7 +205,7 @@ public class AmenityView  {
 
             //---- selectStatus ----
             selectStatus.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-            selectStatus.setEditable(true);
+            selectStatus.setModel(new DefaultComboBoxModel<>(Status.getPossibleValues()));
             addAmenityFrameContentPane.add(selectStatus);
             selectStatus.setBounds(635, 280, 175, 40);
 
@@ -231,6 +230,7 @@ public class AmenityView  {
 
             //---- timeOpen ----
             timeOpen.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+            timeOpen.setText("hh:mm:ss");
             addAmenityFrameContentPane.add(timeOpen);
             timeOpen.setBounds(635, 385, 175, 35);
 
@@ -310,7 +310,7 @@ public class AmenityView  {
                 //---- sessionTable ----
                 sessionTable.setModel(new DefaultTableModel(
                         new Object[][] {
-                                {null, null, null, "", "", null},
+                                {null, null, null, null, null, null},
                                 {null, null, null, null, null, null},
                         },
                         new String[] {
@@ -552,7 +552,7 @@ public class AmenityView  {
 
             //---- selectStatus2 ----
             selectStatus2.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-            selectStatus2.setEditable(true);
+            selectStatus2.setModel(new DefaultComboBoxModel<>(Status.getPossibleValues()));
             updateAmenityDetailsFrameContentPane.add(selectStatus2);
             selectStatus2.setBounds(635, 280, 175, 40);
 
@@ -577,6 +577,7 @@ public class AmenityView  {
 
             //---- timeOpen2 ----
             timeOpen2.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+            timeOpen2.setText("hh:mm:ss");
             updateAmenityDetailsFrameContentPane.add(timeOpen2);
             timeOpen2.setBounds(635, 385, 175, 35);
 
@@ -656,7 +657,7 @@ public class AmenityView  {
     private JFormattedTextField nameText;
     private JTextPane name;
     private JFormattedTextField statusText;
-    private JComboBox selectStatus;
+    private JComboBox<String> selectStatus;
     private JFormattedTextField walkInPriceText;
     private JTextPane walkinPrice;
     private JFormattedTextField timeOpenText;
@@ -676,7 +677,7 @@ public class AmenityView  {
     private JFrame deleteAmenityFrame;
     private JButton deleteAmenity;
     private JFormattedTextField deleteAmenityTitle;
-    private JComboBox selectDelete;
+    private JComboBox<String> selectDelete;
     private JEditorPane editorPane3;
     private JButton deleteAmenityBack;
     private JLabel backgroundPicture4;
@@ -684,7 +685,7 @@ public class AmenityView  {
     private JFrame updateSelectAmenityFrame;
     private JButton updateAmenity;
     private JFormattedTextField updateAmenityTitle;
-    private JComboBox selectUpdate;
+    private JComboBox<String> selectUpdate;
     private JEditorPane editorPane4;
     private JButton updateSelectAmenityBack;
     private JLabel backgroundPicture5;
@@ -695,7 +696,7 @@ public class AmenityView  {
     private JFormattedTextField nameText2;
     private JTextPane name2;
     private JFormattedTextField statusText2;
-    private JComboBox selectStatus2;
+    private JComboBox<String> selectStatus2;
     private JFormattedTextField walkInPriceText2;
     private JTextPane walkinPrice2;
     private JFormattedTextField timeOpenText2;
@@ -733,13 +734,22 @@ public class AmenityView  {
         return this.updateAmenityDetailsFrame;
     }
 
+    // Combox Box ID Getters
+    public JComboBox<String> getDeleteAmenity() {
+        return this.selectDelete;
+    }
+
+    public JComboBox<String> getUpdateAmenity(){
+        return this.selectUpdate;
+    }
+
     // Add Amenity
     public String getName() {
         return this.name.getText();
     }
 
-    public int getSelectStatus() {
-        return this.selectStatus.getSelectedIndex();
+    public String getSelectStatus() {
+        return (String) this.selectStatus.getSelectedItem();
     }
 
     public String getWalkInPrice() {
@@ -755,14 +765,13 @@ public class AmenityView  {
     }
 
     // Delete
-
-    public int getSelectDelete() {
-        return this.selectDelete.getSelectedIndex();
+    public String getSelectDelete() {
+        return (String) this.selectDelete.getSelectedItem();
     }
 
     // Update Select
-    public int getSelectUpdate() {
-        return this.selectUpdate.getSelectedIndex();
+    public String getSelectUpdate() {
+        return (String) this.selectUpdate.getSelectedItem();
     }
 
     // Update Details
@@ -770,8 +779,8 @@ public class AmenityView  {
         return this.name2.getText();
     }
 
-    public int getSelectStatus2() {
-        return this.selectStatus2.getSelectedIndex();
+    public String getSelectStatus2() {
+        return (String) this.selectStatus2.getSelectedItem();
     }
 
     public String getWalkInPrice2() {
@@ -784,6 +793,27 @@ public class AmenityView  {
 
     public String getTimeClose2() {
         return this.timeClose2.getText();
+    }
+
+    // Update Setters
+    public void setName2(String name) {
+        this.name2.setText(name);
+    }
+
+    public void setSelectStatus2(String selectStatus2) {
+        this.selectStatus2.setSelectedItem(selectStatus2);
+    }
+
+    public void setWalkInPrice2(String walkInPrice2) {
+        this.walkinPrice2.setText(walkInPrice2);
+    }
+
+    public void setTimeOpen2(String timeOpen2) {
+        this.timeOpen2.setText(timeOpen2);
+    }
+
+    public void setTimeClose2(String timeClose2) {
+        this.timeClose2.setText(timeClose2);
     }
 
     // Button Action Listeners
@@ -808,7 +838,7 @@ public class AmenityView  {
     }
 
     public void addAmenityButton(ActionListener actionListener) {
-        this.amenityAddAmenity.addActionListener(actionListener);
+        this.addAmenity.addActionListener(actionListener);
     }
 
     public void addAmenityBackButton(ActionListener actionListener) {
@@ -850,13 +880,14 @@ public class AmenityView  {
         };
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
         sessionTable.setModel(model);
-
-        TableColumnModel cm = sessionTable.getColumnModel();
-        cm.getColumn(0).setMinWidth(100);
-        cm.getColumn(1).setMinWidth(200);
-        cm.getColumn(2).setMinWidth(200);
-        cm.getColumn(3).setMinWidth(150);
-        cm.getColumn(4).setMinWidth(150);
-        cm.getColumn(5).setMinWidth(100);
+        {
+            TableColumnModel cm = sessionTable.getColumnModel();
+            cm.getColumn(0).setMinWidth(100);
+            cm.getColumn(1).setMinWidth(200);
+            cm.getColumn(2).setMinWidth(200);
+            cm.getColumn(3).setMinWidth(150);
+            cm.getColumn(4).setMinWidth(150);
+            cm.getColumn(5).setMinWidth(100);
+            }
     }
 }

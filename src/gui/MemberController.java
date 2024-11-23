@@ -1,148 +1,119 @@
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MemberController {
-    private MemberView mView = new MemberView();
+    private final MemberView view = new MemberView();
+    private final MembersDAO dao = new MembersDAO();
 
     public MemberController() {
-        this.mView.memberBackButton(new ActionListener() {
+        this.view.memberBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mView.getMemberFrame().dispose();
+                view.getMemberFrame().dispose();
                 MainMenuController mainMenuController = new MainMenuController();
             }
         });
 
-        this.mView.goToAddButton(new ActionListener() {
+        this.view.goToAddButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mView.getAddMemberFrame().setVisible(true);
-                mView.getMemberFrame().dispose();
+                view.getAddMemberFrame().setVisible(true);
+                view.getMemberFrame().dispose();
             }
         });
 
-        this.mView.goToReadButton(new ActionListener() {
+        this.view.goToReadButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Object[][] data = {
-                    {"Alice", "hey nowww hey noooow this is what dreams are made of", 89.5, "Hi", 7, "Nice"},
-                    {"Bob", 456, 76.0, "Hi", 7, "Nice"},
-                    {"Charlie", 789, 92.3, "Hi", 7, "Nice"},
-                    {"Alice", 123, 89.5, "Hi", 7, "Nice"},
-                    {"Bob", 456, 76.0, "Hi", 7, "Nice"},
-                    {"Alice", 123, 89.5, "Hi", 7, "Nice"},
-                    {"Bob", 456, 76.0, "Hi", 7, "Nice"},
-                    {"Alice", 123, 89.5, "Hi", 7, "Nice"},
-                    {"Bob", 456, 76.0, "Hi", 7, "Nice"},
-                    {"Alice", 123, 89.5, "Hi", 7, "Nice"},
-                    {"Bob", 456, 76.0, "Hi", 7, "Nice"},
-                    {"Alice", 123, 89.5, "Hi", 7, "Nice"},
-                    {"Bob", 456, 76.0, "Hi", 7, "Nice"},
-                    {"Alice", 123, 89.5, "Hi", 7, "Nice"},
-                    {"Bob", 456, 76.0, "Hi", 7, "Nice"},
-                    {"Alice", 123, 89.5, "Hi", 7, "Nice"},
-                    {"Bob", 456, 76.0, "Hi", 7, "Nice"},
-                    {"Alice", 123, 89.5, "Hi", 7, "Nice"},
-                    {"Bob", 456, 76.0, "Hi", 7, "Nice"},
-                    {"Alice", 123, 89.5, "Hi", 7, "Nice"},
-                    {"Bob", 456, 76.0, "Hi", 7, "Nice"},
-                    {"Alice", 123, 89.5, "Hi", 7, "Nice"},
-                    {"Bob", 456, 76.0, "Hi", 7, "Nice"},
-                    {"Alice", 123, 89.5, "Hi", 7, "Nice"},
-                    {"Bob", 456, 76.0, "Hi", 7, "Nice"},
-                    {"Alice", 123, 89.5, "Hi", 7, "Nice"},
-                    {"Bob", 456, 76.0, "Hi", 7, "Nice"},
-                    {"Alice", 123, 89.5, "Hi", 7, "Nice"},
-                    {"Bob", 456, 76.0, "Hi", 7, "Nice"},
-                    {"Alice", 123, 89.5, "Hi", 7, "Nice"},
-                    {"Bob", 456, 76.0, "Hi", 7, "Nice"}
-                };
-                mView.setMemberTable(data);
-                mView.getReadMemberFrame().setVisible(true);
-                mView.getMemberFrame().dispose();
+                view.setMemberTable(dao.selectAllMembers());
+
+                view.getReadMemberFrame().setVisible(true);
+                view.getMemberFrame().dispose();
             }
         });
 
-        this.mView.goToDeleteButton(new ActionListener() {
+        this.view.goToDeleteButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mView.getDeleteMemberFrame().setVisible(true);
-                mView.getMemberFrame().dispose();
+                view.getMemberIDJComboBox().setModel(new DefaultComboBoxModel<>(dao.getComboBoxMemberIDs()));
+                view.getDeleteMemberFrame().setVisible(true);
+                view.getMemberFrame().dispose();
             }
         });
 
-        this.mView.goToUpdateButton(new ActionListener() {
+        this.view.goToUpdateButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mView.getUpdateMemberIDFrame().setVisible(true);
-                mView.getMemberFrame().dispose();
+                view.getUpdateMemberIDFrame().setVisible(true);
+                view.getMemberFrame().dispose();
             }
         });
 
-        this.mView.addBackButton(new ActionListener() {
+        this.view.addBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mView.getMemberFrame().setVisible(true);
-                mView.getAddMemberFrame().dispose();
+                view.getMemberFrame().setVisible(true);
+                view.getAddMemberFrame().dispose();
             }
         });
 
-        this.mView.readBackButton(new ActionListener() {
+        this.view.readBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mView.getMemberFrame().setVisible(true);
-                mView.getReadMemberFrame().dispose();
+                view.getMemberFrame().setVisible(true);
+                view.getReadMemberFrame().dispose();
             }
         });
 
-        this.mView.deleteBackButton(new ActionListener() {
+        this.view.deleteBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mView.getMemberFrame().setVisible(true);
-                mView.getDeleteMemberFrame().dispose();
+                view.getMemberFrame().setVisible(true);
+                view.getDeleteMemberFrame().dispose();
             }
         });
 
-        this.mView.updateMemberIDBackButton(new ActionListener() {
+        this.view.updateMemberIDBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mView.getMemberFrame().setVisible(true);
-                mView.getUpdateMemberIDFrame().dispose();
+                view.getMemberFrame().setVisible(true);
+                view.getUpdateMemberIDFrame().dispose();
             }
         });
 
-        this.mView.updateBackButton(new ActionListener() {
+        this.view.updateBackButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mView.getUpdateMemberIDFrame().setVisible(true);
-                mView.getUpdateMemberFrame().dispose();
+                view.getUpdateMemberIDFrame().setVisible(true);
+                view.getUpdateMemberFrame().dispose();
             }
         });
 
-        this.mView.proceedUpdateButton(new ActionListener() {
+        this.view.proceedUpdateButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mView.getUpdateMemberFrame().setVisible(true);
-                mView.getUpdateMemberIDFrame().dispose();
+                view.getUpdateMemberFrame().setVisible(true);
+                view.getUpdateMemberIDFrame().dispose();
             }
         });
 
-        this.mView.updateMemberButton(new ActionListener() {
+        this.view.updateMemberButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //
             }
         });
 
-        this.mView.addMemberButton(new ActionListener() {
+        this.view.addMemberButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //
             }
         });
 
-        this.mView.deleteMemberButton(new ActionListener() {
+        this.view.deleteMemberButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //
