@@ -257,7 +257,7 @@ public class ProductController {
         this.pView.goToCancelButton2(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                pView.getCancelProducturchaseID().setModel(new DefaultComboBoxModel<>(purch.getComboBoxProductPurchaseIDs()));
+                pView.getCancelProductPurchaseID().setModel(new DefaultComboBoxModel<>(purch.getComboBoxProductPurchaseIDs()));
 
                 
                 pView.getCancelProductPurchaseFrame().setVisible(true);
