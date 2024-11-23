@@ -128,14 +128,12 @@ public class MemberController {
                 String city = view.getUpdateCity();
                 String province = view.getUpdateProvince();
 
-                // TODO fix
-                /*
-                if (dao.updateMember(ID, member)){
+
+                if (dao.updateMember(ID, lastName, sex, birthDate, phoneNumber, street, barangay, city, province)) {
                     Message.success();
                 } else {
                     Message.failure();
                 }
-                */
             }
         });
 
@@ -152,10 +150,12 @@ public class MemberController {
                 String city = view.getCity();
                 String province = view.getProvince();
 
-                // TODO fix
-                /*
-                if (dao.insertMember())
-                */
+
+                if (dao.insertMember(lastName, name, birthDate, sex, phoneNumber, street, barangay, city, province)) {
+                    Message.success();
+                } else {
+                    Message.failure();
+                }
 
             }
         });

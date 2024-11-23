@@ -1,6 +1,8 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultComboBoxModel;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 
 //import src.dao;
 
@@ -9,6 +11,7 @@ public class AmenityUseController {
     private final AmenityLogsDAO dao = new AmenityLogsDAO();
     private final MembersDAO memberDAO = new MembersDAO();
     private final AmenitiesDAO amenityDAO = new AmenitiesDAO();
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public AmenityUseController() {
         this.view.amenityUseBackButtonButton(new ActionListener() {
@@ -123,7 +126,7 @@ public class AmenityUseController {
 
                 view.getMemberBar2().setModel(new DefaultComboBoxModel<>(mem.getComboBoxMemberIDs()));
                 view.getAmenityBar2().setModel(new DefaultComboBoxModel<>((amenityDAO.getComboBoxAmenityIDs())));
-                view.setStartTime2(String.valueOf(am.usageStartDateTime()));
+                view.setStartTime2(String.valueOf(am.usageStartDateTime().format(formatter)));
                 view.setUsageHours2(String.valueOf(am.usageDurationHours()));
                 
                 view.getUpdateSelectSession().dispose();
