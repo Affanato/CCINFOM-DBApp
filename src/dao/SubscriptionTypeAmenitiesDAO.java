@@ -82,7 +82,7 @@ public class SubscriptionTypeAmenitiesDAO {
         return DBUtils.to2DObjectArray(Objects.requireNonNull(mapResultSetToSubscriptionTypeAmenityList(rs)));
     }
 
-    public static String[] selectAllAmenitiesOfASubscriptionType(int subscriptionTypeID) {
+    public static Object[][] selectAllAmenitiesOfASubscriptionType(int subscriptionTypeID) {
         String sql = "SELECT a.amenity_name " +
                      "FROM subscription_types st " +
                      "JOIN subscription_type_amenities sta " +
@@ -95,6 +95,7 @@ public class SubscriptionTypeAmenitiesDAO {
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
+
             ps.setInt(1, subscriptionTypeID);
 
             try (ResultSet rs = ps.executeQuery()) {
@@ -115,6 +116,11 @@ public class SubscriptionTypeAmenitiesDAO {
     // UTILITY METHODS //
     public static SubscriptionTypeAmenity mapResultSetToSubscriptionTypeAmenity(ResultSet rs) {
         try {
+            if (!rs.next()) {
+                System.out.println("No SubscriptionTypeAmenity ResultSet data.\n");
+                return null;
+            }
+
             int subscriptionTypeID = rs.getInt(1);
             int amenityID = rs.getInt(2);
 
