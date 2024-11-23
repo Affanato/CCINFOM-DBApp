@@ -958,11 +958,11 @@ public class SubscriptionTypeView {
 		return this.updateSubscriptionTypePrice.getText().trim();
 	}
 
-	public int getAddAmenityID() {
-		return this.addAmenityID.getSelectedIndex() + 1;
+	public String getAddAmenityID() {
+		return (String) this.addAmenityID.getSelectedItem();
 	}
-	public int getRemoveAmenityID() {
-		return this.removeAmenityID.getSelectedIndex() + 1;
+	public String getRemoveAmenityID() {
+		return (String) this.removeAmenityID.getSelectedItem();
 	}
 
 	// setters

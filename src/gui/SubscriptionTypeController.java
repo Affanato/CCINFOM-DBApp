@@ -67,11 +67,9 @@ public class SubscriptionTypeController {
                 System.out.println("Double: " + mtView.getSubscriptionTypePrice());
                 String name = mtView.getSubscriptionTypeName();
                 double price = Double.parseDouble(mtView.getSubscriptionTypePrice());
-                System.out.println(name);
-                System.out.println(price);
-                SubscriptionType st = new SubscriptionType(0, name, price);
+                
 
-                if (dao.insertSubscriptionType(st)) {
+                if (dao.insertSubscriptionType(name, price)) {
                     Message.success();
                 } else {
                     Message.failure();
@@ -133,7 +131,15 @@ public class SubscriptionTypeController {
         this.mtView.updateSubscriptionTypeButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //
+                int id = Integer.parseInt(mtView.getUpdateSubscriptionName());
+                String name = mtView.getUpdateSubscriptionTypeName();
+                double price = Double.parseDouble(mtView.getUpdateSubscriptionTypePrice());
+
+                if (dao.updateSubscriptionType(id, name, price)) {
+                    Message.success();
+                } else {
+                    Message.failure();
+                }
             }
         });
 
