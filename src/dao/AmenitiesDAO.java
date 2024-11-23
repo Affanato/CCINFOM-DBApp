@@ -51,7 +51,6 @@ public class AmenitiesDAO {
         return true;
     }
 
-    // TODO: Debug.
     public boolean updateAmenity(int amenityID, String amenityName, double walkInPricePerHour, String openingTime, String closingTime, String amenityStatus) {
         if (!isValidAmenityInsertion(walkInPricePerHour, openingTime, closingTime, amenityStatus)) {
             return false;
@@ -62,7 +61,7 @@ public class AmenitiesDAO {
                      "    walk_in_price_per_hour = ?, " +
                      "    opening_time = ?, " +
                      "    closing_time = ?, " +
-                     "    amenity_status = ?, " +
+                     "    amenity_status = ? " +
                      "WHERE amenity_id = ? ";
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
@@ -72,6 +71,7 @@ public class AmenitiesDAO {
             ps.setTime(3, Time.valueOf(openingTime));
             ps.setTime(4, Time.valueOf(closingTime));
             ps.setString(5, amenityStatus);
+            ps.setInt(6, amenityID);
 
             ps.executeUpdate();
             System.out.println("'amenities' record updated successfully.");
@@ -270,15 +270,19 @@ public class AmenitiesDAO {
         return (target.equals(start) || target.isAfter(start)) && (target.isBefore(end) || target.equals(end));
     }
 
-    // TODO: Debug.
     public static Amenity mapResultSetToAmenity(ResultSet rs) {
         try {
+            if (!rs.next()) {
+                System.out.println("No Amenity ResultSet data.\n");
+                return null;
+            }
+
             int amenityID = rs.getInt(1);
             String amenityName = rs.getString(2);
             double walkInPrice = rs.getDouble(3);
             LocalTime openingTime = rs.getTime(4).toLocalTime();
             LocalTime closingTime = rs.getTime(5).toLocalTime();
-            Status amenityStatus = Status.valueOf(rs.getString(6));
+            Status amenityStatus = Status.fromString(rs.getString(6));
 
             return new Amenity(amenityID, amenityName, walkInPrice, openingTime, closingTime, amenityStatus);
         } catch(SQLException e) {
