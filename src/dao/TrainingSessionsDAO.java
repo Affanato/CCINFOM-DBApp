@@ -26,7 +26,7 @@ public class TrainingSessionsDAO {
 
         // Check if the end time is after the start time
         if (sessionEndDateTime.isBefore(sessionStartDateTime)) {
-            System.out.println("The session end time cannot be earlier than the start time.");
+            System.out.println("The session end time cannot be earlier than the start time.\n");
             return false;
         }
 

@@ -115,7 +115,15 @@ public class SubscriptionsDAO {
         String condition = "WHERE CURRENT_DATE BETWEEN subscription_start_date AND subscription_end_date ";
         ResultSet rs = DBUtils.selectAllRecordsFromTable("subscriptions", condition);
         assert rs != null;
-        return DBUtils.to2DObjectArray(Objects.requireNonNull(mapResultSetToSubscriptionList(rs)));
+
+        ArrayList<Subscription> subscriptions = mapResultSetToSubscriptionList(rs);
+
+        if (subscriptions == null || subscriptions.contains(null)) { // no subscriptions found
+            System.err.println("One or more subscriptions are invalid.");
+            return new Object[0][0];
+        }
+
+        return DBUtils.to2DObjectArray(subscriptions);
     }
 
     // REPORTS
@@ -298,7 +306,7 @@ public class SubscriptionsDAO {
             return subscriptionList;
         } catch(SQLException e) {
             ExceptionHandler.handleException(e);
-            return null;
+            return new ArrayList<>();
         }
     }
 
