@@ -129,7 +129,7 @@ public class MemberController {
                 String province = view.getUpdateProvince();
 
 
-                if (dao.updateMember(ID, lastName, sex, birthDate, phoneNumber, street, barangay, city, province)) {
+                if (dao.updateMember(ID, lastName, sex, phoneNumber, street, barangay, city, province)) {
                     Message.success();
                 } else {
                     Message.failure();

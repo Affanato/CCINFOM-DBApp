@@ -507,7 +507,7 @@ public class SubscriptionView  {
 						{null, null, null, null, null, null},
 					},
 					new String[] {
-						"Subscription ID", "Member ID", "Trainer ID", "Subscription Type ID", "Start Date", "End Date"
+						"Subscription ID", "Member ID", "Subscription Type ID", "Start Date", "End Date"
 					}
 				));
 				{
@@ -515,9 +515,9 @@ public class SubscriptionView  {
 					cm.getColumn(0).setMinWidth(100);
 					cm.getColumn(1).setMinWidth(100);
 					cm.getColumn(2).setMinWidth(100);
-					cm.getColumn(3).setMinWidth(100);
+					cm.getColumn(3).setMinWidth(220);
 					cm.getColumn(4).setMinWidth(220);
-					cm.getColumn(5).setMinWidth(220);
+
 				}
 				membershipTable2.setFont(new Font("Tw Cen MT", Font.PLAIN, 18));
 				membershipTable2.setEnabled(false);
@@ -728,7 +728,7 @@ public class SubscriptionView  {
 
 	public void setActiveTable(Object[][] data) {
 		String[] columnNames = {
-				"Subscription ID", "Member ID", "Trainer ID", "Subscription Type ID", "Start Date", "End Date"
+				"Subscription ID", "Member ID", "Subscription Type ID", "Start Date", "End Date"
 		};
 		DefaultTableModel model = new DefaultTableModel(data, columnNames);
 		membershipTable2.setModel(model);
@@ -738,9 +738,8 @@ public class SubscriptionView  {
 			cm.getColumn(0).setMinWidth(100);
 			cm.getColumn(1).setMinWidth(100);
 			cm.getColumn(2).setMinWidth(100);
-			cm.getColumn(3).setMinWidth(100);
+			cm.getColumn(3).setMinWidth(220);
 			cm.getColumn(4).setMinWidth(220);
-			cm.getColumn(5).setMinWidth(220);
 		}
 	}
 
