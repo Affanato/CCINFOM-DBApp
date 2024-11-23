@@ -108,7 +108,20 @@ public class SubscriptionsDAO {
     public Object[][] selectAllSubscriptions() {
         ResultSet rs = DBUtils.selectAllRecordsFromTable("subscriptions");
         assert rs != null;
-        return DBUtils.to2DObjectArray(Objects.requireNonNull(mapResultSetToSubscriptionList(rs)));
+
+        ArrayList<Subscription> subscriptions = mapResultSetToSubscriptionList(rs);
+
+        if (subscriptions == null) { // no subscriptions found
+            System.err.println("subscriptions equals null.");
+            return new Object[0][0];
+        }
+
+        if (subscriptions.contains(null)) {
+            System.err.println("subscriptions contains null.");
+            return new Object[0][0];
+        }
+
+        return DBUtils.to2DObjectArray(subscriptions);
     }
 
     public Object[][] selectActiveSubscriptions() {
@@ -118,8 +131,13 @@ public class SubscriptionsDAO {
 
         ArrayList<Subscription> subscriptions = mapResultSetToSubscriptionList(rs);
 
-        if (subscriptions == null || subscriptions.contains(null)) { // no subscriptions found
-            System.err.println("One or more subscriptions are invalid.");
+        if (subscriptions == null) { // no subscriptions found
+            System.err.println("subscriptions equals null.");
+            return new Object[0][0];
+        }
+
+        if (subscriptions.contains(null)) {
+            System.err.println("subscriptions contains null.");
             return new Object[0][0];
         }
 
