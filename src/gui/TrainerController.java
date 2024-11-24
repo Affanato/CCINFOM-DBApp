@@ -152,7 +152,7 @@ public class TrainerController {
                 String city = tView.getUpdateCity();
                 String street = tView.getUpdateStreet();
                 String barangay = tView.getUpdateBarangay();
-                String province = tView.getUpdatePhoneNumber();
+                String province = tView.getUpdateProvince();
 
                 if (dao.updateTrainer(t.trainerID(), lastname, t.birthdate(), String.valueOf(String.valueOf(t.sex()).charAt(0)), pnum, street, barangay, city, province, speciality)) {
                     Message.success();
