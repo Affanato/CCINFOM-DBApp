@@ -340,7 +340,7 @@ public class ProductController {
                 int productid = Integer.parseInt(pView.getSellProductID());
                 int quantity = Integer.parseInt(pView.getSellQuantity());
 
-                if (purch.insertProductPurchase(memberid, productid, quantity)) {
+                if (dao.sellProduct(memberid, productid, quantity)) {
                     Message.success();
                 } else {
                     Message.failure();

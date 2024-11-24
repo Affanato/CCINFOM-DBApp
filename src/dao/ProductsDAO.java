@@ -79,7 +79,8 @@ public class ProductsDAO {
 
     // TRANSACTIONS
     // NOTE: addProduct is just insertProduct
-    public boolean sellProduct(int productID, int quantitySold) {
+    public boolean sellProduct(int memberID, int productID, int quantitySold) {
+        ProductPurchasesDAO ppDAO = new ProductPurchasesDAO();
         // EDGE/INVALID CASES (invalid product id, insufficient stock)
         if (!DBUtils.primaryKeyExistsInATable("products", "product_id", productID)) {
             System.out.println("The Product ID " + productID + " does not exist.");
@@ -107,6 +108,7 @@ public class ProductsDAO {
 
         // Update the product in the database
         updateProduct(productID, updatedProduct);
+        ppDAO.insertProductPurchase(memberID, productID, quantitySold);
 
         return true;
     }

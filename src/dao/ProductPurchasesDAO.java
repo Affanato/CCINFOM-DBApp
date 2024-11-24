@@ -40,7 +40,6 @@ public class ProductPurchasesDAO {
             ps.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));  // purchase_datetime
 
             ps.executeUpdate();
-            pDAO.sellProduct(productID, quantitySold);
             System.out.println("Product purchase record inserted successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
