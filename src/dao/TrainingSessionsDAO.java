@@ -21,6 +21,7 @@ public class TrainingSessionsDAO {
         // dateTime parser
         LocalDateTime sessionStartDateTime = DBUtils.convertStringToLocalDateTime(startDateTimeString);
         LocalDateTime sessionEndDateTime = DBUtils.convertStringToLocalDateTime(endDateTimeString);
+        Trainer selectedTrainer = TrainersDAO.selectTrainer(trainerID);
 
         // Check if the end time is after the start time
         if (sessionEndDateTime.isBefore(sessionStartDateTime)) {
@@ -29,7 +30,7 @@ public class TrainingSessionsDAO {
         }
 
         // Validate trainer availability for the given time
-        if (isTrainerUnavailable(trainerID, sessionStartDateTime, sessionEndDateTime)) {
+        if (isTrainerUnavailable(trainerID, sessionStartDateTime, sessionEndDateTime) || selectedTrainer.trainerStatus().toString().equalsIgnoreCase("INACTIVE")) {
             System.out.println("Chosen trainer is unavailable during the chosen time.\n");
             return false;
         }
