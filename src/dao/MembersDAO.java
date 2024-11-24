@@ -298,7 +298,7 @@ public class MembersDAO {
     }
 
     public String[] getComboBoxMemberIDs() {
-        return DBUtils.selectAllKeysFromTable("members", "member_id");
+        return DBUtils.removeFirstElement(DBUtils.selectAllKeysFromTable("members", "member_id"));
     }
 
     public void closeStatement() {

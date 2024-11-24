@@ -135,6 +135,7 @@ public class AmenitiesDAO {
         String sql = "SELECT        a.amenity_name, COUNT(*) AS total_usages " +
                      "FROM          amenity_logs al " +
                      "JOIN          amenities a ON al.amenity_id = a.amenity_id " +
+                     "WHERE         a.amenity_id != 1 " +
                      "GROUP BY      a.amenity_name " +
                      "ORDER BY      total_usages DESC; ";
 
@@ -163,6 +164,7 @@ public class AmenitiesDAO {
                      "              COUNT(*) AS total_usages " +
                      "FROM          amenity_logs al " +
                      "JOIN          amenities a ON al.amenity_id = a.amenity_id " +
+                     "WHERE         a.amenity_id != 1 " +
                      "GROUP BY      year, month, a.amenity_name " +
                      "ORDER BY      year, month, a.amenity_name; ";
 
@@ -190,6 +192,7 @@ public class AmenitiesDAO {
         String sql = "SELECT        a.amenity_name, SUM(al.usage_total_price) AS total_revenue " +
                      "FROM          amenity_logs al " +
                      "JOIN          amenities a ON al.amenity_id = a.amenity_id " +
+                     "WHERE         a.amenity_id != 1 " +
                      "GROUP BY      a.amenity_name " +
                      "ORDER BY      total_revenue DESC; ";
 
@@ -218,6 +221,7 @@ public class AmenitiesDAO {
                      "              SUM(al.usage_total_price) AS total_revenue " +
                      "FROM          amenity_logs al " +
                      "JOIN          amenities a ON al.amenity_id = a.amenity_id " +
+                     "WHERE         a.amenity_id != 1 " +
                      "GROUP BY      year, month, a.amenity_name " +
                      "ORDER BY      year, month, a.amenity_name; ";
 

@@ -67,14 +67,25 @@ public class TrainersDAO {
 
         String sql = "UPDATE trainers " +
                      "SET last_name = ?, " +
+                     "    phone_number = ?, " +
+                     "    street = ?, " +
+                     "    barangay = ?, " +
+                     "    city = ?, " +
+                     "    province = ?, " +
                      "    program_specialty = ? " +
-                     "WHERE trainer_id = ?";
+                     "WHERE trainer_id = ?; ";
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {
             assert ps != null;
+            System.out.printf("\n%s %s %s %s %s %s %s %d\n", t.lastName(), t.phoneNumber(), t.street(), t.barangay(), t.city(), t.province(), t.programSpecialty(), t.trainerID()); // testing
             ps.setString(1, t.lastName());
-            ps.setString(2, t.programSpecialty());
-            ps.setInt(3, trainerID);
+            ps.setString(2, t.phoneNumber());
+            ps.setString(3, t.street());
+            ps.setString(4, t.barangay());
+            ps.setString(5, t.city());
+            ps.setString(6, t.province());
+            ps.setString(7, t.programSpecialty());
+            ps.setInt(8, t.trainerID());
 
             ps.executeUpdate();
             System.out.println("Trainer record updated successfully.");
@@ -122,7 +133,7 @@ public class TrainersDAO {
 
     // REC MANAGEMENT & TRANSACTIONS
     // create is insertTrainer
-    // delete is deletetrainer
+    // delete is deleteTrainer
     public boolean updateTrainer(
             int trainerID,
             String lastName,
@@ -142,16 +153,16 @@ public class TrainersDAO {
         Trainer oldT = selectTrainer(trainerID);
         Trainer updatedTrainer = new Trainer(
                 trainerID,
-                lastName != null ? lastName : oldT.lastName(),
+                lastName,
                 oldT.firstName(),
-                birthdate != null ? birthdate : oldT.birthdate(),
+                birthdate,
                 sex != null ? Sex.valueOf(sex) : oldT.sex(),
-                phoneNumber != null ? phoneNumber : oldT.phoneNumber(),
-                street != null ? street : oldT.street(),
-                barangay != null ? barangay : oldT.barangay(),
-                city != null ? city : oldT.city(),
-                province != null ? province : oldT.province(),
-                programSpecialty != null ? programSpecialty : oldT.programSpecialty(),
+                phoneNumber,
+                street,
+                barangay,
+                city,
+                province,
+                programSpecialty,
                 oldT.trainerStatus()
         );
         return updateTrainer(trainerID, updatedTrainer);
@@ -334,7 +345,8 @@ public class TrainersDAO {
 
     // UTILITY METHODS
     public String[] getComboBoxTrainerIDs() {
-        return DBUtils.selectAllKeysFromTable("trainers", "trainer_id");
+        String condition = "WHERE trainer_id != 1";
+        return DBUtils.selectAllKeysFromTable("trainers", "trainer_id", condition);
     }
 
     public static boolean trainerExists(int trainerID) {

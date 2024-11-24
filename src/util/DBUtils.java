@@ -143,7 +143,7 @@ public class DBUtils {
             ps.setInt(2, oldID);
 
             ps.executeUpdate();
-            System.out.printf("'%s' records with given '%s' updated successfully.", table, foreignKey);
+            System.out.printf("'%s' records with given '%s' = '%d' updated successfully.\n", table, foreignKey, oldID);
         } catch(SQLException e) {
             ExceptionHandler.handleException(e);
         }
@@ -168,7 +168,7 @@ public class DBUtils {
             ps.setInt(1, targetID);
 
             ps.executeUpdate();
-            System.out.printf("'%s' records with given '%s' deleted successfully.", table, key);
+            System.out.printf("'%s' records with given '%s' = '%d' deleted successfully.\n", table, key, targetID);
         } catch(SQLException e) {
             ExceptionHandler.handleException(e);
         }

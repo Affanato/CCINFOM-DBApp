@@ -28,7 +28,7 @@ public class SubscriptionsDAO {
             ps.setDate(4, Date.valueOf(subscriptionEndDate));
 
             ps.executeUpdate();
-            System.out.println("'subscriptions' record inserted successfully.");
+            System.out.println("'subscriptions' record inserted successfully.\n");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
             return false;
@@ -90,7 +90,7 @@ public class SubscriptionsDAO {
 
     // SELECT QUERIES //
     public String[] getComboBoxSubscriptionIDs() {
-        return DBUtils.selectAllKeysFromTable("subscriptions", "subscription_id");
+        return DBUtils.removeFirstElement(DBUtils.selectAllKeysFromTable("subscriptions", "subscription_id"));
     }
 
     public String[] getComboBoxActiveSubscriptionIDs() {
@@ -132,7 +132,7 @@ public class SubscriptionsDAO {
             return new Object[0][0];
         }
 
-        return DBUtils.to2DObjectArray(subscriptions);
+        return DBUtils.removeFirstElement(DBUtils.to2DObjectArray(subscriptions));
     }
 
     public Object[][] selectActiveSubscriptions() {
