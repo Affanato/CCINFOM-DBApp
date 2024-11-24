@@ -148,7 +148,7 @@ public class MembersDAO {
             String city,
             String province
     ) {
-        if (!DBUtils.primaryKeyExistsInATable("trainers", "trainer_id", memberID)) {
+        if (!DBUtils.primaryKeyExistsInATable("members", "member_id", memberID)) {
             return false;
         }
 

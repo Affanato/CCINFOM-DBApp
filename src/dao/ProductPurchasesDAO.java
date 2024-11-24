@@ -166,6 +166,7 @@ public class ProductPurchasesDAO {
         );
         ProductsDAO.undoPurchase(oldProductID, quantitySold);
         ProductsDAO.removeStock(newProductID, quantitySold);
+        updateProductPurchase(productPurchaseID, newPP);
         return true;
     }
 

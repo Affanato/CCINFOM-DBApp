@@ -72,7 +72,7 @@ public class MemberView {
 		citytext2 = new JFormattedTextField();
 		provincetext2 = new JFormattedTextField();
 		updateLastName = new JTextPane();
-		updateSex = new JComboBox<>();
+		updateSex = new JTextPane();
 		updateFirstName = new JTextPane();
 		updateBirthDate = new JTextPane();
 		updatePhoneNumber = new JTextPane();
@@ -573,7 +573,6 @@ public class MemberView {
 
 			//---- updateSex ----
 			updateSex.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-			updateSex.setModel(new DefaultComboBoxModel<>(Sex.getPossibleValues()));
 			updateSex.setEditable(false);
 			updateMemberFrameContentPane.add(updateSex);
 			updateSex.setBounds(950, 200, 120, 35);
@@ -805,7 +804,7 @@ public class MemberView {
 	private JFormattedTextField citytext2;
 	private JFormattedTextField provincetext2;
 	private JTextPane updateLastName;
-	private JComboBox<String> updateSex;
+	private JTextPane updateSex;
 	private JTextPane updateFirstName;
 	private JTextPane updateBirthDate;
 	private JTextPane updatePhoneNumber;
@@ -911,7 +910,7 @@ public class MemberView {
 	}
 
 	public String getUpdatedSex() {
-		return this.updateSex.getSelectedItem().toString();
+		return this.updateSex.getText();
 	}
 
 	public String getUpdateStreet() {
@@ -944,7 +943,7 @@ public class MemberView {
 	}
 
 	public void setUpdateSex(String sex) {
-		this.updateSex.setSelectedItem(sex);
+		this.updateSex.setText(sex);
 	}
 
 	public void setUpdateBirthDate(String date) {
