@@ -132,7 +132,7 @@ public class AmenitiesDAO {
 
     // REPORTS //
     public Object[][] queryAmenitiesUsageLifetime() {
-        String sql = "SELECT        a.amenity_name, FORMAT(COUNT(*) AS total_usages, 0) " +
+        String sql = "SELECT        a.amenity_name, FORMAT(COUNT(*), 0) AS total_usages " +
                      "FROM          amenity_logs al " +
                      "JOIN          amenities a ON al.amenity_id = a.amenity_id " +
                      "WHERE         a.amenity_id != 1 " +
