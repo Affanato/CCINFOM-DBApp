@@ -44,7 +44,7 @@ public class TrainingSessionController {
         this.tsView.goToReadUpcomingButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                tsView.setTrainerSessionTable(dao.selectAllUpcomingTrainingSessions());
+                tsView.setTrainerSessionTable2(dao.selectAllUpcomingTrainingSessions());
                 tsView.getReadUpcomingSessionFrame().setVisible(true);
                 tsView.getTrainingSessionFrame().dispose();
             }

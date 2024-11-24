@@ -73,7 +73,7 @@ public class TrainingSessionsDAO {
                     "SET subscription_id = ?, " +
                     "    trainer_id = ?, " +
                     "    session_start_datetime = ?, " +
-                    "    session_start_datetime = ? " +
+                    "    session_end_datetime = ? " +
                     "WHERE training_session_id = ?";
 
         try (PreparedStatement ps = DBUtils.getNewPreparedStatement(sql)) {

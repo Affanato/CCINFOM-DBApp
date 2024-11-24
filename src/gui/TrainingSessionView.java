@@ -934,10 +934,10 @@ public class TrainingSessionView {
 	public void setTrainerSessionTable2(Object[][] data) { 
 		String[] columnNames = {"Training Session ID", "Subscription ID", "Trainer ID", "Start Date and Time", "End Date and Time"};
 		DefaultTableModel model = new DefaultTableModel(data, columnNames);
-		trainingSessionTable.setModel(model);
+		trainingSessionTable2.setModel(model);
 
 		{
-			TableColumnModel cm = trainingSessionTable.getColumnModel();
+			TableColumnModel cm = trainingSessionTable2.getColumnModel();
 			cm.getColumn(0).setMinWidth(150);
 			cm.getColumn(0).setMaxWidth(150);
 			cm.getColumn(1).setMinWidth(150);
