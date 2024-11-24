@@ -13,6 +13,7 @@ public class ProductPurchasesDAO {
     // TODO: Code related methods. Refer to any implemented DAO.
     // SINGLE QUERY UPDATE
     public boolean insertProductPurchase(int memberID, int productID, int quantitySold) {
+        ProductsDAO pDAO = new ProductsDAO();
         if (quantitySold <= 0) {
             System.out.println("Product purchase quantity sold is invalid.");
             return false;
@@ -39,6 +40,7 @@ public class ProductPurchasesDAO {
             ps.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));  // purchase_datetime
 
             ps.executeUpdate();
+            pDAO.sellProduct(productID, quantitySold);
             System.out.println("Product purchase record inserted successfully.");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);

@@ -34,6 +34,8 @@ public class StartPageView extends JFrame {
         button1.setText("START");
         button1.setFont(button1.getFont().deriveFont(button1.getFont().getSize() + 18f));
         contentPane.add(button1);
+        button1.setBackground(new Color(0x3ca3cb));
+        button1.setForeground(Color.WHITE);
         button1.setBounds(450, 500, 300, 90);
 
         //---- label2 ----
