@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-// TODO: DONE DONE DONE DONE AAAAAAAAAA
 public class AmenitiesDAO {
 
     private final Statement statement;
@@ -86,8 +85,9 @@ public class AmenitiesDAO {
 
     // SELECT QUERIES //
     public static String[] getComboBoxAmenityIDs() {
-        String condition = "ORDER BY amenity_id ";
-        return DBUtils.removeFirstElement(DBUtils.selectAllKeysFromTable("amenities", "amenity_id", condition));
+        String condition = "WHERE amenity_id != 1 " +
+                           "ORDER BY amenity_id ";
+        return DBUtils.selectAllKeysFromTable("amenities", "amenity_id", condition);
     }
 
     public static Amenity selectAmenity(int amenityID) {
@@ -132,7 +132,7 @@ public class AmenitiesDAO {
 
     // REPORTS //
     public Object[][] queryAmenitiesUsageLifetime() {
-        String sql = "SELECT        a.amenity_name, COUNT(*) AS total_usages " +
+        String sql = "SELECT        a.amenity_name, FORMAT(COUNT(*) AS total_usages, 0) " +
                      "FROM          amenity_logs al " +
                      "JOIN          amenities a ON al.amenity_id = a.amenity_id " +
                      "WHERE         a.amenity_id != 1 " +
@@ -144,7 +144,7 @@ public class AmenitiesDAO {
 
             while (rs.next()) {
                 String amenityName = rs.getString("amenity_name");
-                int totalUsages = rs.getInt("total_usages");
+                String totalUsages = rs.getString("total_usages");
 
                 Object[] elem = {amenityName, totalUsages};
                 tempList.add(elem);
@@ -161,7 +161,7 @@ public class AmenitiesDAO {
         String sql = "SELECT        YEAR(al.usage_start_datetime) AS year, " +
                      "              MONTH(al.usage_start_datetime) AS month, " +
                      "              a.amenity_name, " +
-                     "              COUNT(*) AS total_usages " +
+                     "              FORMAT(COUNT(*), 0) AS total_usages " +
                      "FROM          amenity_logs al " +
                      "JOIN          amenities a ON al.amenity_id = a.amenity_id " +
                      "WHERE         a.amenity_id != 1 " +
@@ -175,7 +175,7 @@ public class AmenitiesDAO {
                 int year = rs.getInt("year");
                 int month = rs.getInt("month");
                 String amenityName = rs.getString("amenity_name");
-                int totalUsages = rs.getInt("total_usages");
+                String totalUsages = rs.getString("total_usages");
 
                 Object[] elem = {year, month, amenityName, totalUsages};
                 tempList.add(elem);
@@ -189,7 +189,7 @@ public class AmenitiesDAO {
     }
 
     public Object[][] queryAmenitiesRevenueLifetime() {
-        String sql = "SELECT        a.amenity_name, SUM(al.usage_total_price) AS total_revenue " +
+        String sql = "SELECT        a.amenity_name, FORMAT(SUM(al.usage_total_price), 2) AS total_revenue " +
                      "FROM          amenity_logs al " +
                      "JOIN          amenities a ON al.amenity_id = a.amenity_id " +
                      "WHERE         a.amenity_id != 1 " +
@@ -201,7 +201,7 @@ public class AmenitiesDAO {
 
             while (rs.next()) {
                 String amenityName = rs.getString("amenity_name");
-                int totalRevenue = rs.getInt("total_revenue");
+                String totalRevenue = rs.getString("total_revenue");
 
                 Object[] elem = {amenityName, totalRevenue};
                 tempList.add(elem);
@@ -218,7 +218,7 @@ public class AmenitiesDAO {
         String sql = "SELECT        YEAR(al.usage_start_datetime) AS year, " +
                      "              MONTH(al.usage_start_datetime) AS month, " +
                      "              a.amenity_name, " +
-                     "              SUM(al.usage_total_price) AS total_revenue " +
+                     "              FORMAT(SUM(al.usage_total_price), 2) AS total_revenue " +
                      "FROM          amenity_logs al " +
                      "JOIN          amenities a ON al.amenity_id = a.amenity_id " +
                      "WHERE         a.amenity_id != 1 " +
@@ -232,7 +232,7 @@ public class AmenitiesDAO {
                 int year = rs.getInt("year");
                 int month = rs.getInt("month");
                 String amenityName = rs.getString("amenity_name");
-                int totalRevenue = rs.getInt("total_revenue");
+                String totalRevenue = rs.getString("total_revenue");
 
                 Object[] elem = {year, month, amenityName, totalRevenue};
                 tempList.add(elem);

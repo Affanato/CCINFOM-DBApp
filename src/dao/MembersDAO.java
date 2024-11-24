@@ -158,7 +158,7 @@ public class MembersDAO {
             lastName,
             oldMember.firstName(),
             oldMember.birthdate(),
-            Sex.valueOf(sex),
+            Sex.fromDisplayName(sex),
             phoneNumber,
             street,
             barangay,

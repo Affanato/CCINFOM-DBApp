@@ -32,10 +32,10 @@ public enum Sex {
         return false;
     }
 
-    public static Status fromDisplayName(String description) {
-        for (Status status : Status.values()) {
-            if (status.getDescription().equalsIgnoreCase(description)) {
-                return status; // Return the enum constant (e.g., Status.ACTIVE)
+    public static Sex fromDisplayName(String description) {
+        for (Sex sex : Sex.values()) {
+            if (sex.getDescription().equalsIgnoreCase(description)) {
+                return sex;
             }
         }
         throw new IllegalArgumentException("No enum constant with display name: " + description);
