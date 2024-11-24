@@ -649,8 +649,8 @@ public class SubscriptionView  {
 		return this.terminateMembershipFrame;
 	}
 
-	public int getMemberID() {
-		return this.memberID.getSelectedIndex();
+	public String getMemberID() {
+		return this.memberID.getSelectedItem().toString();
 	}
 	public String getSubscriptionType() {
 		return (String) this.membershiptype.getSelectedItem();
@@ -658,11 +658,11 @@ public class SubscriptionView  {
 	public String getStartDate() {
 		return this.startdate.getText();
 	}
-	public int getSubscriptionID() {
-		return this.membershipID.getSelectedIndex() + 1;
+	public String getSubscriptionID() {
+		return this.membershipID.getSelectedItem().toString();
 	}
-	public int getTerminateSubscriptionID() {
-		return this.terminateMembershipID.getSelectedIndex() + 1;
+	public String getTerminateSubscriptionID() {
+		return this.terminateMembershipID.getSelectedItem().toString();
 	}
 
 	// button listeners

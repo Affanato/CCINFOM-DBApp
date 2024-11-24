@@ -894,8 +894,8 @@ public class MemberView {
 		return this.province.getText();
 	}
 
-	public int getMemberID() {
-		return this.memberid.getSelectedIndex();
+	public String getMemberID() {
+		return this.memberid.getSelectedItem().toString();
 	}
 
 	// get from update members
@@ -934,8 +934,8 @@ public class MemberView {
 		return this.updateProvince.getText();
 	}
 
-	public int getUpdateMemberID() {
-		return this.updateMemberID.getSelectedIndex();
+	public String getUpdateMemberID() {
+		return this.updateMemberID.getSelectedItem().toString();
 	}
 
 	// set fixed fields

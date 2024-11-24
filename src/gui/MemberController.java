@@ -95,7 +95,7 @@ public class MemberController {
         this.view.proceedUpdateButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int ID = view.getUpdateMemberID();
+                int ID = Integer.parseInt(view.getUpdateMemberID());
                 Member member = dao.selectMember(ID);
 
                 // TODO fix this
@@ -117,7 +117,7 @@ public class MemberController {
         this.view.updateMemberButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int ID = view.getUpdateMemberID();
+                int ID = Integer.parseInt(view.getUpdateMemberID());
                 String firstName = view.getUpdatedFirstName();
                 String lastName = view.getUpdateLastName();
                 String sex = view.getUpdatedSex();
@@ -163,7 +163,7 @@ public class MemberController {
         this.view.deleteMemberButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int ID = view.getMemberID();
+                int ID = Integer.parseInt(view.getMemberID());
 
                 if (dao.deleteMember(ID)) {
                     Message.success();

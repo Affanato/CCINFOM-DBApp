@@ -94,7 +94,7 @@ public class SubscriptionsDAO {
     }
 
     public String[] getComboBoxActiveSubscriptionIDs() {
-        String condition = "WHERE CURRENT_DATE BETWEEN subscription_start_date AND subscription_end_date";
+        String condition = "WHERE (CURRENT_DATE + INTERVAL 1 DAY) BETWEEN subscription_start_date AND subscription_end_date";
         return DBUtils.selectAllKeysFromTable("subscriptions", "subscription_id", condition);
     }
 

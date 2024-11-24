@@ -111,7 +111,7 @@ public class SubscriptionController {
         this.view.addSubscriptionButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int memberID = view.getMemberIDComboBox().getSelectedIndex();
+                int memberID = Integer.parseInt(view.getMemberID());
                 int subscriptionType = view.getMembershipTypeComboBox().getSelectedIndex();
                 String startDate = view.getStartDate();
 
@@ -126,7 +126,7 @@ public class SubscriptionController {
         this.view.deleteSubscriptionButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int ID = view.getMembershipIDComboBox().getSelectedIndex();
+                int ID = Integer.parseInt(view.getSubscriptionID());
 
                 if (subscriptionsDAO.deleteSubscription(ID)) {
                     Message.success();
@@ -139,7 +139,7 @@ public class SubscriptionController {
         this.view.terminateSubscriptionButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int ID = view.getTerminateMembershipIDComboBox().getSelectedIndex();
+                int ID = Integer.parseInt(view.getTerminateSubscriptionID());
 
                 if (subscriptionsDAO.terminateSubscription(ID)) {
                     Message.success();
