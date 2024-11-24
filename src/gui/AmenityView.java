@@ -243,6 +243,7 @@ public class AmenityView {
 
             //---- timeClose ----
             timeClose.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+            timeClose.setText("hh:mm:ss");
             addAmenityFrameContentPane.add(timeClose);
             timeClose.setBounds(635, 435, 175, 35);
 

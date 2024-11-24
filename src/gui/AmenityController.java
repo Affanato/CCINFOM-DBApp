@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.format.DateTimeFormatter;
 
 public class AmenityController {
     private final AmenityView view = new AmenityView();
@@ -112,13 +113,14 @@ public class AmenityController {
             public void actionPerformed(ActionEvent e) {
                 int ID = Integer.parseInt(view.getSelectUpdate());
                 Amenity amenity = dao.selectAmenity(ID);
+                DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
                 // TODO fix this
                 view.setName2(amenity.amenityName());
                 view.setSelectStatus2(amenity.amenityStatus().toString());
                 view.setWalkInPrice2(String.valueOf(amenity.walkInPricePerHour()));
-                view.setTimeOpen2(String.valueOf(amenity.openingTime()));
-                view.setTimeClose2(String.valueOf(amenity.closingTime()));
+                view.setTimeOpen2(String.valueOf(amenity.openingTime().format(timeFormatter)));
+                view.setTimeClose2(String.valueOf(amenity.closingTime().format(timeFormatter)));
 
                 view.getUpdateSelectAmenityFrame().dispose();
                 view.getUpdateAmenityDetailsFrame().setVisible(true);
