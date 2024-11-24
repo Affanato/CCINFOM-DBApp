@@ -16,6 +16,19 @@ public class TrainerView {
 		initComponents();
 	}
 
+	public void clearText() {
+		lastName.setText("");
+		firstName.setText("");
+		birthDate.setText("");
+		phoneNumber.setText("");
+		speciality.setText("");
+		city.setText("");
+		street.setText("");
+		barangay.setText("");
+		province.setText("");
+		sex.setSelectedIndex(0);
+	}
+
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
 		// Generated using JFormDesigner Evaluation license - Marxandrea Cabato

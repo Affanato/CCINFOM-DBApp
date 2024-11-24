@@ -24,6 +24,7 @@ public class ProductController {
         this.pView.goToAddButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pView.clearProductText();
                 pView.getAddProductFrame().setVisible(true);
                 pView.getProductFrame().dispose();
             }
@@ -167,13 +168,6 @@ public class ProductController {
             }
         });
 
-        this.pView.sellProductButton(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //
-            }
-        });
-
         this.pView.addProductButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -232,6 +226,7 @@ public class ProductController {
             public void actionPerformed(ActionEvent e) {
                 pView.getSellMemberIDComboBox().setModel(new DefaultComboBoxModel<>(mem.getComboBoxMemberIDs()));
                 pView.getSellProductIDComboBox().setModel(new DefaultComboBoxModel<>(dao.getComboBoxProductIDs()));
+                pView.clearPurchaseText();
                 pView.getAddProductPurchaseFrame().setVisible(true);
                 pView.getProductPurchasesFrame().dispose();
             }

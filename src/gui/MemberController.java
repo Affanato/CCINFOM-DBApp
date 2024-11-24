@@ -19,6 +19,7 @@ public class MemberController {
         this.view.goToAddButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                view.clearText();
                 view.getAddMemberFrame().setVisible(true);
                 view.getMemberFrame().dispose();
             }

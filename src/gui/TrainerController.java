@@ -22,6 +22,7 @@ public class TrainerController {
         this.tView.goToAddButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                tView.clearText();
                 tView.getAddTrainerFrame().setVisible(true);
                 tView.getTrainerFrame().dispose();
             }

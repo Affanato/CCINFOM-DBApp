@@ -27,6 +27,7 @@ public class AmenityUseController {
             public void actionPerformed(ActionEvent e) {
                 view.getMemberBar().setModel(new DefaultComboBoxModel<>(memberDAO.getComboBoxMemberIDs()));
                 view.getAmenityBar().setModel(new DefaultComboBoxModel<>(dao.getComboBoxAmenityLogIDs()));
+                view.clearText();
                 view.getAmenityUseFrame().dispose();
                 view.getAddSessionFrame().setVisible(true);
             }

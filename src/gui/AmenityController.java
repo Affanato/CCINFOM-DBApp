@@ -19,6 +19,7 @@ public class AmenityController {
         this.view.goToAddAmenityButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                view.clearText();
                 view.getAmenityFrame().dispose();
                 view.getAddAmenityFrame().setVisible(true);
             }

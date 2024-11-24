@@ -16,6 +16,20 @@ public class ProductView {
 		initComponents();
 	}
 
+	public void clearProductText() {
+		productName.setText("");
+		productBrand.setText("");
+		productPrice.setText("");
+		availableQuantity.setText("");
+		productDescription.setText("");
+	}
+
+	public void clearPurchaseText() {
+		sellproductid.setSelectedIndex(0);
+		memberid.setSelectedIndex(0);
+		sellquantity.setText("");
+	}
+
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
 		// Generated using JFormDesigner Evaluation license - Marxandrea Cabato
@@ -1766,9 +1780,6 @@ public class ProductView {
 	}
 	public void restockBackButton(ActionListener actionListener) {
 		this.restockBack.addActionListener(actionListener);
-	}
-	public void sellProductButton(ActionListener actionListener) {
-		this.sellProduct.addActionListener(actionListener);
 	}
 	public void sellBackButton(ActionListener actionListener) {
 		this.sellBack.addActionListener(actionListener);

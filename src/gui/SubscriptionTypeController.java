@@ -22,6 +22,7 @@ public class SubscriptionTypeController {
         this.mtView.goToAddButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                mtView.clearText();
                 mtView.getAddSubscriptionTypeFrame().setVisible(true);
                 mtView.getSubscriptionTypeFrame().dispose();
             }

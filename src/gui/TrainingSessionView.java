@@ -17,6 +17,13 @@ public class TrainingSessionView {
 		initComponents();
 	}
 
+	public void clearText() {
+		subscriptionID.setSelectedIndex(0);
+		trainerID.setSelectedIndex(0);
+		startdatetime.setText("YYYY-MM-DD hh:mm:ss");
+		enddatetime.setText("YYYY-MM-DD hh:mm:ss");
+	}
+
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
 		// Generated using JFormDesigner Evaluation license - Marxandrea Cabato

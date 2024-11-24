@@ -27,6 +27,7 @@ public class TrainingSessionController {
                 tsView.getMemberIDBox().setModel(new DefaultComboBoxModel<>(md.getComboBoxMemberIDs())); 
                 tsView.getTrainerIDBox().setModel(new DefaultComboBoxModel<>(td.getComboBoxTrainerIDs())); 
 
+                tsView.clearText();
                 tsView.getScheduleSessionFrame().setVisible(true);
                 tsView.getTrainingSessionFrame().dispose();
             }

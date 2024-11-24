@@ -17,6 +17,13 @@ public class AmenityUseView extends JFrame {
         initComponents();
     }
 
+    public void clearText() {
+        selectMemberBar.setSelectedIndex(0);
+        selectAmenityBar.setSelectedIndex(0);
+        startTime.setText("YYYY-MM-DD hh:mm:ss");
+        usageHours.setText("");
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Lucas Antonio V F. Tujan
@@ -190,7 +197,7 @@ public class AmenityUseView extends JFrame {
 
             //---- selectMemberBar ----
             selectMemberBar.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-            selectMemberBar.setEditable(true);
+            selectMemberBar.setEditable(false);
             addSessionFrameContentPane.add(selectMemberBar);
             selectMemberBar.setBounds(635, 220, 275, 40);
 
@@ -203,7 +210,7 @@ public class AmenityUseView extends JFrame {
 
             //---- selectAmenityBar ----
             selectAmenityBar.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
-            selectAmenityBar.setEditable(true);
+            selectAmenityBar.setEditable(false);
             addSessionFrameContentPane.add(selectAmenityBar);
             selectAmenityBar.setBounds(635, 280, 275, 40);
 

@@ -23,6 +23,7 @@ public class SubscriptionController {
                 view.getMemberIDComboBox().setModel(new DefaultComboBoxModel<>(membersDAO.getComboBoxMemberIDs()));
                 view.getMembershipTypeComboBox().setModel(new DefaultComboBoxModel<>(subscriptionTypesDAO.getComboBoxSubscriptionTypeIDs()));
 
+                view.clearText();
                 view.getAddSubscriptionFrame().setVisible(true);
                 view.getSubscriptionFrame().dispose();
             }

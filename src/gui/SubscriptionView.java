@@ -16,6 +16,12 @@ public class SubscriptionView  {
 		initComponents();
 	}
 
+	public void clearText() {
+		memberID.setSelectedIndex(0);
+		membershiptype.setSelectedIndex(0);
+		startdate.setText("");
+	}
+
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
 		// Generated using JFormDesigner Evaluation license - Marxandrea Cabato

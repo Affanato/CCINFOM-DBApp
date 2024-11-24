@@ -16,6 +16,11 @@ public class SubscriptionTypeView {
 		initComponents();
 	}
 
+	public void clearText() {
+		subscriptionTypePrice.setText("");
+		subscriptionTypeName.setText("");
+	}
+
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
 		// Generated using JFormDesigner Evaluation license - Marxandrea Cabato

@@ -12,6 +12,18 @@ public class MemberView {
 		initComponents();
 	}
 
+	public void clearText() {
+		sex.setSelectedIndex(0);
+		lastName.setText("");
+		firstName.setText("");
+		birthDate.setText("");
+		phoneNumber.setText("");
+		street.setText("");
+		barangay.setText("");
+		city.setText("");
+		province.setText("");
+	}
+
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
 		// Generated using JFormDesigner Evaluation license - Marxandrea Cabato

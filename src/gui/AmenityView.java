@@ -16,6 +16,14 @@ public class AmenityView {
         initComponents();
     }
 
+    public void clearText() {
+        name.setText("");
+        selectStatus.setSelectedIndex(0);
+        walkinPrice.setText("");
+        timeOpen.setText("hh:mm:ss");
+        timeClose.setText("hh:mm:ss");
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Lucas Antonio V F. Tujan
