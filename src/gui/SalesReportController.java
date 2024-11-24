@@ -17,7 +17,7 @@ public class SalesReportController {
         this.sView.goToMonthlyButton(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                sView.setYearlyTable(pDAO.reportYearlyRevenueByProduct());
+                sView.setYearlyTable(pDAO.reportYearlyQuantitySoldByProduct());
                 sView.getBestSellingFrame().setVisible(true);
                 sView.getSalesReportFrame().dispose();
             }
@@ -26,7 +26,7 @@ public class SalesReportController {
         this.sView.goToYearlyButton(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                sView.setMonthlyTable(pDAO.reportMonthlyRevenueByProduct());
+                sView.setMonthlyTable(pDAO.reportMonthlyQuantitySoldByProduct());
                 sView.getSalesFrame().setVisible(true);
                 sView.getSalesReportFrame().dispose();
             }

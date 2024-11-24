@@ -164,6 +164,7 @@ public class SubscriptionsDAO {
                      "                  COUNT(*) * st.subscription_type_price AS total_revenue " +
                      "FROM              subscriptions s " +
                      "JOIN              subscription_types st ON s.subscription_type_id = st.subscription_type_id " +
+                     "WHERE             s.subscription_type_id != 1 " +
                      "GROUP BY          year, month, subscription_type " +
                      "ORDER BY          year, month, subscription_type; ";
 
@@ -195,6 +196,7 @@ public class SubscriptionsDAO {
                      "                  COUNT(*) * st.subscription_type_price AS total_revenue " +
                      "FROM              subscriptions s " +
                      "JOIN              subscription_types st ON s.subscription_type_id = st.subscription_type_id " +
+                     "WHERE             s.subscription_type_id != 1 " +
                      "GROUP BY          year, subscription_type " +
                      "ORDER BY          year, subscription_type; ";
 
@@ -224,6 +226,7 @@ public class SubscriptionsDAO {
                      "                  COUNT(*) * st.subscription_type_price AS total_revenue " +
                      "FROM              subscriptions s " +
                      "JOIN              subscription_types st ON s.subscription_type_id = st.subscription_type_id " +
+                     "WHERE             s.subscription_type_id != 1 " +
                      "GROUP BY          subscription_type " +
                      "ORDER BY          total_revenue DESC; ";
 

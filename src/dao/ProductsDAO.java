@@ -276,13 +276,14 @@ public class ProductsDAO {
     }
 
     // newest report!!
-    public Object[][] reportMonthlyRevenueByProduct() {
+    public Object[][] reportMonthlyQuantitySoldByProduct() {
         String sql = "SELECT YEAR(pp.purchase_datetime) as year," +
                     "    MONTH(pp.purchase_datetime) as month," +
                     "    p.product_brand, p.product_name, " +
-                    "    SUM(pp.quantity_sold) AS totalQuantitySold " +
+                    "    FORMAT(SUM(pp.quantity_sold), 0) AS totalQuantitySold " +
                     "FROM products p " +
                     "    JOIN product_purchases pp ON pp.product_id = p.product_id " +
+                    "WHERE pp.product_id != 1 " +
                     "GROUP BY year, month," +
                     "    p.product_id, p.product_brand, p.product_name " +
                     "ORDER BY year DESC, month DESC," +
@@ -297,7 +298,7 @@ public class ProductsDAO {
                 int month = rs.getInt("month");
                 String productBrand = rs.getString("product_brand");
                 String productName = rs.getString("product_name");
-                double totalQuantitySold = rs.getDouble("totalQuantitySold");
+                String totalQuantitySold = rs.getString("totalQuantitySold");
 
                 Object[] elem = {year, month, productBrand, productName, totalQuantitySold};
                 tempList.add(elem);
@@ -310,12 +311,13 @@ public class ProductsDAO {
         }
     }
 
-    public Object[][] reportYearlyRevenueByProduct() {
+    public Object[][] reportYearlyQuantitySoldByProduct() {
         String sql = "SELECT YEAR(pp.purchase_datetime) as year," +
                     "    p.product_brand, p.product_name, " +
-                    "    SUM(pp.quantity_sold) AS totalQuantitySold " +
+                    "    FORMAT(SUM(pp.quantity_sold), 0) AS totalQuantitySold " +
                     "FROM products p " +
                     "    JOIN product_purchases pp ON pp.product_id = p.product_id " +
+                    "WHERE pp.product_id != 1 " +
                     "GROUP BY year," +
                     "    p.product_id, p.product_brand, p.product_name " +
                     "ORDER BY year DESC," +
@@ -329,7 +331,7 @@ public class ProductsDAO {
                 int year = rs.getInt("year");
                 String productBrand = rs.getString("product_brand");
                 String productName = rs.getString("product_name");
-                double totalQuantitySold = rs.getDouble("totalQuantitySold");
+                String totalQuantitySold = rs.getString("totalQuantitySold");
 
                 Object[] elem = {year, productBrand, productName, totalQuantitySold};
                 tempList.add(elem);

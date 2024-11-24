@@ -271,6 +271,7 @@ public class TrainersDAO {
                     "    COUNT(ts.subscription_id) AS numOfMembersTrained " +
                     "FROM trainers t LEFT JOIN training_sessions ts " +
                     "                          ON  t.trainer_id = ts.trainer_id " +
+                    "WHERE t.trainer_id != 1 " +
                     "GROUP BY YEAR(ts.session_start_datetime), " +
                     "    MONTH(ts.session_start_datetime), " +
                     "    t.trainer_id, " +
@@ -311,6 +312,7 @@ public class TrainersDAO {
                 "    COUNT(ts.subscription_id) AS numOfMembersTrained " +
                 "FROM trainers t LEFT JOIN training_sessions ts " +
                 "                          ON  t.trainer_id = ts.trainer_id " +
+                "WHERE t.trainer_id != 1 " +
                 "GROUP BY YEAR(ts.session_start_datetime), " +
                 "    t.trainer_id, " +
                 "    t.last_name, t.first_name, " +
