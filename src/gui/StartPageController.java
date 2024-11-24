@@ -13,8 +13,4 @@ public class StartPageController {
             }
         });
     }
-
-    public static void main(String[] args) {
-        new StartPageController();
-    }
 }
