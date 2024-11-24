@@ -112,7 +112,7 @@ public class SubscriptionController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int memberID = Integer.parseInt(view.getMemberID());
-                int subscriptionType = view.getMembershipTypeComboBox().getSelectedIndex();
+                int subscriptionType = Integer.parseInt(view.getMembershipTypeComboBox().getSelectedItem().toString());
                 String startDate = view.getStartDate();
 
                 if (subscriptionsDAO.insertSubscription(memberID, subscriptionType, startDate)) {

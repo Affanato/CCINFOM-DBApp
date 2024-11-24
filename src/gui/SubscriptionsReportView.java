@@ -1,6 +1,6 @@
 import java.awt.*;
-import javax.swing.*;
 import java.awt.event.ActionListener;
+import javax.swing.*;
 import javax.swing.table.*;
 /*
  * Created by JFormDesigner on Tue Nov 19 16:37:42 PST 2024
@@ -68,7 +68,7 @@ public class SubscriptionsReportView extends JFrame {
             subscriptionsReport.setBounds(0, 0, 1200, 55);
 
             //---- goToNewMonthlySubscriptions ----
-            goToNewMonthlySubscriptions.setText("NEW MONTHLY SUBSCRIPTIONS");
+            goToNewMonthlySubscriptions.setText("MONTHLY SUBSCRIPTIONS");
             goToNewMonthlySubscriptions.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 17));
             goToNewMonthlySubscriptions.setForeground(Color.white);
             goToNewMonthlySubscriptions.setBackground(new Color(0x3ca3cb));
@@ -76,7 +76,7 @@ public class SubscriptionsReportView extends JFrame {
             goToNewMonthlySubscriptions.setBounds(470, 220, 250, 55);
 
             //---- goToNewYearlySubscriptions ----
-            goToNewYearlySubscriptions.setText("NEW YEARLY SUBSCRIPTIONS");
+            goToNewYearlySubscriptions.setText("YEARLY SUBSCRIPTIONS");
             goToNewYearlySubscriptions.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 17));
             goToNewYearlySubscriptions.setForeground(Color.white);
             goToNewYearlySubscriptions.setBackground(new Color(0x3ca3cb));
@@ -158,7 +158,7 @@ public class SubscriptionsReportView extends JFrame {
             tablePane.setBounds(115, 145, 970, 435);
 
             //---- newMonthlySubscriptions ----
-            newMonthlySubscriptions.setText("Subscriptions Report: New Monthly Subscriptions");
+            newMonthlySubscriptions.setText("Subscriptions Report: Monthly Subscriptions");
             newMonthlySubscriptions.setBackground(new Color(0xc80f2e));
             newMonthlySubscriptions.setHorizontalAlignment(SwingConstants.CENTER);
             newMonthlySubscriptions.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
@@ -231,7 +231,7 @@ public class SubscriptionsReportView extends JFrame {
             tablePane3.setBounds(115, 145, 970, 435);
 
             //---- newYearlySubscriptions ----
-            newYearlySubscriptions.setText("Subscriptions Report: New Yearly Subscriptions");
+            newYearlySubscriptions.setText("Subscriptions Report: Yearly Subscriptions");
             newYearlySubscriptions.setBackground(new Color(0xc80f2e));
             newYearlySubscriptions.setHorizontalAlignment(SwingConstants.CENTER);
             newYearlySubscriptions.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));

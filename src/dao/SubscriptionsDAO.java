@@ -160,7 +160,7 @@ public class SubscriptionsDAO {
         String sql = "SELECT			YEAR(s.subscription_start_date) AS year, " +
                      "                  MONTH(s.subscription_start_date) AS month, " +
                      "                  st.subscription_type_name AS subscription_type, " +
-                     "                  COUNT(*) AS total_subscriptions " +
+                     "                  COUNT(*) AS total_subscriptions, " +
                      "                  COUNT(*) * st.subscription_type_price AS total_revenue " +
                      "FROM              subscriptions s " +
                      "JOIN              subscription_types st ON s.subscription_type_id = st.subscription_type_id " +
@@ -191,7 +191,7 @@ public class SubscriptionsDAO {
     public Object[][] getTotalSubsRevenuePerSubTypePerYear() {
         String sql = "SELECT			YEAR(s.subscription_start_date) AS year, " +
                      "                  st.subscription_type_name AS subscription_type, " +
-                     "                  COUNT(*) AS total_subscriptions " +
+                     "                  COUNT(*) AS total_subscriptions, " +
                      "                  COUNT(*) * st.subscription_type_price AS total_revenue " +
                      "FROM              subscriptions s " +
                      "JOIN              subscription_types st ON s.subscription_type_id = st.subscription_type_id " +
@@ -220,7 +220,7 @@ public class SubscriptionsDAO {
 
     public Object[][] getTotalSubsRevenuePerSubTypeLifetime() {
         String sql = "SELECT			st.subscription_type_name AS subscription_type, " +
-                     "                  COUNT(*) AS total_subscriptions " +
+                     "                  COUNT(*) AS total_subscriptions, " +
                      "                  COUNT(*) * st.subscription_type_price AS total_revenue " +
                      "FROM              subscriptions s " +
                      "JOIN              subscription_types st ON s.subscription_type_id = st.subscription_type_id " +
