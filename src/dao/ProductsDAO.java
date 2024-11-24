@@ -297,7 +297,7 @@ public class ProductsDAO {
                 String productName = rs.getString("product_name");
                 double totalQuantitySold = rs.getDouble("totalQuantitySold");
 
-                Object[] elem = {year, month, productBrand, productBrand, totalQuantitySold};
+                Object[] elem = {year, month, productBrand, productName, totalQuantitySold};
                 tempList.add(elem);
             }
 
@@ -329,7 +329,7 @@ public class ProductsDAO {
                 String productName = rs.getString("product_name");
                 double totalQuantitySold = rs.getDouble("totalQuantitySold");
 
-                Object[] elem = {year, productBrand, productBrand, totalQuantitySold};
+                Object[] elem = {year, productBrand, productName, totalQuantitySold};
                 tempList.add(elem);
             }
 
