@@ -143,7 +143,7 @@ public class ProductController {
 
                 double price = Double.parseDouble(pView.getUpdateProductPrice());
                 String description = pView.getUpdateProductDescription();
-                Product newP = new Product(productid, p.productBrand(), p.productName(), p.productDescription(), price, p.availableQuantity());
+                Product newP = new Product(productid, p.productBrand(), p.productName(), description, price, p.availableQuantity());
 
                 if (dao.updateProduct(productid, newP)) {
                     Message.success();

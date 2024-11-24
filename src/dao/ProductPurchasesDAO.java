@@ -144,7 +144,7 @@ public class ProductPurchasesDAO {
 
         ProductPurchase pp = selectProductPurchase(productPurchaseID);
         int quantity = pp.quantitySold();
-        ProductsDAO.undoPurchase(productPurchaseID, quantity);
+        ProductsDAO.undoPurchase(pp.productID(), quantity);
         deleteProductPurchase(productPurchaseID);
         return true;
     }

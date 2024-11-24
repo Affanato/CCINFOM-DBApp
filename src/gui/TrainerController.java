@@ -58,7 +58,7 @@ public class TrainerController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 tView.getUpdateStatusTrainerIDJComboBox().setModel(new DefaultComboBoxModel<>(dao.getComboBoxTrainerIDs()));
-                tView.getUpdateStatusTrainerIDJComboBox().setSelectedIndex(0);
+                tView.getUpdateStatusTrainerIDJComboBox().setSelectedItem("Active");
                 tView.getUpdateStatusTrainerFrame().setVisible(true);
                 tView.getTrainerFrame().dispose();
             }

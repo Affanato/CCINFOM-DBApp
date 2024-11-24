@@ -148,8 +148,8 @@ public class SubscriptionTypeController {
         this.mtView.goToAddAmenityButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mtView.getAddAmenityIDJComboBox().setModel(new DefaultComboBoxModel<>(daoAm.getComboBoxAmenityIDs()));
-                
+                int id = Integer.parseInt(mtView.getUpdateSubscriptionName());
+                mtView.getAddAmenityIDJComboBox().setModel(new DefaultComboBoxModel<>(sdao.getComboBoxNonExistingAmenities(id)));
                 mtView.getAddAmenityFrame().setVisible(true);
                 mtView.getUpdateSubscriptionTypeFrame2().dispose();
             }

@@ -473,6 +473,8 @@ public class ProductsDAO {
                 product.availableQuantity() + quantityAdded
         );
 
+        System.out.println("undoPurchase working.\n");
+
         staticUpdateProduct(productID, updatedProduct);
     }
 

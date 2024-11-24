@@ -171,7 +171,7 @@ public class TrainersDAO {
             ps.setString(1, status);
             ps.setInt(2, trainerID);
 
-            System.out.println("Trainer record set to inactive successfully.");
+            System.out.println("Trainer record set to " + status + " successfully.");
             ps.executeUpdate();
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
